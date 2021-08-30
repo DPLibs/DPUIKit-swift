@@ -9,7 +9,7 @@ open class DPTableRowModel {
     }
 
     open var cellHeight: CGFloat {
-        UITableViewAutomaticDimension
+        UITableView.automaticDimension
     }
     
     open var cellEstimatedHeight: CGFloat {
