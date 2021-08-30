@@ -263,17 +263,17 @@
 		E2B39B3426DC1B5D009DCBE6 /* Table */ = {
 			isa = PBXGroup;
 			children = (
-				E2B39B3526DC1B5D009DCBE6 /* DPTableDelegateAdapter.swift */,
-				E2B39B3626DC1B5D009DCBE6 /* DPTableViewHeaderFooterView.swift */,
-				E2B39B3726DC1B5D009DCBE6 /* DPTableSectionModel.swift */,
-				E2B39B3826DC1B5D009DCBE6 /* DPTableView+Update.swift */,
-				E2B39B3926DC1B5D009DCBE6 /* DPTableRowCell.swift */,
-				E2B39B3A26DC1B5D009DCBE6 /* DPTableSectionHeaderView.swift */,
-				E2B39B3B26DC1B5D009DCBE6 /* DPTableRowModel.swift */,
-				E2B39B3C26DC1B5D009DCBE6 /* DPTableView.swift */,
-				E2B39B3D26DC1B5D009DCBE6 /* DPTableViewCell.swift */,
 				E2B39B3E26DC1B5D009DCBE6 /* DPTableDataSourceAdapter.swift */,
+				E2B39B3526DC1B5D009DCBE6 /* DPTableDelegateAdapter.swift */,
+				E2B39B3926DC1B5D009DCBE6 /* DPTableRowCell.swift */,
+				E2B39B3B26DC1B5D009DCBE6 /* DPTableRowModel.swift */,
 				E2B39B3F26DC1B5D009DCBE6 /* DPTableSectionHeaderModel.swift */,
+				E2B39B3A26DC1B5D009DCBE6 /* DPTableSectionHeaderView.swift */,
+				E2B39B3726DC1B5D009DCBE6 /* DPTableSectionModel.swift */,
+				E2B39B3C26DC1B5D009DCBE6 /* DPTableView.swift */,
+				E2B39B3826DC1B5D009DCBE6 /* DPTableView+Update.swift */,
+				E2B39B3D26DC1B5D009DCBE6 /* DPTableViewCell.swift */,
+				E2B39B3626DC1B5D009DCBE6 /* DPTableViewHeaderFooterView.swift */,
 			);
 			path = Table;
 			sourceTree = "<group>";
