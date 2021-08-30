@@ -43,7 +43,7 @@ public extension DPTableScrollOutput {
 }
 
 // MARK: - View
-open class DPTableView: UITableView {
+open class DPTableView: UITableView, DPViewProtocol {
     
     // MARK: - Props
     open override var refreshControl: UIRefreshControl? {
@@ -82,7 +82,7 @@ open class DPTableView: UITableView {
         }
     }
     
-    open var placeholderView: DPPlaceholderView? {
+    open var placeholderView: DPView? {
         didSet {
             oldValue?.removeFromSuperview()
             self.backgroundView = self.placeholderView
@@ -105,16 +105,6 @@ open class DPTableView: UITableView {
     }
     
     // MARK: - Methods
-    open func setupComponets() {
-        self.delegateAdapter = .init()
-        self.dataSourceAdapter = .init()
-    }
-    
-    open func reloadData(with sections: [DPTableSectionModel]) {
-        self.sections = sections
-        self.reloadData()
-    }
-    
     open func didSetDataSourceAdapter() {
         self.dataSourceAdapter?.tableView = self
     }
@@ -154,5 +144,26 @@ open class DPTableView: UITableView {
         
         self.placeholderView?.setHidden(isHidden, animated: true)
     }
-
+    
+    open func reloadData(with sections: [DPTableSectionModel]) {
+        self.sections = sections
+        self.reloadData()
+    }
+    
+    // MARK: - DPViewProtocol
+    open func setupComponets() {
+        self.delegateAdapter = .init()
+        self.dataSourceAdapter = .init()
+    }
+    
+    open func updateComponets() {}
+    
+    open func setHidden(_ hidden: Bool, animated: Bool) {}
+    
+    @objc
+    open func tapButtonAction(_ button: UIButton) {}
+    
+    @objc
+    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
+    
 }

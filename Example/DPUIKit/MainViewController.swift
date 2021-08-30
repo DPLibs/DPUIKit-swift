@@ -16,7 +16,7 @@ protocol MainViewControllerInput: DPViewControllerInput {}
 protocol MainViewModelInput: DPViewModelInput {}
 
 // MARK: - Controller
-class MainViewController: DPCastViewController<MainViewController.ViewModel, DPViewRouter, DPViewErrorHandler>, MainViewControllerInput {
+class MainViewController: DPViewController<MainViewController.ViewModel, DPViewRouter, DPViewErrorHandler>, MainViewControllerInput {
     
     // MARK: - Model
     class ViewModel: DPViewModel, MainViewModelInput {
@@ -69,7 +69,7 @@ class MainViewController: DPCastViewController<MainViewController.ViewModel, DPV
         self.reloadData()
     }
     
-    func reloadData() {
+    override func reloadData() {
         self.model?.getTitles { [weak self] titles in
             let rows = titles.map({ MainListTableRowCell.ViewModel(title: $0) })
             

@@ -3,25 +3,33 @@ import UIKit
 
 public protocol DPNavigationControllerInput: AnyObject {}
 
-open class DPNavigationController: UINavigationController, DPNavigationControllerInput {
+open class DPNavigationController: UINavigationController, DPViewProtocol, UIGestureRecognizerDelegate, DPNavigationControllerInput {
     
+    // MARK: - Methods
     open override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupComponets()
     }
     
+    // MARK: - DPViewProtocol
     open func setupComponets() {
         self.interactivePopGestureRecognizer?.delegate = self
     }
     
-}
-
-// MARK: - UIGestureRecognizerDelegate
-extension DPNavigationController: UIGestureRecognizerDelegate {
-
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func updateComponets() {}
+    
+    open func setHidden(_ hidden: Bool, animated: Bool) {}
+    
+    @objc
+    open func tapButtonAction(_ button: UIButton) {}
+    
+    @objc
+    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
+    
+    // MARK: - UIGestureRecognizerDelegate
+    open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
-
+    
 }

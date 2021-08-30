@@ -155,7 +155,7 @@ open class DPTableDelegateAdapter: NSObject, UITableViewDelegate {
             return nil
         }
 
-        view.model = model
+        view._model = model
         return view
     }
 
@@ -181,7 +181,7 @@ open class DPTableDelegateAdapter: NSObject, UITableViewDelegate {
             return nil
         }
 
-        view.model = model
+        view._model = model
         return view
     }
 

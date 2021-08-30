@@ -6,7 +6,7 @@ public protocol DPTabBarControllerInput: AnyObject {
     var selectedItem: DPTabBarItem? { get set }
 }
  
-open class DPTabBarController: UITabBarController, DPTabBarControllerInput {
+open class DPTabBarController: UITabBarController, DPViewProtocol, DPTabBarControllerInput {
     
     // MARK: - Props
     open var items: [DPTabBarItem] = []
@@ -29,5 +29,17 @@ open class DPTabBarController: UITabBarController, DPTabBarControllerInput {
         }
     }
     
-    open func setupComponets() { }
+    // MARK: - DPViewProtocol
+    open func setupComponets() {}
+    
+    open func updateComponets() {}
+    
+    open func setHidden(_ hidden: Bool, animated: Bool) {}
+    
+    @objc
+    open func tapButtonAction(_ button: UIButton) {}
+    
+    @objc
+    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
+    
 }

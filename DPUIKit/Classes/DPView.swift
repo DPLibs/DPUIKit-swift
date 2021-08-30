@@ -1,7 +1,14 @@
 import Foundation
 import UIKit
 
-open class DPView: UIView {
+open class DPView: UIView, DPViewProtocol {
+    
+    // MARK: - Model
+    open var _model: Any? {
+        didSet {
+            self.updateComponets()
+        }
+    }
     
     // MARK: - Init
     public override init(frame: CGRect) {
@@ -23,14 +30,21 @@ open class DPView: UIView {
         self.setupComponets()
     }
     
+    // MARK: - DPViewProtocol
     open func setupComponets() {}
     
     open func updateComponets() {}
     
-    @objc
-    open func tapButtonAction(_ button: UIButton) { }
-
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) { }
+    open func setHidden(_ hidden: Bool, animated: Bool) {
+        guard self.isHidden != hidden else { return }
+        
+        self.isHidden = hidden
+    }
     
+    @objc
+    open func tapButtonAction(_ button: UIButton) {}
+    
+    @objc
+    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
+
 }

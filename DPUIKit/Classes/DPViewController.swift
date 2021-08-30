@@ -3,30 +3,30 @@ import UIKit
 
 public protocol DPViewControllerInput: AnyObject {}
 
-open class DPViewController: UIViewController, DPViewControllerInput {
+open class DPViewController<Model: DPViewModelInput, Router: DPViewRouter, ErrorHandler: DPViewErrorHandler>: UIViewController, DPViewProtocol, DPViewControllerInput {
     
     // MARK: - Props
-    open var _model: DPViewModelInput?
-    open var _router: DPViewRouter?
-    open var _errorHanlder: DPViewErrorHandler?
+    open var model: Model?
+    open var router: Router?
+    open var errorHanlder: ErrorHandler?
     
     open lazy var notificationObserver: DPNotificationObserver = .init()
     
     // MARK: - Lifecycle
     public init(
-        model: DPViewModelInput,
-        router: DPViewRouter = DPViewRouter(),
-        errorHanlder: DPViewErrorHandler = .init()
+        model: Model,
+        router: Router,
+        errorHanlder: ErrorHandler
     ) {
         super.init(nibName: nil, bundle: nil)
         
-        self._model = model
+        self.model = model
         
-        self._router = router
-        self._router?.viewController = self
+        self.router = router
+        self.router?.viewController = self
         
-        self._errorHanlder = errorHanlder
-        self._errorHanlder?.viewController = self
+        self.errorHanlder = errorHanlder
+        self.errorHanlder?.viewController = self
     }
     
     required public init?(coder: NSCoder) {
@@ -47,11 +47,25 @@ open class DPViewController: UIViewController, DPViewControllerInput {
     }
     
     // MARK: - Methods
+    open func reloadData() {}
+    
+    open func loadData() {}
+    
+    open func showError(_ error: Error, completion: (() -> Void)? = nil) {
+        self.errorHanlder?.showError(error, completions: completion)
+    }
+    
+    // MARK: - DPViewProtocol
     open func setupComponets() {}
     
     open func updateComponets() {}
     
-    open func showError(_ error: Error, completion: (() -> Void)? = nil) {
-        self._errorHanlder?.showError(error, completions: completion)
-    }
+    open func setHidden(_ hidden: Bool, animated: Bool) {}
+    
+    @objc
+    open func tapButtonAction(_ button: UIButton) {}
+    
+    @objc
+    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
+    
 }

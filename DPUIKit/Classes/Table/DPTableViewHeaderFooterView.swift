@@ -1,12 +1,12 @@
 import Foundation
 import UIKit
 
-open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView {
+open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProtocol {
     
     // MARK: - Model
-    open var model: Any? {
+    open var _model: Any? {
         didSet {
-            self.updateViews()
+            self.updateComponets()
         }
     }
     
@@ -14,30 +14,33 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView {
     override public init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
 
-        self.setupViews()
+        self.updateComponets()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        self.setupViews()
+        self.setupComponets()
     }
 
     // MARK: - Methods
     open override func awakeFromNib() {
         super.awakeFromNib()
 
-        self.setupViews()
+        self.setupComponets()
     }
 
-    open func setupViews() {}
-
-    open func updateViews() {}
-
-    @objc
-    open func tapButtonHandler(_ button: UIButton) {}
-
-    @objc
-    open func tapGestureHandler(_ gesture: UITapGestureRecognizer) {}
+    // MARK: - DPViewProtocol
+    open func setupComponets() {}
     
+    open func updateComponets() {}
+    
+    open func setHidden(_ hidden: Bool, animated: Bool) {}
+    
+    @objc
+    open func tapButtonAction(_ button: UIButton) {}
+    
+    @objc
+    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
+
 }

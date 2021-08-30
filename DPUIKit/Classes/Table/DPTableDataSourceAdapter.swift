@@ -37,7 +37,7 @@ open class DPTableDataSourceAdapter: NSObject, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? DPTableViewCell
         else { return .init() }
 
-        cell.model = row
+        cell._model = row
         
         if let tableView = self.tableView {
             tableView.cellsOutput?.cellForRow(tableView, indexPath: indexPath, cell: cell)

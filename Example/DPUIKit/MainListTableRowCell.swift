@@ -42,9 +42,7 @@ class MainListTableRowCell: DPTableRowCell<MainListTableRowCell.ViewModel> {
     }()
     
     // MARK: - Methods
-    override func setupViews() {
-        super.setupViews()
-        
+    override func setupComponets() {
         self.titleView.removeFromSuperview()
         self.titleView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(self.titleView)
@@ -57,11 +55,9 @@ class MainListTableRowCell: DPTableRowCell<MainListTableRowCell.ViewModel> {
         ])
     }
     
-    override func updateViews() {
-        super.updateViews()
-        
-        self.titleView.text = self.viewModel?.title
-        self.contentView.backgroundColor = self.viewModel?.backgroundColor
+    override func updateComponets() {
+        self.titleView.text = self.model?.title
+        self.contentView.backgroundColor = self.model?.backgroundColor
     }
     
 }

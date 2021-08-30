@@ -20,7 +20,7 @@ class MainTabBarController: DPTabBarController {
             var viewController: UIViewController {
                 switch item {
                 case .main:
-                    return MainViewController(cast: .init(), router: .init(), errorHanlder: .init())
+                    return MainViewController(model: .init(), router: .init(), errorHanlder: .init())
                 default:
                     return .init()
                 }

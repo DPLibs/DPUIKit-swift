@@ -4,12 +4,12 @@ import UIKit
 open class DPTableRowCell<RowModel: DPTableRowModel>: DPTableViewCell {
     
     // MARK: - Props
-    open var viewModel: RowModel? {
+    open var model: RowModel? {
         get {
-            self.model as? RowModel
+            self._model as? RowModel
         }
         set {
-            self.model = newValue
+            self._model = newValue
         }
     }
     

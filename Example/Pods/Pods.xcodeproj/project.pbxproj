@@ -12,8 +12,7 @@
 		4D5BF755C1E36B5BFCFF6048D20508CC /* Pods-DPUIKit_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FB2B085AB1FA08D2EDBF5BDFE2003490 /* Pods-DPUIKit_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		818BD4CA776D6F48CB059D6CBF9B33D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		C7D377F888A6889BCF4081356FEE578B /* DPUIKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04EE6714679FDE7E6BC9DFC9D5EFAEAF /* DPUIKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E2B39B4126DC1B5D009DCBE6 /* DPCastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B39B2426DC1B5C009DCBE6 /* DPCastViewController.swift */; };
-		E2B39B4226DC1B5D009DCBE6 /* DPPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B39B2526DC1B5C009DCBE6 /* DPPlaceholderView.swift */; };
+		E21723AC26DCB4B100C93E33 /* DPViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21723AB26DCB4B100C93E33 /* DPViewProtocol.swift */; };
 		E2B39B4326DC1B5D009DCBE6 /* DPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B39B2626DC1B5C009DCBE6 /* DPViewModel.swift */; };
 		E2B39B4426DC1B5D009DCBE6 /* DPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B39B2726DC1B5C009DCBE6 /* DPView.swift */; };
 		E2B39B4526DC1B5D009DCBE6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B39B2826DC1B5C009DCBE6 /* AppTheme.swift */; };
@@ -72,8 +71,7 @@
 		C1D7354C516043AF0FECB2FA27670098 /* DPUIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DPUIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA28D4699B23CE63CED624341E7EF258 /* DPUIKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DPUIKit-dummy.m"; sourceTree = "<group>"; };
 		D420544FA786D086BFBD18CAE524D556 /* DPUIKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DPUIKit-Info.plist"; sourceTree = "<group>"; };
-		E2B39B2426DC1B5C009DCBE6 /* DPCastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPCastViewController.swift; sourceTree = "<group>"; };
-		E2B39B2526DC1B5C009DCBE6 /* DPPlaceholderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPPlaceholderView.swift; sourceTree = "<group>"; };
+		E21723AB26DCB4B100C93E33 /* DPViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPViewProtocol.swift; sourceTree = "<group>"; };
 		E2B39B2626DC1B5C009DCBE6 /* DPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPViewModel.swift; sourceTree = "<group>"; };
 		E2B39B2726DC1B5C009DCBE6 /* DPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPView.swift; sourceTree = "<group>"; };
 		E2B39B2826DC1B5C009DCBE6 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -234,16 +232,15 @@
 			isa = PBXGroup;
 			children = (
 				E2B39B2826DC1B5C009DCBE6 /* AppTheme.swift */,
-				E2B39B2426DC1B5C009DCBE6 /* DPCastViewController.swift */,
 				E2B39B3326DC1B5D009DCBE6 /* DPNavigationController.swift */,
 				E2B39B3026DC1B5D009DCBE6 /* DPNotificationObserver.swift */,
-				E2B39B2526DC1B5C009DCBE6 /* DPPlaceholderView.swift */,
 				E2B39B3226DC1B5D009DCBE6 /* DPTabBarController.swift */,
 				E2B39B2F26DC1B5D009DCBE6 /* DPTabBarItem.swift */,
 				E2B39B2726DC1B5C009DCBE6 /* DPView.swift */,
 				E2B39B2926DC1B5C009DCBE6 /* DPViewController.swift */,
 				E2B39B3126DC1B5D009DCBE6 /* DPViewErrorHandler.swift */,
 				E2B39B2626DC1B5C009DCBE6 /* DPViewModel.swift */,
+				E21723AB26DCB4B100C93E33 /* DPViewProtocol.swift */,
 				E2B39B4026DC1B5D009DCBE6 /* DPViewRouter.swift */,
 				E2B39B2A26DC1B5D009DCBE6 /* Extensions */,
 				E2B39B3426DC1B5D009DCBE6 /* Table */,
@@ -404,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21723AC26DCB4B100C93E33 /* DPViewProtocol.swift in Sources */,
 				E2B39B5026DC1B5D009DCBE6 /* DPTableDelegateAdapter.swift in Sources */,
 				E2B39B4326DC1B5D009DCBE6 /* DPViewModel.swift in Sources */,
 				E2B39B5226DC1B5D009DCBE6 /* DPTableSectionModel.swift in Sources */,
@@ -416,7 +414,6 @@
 				E2B39B5526DC1B5D009DCBE6 /* DPTableSectionHeaderView.swift in Sources */,
 				E2B39B4526DC1B5D009DCBE6 /* AppTheme.swift in Sources */,
 				E2B39B5726DC1B5D009DCBE6 /* DPTableView.swift in Sources */,
-				E2B39B4226DC1B5D009DCBE6 /* DPPlaceholderView.swift in Sources */,
 				E2B39B5926DC1B5D009DCBE6 /* DPTableDataSourceAdapter.swift in Sources */,
 				E2B39B4D26DC1B5D009DCBE6 /* DPViewErrorHandler.swift in Sources */,
 				E2B39B5426DC1B5D009DCBE6 /* DPTableRowCell.swift in Sources */,
@@ -430,7 +427,6 @@
 				E2B39B5826DC1B5D009DCBE6 /* DPTableViewCell.swift in Sources */,
 				E2B39B4426DC1B5D009DCBE6 /* DPView.swift in Sources */,
 				E2B39B5B26DC1B5D009DCBE6 /* DPViewRouter.swift in Sources */,
-				E2B39B4126DC1B5D009DCBE6 /* DPCastViewController.swift in Sources */,
 				E2B39B4F26DC1B5D009DCBE6 /* DPNavigationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

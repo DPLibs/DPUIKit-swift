@@ -4,12 +4,12 @@ import UIKit
 open class DPTableSectionHeaderView<SectionHeaderModel: DPTableSectionHeaderModel>: DPTableViewHeaderFooterView {
     
     // MARK: - Props
-    open var viewModel: SectionHeaderModel? {
+    open var model: SectionHeaderModel? {
         get {
-            self.model as? SectionHeaderModel
+            self._model as? SectionHeaderModel
         }
         set {
-            self.model = newValue
+            self._model = newValue
         }
     }
     
