@@ -1,0 +1,6 @@
+framework module DPUIKit {
+  umbrella header "DPUIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
