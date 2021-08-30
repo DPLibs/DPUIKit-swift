@@ -9,7 +9,7 @@ open class DPTableSectionHeaderModel {
     }
 
     open var viewHeight: CGFloat {
-        UITableViewAutomaticDimension
+        UITableView.automaticDimension
     }
 
     open var viewEstimatedHeight: CGFloat {

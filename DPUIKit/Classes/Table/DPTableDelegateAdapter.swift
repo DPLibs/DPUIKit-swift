@@ -84,13 +84,13 @@ open class DPTableDelegateAdapter: NSObject, UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let model = self.sections.getRow(at: indexPath) else { return UITableViewAutomaticDimension }
+        guard let model = self.sections.getRow(at: indexPath) else { return UITableView.automaticDimension }
 
         return model.cellHeight
     }
     
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let model = self.sections.getRow(at: indexPath) else { return UITableViewAutomaticDimension }
+        guard let model = self.sections.getRow(at: indexPath) else { return UITableView.automaticDimension }
 
         return model.cellEstimatedHeight
     }

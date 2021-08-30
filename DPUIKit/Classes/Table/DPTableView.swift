@@ -117,7 +117,7 @@ open class DPTableView: UITableView, DPViewProtocol {
         guard let refreshControl = self.refreshControl else { return }
 
         refreshControl.addTarget(self, action: #selector(self.refreshControlValueChanged(_:)), for: .valueChanged)
-        self.bringSubview(toFront: refreshControl)
+        self.bringSubviewToFront(refreshControl)
     }
     
     @objc
