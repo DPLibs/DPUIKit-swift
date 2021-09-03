@@ -3,34 +3,26 @@ import UIKit
 
 public protocol DPViewControllerInput: AnyObject {}
 
-open class DPViewController<Model: DPViewModelInput, Router: DPViewRouter, ErrorHandler: DPViewErrorHandler>: UIViewController, DPViewProtocol, DPViewControllerInput {
+open class DPViewController: UIViewController, DPViewProtocol, DPViewControllerInput {
     
     // MARK: - Props
-    open var model: Model?
-    open var router: Router?
-    open var errorHanlder: ErrorHandler?
+    open var _model: DPViewModelInput?
+    open var _router: DPViewRouter?
+    open var _errorHanlder: DPViewErrorHandler?
     
     open lazy var notificationObserver: DPNotificationObserver = .init()
     
     // MARK: - Lifecycle
-    public init(
-        model: Model,
-        router: Router,
-        errorHanlder: ErrorHandler
-    ) {
-        super.init(nibName: nil, bundle: nil)
+    public convenience init(_model: DPViewModel?, _router: DPViewRouter?, _errorHanlder: DPViewErrorHandler?) {
+        self.init(nibName: nil, bundle: nil)
         
-        self.model = model
+        self._model = _model
         
-        self.router = router
-        self.router?.viewController = self
+        self._router = _router
+        self._router?.viewController = self
         
-        self.errorHanlder = errorHanlder
-        self.errorHanlder?.viewController = self
-    }
-    
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
+        self._errorHanlder = _errorHanlder
+        self._errorHanlder?.viewController = self
     }
     
     open override func viewDidLoad() {
@@ -52,7 +44,7 @@ open class DPViewController<Model: DPViewModelInput, Router: DPViewRouter, Error
     open func loadData() {}
     
     open func showError(_ error: Error, completion: (() -> Void)? = nil) {
-        self.errorHanlder?.showError(error, completions: completion)
+        self._errorHanlder?.showError(error, completions: completion)
     }
     
     // MARK: - DPViewProtocol

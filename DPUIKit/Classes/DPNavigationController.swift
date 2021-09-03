@@ -1,9 +1,7 @@
 import Foundation
 import UIKit
 
-public protocol DPNavigationControllerInput: AnyObject {}
-
-open class DPNavigationController: UINavigationController, DPViewProtocol, UIGestureRecognizerDelegate, DPNavigationControllerInput {
+open class DPNavigationController: UINavigationController, DPViewProtocol, UIGestureRecognizerDelegate {
     
     // MARK: - Methods
     open override func viewDidLoad() {

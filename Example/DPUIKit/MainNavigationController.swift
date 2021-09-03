@@ -9,6 +9,4 @@
 import Foundation
 import DPUIKit
 
-protocol MainNavigationControllerInput: DPNavigationControllerInput {}
-
 class MainNavigationController: DPNavigationController {}

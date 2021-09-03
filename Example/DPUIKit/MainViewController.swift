@@ -16,7 +16,7 @@ protocol MainViewControllerInput: DPViewControllerInput {}
 protocol MainViewModelInput: DPViewModelInput {}
 
 // MARK: - Controller
-class MainViewController: DPViewController<MainViewController.ViewModel, DPViewRouter, DPViewErrorHandler>, MainViewControllerInput {
+class MainViewController: DPCastViewController<MainViewController.ViewModel, DPViewRouter, DPViewErrorHandler>, MainViewControllerInput {
     
     // MARK: - Model
     class ViewModel: DPViewModel, MainViewModelInput {

@@ -1,12 +1,7 @@
 import Foundation
 import UIKit
 
-public protocol DPTabBarControllerInput: AnyObject {
-    var selectedIndex: Int { get set }
-    var selectedItem: DPTabBarItem? { get set }
-}
- 
-open class DPTabBarController: UITabBarController, DPViewProtocol, DPTabBarControllerInput {
+open class DPTabBarController: UITabBarController, DPViewProtocol {
     
     // MARK: - Props
     open var items: [DPTabBarItem] = []

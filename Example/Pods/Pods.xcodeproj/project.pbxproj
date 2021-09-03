@@ -13,6 +13,8 @@
 		818BD4CA776D6F48CB059D6CBF9B33D0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		C7D377F888A6889BCF4081356FEE578B /* DPUIKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04EE6714679FDE7E6BC9DFC9D5EFAEAF /* DPUIKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E21723AC26DCB4B100C93E33 /* DPViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21723AB26DCB4B100C93E33 /* DPViewProtocol.swift */; };
+		E23EF60B26E23C4E008E9621 /* DPCastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23EF60A26E23C4E008E9621 /* DPCastView.swift */; };
+		E23EF60D26E23CF6008E9621 /* DPCastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23EF60C26E23CF6008E9621 /* DPCastViewController.swift */; };
 		E2B39B4326DC1B5D009DCBE6 /* DPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B39B2626DC1B5C009DCBE6 /* DPViewModel.swift */; };
 		E2B39B4426DC1B5D009DCBE6 /* DPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B39B2726DC1B5C009DCBE6 /* DPView.swift */; };
 		E2B39B4526DC1B5D009DCBE6 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B39B2826DC1B5C009DCBE6 /* AppTheme.swift */; };
@@ -72,6 +74,8 @@
 		CA28D4699B23CE63CED624341E7EF258 /* DPUIKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DPUIKit-dummy.m"; sourceTree = "<group>"; };
 		D420544FA786D086BFBD18CAE524D556 /* DPUIKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "DPUIKit-Info.plist"; sourceTree = "<group>"; };
 		E21723AB26DCB4B100C93E33 /* DPViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPViewProtocol.swift; sourceTree = "<group>"; };
+		E23EF60A26E23C4E008E9621 /* DPCastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCastView.swift; sourceTree = "<group>"; };
+		E23EF60C26E23CF6008E9621 /* DPCastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCastViewController.swift; sourceTree = "<group>"; };
 		E2B39B2626DC1B5C009DCBE6 /* DPViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPViewModel.swift; sourceTree = "<group>"; };
 		E2B39B2726DC1B5C009DCBE6 /* DPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPView.swift; sourceTree = "<group>"; };
 		E2B39B2826DC1B5C009DCBE6 /* AppTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				E2B39B2826DC1B5C009DCBE6 /* AppTheme.swift */,
+				E23EF60A26E23C4E008E9621 /* DPCastView.swift */,
+				E23EF60C26E23CF6008E9621 /* DPCastViewController.swift */,
 				E2B39B3326DC1B5D009DCBE6 /* DPNavigationController.swift */,
 				E2B39B3026DC1B5D009DCBE6 /* DPNotificationObserver.swift */,
 				E2B39B3226DC1B5D009DCBE6 /* DPTabBarController.swift */,
@@ -402,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E21723AC26DCB4B100C93E33 /* DPViewProtocol.swift in Sources */,
+				E23EF60B26E23C4E008E9621 /* DPCastView.swift in Sources */,
 				E2B39B5026DC1B5D009DCBE6 /* DPTableDelegateAdapter.swift in Sources */,
 				E2B39B4326DC1B5D009DCBE6 /* DPViewModel.swift in Sources */,
 				E2B39B5226DC1B5D009DCBE6 /* DPTableSectionModel.swift in Sources */,
@@ -426,6 +433,7 @@
 				E2B39B5A26DC1B5D009DCBE6 /* DPTableSectionHeaderModel.swift in Sources */,
 				E2B39B5826DC1B5D009DCBE6 /* DPTableViewCell.swift in Sources */,
 				E2B39B4426DC1B5D009DCBE6 /* DPView.swift in Sources */,
+				E23EF60D26E23CF6008E9621 /* DPCastViewController.swift in Sources */,
 				E2B39B5B26DC1B5D009DCBE6 /* DPViewRouter.swift in Sources */,
 				E2B39B4F26DC1B5D009DCBE6 /* DPNavigationController.swift in Sources */,
 			);

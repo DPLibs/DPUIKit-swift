@@ -9,8 +9,6 @@
 import Foundation
 import DPUIKit
 
-protocol MainTabBarControllerInput: DPTabBarControllerInput {}
-
 class MainTabBarController: DPTabBarController {
     
     override func setupComponets() {
