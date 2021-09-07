@@ -1,6 +1,0 @@
-framework module Pods_DPUIKit_Example {
-  umbrella header "Pods-DPUIKit_Example-umbrella.h"
-
-  export *
-  module * { export * }
-}
