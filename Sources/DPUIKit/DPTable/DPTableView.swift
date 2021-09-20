@@ -145,11 +145,11 @@ open class DPTableView: UITableView, DPViewProtocol {
     open func updatePlaceholderViewAutoHidden() {
         guard self.placeholderViewAutoHiddenEnabled else { return }
         
-        var isHidden: Bool {
+        var isEmpty: Bool {
             self.sections.isEmpty && self.sections.rowsIsEmpty && self.sections.headersIsEmpty && self.sections.footersIsEmpty
         }
         
-        self.placeholderView?.setHidden(isHidden, animated: true)
+        self.placeholderView?.setHidden(!isEmpty, animated: true)
     }
     
     open func reloadData(with sections: [DPTableSectionModel]) {
