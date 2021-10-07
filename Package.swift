@@ -21,9 +21,9 @@ let package = Package(
     targets: [
         .target(
             name: "DPUIKit",
-            dependencies: [
-                "DPUIKit_Views"
-            ],
+//            dependencies: [
+//                "DPUIKit_Views"
+//            ],
             path: "DPUIKit/Sources"
         ),
         .target(
