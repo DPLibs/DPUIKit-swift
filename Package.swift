@@ -9,10 +9,10 @@ let package = Package(
         .iOS(.v11),
     ],
     products: [
-        .library(
-            name: "DPUIKit",
-            targets: ["DPUIKit"]
-        ),
+//        .library(
+//            name: "DPUIKit",
+//            targets: ["DPUIKit"]
+//        ),
         .library(
             name: "DPUIKit_Views",
             targets: ["DPUIKit_Views"]
