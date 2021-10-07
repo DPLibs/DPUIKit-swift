@@ -10,20 +10,19 @@ let package = Package(
     ],
     products: [
         .library(
+            name: "DPUIKit",
+            targets: [
+                "DPUIKit_Views"
+            ]
+        ),
+        .library(
             name: "DPUIKit_Views",
             targets: ["DPUIKit_Views"]
         ),
     ],
     targets: [
         .target(
-            name: "DPUIKit",
-            path: "DPUIKit/Sources"
-        ),
-        .target(
             name: "DPUIKit_Views",
-            dependencies: [
-                "DPUIKit"
-            ],
             path: "DPUIKit_Views/Sources"
         )
     ]
