@@ -16,8 +16,15 @@ let package = Package(
     ],
     targets: [
         .target(
-          name: "DPUIKit_Views",
-          path: "DPUIKit_Views/Sources"
+            name: "DPUIKit",
+            path: "DPUIKit/Sources"
+        ),
+        .target(
+            name: "DPUIKit_Views",
+            dependencies: [
+                "DPUIKit"
+            ],
+            path: "DPUIKit_Views/Sources"
         )
     ]
 )
