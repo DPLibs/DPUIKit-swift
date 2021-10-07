@@ -9,10 +9,6 @@ let package = Package(
         .iOS(.v11),
     ],
     products: [
-//        .library(
-//            name: "DPUIKit",
-//            targets: ["DPUIKit"]
-//        ),
         .library(
             name: "DPUIKit_Views",
             targets: ["DPUIKit_Views"]
@@ -21,10 +17,8 @@ let package = Package(
     targets: [
         .target(
             name: "DPUIKit",
-//            dependencies: [
-//                "DPUIKit_Views"
-//            ],
-            path: "DPUIKit/Sources"
+            path: "DPUIKit/Sources",
+            publicHeadersPath: "./"
         ),
         .target(
             name: "DPUIKit_Views",
