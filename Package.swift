@@ -10,16 +10,11 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "DPUIKit_Views",
+            name: "DPUIKit",
             targets: ["DPUIKit_Views"]
         ),
     ],
     targets: [
-        .target(
-            name: "DPUIKit",
-            path: "DPUIKit/Sources",
-            publicHeadersPath: "./"
-        ),
         .target(
             name: "DPUIKit_Views",
             path: "DPUIKit_Views/Sources"
