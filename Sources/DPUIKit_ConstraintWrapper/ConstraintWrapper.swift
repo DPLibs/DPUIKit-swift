@@ -305,34 +305,4 @@ public extension ConstraintWrapper {
         }
     }
     
-    enum VerticalSpacingAttribute {
-        case top
-        case bottom
-        
-        fileprivate var fromItemAttribute: NSLayoutConstraint.Attribute {
-            switch self {
-            case .top: return .top
-            case .bottom: return .bottom
-            }
-        }
-        
-        fileprivate var toItemAttribute: NSLayoutConstraint.Attribute {
-            switch self {
-            case .top: return .bottom
-            case .bottom: return .top
-            }
-        }
-    }
-    
-    static func spacing(to view: UIView, attribute: VerticalSpacingAttribute, constant: CGFloat = 0) -> ConstraintWrapper {
-        .wrap { wrappedView in
-            NSLayoutConstraint.activate([
-                .init(
-                    item: wrappedView, attribute: attribute.fromItemAttribute, relatedBy: .equal,
-                    toItem: view, attribute: attribute.toItemAttribute, multiplier: 1, constant: constant
-                )
-            ])
-        }
-    }
-    
 }
