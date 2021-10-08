@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-extension UIView {
+public extension UIView {
     
     func addSubviews(_ subviews: [UIView]) {
         subviews.forEach({ $0.addToSuperview(self) })
