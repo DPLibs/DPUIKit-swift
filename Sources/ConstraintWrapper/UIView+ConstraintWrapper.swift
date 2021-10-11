@@ -22,7 +22,7 @@ public extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(self)
         
-        return self.addConstraintsWrappers(constraints)
+        return self.applyConstraints(constraints)
     }
     
     @discardableResult
@@ -33,11 +33,11 @@ public extension UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         superview.insertSubview(self, belowSubview: siblingSubview)
         
-        return self.addConstraintsWrappers(constraints)
+        return self.applyConstraints(constraints)
     }
     
     @discardableResult
-    func addConstraintsWrappers(_ constraints: [ConstraintWrapper]) -> Self {
+    func applyConstraints(_ constraints: [ConstraintWrapper]) -> Self {
         constraints.forEach({
             switch $0 {
             case let .wrap(constraint):
