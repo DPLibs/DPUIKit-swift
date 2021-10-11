@@ -17,7 +17,10 @@ let package = Package(
     targets: [
         .target(
             name: "DPUIKit",
-            path: "Sources"
+            path: "Sources",
+            linkerSettings: [
+                .linkedFramework("UIKit", .when(platforms: [.iOS]))
+            ]
         )
     ]
 )
