@@ -14,9 +14,19 @@ let package = Package(
             targets: ["DPUIKit"]
         ),
     ],
+    dependencies: [
+        .package(
+            name: "Kingfisher",
+            url: "https://github.com/onevcat/Kingfisher.git",
+            .exact("5.15.6")
+        )
+    ],
     targets: [
         .target(
             name: "DPUIKit",
+            dependencies: [
+                "Kingfisher"
+            ],
             path: "Sources",
             linkerSettings: [
                 .linkedFramework("UIKit", .when(platforms: [.iOS]))
