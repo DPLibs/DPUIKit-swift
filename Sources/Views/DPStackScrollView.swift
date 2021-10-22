@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-class DPStackScrollView: DPView {
+open class DPStackScrollView: DPView {
     
     // MARK: - Init
-    convenience init(arrangedSubviews: [UIView]) {
+    public convenience init(arrangedSubviews: [UIView]) {
         self.init(frame: .zero)
         
         self.updateComponents()
@@ -33,7 +33,7 @@ class DPStackScrollView: DPView {
         return result
     }()
     
-    var axis: NSLayoutConstraint.Axis {
+    open var axis: NSLayoutConstraint.Axis {
         get {
             self.stackView.axis
         }
@@ -58,14 +58,14 @@ class DPStackScrollView: DPView {
     }()
     
     // MARK: - Methods
-    override func setupComponents() {
+    open override func setupComponents() {
         super.setupComponents()
         
         self.scrollView.addToSuperview(self, withConstraints: [ .edgesToSuperview() ])
         self.stackView.addToSuperview(self.scrollView, withConstraints: [ .edgesToSuperview() ])
     }
     
-    override func updateComponents() {
+    open override func updateComponents() {
         super.updateComponents()
         
         switch self.axis {
@@ -80,11 +80,17 @@ class DPStackScrollView: DPView {
         }
     }
     
-    func addArrangedSubviews(_ views: [UIView]) {
+    @discardableResult
+    open func addArrangedSubviews(_ views: [UIView]) -> DPStackScrollView {
         self.stackView.addArrangedSubviews(views)
+        
+        return self
     }
     
-    func removeAllArrangedSubviews() {
+    @discardableResult
+    open func removeAllArrangedSubviews() -> DPStackScrollView  {
         self.stackView.removeAllArrangedSubviews()
+        
+        return self
     }
 }

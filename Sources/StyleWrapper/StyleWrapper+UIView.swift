@@ -91,7 +91,7 @@ public extension StyleWrapper where Element: UIView {
     static func cornerRadiusRight(_ value: CGFloat) -> StyleWrapper {
         return .wrap { view in
             view.layer.cornerRadius = value
-            view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+            view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMaxYCorner]
         }
     }
     
