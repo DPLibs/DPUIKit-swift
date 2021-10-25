@@ -102,9 +102,12 @@ public extension UIView {
     
     /// Perform `setNeedsLayout()` and `layoutIfNeeded()`.
     ///
-    func reloadLayouts() {
+    @discardableResult
+    func reloadLayouts() -> UIView {
         self.setNeedsLayout()
         self.layoutIfNeeded()
+        
+        return self
     }
     
     // MARK: - Animate methods
