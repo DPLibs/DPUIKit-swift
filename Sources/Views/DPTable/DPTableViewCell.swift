@@ -40,9 +40,16 @@ open class DPTableViewCell: UITableViewCell, DPViewProtocol {
     open override func setSelected(_ selected: Bool, animated: Bool) {
         return
     }
+    
+    open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        return
+    }
 
     // MARK: - DPViewProtocol
-    open func setupComponents() {}
+    open func setupComponents() {
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .clear
+    }
     
     open func updateComponents() {}
     
