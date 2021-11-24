@@ -36,16 +36,16 @@ open class DPNotificationObserver: NSObject {
     }
     
     open func observe(_ observers: Observer...) {
-        observers.forEach({ observer in
-            observers.forEach { observer in
-                self.notificationCenter.addObserver(
-                    self,
-                    selector: #selector(self.handleNotification(_:)),
-                    name: observer.notificationName,
-                    object: nil
-                )
-            }
-        })
+        observers.forEach { observer in
+            self.notificationCenter.addObserver(
+                self,
+                selector: #selector(self.handleNotification(_:)),
+                name: observer.notificationName,
+                object: nil
+            )
+            
+            self.observers += [observer]
+        }
     }
     
     @objc
