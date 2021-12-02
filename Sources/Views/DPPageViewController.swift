@@ -189,7 +189,7 @@ public extension DPPageContainerViewControllerDelegate {
 open class DPPageContainerViewController: DPViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
     // MARK: - Init
-    convenience init(
+    public convenience init(
         transitionStyle style: UIPageViewController.TransitionStyle,
         navigationOrientation: UIPageViewController.NavigationOrientation,
         options: [UIPageViewController.OptionsKey: Any]? = nil,
@@ -208,6 +208,7 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
     open var pages: [UIViewController] = [] {
         didSet {
             self.delegate?.didSetPages(self, pages: self.pages)
+            self.showPage(at: self.pageSelectedIndex ?? 0, animated: false)
         }
     }
     
@@ -226,12 +227,20 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
         }
     }
     
+//    public var pageSelected: UIViewController? {
+//        self.pageViewController.viewControllers?.first
+//    }
+//
+//    public var pageSelectedIndex: Int? {
+//        self.pages.firstIndex(where: { $0 == self.pageSelected })
+//    }
+    
+    open private(set) var pageSelectedIndex: Int?
+    
     public var pageSelected: UIViewController? {
-        self.pageViewController.viewControllers?.first
-    }
-
-    public var pageSelectedIndex: Int? {
-        self.pages.firstIndex(where: { $0 == self.pageSelected })
+        guard let index = self.pageSelectedIndex, self.pages.indices.contains(index) else { return nil }
+        
+        return self.pages[index]
     }
     
     // MARK: - Methods
@@ -256,56 +265,61 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
         self.pageViewController.delegate = self
         
         self.swipeIsEnabledDidSet()
-        //        self.showPage(at: self._currentPageIndex)
+        self.showPage(at: self.pageSelectedIndex ?? 0, animated: false)
     }
     
     open func swipeIsEnabledDidSet() {
         self.pageViewController.dataSource = self.swipeIsEnabled ? self : nil
     }
     
-    open func showPage(at index: Int) {
-        guard let indexSeleted = self.pageSelectedIndex, self.pages.indices.contains(index) else { return }
+    open func showPage(at index: Int, animated: Bool) {
+        guard self.pages.indices.contains(index) else { return }
 
         let controller = self.pages[index]
-        let direction: UIPageViewController.NavigationDirection = index >= indexSeleted ? .forward : .reverse
+        let direction: UIPageViewController.NavigationDirection = index >= (self.pageSelectedIndex ?? 0) ? .forward : .reverse
+        self.pageSelectedIndex = index
 
-        self.pageViewController.setViewControllers([controller], direction: direction, animated: true, completion: { [weak self] completed in
+        self.pageViewController.setViewControllers([controller], direction: direction, animated: animated, completion: { [weak self] completed in
             guard let self = self, completed else { return }
             
             self.delegate?.didSelectPage(self, at: index)
         })
     }
 
-    open func showPageReverse() {
-        guard let indexSeleted = self.pageSelectedIndex, self.pages.indices.contains(indexSeleted - 1) else {
+    open func showPageReverse(animated: Bool) {
+        let index = (self.pageSelectedIndex ?? 0) - 1
+        
+        guard self.pages.indices.contains(index) else {
             self.delegate?.didPageLimitReached(self, for: .reverse, fromSwipe: false)
             return
         }
         
-        self.showPage(at: indexSeleted - 1)
+        self.showPage(at: index, animated: animated)
     }
 
-    open func showPageForward() {
-        guard let indexSeleted = self.pageSelectedIndex, self.pages.indices.contains(indexSeleted + 1) else {
+    open func showPageForward(animated: Bool) {
+        let index = (self.pageSelectedIndex ?? 0) + 1
+        
+        guard self.pages.indices.contains(index) else {
             self.delegate?.didPageLimitReached(self, for: .forward, fromSwipe: false)
             return
         }
         
-        self.showPage(at: indexSeleted + 1)
+        self.showPage(at: index, animated: animated)
     }
 
-    open func removePages(atRange range: Range<Int>) {
+    open func removePages(atRange range: Range<Int>, animated: Bool) {
         self.pages.removeSubrange(range)
-        let index = self.pageSelectedIndex ?? self.pages.count - 1
         
-        guard self.pages.indices.contains(index) else { return }
-        self.showPage(at: index)
+        let index = self.pageSelectedIndex ?? self.pages.count - 1
+        self.showPage(at: index, animated: animated)
     }
     
     
     // MARK: - UIPageViewControllerDelegate
     open func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if let index = self.pageSelectedIndex {
+        if let index = self.pages.firstIndex(where: { $0 == pageViewController.viewControllers?.first }) {
+            self.pageSelectedIndex = index
             self.delegate?.didSelectPage(self, at: index)
         }
     }
