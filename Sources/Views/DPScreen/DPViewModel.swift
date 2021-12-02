@@ -9,6 +9,12 @@ import Foundation
 
 open class DPViewModel {
     
+    // MARK: - Init
     public init() {}
+    
+    // MARK: - Props
+    var didError: ((Error) -> Void)?
+    var didBeginLoading: (() -> Void)?
+    var didFinishLoading: (() -> Void)?
     
 }

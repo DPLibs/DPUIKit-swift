@@ -17,10 +17,12 @@ open class DPViewErrorHandler {
     public init() {}
     
     // MARK: - Methods
-    open func showError(_ error: Error?, completions: (() -> Void)? = nil) {
+    open func handleError(_ error: Error?, completion: (() -> Void)? = nil) {
         guard let error = error else { return }
         
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
-        self.viewController?.present(alert, animated: true, completion: completions)
+        alert.addAction(.init(title: "OK", style: .cancel, handler: nil))
+        
+        self.viewController?.present(alert, animated: true, completion: completion)
     }
 }

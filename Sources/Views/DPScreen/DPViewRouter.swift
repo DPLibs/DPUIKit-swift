@@ -35,7 +35,7 @@ open class DPViewRouter {
     open func popViewController(animated: Bool) -> UIViewController? {
         self.viewController?.navigationController?.popViewController(animated: animated)
     }
-
+    
     @discardableResult
     open func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
         self.viewController?.navigationController?.popToViewController(viewController, animated: animated)
@@ -44,6 +44,10 @@ open class DPViewRouter {
     @discardableResult
     open func popToRootViewController(animated: Bool) -> [UIViewController]? {
         self.viewController?.navigationController?.popToRootViewController(animated: animated)
+    }
+    
+    open func dismiss(animated: Bool, completion: (() -> Void)? = nil) {
+        self.viewController?.dismiss(animated: animated, completion: completion)
     }
     
 }
