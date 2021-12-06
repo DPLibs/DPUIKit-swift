@@ -23,6 +23,13 @@ open class DPButton: UIButton, DPViewProtocol {
         self.setupComponents()
     }
     
+    // MARK: - Props
+    open var didTap: (() -> Void)? {
+        didSet {
+            self.didTapDidSet()
+        }
+    }
+    
     // MARK: - Methods
     open func setupComponents() {}
     
@@ -35,5 +42,18 @@ open class DPButton: UIButton, DPViewProtocol {
     
     @objc
     open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
+    
+    open func didTapDidSet() {
+        if self.didTap == nil {
+            self.removeTarget(self, action: #selector(self.handleDidTap), for: .touchUpInside)
+        } else {
+            self.addTarget(self, action: #selector(self.handleDidTap), for: .touchUpInside)
+        }
+    }
+    
+    @objc
+    open func handleDidTap() {
+        self.didTap?()
+    }
     
 }

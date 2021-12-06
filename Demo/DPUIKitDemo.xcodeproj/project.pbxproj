@@ -12,6 +12,7 @@
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
 		E26735EC2759552700DCEEFB /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E26735EB2759552700DCEEFB /* DPUIKit */; };
 		E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */; };
+		E2801389275E9DAB007980FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2801388275E9DAB007980FD /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		E26735E22759547900DCEEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E26735E92759550100DCEEFB /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DPUIKit; path = ..; sourceTree = "<group>"; };
 		E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPageContainerViewController.swift; sourceTree = "<group>"; };
+		E2801388275E9DAB007980FD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */,
+				E2801388275E9DAB007980FD /* MainViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2801389275E9DAB007980FD /* MainViewController.swift in Sources */,
 				E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,
 			);
