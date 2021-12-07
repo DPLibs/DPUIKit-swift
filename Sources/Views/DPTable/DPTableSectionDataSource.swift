@@ -61,6 +61,48 @@ open class DPTableDataSource: NSObject, UITableViewDataSource {
 
 }
 
+protocol TableViewDelegate1: UITableViewDelegate {
+    
+}
+
+open class TableViewDelegateProxy: NSObject, UITableViewDelegate {
+    
+    weak var _delegate: TableViewDelegate1?
+    
+    open override func responds(to aSelector: Selector!) -> Bool {
+        super.responds(to: aSelector) || self._delegate?.responds(to: aSelector) == true
+    }
+    
+    open override func forwardingTarget(for aSelector: Selector!) -> Any? {
+        if self._delegate?.responds(to: aSelector) == true {
+            return self._delegate
+        }
+        else {
+            return super.forwardingTarget(for: aSelector)
+        }
+    }
+    
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //
+    }
+    
+}
+
+open class TableView: UITableView {
+    
+//    private var delegateProxy = TableViewDelegateProxy()
+//
+//    open override var delegate: UITableViewDelegate? {
+//        get {
+//            self.delegateProxy?._delegate
+//        }
+//        set {
+//            self.delegateProxy?._delegate = newValue
+//        }
+//    }
+    
+}
+
 //open class DPTableDataSourceAdapter: NSObject, UITableViewDataSource {
 //    
 //    // MARK: - Props
