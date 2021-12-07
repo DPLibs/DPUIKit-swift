@@ -22,12 +22,12 @@ open class DPTabBarController: UITabBarController, DPViewProtocol {
     
     open var selectedItem: DPTabBarItem? {
         get {
-            self.items.first(where: { $0.tag == self.selectedIndex })
+            guard self.items.indices.contains(self.selectedIndex) else { return nil }
+            return self.items[self.selectedIndex]
         }
         set {
-            guard let tag = newValue?.tag, self.items.contains(where: { $0.tag == tag }) else { return }
-            
-            self.selectedIndex = tag
+            guard let index = self.items.firstIndex(where: { $0.tag == newValue?.tag }) else { return }
+            self.selectedIndex = index
         }
     }
     
