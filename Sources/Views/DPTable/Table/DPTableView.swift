@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 // MARK: - View
-open class DPTableView: UITableView, DPViewProtocol {
+open class DPTableView: UITableView, DPTableViewProtocol {
 
     // MARK: - Props
 //    open override var refreshControl: UIRefreshControl? {
@@ -29,18 +29,6 @@ open class DPTableView: UITableView, DPViewProtocol {
 //    open weak var cellsOutput: DPTableCellsOutput?
 //
 //    open weak var scrollOutput: DPTableScrollOutput?
-//
-//    open var dataSourceAdapter: DPTableDataSourceAdapter? {
-//        didSet {
-//            self.didSetDataSourceAdapter()
-//        }
-//    }
-//
-//    open var delegateAdapter: DPTableDelegateAdapter? {
-//        didSet {
-//            self.didSetDelegateAdapter()
-//        }
-//    }
 //
 //    open var sections: [DPTableSectionModel] = [] {
 //        didSet {
@@ -71,14 +59,6 @@ open class DPTableView: UITableView, DPViewProtocol {
 //    }
 
     // MARK: - Methods
-//    open func didSetDataSourceAdapter() {
-//        self.dataSourceAdapter?.tableView = self
-//    }
-//
-//    open func didSetDelegateAdapter() {
-//        self.delegateAdapter?.tableView = self
-//    }
-//
 //    open func didSetRefreshControl() {
 //        guard let refreshControl = self.refreshControl else { return }
 //
@@ -116,11 +96,8 @@ open class DPTableView: UITableView, DPViewProtocol {
 //        self.reloadData()
 //    }
 
-    // MARK: - DPViewProtocol
-    open func setupComponents() {
-//        self.delegateAdapter = .init()
-//        self.dataSourceAdapter = .init()
-    }
+    // MARK: - DPTableViewProtocol
+    open func setupComponents() {}
 
     open func updateComponents() {}
 
@@ -133,7 +110,6 @@ open class DPTableView: UITableView, DPViewProtocol {
     open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
 
 }
-
 
 //// MARK: - Data Output
 //public protocol DPTableDataOutput: AnyObject {
