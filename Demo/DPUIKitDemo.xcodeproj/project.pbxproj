@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E24CF096279F2E10007EC2A9 /* DemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24CF095279F2E10007EC2A9 /* DemoTableViewController.swift */; };
 		E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735D42759547600DCEEFB /* AppDelegate.swift */; };
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
 		E26735EC2759552700DCEEFB /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E26735EB2759552700DCEEFB /* DPUIKit */; };
 		E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */; };
-		E2801389275E9DAB007980FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2801388275E9DAB007980FD /* MainViewController.swift */; };
+		E2801389275E9DAB007980FD /* DemoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2801388275E9DAB007980FD /* DemoMainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E24CF095279F2E10007EC2A9 /* DemoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTableViewController.swift; sourceTree = "<group>"; };
 		E26735D12759547600DCEEFB /* DPUIKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DPUIKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -23,7 +25,7 @@
 		E26735E22759547900DCEEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E26735E92759550100DCEEFB /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DPUIKit; path = ..; sourceTree = "<group>"; };
 		E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPageContainerViewController.swift; sourceTree = "<group>"; };
-		E2801388275E9DAB007980FD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		E2801388275E9DAB007980FD /* DemoMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +89,8 @@
 			isa = PBXGroup;
 			children = (
 				E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */,
-				E2801388275E9DAB007980FD /* MainViewController.swift */,
+				E2801388275E9DAB007980FD /* DemoMainViewController.swift */,
+				E24CF095279F2E10007EC2A9 /* DemoTableViewController.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -165,8 +168,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2801389275E9DAB007980FD /* MainViewController.swift in Sources */,
+				E2801389275E9DAB007980FD /* DemoMainViewController.swift in Sources */,
 				E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */,
+				E24CF096279F2E10007EC2A9 /* DemoTableViewController.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +312,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DLCUWR6D7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DPUIKitDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -335,6 +340,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DLCUWR6D7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DPUIKitDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

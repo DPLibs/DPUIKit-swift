@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  DemoMainViewController.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 06.12.2021.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
-class MainViewController: DPViewController {
+class DemoMainViewController: DPViewController {
     
     // MARK: - Props
     lazy var stackScrollView: DPStackScrollView = {
@@ -35,7 +35,8 @@ class MainViewController: DPViewController {
         ])
         
         let controlles: [UIViewController] = [
-            DemoPageContainerViewController()
+            DemoPageContainerViewController(),
+            DemoTableViewController()
         ]
         
         let itemsViews: [UIView] = controlles.map({ controller in

@@ -93,13 +93,13 @@ import UIKit
 //    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        guard let model = self.sections.getRow(at: indexPath) else { return UITableView.automaticDimension }
 //
-//        return model.cellHeight
+//        return model.rowHeight
 //    }
 //    
 //    open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 //        guard let model = self.sections.getRow(at: indexPath) else { return UITableView.automaticDimension }
 //
-//        return model.cellEstimatedHeight
+//        return model.estimatedRowHeight
 //    }
 //    
 //    // MARK: - UITableViewDelegate + Scroll

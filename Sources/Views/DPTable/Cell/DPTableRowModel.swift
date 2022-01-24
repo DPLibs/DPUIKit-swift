@@ -12,14 +12,20 @@ open class DPTableRowModel {
     
     // MARK: - Props
     open var cellIdentifier: String? {
+//        nil
+        guard let cellClass = self.cellClass else { return nil }
+        return String(describing: cellClass.self)
+    }
+    
+    open var cellClass: AnyClass? {
         nil
     }
 
-    open var cellHeight: CGFloat {
+    open var rowHeight: CGFloat {
         UITableView.automaticDimension
     }
     
-    open var cellEstimatedHeight: CGFloat {
+    open var estimatedRowHeight: CGFloat {
         50
     }
     
@@ -42,5 +48,15 @@ open class DPTableRowModel {
     open func willBeginEditing(for cell: UITableViewCell) { }
     
     open func didEndEditing(for cell: UITableViewCell) { }
+    
+}
+
+// MARK: - Array + DPTableRowModel
+extension Array where Element == DPTableRowModel {
+    
+    func getRow(atIndexPath indexPath: IndexPath) -> DPTableRowModel? {
+        guard self.indices.contains(indexPath.row) else { return nil }
+        return self[indexPath.row]
+    }
     
 }

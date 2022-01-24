@@ -7,10 +7,16 @@
 
 import Foundation
 
+#warning("Dev.Refactoring")
 public extension NSObject {
 
     class var className: String {
-        NSStringFromClass(self).components(separatedBy: ".").last ?? ""
+//        NSStringFromClass(self).components(separatedBy: ".").last ?? ""
+        String(describing: self)
+    }
+    
+    var className: String {
+        String(describing: self)
     }
 
 }
