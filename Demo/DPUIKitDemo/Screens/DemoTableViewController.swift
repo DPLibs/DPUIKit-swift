@@ -15,6 +15,9 @@ class DemoTableViewController: DPViewController {
     lazy var tableViewController: DPTableViewController = {
         let result = DPTableViewController()
         result.tableView.registerHeaderFooterViewClasses([HeaderTableView.self])
+        result.tableView.refreshControl = .refreshControl(didBeginRefreshing: { [weak self] in
+            print("!!! didBeginRefreshing")
+        })
 //        result.tableView.registerCellClasses([RandomTitleTableRowCell.self])
         
         return result
@@ -131,6 +134,7 @@ extension DemoTableViewController: DPTableSectionAdapterOutput {
     
     func didSelectRow(_ adapter: DPTableSectionAdapter, at indexPath: IndexPath, model: DPTableRowModel, cell: UITableViewCell) {
         print("[DemoTableViewController] - [didSelectRow] - indexPath:", indexPath)
+        self.tableViewController.tableView.beginRefreshing()
     }
     
 }
@@ -167,7 +171,7 @@ private class RandomTitleTableRowCell: DPTableRowCell<RandomTitleTableRowCell.Mo
         super.setupComponents()
         
         self.label.addToSuperview(self.contentView, withConstraints: [
-            .edgesToSuperview(16)
+            .edgesToSuperview(insetsOffset: 16)
         ])
     }
     
@@ -233,10 +237,10 @@ private class HeaderTableView: DPTableSectionHeaderView<HeaderTableView.Model> {
         self.contentView.backgroundColor = .yellow
         
         self.label.addToSuperview(self.contentView, withConstraints: [
-            .edgesToSuperview(16)
+            .edgesToSuperview(insetsOffset: 16)
         ])
         
-        self.contentView.applyConstraints([.heightEqualToConstant(100)])
+        self.contentView.applyConstraints(.heightEqualToConstant(100))
     }
     
     override func updateComponents() {

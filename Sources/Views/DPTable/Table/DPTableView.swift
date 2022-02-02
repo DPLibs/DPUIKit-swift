@@ -12,11 +12,11 @@ import UIKit
 open class DPTableView: UITableView, DPTableViewProtocol {
 
     // MARK: - Props
-//    open override var refreshControl: UIRefreshControl? {
-//        didSet {
-//            self.didSetRefreshControl()
-//        }
-//    }
+    open override var refreshControl: UIRefreshControl? {
+        didSet {
+            self.refreshControlDidSet()
+        }
+    }
 //
 //    open override var tableHeaderView: UIView? {
 //        didSet {
@@ -46,40 +46,23 @@ open class DPTableView: UITableView, DPTableViewProtocol {
 //    open var placeholderViewAutoHiddenEnabled: Bool = true
 
     // MARK: - Init
-//    public override init(frame: CGRect, style: UITableView.Style) {
-//        super.init(frame: frame, style: style)
-//
-//        self.setupComponents()
-//    }
-//
-//    public required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//
-//        self.setupComponents()
-//    }
+    public override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
+
+        self.commonInit()
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        self.commonInit()
+    }
 
     // MARK: - Methods
-//    open func didSetRefreshControl() {
-//        guard let refreshControl = self.refreshControl else { return }
-//
-//        refreshControl.addTarget(self, action: #selector(self.refreshControlValueChanged(_:)), for: .valueChanged)
-//        self.bringSubviewToFront(refreshControl)
-//    }
-//
-//    @objc
-//    open func refreshControlValueChanged(_ refreshControl: UIRefreshControl) {
-//        self.dataOutput?.beginRefreshing(self)
-//    }
-//
-//    open func beginRefreshing() {
-//        self.refreshControl?.sendActions(for: .valueChanged)
-//        self.reloadData()
-//    }
-//
-//    open func endRefreshing() {
-//        self.refreshControl?.endRefreshing()
-//        self.dataOutput?.endRefreshing(self)
-//    }
+    open func refreshControlDidSet() {
+        guard let refreshControl = self.refreshControl else { return }
+        self.bringSubviewToFront(refreshControl)
+    }
 //
 //    open func updatePlaceholderViewAutoHidden() {
 //        guard self.placeholderViewAutoHiddenEnabled else { return }
@@ -112,6 +95,21 @@ open class DPTableView: UITableView, DPTableViewProtocol {
 
     @objc
     open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
+    
+    open func beginRefreshing() {
+//        self.refreshControl?.sendActions(for: .valueChanged)
+//        self.reloadData()
+        
+//        self.dataSource = nil
+//        self.delegate = nil
+//        self.reloadData()
+        
+        self.refreshControl?.beginRefreshing()
+    }
+    
+    open func endRefreshing() {
+        self.refreshControl?.endRefreshing()
+    }
 
 }
 

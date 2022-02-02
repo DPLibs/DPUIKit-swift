@@ -16,7 +16,7 @@ public extension NSMutableAttributedString {
     ///
     static func createFromString(_ string: String, with styles: [StyleWrapper<NSMutableAttributedString>]) -> NSMutableAttributedString {
         let mutableAttributedString = NSMutableAttributedString(string: string)
-        mutableAttributedString.applyStyles(styles)
+        mutableAttributedString.applyStyles(array: styles)
         return mutableAttributedString
     }
     

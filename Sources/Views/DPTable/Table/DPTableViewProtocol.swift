@@ -11,4 +11,7 @@ import UIKit
 public protocol DPTableViewProtocol: DPViewProtocol {
     var dataSource: UITableViewDataSource? { get set }
     var delegate: UITableViewDelegate? { get set }
+    
+    func beginRefreshing()
+    func endRefreshing()
 }
