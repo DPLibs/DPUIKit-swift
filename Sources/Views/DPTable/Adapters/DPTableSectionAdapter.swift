@@ -10,9 +10,10 @@ import UIKit
 
 public protocol DPTableSectionAdapterOutput: AnyObject {
     func didSelectRow(_ adapter: DPTableSectionAdapter, at indexPath: IndexPath, model: DPTableRowModel, cell: UITableViewCell)
+    func bottomAchived(_ adapter: DPTableSectionAdapter)
 }
 
-open class DPTableSectionAdapter: NSObject {
+open class DPTableSectionAdapter: NSObject, DPTableAdapterProtocol {
     
     // MARK: - Init
     public init(
@@ -50,22 +51,8 @@ extension DPTableSectionAdapter: UITableViewDataSource {
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        print("!!! cellForRowAt", self.rows.getRow(atIndexPath: indexPath)?.cellIdentifier)
-//        guard
-//            let model = self.rows.getRow(atIndexPath: indexPath),
-//            let cellIdentifier = model.cellIdentifier,
-//            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? DPTableViewCell
-//        else { return .init() }
-//
-//        cell._model = model
-//        return cell
-        guard
-            let model = self.rows.getRow(atIndexPath: indexPath),
-            let cellClass = model.cellClass
-        else { return .init() }
-        
-        #warning("Dev.Append to String extension")
-        tableView.registerCellClasses([cellClass])
+        guard let model = self.rows.getRow(atIndexPath: indexPath), let cellClass = model.cellClass else { return .init() }
+        tableView.registerCellClasses([ cellClass ])
         
         guard
             let cellIdentifier = model.cellIdentifier,
@@ -78,12 +65,27 @@ extension DPTableSectionAdapter: UITableViewDataSource {
     
 }
 
+#warning("Dev.Append to extensions")
+extension UITableView {
+    
+    func getLastIndexPath() -> IndexPath? {
+        guard let numberOfSections = self.dataSource?.numberOfSections?(in: self), numberOfSections > 0 else { return nil }
+        let section = numberOfSections - 1
+        
+        guard let numberOfRows = self.dataSource?.tableView(self, numberOfRowsInSection: section), numberOfRows > 0 else { return nil }
+        let row = numberOfRows - 1
+        
+        return .init(row: row, section: section)
+    }
+    
+}
+
 // MARK: - UITableViewDelegate
 extension DPTableSectionAdapter: UITableViewDelegate {
     
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        #warning("Dev.WillDisplay")
-        print("!!! willDisplay")
+        guard let lastIndexPath = tableView.getLastIndexPath(), lastIndexPath == indexPath else { return }
+        self.output?.bottomAchived(self)
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,12 +106,16 @@ extension DPTableSectionAdapter: UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        print("!!! viewForHeaderInSection", self.header, header?.viewIdentifier, tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderTableView"))
+        guard let model = self.header, let viewClass = model.viewClass else { return nil }
+        tableView.registerHeaderFooterViewClasses([ viewClass ])
+        print("!!! viewForHeaderInSection", model)
+        
         guard
-            let model = self.header,
             let viewIdentifier = model.viewIdentifier,
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier) as? DPTableViewHeaderFooterView
         else { return nil }
+        
+        print("!!! viewForHeaderInSection", view)
         
         view._model = model
         return view
@@ -124,12 +130,14 @@ extension DPTableSectionAdapter: UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let model = self.footer, let viewClass = model.viewClass else { return nil }
+        tableView.registerHeaderFooterViewClasses([ viewClass ])
+        
         guard
-            let model = self.footer,
             let viewIdentifier = model.viewIdentifier,
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier) as? DPTableViewHeaderFooterView
         else { return nil }
-
+        
         view._model = model
         return view
     }

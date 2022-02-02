@@ -13,11 +13,11 @@ open class DPTableViewController: DPViewController {
     // MARK: - Props
     open var tableView: DPTableView = .init()
     
-    open var adapter: DPTableSectionAdapter = .init() {
-        didSet {
-            self.adapterDidSet()
-        }
-    }
+//    open var adapter: DPTableAdapterProtocol? {
+//        didSet {
+//            self.adapterDidSet()
+//        }
+//    }
     
 //    open var dataSourceAdapter: DPTableDataSourceAdapter? {
 //        get { self.dataSource as? DPTableDataSourceAdapter }
@@ -41,19 +41,19 @@ open class DPTableViewController: DPViewController {
 //    }
     
     // MARK: - Methods
-    open override func loadView() {
-        self.view = self.tableView
-    }
+//    open override func loadView() {
+//        self.view = self.tableView
+//    }
     
     open override func setupComponents() {
         super.setupComponents()
         
-        self.adapterDidSet()
+//        self.adapterDidSet()
     }
     
-    open func adapterDidSet() {
-        self.tableView.delegate = self.adapter
-        self.tableView.dataSource = self.adapter
-    }
+//    open func adapterDidSet() {
+//        self.tableView.delegate = self.adapter
+//        self.tableView.dataSource = self.adapter
+//    }
     
 }

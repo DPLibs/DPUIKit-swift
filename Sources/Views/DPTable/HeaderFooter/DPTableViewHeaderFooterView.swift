@@ -10,13 +10,6 @@ import UIKit
 
 open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProtocol {
     
-    // MARK: - Model
-    open var _model: Any? {
-        didSet {
-            self.updateComponents()
-        }
-    }
-    
     // MARK: - Init
     override public init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -29,7 +22,14 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProto
 
         self.commonInit()
     }
-
+    
+    // MARK: - Props
+    open var _model: Any? {
+        didSet {
+            self.updateComponents()
+        }
+    }
+    
     // MARK: - Methods
     open override func awakeFromNib() {
         super.awakeFromNib()

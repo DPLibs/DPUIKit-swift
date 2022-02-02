@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-// MARK: - Delegate
 public protocol DPPageContainerViewControllerDelegate: AnyObject {
     func didSelectPage(_ viewController: DPPageContainerViewController, at index: Int)
     func didSetPages(_ viewController: DPPageContainerViewController, pages: [UIViewController])
@@ -21,7 +20,6 @@ public extension DPPageContainerViewControllerDelegate {
     func didPageLimitReached(_ viewController: DPPageContainerViewController, for direction: UIPageViewController.NavigationDirection, fromSwipe: Bool) {}
 }
 
-// MARK: - ViewController
 open class DPPageContainerViewController: DPViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     public typealias Completion = (Bool) -> Void
     

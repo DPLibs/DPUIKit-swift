@@ -10,15 +10,18 @@ import UIKit
 
 open class DPTableRowModel {
     
-    // MARK: - Props
-    open var cellIdentifier: String? {
-//        nil
-        guard let cellClass = self.cellClass else { return nil }
-        return String(describing: cellClass.self)
-    }
+    // MARK: - Init
+    public init() {}
     
+    // MARK: - Props
     open var cellClass: AnyClass? {
         nil
+    }
+    
+    open var cellIdentifier: String? {
+        #warning("Dev.Append String extension")
+        guard let cellClass = self.cellClass else { return nil }
+        return String(describing: cellClass.self)
     }
 
     open var rowHeight: CGFloat {
@@ -28,14 +31,7 @@ open class DPTableRowModel {
     open var estimatedRowHeight: CGFloat {
         50
     }
-    
-    public var didTap: (() -> Void)?
 
-    // MARK: - Init
-    public init(didTap: (() -> Void)? = nil) {
-        self.didTap = didTap
-    }
-    
     // MARK: - Methods
     open func createLeadingSwipeActionsConfiguration(for cell: UITableViewCell) -> UISwipeActionsConfiguration? {
         .empty

@@ -14,6 +14,8 @@
 		E26735EC2759552700DCEEFB /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E26735EB2759552700DCEEFB /* DPUIKit */; };
 		E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */; };
 		E2801389275E9DAB007980FD /* DemoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2801388275E9DAB007980FD /* DemoMainViewController.swift */; };
+		E2DA872627AAF1F800BCA2C4 /* DemoTableRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA872527AAF1F800BCA2C4 /* DemoTableRowCell.swift */; };
+		E2DA872827AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA872727AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		E26735E92759550100DCEEFB /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DPUIKit; path = ..; sourceTree = "<group>"; };
 		E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPageContainerViewController.swift; sourceTree = "<group>"; };
 		E2801388275E9DAB007980FD /* DemoMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMainViewController.swift; sourceTree = "<group>"; };
+		E2DA872527AAF1F800BCA2C4 /* DemoTableRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTableRowCell.swift; sourceTree = "<group>"; };
+		E2DA872727AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTableSectionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,11 +92,21 @@
 		E26735EF27595B6400DCEEFB /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				E2DA872427AAF1C400BCA2C4 /* DemoTable */,
 				E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */,
 				E2801388275E9DAB007980FD /* DemoMainViewController.swift */,
-				E24CF095279F2E10007EC2A9 /* DemoTableViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		E2DA872427AAF1C400BCA2C4 /* DemoTable */ = {
+			isa = PBXGroup;
+			children = (
+				E24CF095279F2E10007EC2A9 /* DemoTableViewController.swift */,
+				E2DA872527AAF1F800BCA2C4 /* DemoTableRowCell.swift */,
+				E2DA872727AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift */,
+			);
+			path = DemoTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,7 +182,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2DA872627AAF1F800BCA2C4 /* DemoTableRowCell.swift in Sources */,
 				E2801389275E9DAB007980FD /* DemoMainViewController.swift in Sources */,
+				E2DA872827AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift in Sources */,
 				E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */,
 				E24CF096279F2E10007EC2A9 /* DemoTableViewController.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,

@@ -23,7 +23,7 @@ open class DPRefreshControl: UIRefreshControl, DPViewProtocol {
         self.commonInit()
     }
     
-    convenience init(didBeginRefreshing: (() -> Void)?) {
+    public convenience init(didBeginRefreshing: (() -> Void)?) {
         self.init(frame: .zero)
         
         self.didBeginRefreshing = didBeginRefreshing

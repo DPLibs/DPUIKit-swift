@@ -12,12 +12,8 @@ open class DPTableSectionHeaderView<SectionHeaderModel: DPTableSectionHeaderMode
     
     // MARK: - Props
     open var model: SectionHeaderModel? {
-        get {
-            self._model as? SectionHeaderModel
-        }
-        set {
-            self._model = newValue
-        }
+        get { self._model as? SectionHeaderModel }
+        set { self._model = newValue }
     }
     
 }

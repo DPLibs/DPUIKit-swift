@@ -9,15 +9,28 @@ import Foundation
 import UIKit
 
 // MARK: - View
-open class DPTableView: UITableView, DPTableViewProtocol {
+open class DPTableView: UITableView {//, DPTableViewProtocol {
+    
+    // MARK: - Init
+    public override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
+
+        self.commonInit()
+    }
+
+    public required init?(coder: NSCoder) {
+        super.init(coder: coder)
+
+        self.commonInit()
+    }
 
     // MARK: - Props
-    open override var refreshControl: UIRefreshControl? {
-        didSet {
-            self.refreshControlDidSet()
-        }
-    }
-//
+//    open override var refreshControl: UIRefreshControl? {
+//        didSet {
+//            self.refreshControlDidSet()
+//        }
+//    }
+
 //    open override var tableHeaderView: UIView? {
 //        didSet {
 //            self.didSetRefreshControl()
@@ -45,25 +58,12 @@ open class DPTableView: UITableView, DPTableViewProtocol {
 //
 //    open var placeholderViewAutoHiddenEnabled: Bool = true
 
-    // MARK: - Init
-    public override init(frame: CGRect, style: UITableView.Style) {
-        super.init(frame: frame, style: style)
-
-        self.commonInit()
-    }
-
-    public required init?(coder: NSCoder) {
-        super.init(coder: coder)
-
-        self.commonInit()
-    }
-
     // MARK: - Methods
-    open func refreshControlDidSet() {
-        guard let refreshControl = self.refreshControl else { return }
-        self.bringSubviewToFront(refreshControl)
-    }
-//
+//    open func refreshControlDidSet() {
+//        guard let refreshControl = self.refreshControl else { return }
+//        self.bringSubviewToFront(refreshControl)
+//    }
+
 //    open func updatePlaceholderViewAutoHidden() {
 //        guard self.placeholderViewAutoHiddenEnabled else { return }
 //
@@ -72,11 +72,6 @@ open class DPTableView: UITableView, DPTableViewProtocol {
 //        }
 //
 //        self.placeholderView?.setHidden(!isEmpty, animated: true)
-//    }
-//
-//    open func reloadData(with sections: [DPTableSectionModel]) {
-//        self.sections = sections
-//        self.reloadData()
 //    }
 
     // MARK: - DPTableViewProtocol
@@ -96,20 +91,13 @@ open class DPTableView: UITableView, DPTableViewProtocol {
     @objc
     open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
     
-    open func beginRefreshing() {
-//        self.refreshControl?.sendActions(for: .valueChanged)
-//        self.reloadData()
-        
-//        self.dataSource = nil
-//        self.delegate = nil
-//        self.reloadData()
-        
-        self.refreshControl?.beginRefreshing()
-    }
-    
-    open func endRefreshing() {
-        self.refreshControl?.endRefreshing()
-    }
+//    open func beginRefreshing() {
+//        self.refreshControl?.beginRefreshing()
+//    }
+//    
+//    open func endRefreshing() {
+//        self.refreshControl?.endRefreshing()
+//    }
 
 }
 
@@ -122,38 +110,16 @@ open class DPTableView: UITableView, DPTableViewProtocol {
 //    func topAchived(_ tableView: DPTableView)
 //    func bottomAchived(_ tableView: DPTableView)
 //}
-//
-//public extension DPTableDataOutput {
-//    func beginRefreshing(_ tableView: DPTableView) {}
-//    func endRefreshing(_ tableView: DPTableView) {}
-//    func selectRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell, row: DPTableRowModel) {}
-//    func scrollToPosition(_ tableView: DPTableView, position: UITableView.ScrollPosition, rowsOffset: Int) {}
-//    func topAchived(_ tableView: DPTableView) {}
-//    func bottomAchived(_ tableView: DPTableView) {}
-//}
-//
 //// MARK: - Cells Output
 //public protocol DPTableCellsOutput: AnyObject {
 //    func cellForRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell)
 //    func willDisplayRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell)
 //}
-//
-//public extension DPTableCellsOutput {
-//    func cellForRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell) {}
-//    func willDisplayRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell) {}
-//}
-//
 //// MARK: - Scroll Output
 //public protocol DPTableScrollOutput: AnyObject {
 //    func didScroll(_ tableView: DPTableView, to position: UITableView.ScrollPosition, isDragging: Bool)
 //    func scrollPositionAchived(_ tableView: DPTableView, position: UITableView.ScrollPosition, isAchived: Bool)
 //}
-//
-//public extension DPTableScrollOutput {
-//    func didScroll(_ tableView: DPTableView, to position: UITableView.ScrollPosition, isDragging: Bool) {}
-//    func scrollPositionAchived(_ tableView: DPTableView, position: UITableView.ScrollPosition, isAchived: Bool) {}
-//}
-//
 //// MARK: - View
 //open class DPTableView: UITableView, DPViewProtocol {
 //
