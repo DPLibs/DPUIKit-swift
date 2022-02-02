@@ -15,29 +15,36 @@ public extension UIView {
     }
     
     @discardableResult
-    func addToSuperview(_ superview: UIView?, withConstraints constraints: [ConstraintWrapper] = []) -> Self {
+    func addToSuperview(
+        _ superview: UIView?,
+        withConstraints constraints: [ConstraintWrapper] = []
+    ) -> Self {
         self.removeFromSuperview()
         
         guard let superview = superview else { return self }
         self.translatesAutoresizingMaskIntoConstraints = false
         superview.addSubview(self)
         
-        return self.applyConstraints(constraints)
+        return self.applyConstraints(array: constraints)
     }
     
     @discardableResult
-    func insertToSuperview(_ superview: UIView?, belowSubview siblingSubview: UIView?, withConstraints constraints: [ConstraintWrapper] = []) -> Self {
+    func insertToSuperview(
+        _ superview: UIView?,
+        belowSubview siblingSubview: UIView?,
+        withConstraints constraints: [ConstraintWrapper] = []
+    ) -> Self {
         self.removeFromSuperview()
         
         guard let superview = superview, let siblingSubview = siblingSubview else { return self }
         self.translatesAutoresizingMaskIntoConstraints = false
         superview.insertSubview(self, belowSubview: siblingSubview)
         
-        return self.applyConstraints(constraints)
+        return self.applyConstraints(array: constraints)
     }
     
     @discardableResult
-    func applyConstraints(_ constraints: [ConstraintWrapper]) -> Self {
+    func applyConstraints(array constraints: [ConstraintWrapper]) -> Self {
         constraints.forEach({
             switch $0 {
             case let .wrap(constraint):
@@ -46,6 +53,11 @@ public extension UIView {
         })
         
         return self
+    }
+    
+    @discardableResult
+    func applyConstraints(_ constraints: ConstraintWrapper...) -> Self {
+        self.applyConstraints(array: constraints)
     }
     
 }

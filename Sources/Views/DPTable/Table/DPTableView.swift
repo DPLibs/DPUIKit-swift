@@ -97,6 +97,10 @@ open class DPTableView: UITableView, DPTableViewProtocol {
 //    }
 
     // MARK: - DPTableViewProtocol
+    open func commonInit() {
+        self.setupComponents()
+    }
+    
     open func setupComponents() {}
 
     open func updateComponents() {}

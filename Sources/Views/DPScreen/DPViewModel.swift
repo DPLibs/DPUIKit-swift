@@ -13,8 +13,9 @@ open class DPViewModel {
     public init() {}
     
     // MARK: - Props
-    var didError: ((Error) -> Void)?
-    var didBeginLoading: (() -> Void)?
-    var didFinishLoading: (() -> Void)?
+    open weak var _output: DPViewModelOutput?
     
+    // MARK: - Methods
+    open func reload() {}
+    open func loadMore() {}
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-open class DPViewController: UIViewController, DPViewProtocol {
+open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput {
     
     // MARK: - Init
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -76,11 +76,7 @@ open class DPViewController: UIViewController, DPViewProtocol {
     open func updateComponents() {}
     
     open func modelDidSet() {
-        self._model.didError = { [weak self] error in
-            DispatchQueue.main.async { [weak self] in
-                self?._errorHandler.handleError(error)
-            }
-        }
+        self._model._output = self
     }
     
     open func routerDidSet() {
@@ -99,4 +95,15 @@ open class DPViewController: UIViewController, DPViewProtocol {
     @objc
     open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
     
+    // MARK: - DPViewModelOutput
+    open func didError(_ model: DPViewModel?, _ error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            self?._errorHandler.handleError(error)
+        }
+    }
+    
+    open func didBeginLoading(_ model: DPViewModel?) {}
+    open func didFinishLoading(_ model: DPViewModel?, error: Error?) {}
+    open func didUpdate(_ model: DPViewModel?) {}
+    open func didReload(_ model: DPViewModel?) {}
 }

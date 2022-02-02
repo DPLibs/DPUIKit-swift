@@ -281,11 +281,11 @@ public extension ConstraintWrapper {
         }
     }
     
-    static func edgesToSuperview(_ inset: CGFloat) -> ConstraintWrapper {
+    static func edgesToSuperview(insetsOffset offset: CGFloat) -> ConstraintWrapper {
         .wrap { view in
             guard let superview = view.superview else { return }
             
-            let insets = NSDirectionalEdgeInsets(top: inset, leading: inset, bottom: -inset, trailing: -inset)
+            let insets = NSDirectionalEdgeInsets(top: offset, leading: offset, bottom: -offset, trailing: -offset)
             
             NSLayoutConstraint.activate([
                 view.topAnchor.constraint(equalTo: superview.topAnchor, constant: insets.top),

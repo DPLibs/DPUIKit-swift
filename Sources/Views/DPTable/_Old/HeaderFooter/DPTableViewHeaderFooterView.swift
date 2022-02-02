@@ -21,13 +21,13 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProto
     override public init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
 
-        self.updateComponents()
+        self.commonInit()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        self.setupComponents()
+        self.commonInit()
     }
 
     // MARK: - Methods
@@ -38,6 +38,10 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProto
     }
 
     // MARK: - DPViewProtocol
+    open func commonInit() {
+        self.setupComponents()
+    }
+    
     open func setupComponents() {}
     
     open func updateComponents() {}

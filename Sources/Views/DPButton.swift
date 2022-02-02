@@ -14,13 +14,13 @@ open class DPButton: UIButton, DPViewProtocol {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.setupComponents()
+        self.commonInit()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.setupComponents()
+        self.commonInit()
     }
     
     // MARK: - Props
@@ -31,6 +31,10 @@ open class DPButton: UIButton, DPViewProtocol {
     }
     
     // MARK: - Methods
+    open func commonInit() {
+        self.setupComponents()
+    }
+    
     open func setupComponents() {}
     
     open func updateComponents() {}

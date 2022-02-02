@@ -1,5 +1,5 @@
 //
-//  DPPageViewController.swift
+//  DPPageContainerViewController.swift
 //  
 //
 //  Created by Дмитрий Поляков on 08.10.2021.

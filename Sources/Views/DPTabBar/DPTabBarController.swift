@@ -10,6 +10,19 @@ import UIKit
 
 open class DPTabBarController: UITabBarController, DPViewProtocol {
     
+    // MARK: - Init
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        self.commonInit()
+    }
+    
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        self.commonInit()
+    }
+    
     // MARK: - Props
     open var items: [DPTabBarItem] = []
     
@@ -32,6 +45,8 @@ open class DPTabBarController: UITabBarController, DPViewProtocol {
     }
     
     // MARK: - DPViewProtocol
+    open func commonInit() {}
+    
     open func setupComponents() {}
     
     open func updateComponents() {}

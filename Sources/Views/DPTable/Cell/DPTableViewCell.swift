@@ -21,13 +21,13 @@ open class DPTableViewCell: UITableViewCell, DPViewProtocol {
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        self.setupComponents()
+        self.commonInit()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        self.setupComponents()
+        self.commonInit()
     }
 
     // MARK: - Methods
@@ -46,6 +46,10 @@ open class DPTableViewCell: UITableViewCell, DPViewProtocol {
     }
 
     // MARK: - DPViewProtocol
+    open func commonInit() {
+        self.setupComponents()
+    }
+    
     open func setupComponents() {
         self.backgroundColor = .clear
         self.contentView.backgroundColor = .clear

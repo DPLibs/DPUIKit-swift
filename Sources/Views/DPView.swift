@@ -21,13 +21,13 @@ open class DPView: UIView, DPViewProtocol {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.setupComponents()
+        self.commonInit()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.setupComponents()
+        self.commonInit()
     }
     
     // MARK: - Methods
@@ -38,6 +38,10 @@ open class DPView: UIView, DPViewProtocol {
     }
     
     // MARK: - DPViewProtocol
+    open func commonInit() {
+        self.setupComponents()
+    }
+    
     open func setupComponents() {}
     
     open func updateComponents() {}
