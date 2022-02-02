@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 // MARK: - View
-open class DPTableView: UITableView {//, DPTableViewProtocol {
+open class DPTableView: UITableView, DPTableViewProtocol {
     
     // MARK: - Init
     public override init(frame: CGRect, style: UITableView.Style) {
@@ -25,11 +25,11 @@ open class DPTableView: UITableView {//, DPTableViewProtocol {
     }
 
     // MARK: - Props
-//    open override var refreshControl: UIRefreshControl? {
-//        didSet {
-//            self.refreshControlDidSet()
-//        }
-//    }
+    open override var refreshControl: UIRefreshControl? {
+        didSet {
+            self.refreshControlDidSet()
+        }
+    }
 
 //    open override var tableHeaderView: UIView? {
 //        didSet {
@@ -59,10 +59,10 @@ open class DPTableView: UITableView {//, DPTableViewProtocol {
 //    open var placeholderViewAutoHiddenEnabled: Bool = true
 
     // MARK: - Methods
-//    open func refreshControlDidSet() {
-//        guard let refreshControl = self.refreshControl else { return }
-//        self.bringSubviewToFront(refreshControl)
-//    }
+    open func refreshControlDidSet() {
+        guard let refreshControl = self.refreshControl else { return }
+        self.bringSubviewToFront(refreshControl)
+    }
 
 //    open func updatePlaceholderViewAutoHidden() {
 //        guard self.placeholderViewAutoHiddenEnabled else { return }
@@ -91,13 +91,13 @@ open class DPTableView: UITableView {//, DPTableViewProtocol {
     @objc
     open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
     
-//    open func beginRefreshing() {
-//        self.refreshControl?.beginRefreshing()
-//    }
-//    
-//    open func endRefreshing() {
-//        self.refreshControl?.endRefreshing()
-//    }
+    open func beginRefreshing() {
+        self.refreshControl?.beginRefreshing()
+    }
+    
+    open func endRefreshing() {
+        self.refreshControl?.endRefreshing()
+    }
 
 }
 

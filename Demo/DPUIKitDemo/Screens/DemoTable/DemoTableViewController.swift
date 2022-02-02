@@ -20,19 +20,13 @@ class DemoTableViewController: DPViewController {
     lazy var tableViewController: DPTableViewController = {
         let result = DPTableViewController(_model: .init(), _router: .init(), _errorHandler: .init())
         
-//        let refreshControl = DPRefreshControl { [weak self] in
-//            //
-//        }
-        
-//        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
-        
-//        self.tableViewController.tableView.refreshControl = .refreshControl(didBeginRefreshing: {
-//            //
-//        })
-        
-//        self.tableViewController.tableView.refreshControl = .refreshControl(didBeginRefreshing: {
+        let refreshControl = DPRefreshControl { [weak self] in
             //
-//        })
+        }
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
+        
+        result.tableView.refreshControl = refreshControl
         
         return result
     }()
@@ -76,24 +70,24 @@ class DemoTableViewController: DPViewController {
         ])
     }
     
-//    override func updateComponents() {
-//        super.updateComponents()
-//
-//        switch self.selectedAdapter {
-//        case .demo:
-//            let adapter = self.createDemoTableAdapter()
-////            adapter.output = self
-//
-//            self.tableViewController.adapter = adapter
-//        case .demoSection:
-//            let adapter = self.createDemoTableSectionAdapter(number: 0)
-////            adapter.output = self
-//
-//            self.tableViewController.adapter = adapter
-//        }
-//
-//        self.tableViewController.tableView.reloadData()
-//    }
+    override func updateComponents() {
+        super.updateComponents()
+
+        switch self.selectedAdapter {
+        case .demo:
+            let adapter = self.createDemoTableAdapter()
+//            adapter.output = self
+
+            self.tableViewController.adapter = adapter
+        case .demoSection:
+            let adapter = self.createDemoTableSectionAdapter(number: 0)
+//            adapter.output = self
+
+            self.tableViewController.adapter = adapter
+        }
+
+        self.tableViewController.tableView.reloadData()
+    }
     
     @objc
     private func tapDemoAdapter () {
