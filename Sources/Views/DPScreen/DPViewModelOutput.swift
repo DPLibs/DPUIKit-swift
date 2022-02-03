@@ -8,9 +8,9 @@
 import Foundation
 
 public protocol DPViewModelOutput: AnyObject {
-    func didError(_ model: DPViewModel?, _ error: Error)
-    func didBeginLoading(_ model: DPViewModel?)
-    func didFinishLoading(_ model: DPViewModel?, error: Error?)
-    func didUpdate(_ model: DPViewModel?)
-    func didReload(_ model: DPViewModel?)
+    func modelDidError(_ model: DPViewModel?, error: Error)
+    func modelBeginLoading(_ model: DPViewModel?)
+    func modelFinishLoading(_ model: DPViewModel?, withError error: Error?)
+    func modelUpdated(_ model: DPViewModel?)
+    func modelReloaded(_ model: DPViewModel?)
 }

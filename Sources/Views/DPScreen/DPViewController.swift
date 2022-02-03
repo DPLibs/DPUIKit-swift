@@ -96,14 +96,15 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
     open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
     
     // MARK: - DPViewModelOutput
-    open func didError(_ model: DPViewModel?, _ error: Error) {
+    open func modelDidError(_ model: DPViewModel?, error: Error) {
         DispatchQueue.main.async { [weak self] in
             self?._errorHandler.handleError(error)
         }
     }
     
-    open func didBeginLoading(_ model: DPViewModel?) {}
-    open func didFinishLoading(_ model: DPViewModel?, error: Error?) {}
-    open func didUpdate(_ model: DPViewModel?) {}
-    open func didReload(_ model: DPViewModel?) {}
+    open func modelBeginLoading(_ model: DPViewModel?) {}
+    open func modelFinishLoading(_ model: DPViewModel?, withError error: Error?) {}
+    open func modelUpdated(_ model: DPViewModel?) {}
+    open func modelReloaded(_ model: DPViewModel?) {}
+    
 }

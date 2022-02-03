@@ -28,17 +28,6 @@ open class DPTableViewController: DPViewController {
 //        get { self.delegate as? DPTableDelegateAdapter }
 //        set { self.delegate = newValue }
 //    }
-//
-//    // MARK: - DPTableViewProtocol
-//    open weak var dataSource: UITableViewDataSource? {
-//        get { self.tableView.dataSource }
-//        set { self.tableView.dataSource = newValue }
-//    }
-//
-//    open weak var delegate: UITableViewDelegate? {
-//        get { self.tableView.delegate }
-//        set { self.tableView.delegate = newValue }
-//    }
     
     // MARK: - Methods
     open override func loadView() {
@@ -55,5 +44,27 @@ open class DPTableViewController: DPViewController {
         self.tableView.delegate = self.adapter
         self.tableView.dataSource = self.adapter
     }
+    
+//    // MARK: - DPTableViewProtocol
+//    open var dataSource: UITableViewDataSource? {
+//        get { self.tableView.dataSource }
+//        set { self.tableView.dataSource = newValue }
+//    }
+//
+//    open var delegate: UITableViewDelegate?
+//
+//    open var refreshControl: UIRefreshControl?
+//
+//    open var isRefreshing: Bool
+//
+//    open func beginRefreshing() {
+//        <#code#>
+//    }
+//
+//    open func endRefreshing() {
+//        <#code#>
+//    }
+    
+    
     
 }

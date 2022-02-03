@@ -91,6 +91,10 @@ open class DPTableView: UITableView, DPTableViewProtocol {
     @objc
     open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
     
+    open var isRefreshing: Bool {
+        self.refreshControl?.isRefreshing ?? false
+    }
+    
     open func beginRefreshing() {
         self.refreshControl?.beginRefreshing()
     }

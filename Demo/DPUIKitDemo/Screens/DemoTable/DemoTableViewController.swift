@@ -20,13 +20,14 @@ class DemoTableViewController: DPViewController {
     lazy var tableViewController: DPTableViewController = {
         let result = DPTableViewController(_model: .init(), _router: .init(), _errorHandler: .init())
         
-        let refreshControl = DPRefreshControl { [weak self] in
-            //
-        }
-        
-        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
-        
-        result.tableView.refreshControl = refreshControl
+//        let refreshControl = DPRefreshControl { [weak self] in
+//            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+//                self?.tableViewController.tableView.endRefreshing()
+//            }
+//        }
+//        
+//        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
+//        result.tableView.refreshControl = refreshControl
         
         return result
     }()
@@ -81,7 +82,7 @@ class DemoTableViewController: DPViewController {
             self.tableViewController.adapter = adapter
         case .demoSection:
             let adapter = self.createDemoTableSectionAdapter(number: 0)
-//            adapter.output = self
+            adapter.output = self
 
             self.tableViewController.adapter = adapter
         }
@@ -117,8 +118,8 @@ class DemoTableViewController: DPViewController {
 // MARK: - DPTableSectionAdapterOutput
 extension DemoTableViewController: DPTableSectionAdapterOutput {
     
-    func bottomAchived(_ adapter: DPTableSectionAdapter) {
-        print("!!! bottomAchived")
+    func bottomAchived(_ adapter: DPTableSectionAdapter, last indexPath: IndexPath) {
+        print("[DemoTableViewController] - [bottomAchived] - last: ", indexPath)
     }
     
     func didSelectRow(_ adapter: DPTableSectionAdapter, at indexPath: IndexPath, model: DPTableRowModel, cell: UITableViewCell) {

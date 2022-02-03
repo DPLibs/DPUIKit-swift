@@ -10,7 +10,7 @@ import UIKit
 
 public protocol DPTableSectionAdapterOutput: AnyObject {
     func didSelectRow(_ adapter: DPTableSectionAdapter, at indexPath: IndexPath, model: DPTableRowModel, cell: UITableViewCell)
-    func bottomAchived(_ adapter: DPTableSectionAdapter)
+    func bottomAchived(_ adapter: DPTableSectionAdapter, last indexPath: IndexPath)
 }
 
 open class DPTableSectionAdapter: NSObject, DPTableAdapterProtocol {
@@ -33,7 +33,7 @@ open class DPTableSectionAdapter: NSObject, DPTableAdapterProtocol {
     open var footer: DPTableSectionHeaderModel?
     
     // MARK: - Methods
-    func getRow(atIndexPath indexPath: IndexPath) -> DPTableRowModel? {
+    open func getRow(atIndexPath indexPath: IndexPath) -> DPTableRowModel? {
         self.rows.getRow(atIndexPath: indexPath)
     }
     
@@ -85,7 +85,7 @@ extension DPTableSectionAdapter: UITableViewDelegate {
     
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let lastIndexPath = tableView.getLastIndexPath(), lastIndexPath == indexPath else { return }
-        self.output?.bottomAchived(self)
+        self.output?.bottomAchived(self, last: lastIndexPath)
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -108,14 +108,11 @@ extension DPTableSectionAdapter: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let model = self.header, let viewClass = model.viewClass else { return nil }
         tableView.registerHeaderFooterViewClasses([ viewClass ])
-        print("!!! viewForHeaderInSection", model)
         
         guard
             let viewIdentifier = model.viewIdentifier,
             let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier) as? DPTableViewHeaderFooterView
         else { return nil }
-        
-        print("!!! viewForHeaderInSection", view)
         
         view._model = model
         return view
@@ -166,40 +163,6 @@ public extension Array where Element == DPTableSectionAdapter {
     
 }
 
-//
-//    open internal(set) var lastContentOffset: CGPoint?
-//
-//    // MARK: - Methods
-//    open func calculateRowsCountOrLess(at indexPath: IndexPath) -> Int {
-//        self.sections
-//            .prefix(indexPath.section + 1)
-//            .enumerated()
-//            .reduce(0, { sum, item in
-//                let section = item.element
-//                let sectionIndex = item.offset
-//
-//                let rowsPrefix = sectionIndex == indexPath.section ?
-//                    indexPath.row + 1 :
-//                    section.rows.count
-//
-//                return sum + section.rows.prefix(rowsPrefix).count
-//            })
-//    }
-//
-//    open var indexPathOfFirstRow: IndexPath? {
-//        guard !self.sections.isEmpty, self.sections.first?.rows.isEmpty == false else { return nil }
-//
-//        return .init(row: .zero, section: .zero)
-//    }
-//
-//    open var indexPathOfLastRow: IndexPath? {
-//        guard !self.sections.isEmpty, self.sections.first?.rows.isEmpty == false else { return nil }
-//        let row = (self.sections.last?.rows.endIndex ?? 1) - 1
-//        let section = self.sections.endIndex - 1
-//
-//        return .init(row: row, section: section)
-//    }
-//
 //    // MARK: - UITableViewDelegate + Row
 //    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 //        guard let tableView = self.tableView else { return }

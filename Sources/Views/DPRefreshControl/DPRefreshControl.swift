@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-open class DPRefreshControl: UIRefreshControl, DPViewProtocol {
+open class DPRefreshControl: UIRefreshControl, DPViewProtocol, DPRefreshControlProtocol {
     
     // MARK: - Init
     public override init(frame: CGRect) {
