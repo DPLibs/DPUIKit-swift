@@ -53,4 +53,14 @@ public extension UITableView {
         return .init(x: 0, y: y)
     }
     
+    func getLastIndexPath() -> IndexPath? {
+        guard let numberOfSections = self.dataSource?.numberOfSections?(in: self), numberOfSections > 0 else { return nil }
+        let section = numberOfSections - 1
+        
+        guard let numberOfRows = self.dataSource?.tableView(self, numberOfRowsInSection: section), numberOfRows > 0 else { return nil }
+        let row = numberOfRows - 1
+        
+        return .init(row: row, section: section)
+    }
+    
 }

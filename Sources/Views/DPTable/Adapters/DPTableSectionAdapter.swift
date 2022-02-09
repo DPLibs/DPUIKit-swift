@@ -8,12 +8,9 @@
 import Foundation
 import UIKit
 
-public protocol DPTableSectionAdapterOutput: AnyObject {
-    func didSelectRow(_ adapter: DPTableSectionAdapter, at indexPath: IndexPath, model: DPTableRowModel, cell: UITableViewCell)
-    func bottomAchived(_ adapter: DPTableSectionAdapter, last indexPath: IndexPath)
-}
-
-open class DPTableSectionAdapter: NSObject, DPTableAdapterProtocol {
+open class DPTableSectionAdapter: NSObject {
+    
+    public typealias CellContext = (IndexPath, DPTableViewCell, DPTableRowModel)
     
     // MARK: - Init
     public init(
@@ -27,10 +24,12 @@ open class DPTableSectionAdapter: NSObject, DPTableAdapterProtocol {
     }
     
     // MARK: - Props
-    open weak var output: DPTableSectionAdapterOutput?
     open var rows: [DPTableRowModel]
     open var header: DPTableSectionHeaderModel?
     open var footer: DPTableSectionHeaderModel?
+    
+    open var didSelectRow: ((CellContext) -> Void)?
+    open var didBottomAchived: ((CellContext) -> Void)?
     
     // MARK: - Methods
     open func getRow(atIndexPath indexPath: IndexPath) -> DPTableRowModel? {
@@ -65,27 +64,36 @@ extension DPTableSectionAdapter: UITableViewDataSource {
     
 }
 
-#warning("Dev.Append to extensions")
-extension UITableView {
-    
-    func getLastIndexPath() -> IndexPath? {
-        guard let numberOfSections = self.dataSource?.numberOfSections?(in: self), numberOfSections > 0 else { return nil }
-        let section = numberOfSections - 1
-        
-        guard let numberOfRows = self.dataSource?.tableView(self, numberOfRowsInSection: section), numberOfRows > 0 else { return nil }
-        let row = numberOfRows - 1
-        
-        return .init(row: row, section: section)
-    }
-    
-}
-
 // MARK: - UITableViewDelegate
 extension DPTableSectionAdapter: UITableViewDelegate {
     
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let lastIndexPath = tableView.getLastIndexPath(), lastIndexPath == indexPath else { return }
-        self.output?.bottomAchived(self, last: lastIndexPath)
+        guard
+            let lastIndexPath = tableView.getLastIndexPath(),
+            lastIndexPath == indexPath,
+            let model = self.getRow(atIndexPath: indexPath),
+            let cell = cell as? DPTableViewCell
+        else { return }
+        
+        self.didBottomAchived?((indexPath, cell, model))
+        
+        //        guard let tableView = self.tableView else { return }
+        //
+        //        tableView.cellsOutput?.willDisplayRow(tableView, indexPath: indexPath, cell: cell)
+        //
+        //        let offsetToTop = self.calculateRowsCountOrLess(at: indexPath)
+        //        tableView.dataOutput?.scrollToPosition(tableView, position: .top, rowsOffset: offsetToTop)
+        //
+        //        if offsetToTop == 0 {
+        //            tableView.dataOutput?.topAchived(tableView)
+        //        }
+        //
+        //        let offsetToBottom = self.sections.rowsCount - offsetToTop
+        //        tableView.dataOutput?.scrollToPosition(tableView, position: .bottom, rowsOffset: offsetToBottom)
+        //
+        //        if offsetToBottom == 0 {
+        //            tableView.dataOutput?.bottomAchived(tableView)
+        //        }
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -99,10 +107,10 @@ extension DPTableSectionAdapter: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
             let model = self.rows.getRow(atIndexPath: indexPath),
-            let cell = tableView.cellForRow(at: indexPath)
+            let cell = tableView.cellForRow(at: indexPath) as? DPTableViewCell
         else { return }
         
-        self.output?.didSelectRow(self, at: indexPath, model: model, cell: cell)
+        self.didSelectRow?((indexPath, cell, model))
     }
     
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -147,46 +155,7 @@ extension DPTableSectionAdapter: UITableViewDelegate {
         self.footer?.viewEstimatedHeight ?? tableView.estimatedSectionHeaderHeight
     }
     
-}
-
-// MARK: - Array + DPTableSectionAdapter
-public extension Array where Element == DPTableSectionAdapter {
-    
-    func getSection(atIndex index: Int) -> DPTableSectionAdapter? {
-        guard self.indices.contains(index) else { return nil }
-        return self[index]
-    }
-    
-    func getSection(atIndexPath indexPath: IndexPath) -> DPTableSectionAdapter? {
-        self.getSection(atIndex: indexPath.section)
-    }
-    
-}
-
-//    // MARK: - UITableViewDelegate + Row
-//    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        guard let tableView = self.tableView else { return }
-//
-//        tableView.cellsOutput?.willDisplayRow(tableView, indexPath: indexPath, cell: cell)
-//
-//        let offsetToTop = self.calculateRowsCountOrLess(at: indexPath)
-//        tableView.dataOutput?.scrollToPosition(tableView, position: .top, rowsOffset: offsetToTop)
-//
-//        if offsetToTop == 0 {
-//            tableView.dataOutput?.topAchived(tableView)
-//        }
-//
-//        let offsetToBottom = self.sections.rowsCount - offsetToTop
-//        tableView.dataOutput?.scrollToPosition(tableView, position: .bottom, rowsOffset: offsetToBottom)
-//
-//        if offsetToBottom == 0 {
-//            tableView.dataOutput?.bottomAchived(tableView)
-//        }
-//    }
-
-//
-//    // MARK: - UITableViewDelegate + Scroll
-//    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        let offset = scrollView.contentOffset
 //
 //        if self.lastContentOffset == nil {
@@ -232,51 +201,61 @@ public extension Array where Element == DPTableSectionAdapter {
 //        tableView.scrollOutput?.scrollPositionAchived(tableView, position: .bottom, isAchived: bottomAchived)
 //
 //        self.lastContentOffset = offset
-//    }
-//
+    }
+    
+    open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard
+            let model = self.rows.getRow(atIndexPath: indexPath),
+            let cell = tableView.cellForRow(at: indexPath)
+        else {
+            return .empty
+        }
 
-//
-//    // MARK: - UITableViewDelegate + Swipe
-//    open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        guard
-//            let model = self.sections.getRow(at: indexPath),
-//            let cell = tableView.cellForRow(at: indexPath)
-//        else {
-//            return .empty
-//        }
-//
-//        return model.createLeadingSwipeActionsConfiguration(for: cell)
-//    }
-//
-//    open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        guard
-//            let model = self.sections.getRow(at: indexPath),
-//            let cell = tableView.cellForRow(at: indexPath)
-//        else {
-//            return .empty
-//        }
-//
-//        return model.createTrailingSwipeActionsConfiguration(for: cell)
-//    }
-//
-//    // MARK: - UITableViewDelegate + Edit
-//    open func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-//        guard
-//            let model = self.sections.getRow(at: indexPath),
-//            let cell = tableView.cellForRow(at: indexPath)
-//        else { return }
-//
-//        return model.willBeginEditing(for: cell)
-//    }
-//
-//    open func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-//        guard
-//            let indexPath = indexPath,
-//            let model = self.sections.getRow(at: indexPath),
-//            let cell = tableView.cellForRow(at: indexPath)
-//        else { return }
-//
-//        return model.didEndEditing(for: cell)
-//    }
-//
-//}
+        return model.leadingSwipeActionsConfiguration(for: cell)
+    }
+
+    open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard
+            let model = self.rows.getRow(atIndexPath: indexPath),
+            let cell = tableView.cellForRow(at: indexPath)
+        else {
+            return .empty
+        }
+
+        return model.trailingSwipeActionsConfiguration(for: cell)
+    }
+
+    open func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        guard
+            let model = self.rows.getRow(atIndexPath: indexPath),
+            let cell = tableView.cellForRow(at: indexPath)
+        else { return }
+
+        return model.willBeginEditing(for: cell)
+    }
+
+    open func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        guard
+            let indexPath = indexPath,
+            let model = self.rows.getRow(atIndexPath: indexPath),
+            let cell = tableView.cellForRow(at: indexPath)
+        else { return }
+
+        return model.didEndEditing(for: cell)
+    }
+    
+}
+
+// MARK: - Array + DPTableSectionAdapter
+public extension Array where Element == DPTableSectionAdapter {
+    
+    func getSection(atIndex index: Int) -> DPTableSectionAdapter? {
+        guard self.indices.contains(index) else { return nil }
+        return self[index]
+    }
+    
+    func getSection(atIndexPath indexPath: IndexPath) -> DPTableSectionAdapter? {
+        self.getSection(atIndex: indexPath.section)
+    }
+    
+}

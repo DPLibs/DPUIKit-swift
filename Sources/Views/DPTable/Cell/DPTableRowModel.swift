@@ -33,11 +33,11 @@ open class DPTableRowModel {
     }
 
     // MARK: - Methods
-    open func createLeadingSwipeActionsConfiguration(for cell: UITableViewCell) -> UISwipeActionsConfiguration? {
+    open func leadingSwipeActionsConfiguration(for cell: UITableViewCell) -> UISwipeActionsConfiguration? {
         .empty
     }
     
-    open func createTrailingSwipeActionsConfiguration(for cell: UITableViewCell) -> UISwipeActionsConfiguration? {
+    open func trailingSwipeActionsConfiguration(for cell: UITableViewCell) -> UISwipeActionsConfiguration? {
         .empty
     }
     

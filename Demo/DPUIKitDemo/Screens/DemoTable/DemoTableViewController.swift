@@ -77,13 +77,9 @@ class DemoTableViewController: DPViewController {
         switch self.selectedAdapter {
         case .demo:
             let adapter = self.createDemoTableAdapter()
-//            adapter.output = self
-
             self.tableViewController.adapter = adapter
         case .demoSection:
             let adapter = self.createDemoTableSectionAdapter(number: 0)
-            adapter.output = self
-
             self.tableViewController.adapter = adapter
         }
 
@@ -111,20 +107,6 @@ class DemoTableViewController: DPViewController {
     private func createDemoTableAdapter() -> DPTableAdapter {
         let sections = (1...10).map({ self.createDemoTableSectionAdapter(number: $0) })
         return .init(sections: sections)
-    }
-    
-}
-
-// MARK: - DPTableSectionAdapterOutput
-extension DemoTableViewController: DPTableSectionAdapterOutput {
-    
-    func bottomAchived(_ adapter: DPTableSectionAdapter, last indexPath: IndexPath) {
-        print("[DemoTableViewController] - [bottomAchived] - last: ", indexPath)
-    }
-    
-    func didSelectRow(_ adapter: DPTableSectionAdapter, at indexPath: IndexPath, model: DPTableRowModel, cell: UITableViewCell) {
-        print("[DemoTableViewController] - [didSelectRow] - indexPath:", indexPath)
-//        self.tableViewController.tableView.beginRefreshing()
     }
     
 }

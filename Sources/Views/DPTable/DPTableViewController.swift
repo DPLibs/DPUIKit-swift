@@ -10,10 +10,12 @@ import UIKit
 
 open class DPTableViewController: DPViewController {
     
+    public typealias TableAdapter = UITableViewDataSource & UITableViewDelegate
+    
     // MARK: - Props
     open var tableView: DPTableView = .init()
     
-    open var adapter: DPTableAdapterProtocol? {
+    open var adapter: TableAdapter? {
         didSet {
             self.adapterDidSet()
         }

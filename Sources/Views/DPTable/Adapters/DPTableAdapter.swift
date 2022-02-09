@@ -12,7 +12,7 @@ public protocol DPTableAdapterOutput: AnyObject {
     func didSelectRow(_ adapter: DPTableAdapter, section: DPTableSectionAdapter, at indexPath: IndexPath, model: DPTableRowModel, cell: UITableViewCell)
 }
 
-open class DPTableAdapter: NSObject, DPTableAdapterProtocol {
+open class DPTableAdapter: NSObject {
     
     // MARK: - Init
     public init(sections: [DPTableSectionAdapter] = []) {
