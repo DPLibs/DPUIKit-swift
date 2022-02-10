@@ -46,17 +46,14 @@ open class DPTableSectionAdapter: NSObject {
 extension DPTableSectionAdapter: UITableViewDataSource {
     
     open func numberOfSections(in tableView: UITableView) -> Int {
-        print("!!! numberOfSections")
-        return 1
+        1
     }
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("!!! numberOfRowsInSection")
-        return self.rows.count
+        self.rows.count
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("!!! cellForRowAt")
         guard let model = self.rows.getRow(atIndexPath: indexPath), let cellClass = model.cellClass else { return .init() }
         tableView.registerCellClasses([ cellClass ])
         
