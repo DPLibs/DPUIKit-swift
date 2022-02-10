@@ -25,6 +25,9 @@ open class DPTableSectionAdapter: NSObject {
     }
     
     // MARK: - Props
+    open weak var tableView: UITableView?
+    open var sectionIndex: Int = 0
+    
     open var rows: [DPTableRowModel]
     open var header: DPTableSectionHeaderModel?
     open var footer: DPTableSectionHeaderModel?
@@ -36,8 +39,25 @@ open class DPTableSectionAdapter: NSObject {
     open internal(set) var lastContentOffset: CGPoint?
     
     // MARK: - Methods
-    open func getRow(atIndexPath indexPath: IndexPath) -> DPTableRowModel? {
+    open func getRow(at indexPath: IndexPath) -> DPTableRowModel? {
         self.rows.getRow(atIndexPath: indexPath)
+    }
+    
+    open func insertRows(_ rows: [DPTableRowModel], at indices: [Int], with animation: UITableView.RowAnimation) {
+        for (offset, index) in indices.enumerated() {
+            let row = rows[offset]
+            self.rows.insert(row, at: index)
+        }
+
+        let indexPaths = indices.map({ IndexPath(row: $0, section: self.sectionIndex) })
+        self.tableView?.insertRows(at: indexPaths, with: animation)
+    }
+    
+    open func appendRows(_ rows: [DPTableRowModel], with animation: UITableView.RowAnimation) {
+        let indicesBeforeAppend = self.rows.count
+        let indices = rows.enumerated().map({ $0.offset + indicesBeforeAppend })
+        print("!!! indices", indices, self.rows.indices)
+        self.insertRows(rows, at: indices, with: animation)
     }
     
 }
@@ -75,7 +95,7 @@ extension DPTableSectionAdapter: UITableViewDelegate {
         guard
             let lastIndexPath = tableView.getLastIndexPath(),
             lastIndexPath == indexPath,
-            let model = self.getRow(atIndexPath: indexPath),
+            let model = self.getRow(at: indexPath),
             let cell = cell as? DPTableViewCell
         else { return }
         
@@ -206,8 +226,12 @@ public extension Array where Element == DPTableSectionAdapter {
         return self[index]
     }
     
-    func getSection(atIndexPath indexPath: IndexPath) -> DPTableSectionAdapter? {
+    func getSection(at indexPath: IndexPath) -> DPTableSectionAdapter? {
         self.getSection(atIndex: indexPath.section)
     }
+    
+}
+
+class TableCellAdapter {
     
 }

@@ -35,8 +35,10 @@ class DemoTableViewController: DPViewController {
     lazy var toolBar: UIToolbar = {
         let result = UIToolbar()
         result.items = [
-            .init(title: "DemoAdapter", style: .plain, target: self, action: #selector(self.tapDemoAdapter)),
-            .init(title: "DemoSectionAdapter", style: .plain, target: self, action: #selector(self.tapDemoSectionAdapter))
+            .init(title: "A", style: .plain, target: self, action: #selector(self.tapDemoAdapter)),
+            .init(title: "S", style: .plain, target: self, action: #selector(self.tapDemoSectionAdapter)),
+            .init(title: "C+", style: .plain, target: self, action: #selector(self.tapInsertCenter)),
+            .init(title: "E+", style: .plain, target: self, action: #selector(self.tapInsertEnd))
         ]
         
         return result
@@ -48,6 +50,13 @@ class DemoTableViewController: DPViewController {
             self.updateComponents()
         }
     }
+    
+    lazy var sectionAdapter: DPTableSectionAdapter = {
+        let result = self.createDemoTableSectionAdapter(number: 0)
+        result.tableView = self.tableViewController.tableView
+        
+        return result
+    }()
     
     // MARK: - Methods
     override func setupComponents() {
@@ -79,8 +88,7 @@ class DemoTableViewController: DPViewController {
             let adapter = self.createDemoTableAdapter()
             self.tableViewController.adapter = adapter
         case .demoSection:
-            let adapter = self.createDemoTableSectionAdapter(number: 0)
-            self.tableViewController.adapter = adapter
+            self.tableViewController.adapter = self.sectionAdapter
         }
 
         self.tableViewController.tableView.reloadData()
@@ -96,16 +104,53 @@ class DemoTableViewController: DPViewController {
         self.selectedAdapter = .demoSection
     }
     
+    @objc
+    private func tapInsertCenter () {
+        let rows: [DPTableRowModel] = [
+            .demoTableRowModel(),
+            .demoTableRowModel(),
+            .demoTableRowModel()
+        ]
+        
+        
+        self.tableViewController.tableView.performBatchUpdates { [weak self] in
+            self?.sectionAdapter.insertRows(rows, at: [3, 4, 5], with: .left)
+        } completion: { _ in
+            //
+        }
+    }
+    
+    @objc
+    private func tapInsertEnd () {
+        let rows: [DPTableRowModel] = [
+            .demoTableRowModel(),
+            .demoTableRowModel(),
+            .demoTableRowModel()
+        ]
+        
+        self.tableViewController.tableView.performBatchUpdates { [weak self] in
+            self?.sectionAdapter.appendRows(rows, with: .bottom)
+        } completion: { [weak self] _ in
+            guard let self = self else { return }
+            
+//            guard let last = self.tableViewController.tableView.getLastIndexPath() else { return }
+//            self.tableViewController.tableView.scrollToRow(at: last, at: .bottom, animated: true)
+        }
+        
+        guard let last = self.tableViewController.tableView.getLastIndexPath() else { return }
+        self.tableViewController.tableView.scrollToRow(at: last, at: .bottom, animated: true)
+    }
+    
     private func createDemoTableSectionAdapter(number: Int) -> DPTableSectionAdapter {
         .init(
-            rows: .generateDemoList(count: 10),
+            rows: .generateDemoList(count: 5),
             header: .demoTableSectionHeaderModel(title: "Section \(number) start"),
             footer: .demoTableSectionHeaderModel(title: "Section \(number) end")
         )
     }
     
     private func createDemoTableAdapter() -> DPTableAdapter {
-        let sections = (1...10).map({ self.createDemoTableSectionAdapter(number: $0) })
+        let sections = (1...5).map({ self.createDemoTableSectionAdapter(number: $0) })
         return .init(sections: sections)
     }
     

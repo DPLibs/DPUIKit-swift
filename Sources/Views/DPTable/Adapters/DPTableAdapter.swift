@@ -17,19 +17,33 @@ open class DPTableAdapter: NSObject {
     // MARK: - Init
     public init(sections: [DPTableSectionAdapter] = []) {
         self.sections = sections
+        
+        super.init()
+        self.sectionsDidSet()
     }
     
     // MARK: - Props
     open weak var output: DPTableAdapterOutput?
-    open var sections: [DPTableSectionAdapter]
+    
+    open var sections: [DPTableSectionAdapter] {
+        didSet {
+            self.sectionsDidSet()
+        }
+    }
     
     // MARK: - Methods
     func getSection(atIndex index: Int) -> DPTableSectionAdapter? {
         self.sections.getSection(atIndex: index)
     }
     
-    open func getSection(atIndexPath indexPath: IndexPath) -> DPTableSectionAdapter? {
-        self.sections.getSection(atIndexPath: indexPath)
+    open func getSection(at indexPath: IndexPath) -> DPTableSectionAdapter? {
+        self.sections.getSection(at: indexPath)
+    }
+    
+    open func sectionsDidSet() {
+        self.sections.enumerated().forEach({ index, section in
+            section.sectionIndex = index
+        })
     }
     
 }
@@ -46,7 +60,7 @@ extension DPTableAdapter: UITableViewDataSource {
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        self.sections.getSection(atIndexPath: indexPath)?.tableView(tableView, cellForRowAt: indexPath) ?? .init()
+        self.sections.getSection(at: indexPath)?.tableView(tableView, cellForRowAt: indexPath) ?? .init()
     }
     
 }
@@ -59,17 +73,17 @@ extension DPTableAdapter: UITableViewDelegate {
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.getSection(atIndexPath: indexPath)?.tableView(tableView, heightForRowAt: indexPath) ?? tableView.rowHeight
+        self.getSection(at: indexPath)?.tableView(tableView, heightForRowAt: indexPath) ?? tableView.rowHeight
     }
     
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.getSection(atIndexPath: indexPath)?.tableView(tableView, estimatedHeightForRowAt: indexPath) ?? tableView.estimatedRowHeight
+        self.getSection(at: indexPath)?.tableView(tableView, estimatedHeightForRowAt: indexPath) ?? tableView.estimatedRowHeight
     }
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
-            let section = self.getSection(atIndexPath: indexPath),
-            let model = section.getRow(atIndexPath: indexPath),
+            let section = self.getSection(at: indexPath),
+            let model = section.getRow(at: indexPath),
             let cell = tableView.cellForRow(at: indexPath)
         else { return }
         
