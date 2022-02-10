@@ -43,16 +43,6 @@ public extension UITableView {
         })
     }
     
-    func calculateBottomOffset() -> CGPoint {
-        let y =
-            self.contentSize.height -
-            self.frame.size.height +
-            self.contentInset.top +
-            self.contentInset.bottom
-
-        return .init(x: 0, y: y)
-    }
-    
     func getLastIndexPath() -> IndexPath? {
         guard let numberOfSections = self.dataSource?.numberOfSections?(in: self), numberOfSections > 0 else { return nil }
         let section = numberOfSections - 1

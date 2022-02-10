@@ -10,7 +10,8 @@ import UIKit
 
 open class DPTableSectionAdapter: NSObject {
     
-    public typealias CellContext = (IndexPath, DPTableViewCell, DPTableRowModel)
+    public typealias CellContext = (indexPath: IndexPath, cell: DPTableViewCell, model: DPTableRowModel)
+    public typealias ScrollContext = (offset: CGPoint, direction: UITableView.ScrollPosition, isDragging: Bool)
     
     // MARK: - Init
     public init(
@@ -30,6 +31,9 @@ open class DPTableSectionAdapter: NSObject {
     
     open var didSelectRow: ((CellContext) -> Void)?
     open var didBottomAchived: ((CellContext) -> Void)?
+    open var didScroll: ((ScrollContext) -> Void)?
+    
+    open internal(set) var lastContentOffset: CGPoint?
     
     // MARK: - Methods
     open func getRow(atIndexPath indexPath: IndexPath) -> DPTableRowModel? {
@@ -42,14 +46,17 @@ open class DPTableSectionAdapter: NSObject {
 extension DPTableSectionAdapter: UITableViewDataSource {
     
     open func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        print("!!! numberOfSections")
+        return 1
     }
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.rows.count
+        print("!!! numberOfRowsInSection")
+        return self.rows.count
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("!!! cellForRowAt")
         guard let model = self.rows.getRow(atIndexPath: indexPath), let cellClass = model.cellClass else { return .init() }
         tableView.registerCellClasses([ cellClass ])
         
@@ -76,24 +83,6 @@ extension DPTableSectionAdapter: UITableViewDelegate {
         else { return }
         
         self.didBottomAchived?((indexPath, cell, model))
-        
-        //        guard let tableView = self.tableView else { return }
-        //
-        //        tableView.cellsOutput?.willDisplayRow(tableView, indexPath: indexPath, cell: cell)
-        //
-        //        let offsetToTop = self.calculateRowsCountOrLess(at: indexPath)
-        //        tableView.dataOutput?.scrollToPosition(tableView, position: .top, rowsOffset: offsetToTop)
-        //
-        //        if offsetToTop == 0 {
-        //            tableView.dataOutput?.topAchived(tableView)
-        //        }
-        //
-        //        let offsetToBottom = self.sections.rowsCount - offsetToTop
-        //        tableView.dataOutput?.scrollToPosition(tableView, position: .bottom, rowsOffset: offsetToBottom)
-        //
-        //        if offsetToBottom == 0 {
-        //            tableView.dataOutput?.bottomAchived(tableView)
-        //        }
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -156,51 +145,17 @@ extension DPTableSectionAdapter: UITableViewDelegate {
     }
     
     open func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offset = scrollView.contentOffset
-//
-//        if self.lastContentOffset == nil {
-//            self.lastContentOffset = offset
-//        }
-//
-//        guard
-//            let lastOffset = self.lastContentOffset,
-//            let tableView = self.tableView
-//        else { return }
-//
-//        let scrollToPosition: UITableView.ScrollPosition = lastOffset.y > offset.y ? .top : .bottom
-//        let bottomOffset = tableView.calculateBottomOffset()
-//        let isDragging = scrollView.isDragging
-//
-//        tableView.scrollOutput?.didScroll(tableView, to: scrollToPosition, isDragging: isDragging)
-//
-//        guard isDragging else { return }
-//
-//        switch scrollToPosition {
-//        case .top:
-//            let pointForCell = CGPoint(x: offset.x, y: offset.y < 0 ? 0 : offset.y)
-//
-//            if let indexPathForCell = tableView.indexPathForRow(at: pointForCell) {
-//                let offsetToTop = self.calculateRowsCountOrLess(at: indexPathForCell)
-//                tableView.dataOutput?.scrollToPosition(tableView, position: .top, rowsOffset: offsetToTop)
-//            }
-//        case .bottom:
-//            let pointForCell = CGPoint(x: offset.x, y: offset.y + tableView.frame.height)
-//
-//            if let indexPathForCell = tableView.indexPathForRow(at: pointForCell) {
-//                let offsetToBottom = self.sections.rowsCount - self.calculateRowsCountOrLess(at: indexPathForCell)
-//                tableView.dataOutput?.scrollToPosition(tableView, position: .bottom, rowsOffset: offsetToBottom)
-//            }
-//        default:
-//            break
-//        }
-//
-//        let topAchived = offset.y <= -scrollView.contentInset.top
-//        let bottomAchived = offset.y >= (bottomOffset.y < 0 ? 0 : bottomOffset.y)
-//
-//        tableView.scrollOutput?.scrollPositionAchived(tableView, position: .top, isAchived: topAchived)
-//        tableView.scrollOutput?.scrollPositionAchived(tableView, position: .bottom, isAchived: bottomAchived)
-//
-//        self.lastContentOffset = offset
+        let offset = scrollView.contentOffset
+
+        if self.lastContentOffset == nil {
+            self.lastContentOffset = offset
+        }
+
+        guard let lastOffset = self.lastContentOffset else { return }
+        let direction: UITableView.ScrollPosition = lastOffset.y > offset.y ? .top : .bottom
+        let isDragging = scrollView.isDragging
+        
+        self.didScroll?((offset, direction, isDragging))
     }
     
     open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
