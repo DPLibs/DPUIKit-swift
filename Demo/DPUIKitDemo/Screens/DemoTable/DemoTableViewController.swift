@@ -112,33 +112,32 @@ class DemoTableViewController: DPViewController {
             .demoTableRowModel()
         ]
         
-        
-        self.tableViewController.tableView.performBatchUpdates { [weak self] in
-            self?.sectionAdapter.insertRows(rows, at: [3, 4, 5], with: .left)
-        } completion: { _ in
-            //
-        }
+        self.sectionAdapter.performUpdates(onTable: self.tableViewController.tableView, updates: [
+            .insertRows(rows, at: [.init(row: 2, section: 0), .init(row: 3, section: 0), .init(row: 3, section: 0)], with: .fade)
+        ])
     }
     
     @objc
     private func tapInsertEnd () {
-        let rows: [DPTableRowModel] = [
-            .demoTableRowModel(),
-            .demoTableRowModel(),
-            .demoTableRowModel()
-        ]
-        
-        self.tableViewController.tableView.performBatchUpdates { [weak self] in
-            self?.sectionAdapter.appendRows(rows, with: .bottom)
-        } completion: { [weak self] _ in
-            guard let self = self else { return }
-            
-//            guard let last = self.tableViewController.tableView.getLastIndexPath() else { return }
-//            self.tableViewController.tableView.scrollToRow(at: last, at: .bottom, animated: true)
-        }
-        
-        guard let last = self.tableViewController.tableView.getLastIndexPath() else { return }
-        self.tableViewController.tableView.scrollToRow(at: last, at: .bottom, animated: true)
+        let row = DemoTableRowCell.Model(title: "Setted")
+        self.sectionAdapter.performUpdates(onTable: self.tableViewController.tableView, updates: [.setRows([row], at: [.init(row: 1, section: 0)])])
+//        let rows: [DPTableRowModel] = [
+//            .demoTableRowModel(),
+//            .demoTableRowModel(),
+//            .demoTableRowModel()
+//        ]
+//        
+//        self.tableViewController.tableView.performBatchUpdates { [weak self] in
+//            self?.sectionAdapter.appendRows(rows, with: .bottom)
+//        } completion: { [weak self] _ in
+//            guard let self = self else { return }
+//            
+////            guard let last = self.tableViewController.tableView.getLastIndexPath() else { return }
+////            self.tableViewController.tableView.scrollToRow(at: last, at: .bottom, animated: true)
+//        }
+//        
+//        guard let last = self.tableViewController.tableView.getLastIndexPath() else { return }
+//        self.tableViewController.tableView.scrollToRow(at: last, at: .bottom, animated: true)
     }
     
     private func createDemoTableSectionAdapter(number: Int) -> DPTableSectionAdapter {

@@ -13,8 +13,8 @@ class DemoTableRowCell: DPTableRowCell<DemoTableRowCell.Model> {
     
     class Model: DPTableRowModel {
         
-        override init() {
-            self.title = UUID().uuidString
+        init(title: String = UUID().uuidString) {
+            self.title = title
         }
         
         override var cellClass: AnyClass? {

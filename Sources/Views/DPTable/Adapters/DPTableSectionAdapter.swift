@@ -43,23 +43,6 @@ open class DPTableSectionAdapter: NSObject {
         self.rows.getRow(atIndexPath: indexPath)
     }
     
-    open func insertRows(_ rows: [DPTableRowModel], at indices: [Int], with animation: UITableView.RowAnimation) {
-        for (offset, index) in indices.enumerated() {
-            let row = rows[offset]
-            self.rows.insert(row, at: index)
-        }
-
-        let indexPaths = indices.map({ IndexPath(row: $0, section: self.sectionIndex) })
-        self.tableView?.insertRows(at: indexPaths, with: animation)
-    }
-    
-    open func appendRows(_ rows: [DPTableRowModel], with animation: UITableView.RowAnimation) {
-        let indicesBeforeAppend = self.rows.count
-        let indices = rows.enumerated().map({ $0.offset + indicesBeforeAppend })
-        print("!!! indices", indices, self.rows.indices)
-        self.insertRows(rows, at: indices, with: animation)
-    }
-    
 }
 
 // MARK: - UITableViewDataSource
@@ -232,6 +215,95 @@ public extension Array where Element == DPTableSectionAdapter {
     
 }
 
-class TableCellAdapter {
+// MARK: - Update
+public extension DPTableSectionAdapter {
     
+    struct Update {
+        typealias PerformContext = (tableView: UITableView, adapter: DPTableSectionAdapter)
+        fileprivate let perform: (PerformContext) -> Void
+    }
+
+    func performUpdates(onTable tableView: UITableView, updates: [Update]? = nil, completion: ((Bool) -> Void)? = nil) {
+        tableView.performBatchUpdates({ [weak self] in
+            guard let self = self else { return }
+
+            (updates ?? []).forEach({ $0.perform((tableView, self)) })
+        }, completion: completion)
+    }
+    
+}
+
+// MARK: - DPTableSectionAdapter.Update + Store
+public extension DPTableSectionAdapter.Update {
+
+    static func insertRows(
+        _ rows: [DPTableRowModel],
+        at indexPaths: [IndexPath],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (tableView, adapter) in
+            for (offset, indexPath) in indexPaths.enumerated() {
+                let row = rows[offset]
+                adapter.rows.insert(row, at: indexPath.row)
+            }
+            
+            tableView.insertRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+    
+    static func appendRows(
+        _ rows: [DPTableRowModel],
+        section: Int,
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (tableView, adapter) in
+            let countBeforeAppend = adapter.rows.count
+            let indexPaths = rows.indices.map({ IndexPath(row: $0 + countBeforeAppend, section: section) })
+            
+            for (offset, indexPath) in indexPaths.enumerated() {
+                let row = rows[offset]
+                adapter.rows.insert(row, at: indexPath.row)
+            }
+            
+            tableView.insertRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+    
+    static func setRows(
+        _ rows: [DPTableRowModel],
+        at indexPaths: [IndexPath],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (tableView, adapter) in
+            for (offset, indexPath) in indexPaths.enumerated() {
+                let row = rows[offset]
+                adapter.rows[indexPath.row] = row
+            }
+            
+            tableView.reloadRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+
+    static func reloadRows(
+        at indexPaths: [IndexPath],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (tableView, _) in
+            tableView.reloadRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+
+    static func deleteRows(
+        at indexPaths: [IndexPath],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (tableView, adapter) in
+            for indexPath in indexPaths {
+                adapter.rows.remove(at: indexPath.row)
+            }
+
+            tableView.deleteRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+
 }
