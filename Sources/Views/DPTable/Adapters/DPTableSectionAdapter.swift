@@ -25,8 +25,8 @@ open class DPTableSectionAdapter: NSObject {
     }
     
     // MARK: - Props
-    open weak var tableView: UITableView?
-    open var sectionIndex: Int = 0
+    internal weak var tableView: UITableView?
+    internal weak var parent: DPTableAdapter?
     
     open var rows: [DPTableRowModel]
     open var header: DPTableSectionHeaderModel?
@@ -36,11 +36,21 @@ open class DPTableSectionAdapter: NSObject {
     open var didBottomAchived: ((CellContext) -> Void)?
     open var didScroll: ((ScrollContext) -> Void)?
     
-    open internal(set) var lastContentOffset: CGPoint?
+    open private(set) var lastContentOffset: CGPoint?
+    
+    public var sectionIndex: Int {
+        self.parent?.sections.firstIndex(of: self) ?? .zero
+    }
     
     // MARK: - Methods
     open func getRow(at indexPath: IndexPath) -> DPTableRowModel? {
         self.rows.getRow(atIndexPath: indexPath)
+    }
+    
+    open func setupTable(_ tableView: UITableView) {
+        self.tableView = tableView
+        self.tableView?.dataSource = self
+        self.tableView?.delegate = self
     }
     
 }
@@ -201,6 +211,140 @@ extension DPTableSectionAdapter: UITableViewDelegate {
     
 }
 
+// MARK: - Update
+public extension DPTableSectionAdapter {
+    
+    struct Update {
+        public typealias PerformContext = (adapter: DPTableSectionAdapter, tableView: UITableView)
+        public let perform: (PerformContext) -> Void
+    }
+
+    func performUpdates(updates: [Update]? = nil, completion: ((Bool) -> Void)? = nil) {
+        guard let tableView = self.tableView else {
+            print("[DPTableSectionAdapter] - [performUpdates] - error: TableView not implemented")
+            completion?(false)
+            return
+        }
+        
+        tableView.performBatchUpdates({ [weak self] in
+            guard let self = self else { return }
+
+            (updates ?? []).forEach({ $0.perform((self, tableView)) })
+        }, completion: completion)
+    }
+    
+}
+
+// MARK: - Rows + Edit
+extension DPTableSectionAdapter {
+    
+    @discardableResult
+    open func insertRows(_ rows: [DPTableRowModel], at indices: [Int]) -> [IndexPath] {
+        let indexPaths = indices.map({ IndexPath(row: $0, section: self.sectionIndex) })
+        
+        for (offset, indexPath) in indexPaths.enumerated() {
+            let row = rows[offset]
+            self.rows.insert(row, at: indexPath.row)
+        }
+        
+        return indexPaths
+    }
+    
+    @discardableResult
+    open func appendRows(_ rows: [DPTableRowModel]) -> [IndexPath] {
+        let countBeforeAppend = self.rows.count
+        let indexPaths = rows.indices.map({ IndexPath(row: $0 + countBeforeAppend, section: self.sectionIndex) })
+
+        for (offset, indexPath) in indexPaths.enumerated() {
+            let row = rows[offset]
+            self.rows.insert(row, at: indexPath.row)
+        }
+        
+        return indexPaths
+    }
+
+    @discardableResult
+    open func setRows(_ rows: [DPTableRowModel], at indices: [Int]) -> [IndexPath] {
+        let indexPaths = indices.map({ IndexPath(row: $0, section: self.sectionIndex) })
+        
+        for (offset, indexPath) in indexPaths.enumerated() {
+            let row = rows[offset]
+            self.rows[indexPath.row] = row
+        }
+        
+        return indexPaths
+    }
+
+    @discardableResult
+    open func deleteRows(at indices: [Int]) -> [IndexPath] {
+        let indexPaths = indices.map({ IndexPath(row: $0, section: self.sectionIndex) })
+        
+        for indexPath in indexPaths {
+            self.rows.remove(at: indexPath.row)
+        }
+        
+        return indexPaths
+    }
+    
+}
+
+// MARK: - DPTableSectionAdapter.Update + Store
+public extension DPTableSectionAdapter.Update {
+
+    static func insertRows(
+        _ rows: [DPTableRowModel],
+        at indices: [Int],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (adapter, tableView) in
+            let indexPaths = adapter.insertRows(rows, at: indices)
+            tableView.insertRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+    
+    static func appendRows(
+        _ rows: [DPTableRowModel],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (adapter, tableView) in
+            let indexPaths = adapter.appendRows(rows)
+            tableView.insertRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+
+    static func setRows(
+        _ rows: [DPTableRowModel],
+        at indices: [Int],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (adapter, tableView) in
+            let indexPaths = adapter.setRows(rows, at: indices)
+            tableView.reloadRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+
+    static func deleteRows(
+        at indices: [Int],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (adapter, tableView) in
+            let indexPaths = adapter.deleteRows(at: indices)
+            tableView.deleteRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+    
+    static func reloadRows(
+        at indices: [Int],
+        with rowAnimation: UITableView.RowAnimation = .automatic
+    ) -> Self {
+        .init { (adapter, tableView) in
+            let indexPaths = indices.map({ IndexPath(row: $0, section: adapter.sectionIndex) })
+            tableView.reloadRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+
+}
+
 // MARK: - Array + DPTableSectionAdapter
 public extension Array where Element == DPTableSectionAdapter {
     
@@ -213,97 +357,4 @@ public extension Array where Element == DPTableSectionAdapter {
         self.getSection(atIndex: indexPath.section)
     }
     
-}
-
-// MARK: - Update
-public extension DPTableSectionAdapter {
-    
-    struct Update {
-        typealias PerformContext = (tableView: UITableView, adapter: DPTableSectionAdapter)
-        fileprivate let perform: (PerformContext) -> Void
-    }
-
-    func performUpdates(onTable tableView: UITableView, updates: [Update]? = nil, completion: ((Bool) -> Void)? = nil) {
-        tableView.performBatchUpdates({ [weak self] in
-            guard let self = self else { return }
-
-            (updates ?? []).forEach({ $0.perform((tableView, self)) })
-        }, completion: completion)
-    }
-    
-}
-
-// MARK: - DPTableSectionAdapter.Update + Store
-public extension DPTableSectionAdapter.Update {
-
-    static func insertRows(
-        _ rows: [DPTableRowModel],
-        at indexPaths: [IndexPath],
-        with rowAnimation: UITableView.RowAnimation = .automatic
-    ) -> Self {
-        .init { (tableView, adapter) in
-            for (offset, indexPath) in indexPaths.enumerated() {
-                let row = rows[offset]
-                adapter.rows.insert(row, at: indexPath.row)
-            }
-            
-            tableView.insertRows(at: indexPaths, with: rowAnimation)
-        }
-    }
-    
-    static func appendRows(
-        _ rows: [DPTableRowModel],
-        section: Int,
-        with rowAnimation: UITableView.RowAnimation = .automatic
-    ) -> Self {
-        .init { (tableView, adapter) in
-            let countBeforeAppend = adapter.rows.count
-            let indexPaths = rows.indices.map({ IndexPath(row: $0 + countBeforeAppend, section: section) })
-            
-            for (offset, indexPath) in indexPaths.enumerated() {
-                let row = rows[offset]
-                adapter.rows.insert(row, at: indexPath.row)
-            }
-            
-            tableView.insertRows(at: indexPaths, with: rowAnimation)
-        }
-    }
-    
-    static func setRows(
-        _ rows: [DPTableRowModel],
-        at indexPaths: [IndexPath],
-        with rowAnimation: UITableView.RowAnimation = .automatic
-    ) -> Self {
-        .init { (tableView, adapter) in
-            for (offset, indexPath) in indexPaths.enumerated() {
-                let row = rows[offset]
-                adapter.rows[indexPath.row] = row
-            }
-            
-            tableView.reloadRows(at: indexPaths, with: rowAnimation)
-        }
-    }
-
-    static func reloadRows(
-        at indexPaths: [IndexPath],
-        with rowAnimation: UITableView.RowAnimation = .automatic
-    ) -> Self {
-        .init { (tableView, _) in
-            tableView.reloadRows(at: indexPaths, with: rowAnimation)
-        }
-    }
-
-    static func deleteRows(
-        at indexPaths: [IndexPath],
-        with rowAnimation: UITableView.RowAnimation = .automatic
-    ) -> Self {
-        .init { (tableView, adapter) in
-            for indexPath in indexPaths {
-                adapter.rows.remove(at: indexPath.row)
-            }
-
-            tableView.deleteRows(at: indexPaths, with: rowAnimation)
-        }
-    }
-
 }

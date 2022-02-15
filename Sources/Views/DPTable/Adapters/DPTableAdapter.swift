@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-public protocol DPTableAdapterOutput: AnyObject {
-    func didSelectRow(_ adapter: DPTableAdapter, section: DPTableSectionAdapter, at indexPath: IndexPath, model: DPTableRowModel, cell: UITableViewCell)
-}
-
 open class DPTableAdapter: NSObject {
     
     // MARK: - Init
@@ -23,8 +19,6 @@ open class DPTableAdapter: NSObject {
     }
     
     // MARK: - Props
-    open weak var output: DPTableAdapterOutput?
-    
     open var sections: [DPTableSectionAdapter] {
         didSet {
             self.sectionsDidSet()
@@ -41,9 +35,7 @@ open class DPTableAdapter: NSObject {
     }
     
     open func sectionsDidSet() {
-        self.sections.enumerated().forEach({ index, section in
-            section.sectionIndex = index
-        })
+        self.sections.forEach({ $0.parent = self })
     }
     
 }
@@ -65,54 +57,54 @@ extension DPTableAdapter: UITableViewDataSource {
     
 }
 
+#warning("Dev.UITableViewDelegate")
 // MARK: - UITableViewDelegate
 extension DPTableAdapter: UITableViewDelegate {
     
-    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        #warning("Dev.WillDisplay")
-    }
-    
-    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.getSection(at: indexPath)?.tableView(tableView, heightForRowAt: indexPath) ?? tableView.rowHeight
-    }
-    
-    open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.getSection(at: indexPath)?.tableView(tableView, estimatedHeightForRowAt: indexPath) ?? tableView.estimatedRowHeight
-    }
-    
-    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard
-            let section = self.getSection(at: indexPath),
-            let model = section.getRow(at: indexPath),
-            let cell = tableView.cellForRow(at: indexPath)
-        else { return }
-        
-        section.tableView(tableView, didSelectRowAt: indexPath)
-        self.output?.didSelectRow(self, section: section, at: indexPath, model: model, cell: cell)
-    }
-    
-    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        self.getSection(atIndex: section)?.tableView(tableView, viewForHeaderInSection: section)
-    }
-
-    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        self.getSection(atIndex: section)?.tableView(tableView, heightForHeaderInSection: section) ?? tableView.sectionHeaderHeight
-    }
-
-    open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        self.getSection(atIndex: section)?.tableView(tableView, estimatedHeightForHeaderInSection: section) ?? tableView.estimatedSectionHeaderHeight
-    }
-    
-    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        self.getSection(atIndex: section)?.tableView(tableView, viewForFooterInSection: section)
-    }
-
-    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        self.getSection(atIndex: section)?.tableView(tableView, heightForFooterInSection: section) ?? tableView.sectionFooterHeight
-    }
-
-    open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        self.getSection(atIndex: section)?.tableView(tableView, estimatedHeightForFooterInSection: section) ?? tableView.estimatedSectionHeaderHeight
-    }
+//    open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        #warning("Dev.WillDisplay")
+//    }
+//
+//    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        self.getSection(at: indexPath)?.tableView(tableView, heightForRowAt: indexPath) ?? tableView.rowHeight
+//    }
+//
+//    open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        self.getSection(at: indexPath)?.tableView(tableView, estimatedHeightForRowAt: indexPath) ?? tableView.estimatedRowHeight
+//    }
+//
+//    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard
+//            let section = self.getSection(at: indexPath),
+//            let model = section.getRow(at: indexPath),
+//            let cell = tableView.cellForRow(at: indexPath)
+//        else { return }
+//
+//        section.tableView(tableView, didSelectRowAt: indexPath)
+//    }
+//
+//    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        self.getSection(atIndex: section)?.tableView(tableView, viewForHeaderInSection: section)
+//    }
+//
+//    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        self.getSection(atIndex: section)?.tableView(tableView, heightForHeaderInSection: section) ?? tableView.sectionHeaderHeight
+//    }
+//
+//    open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+//        self.getSection(atIndex: section)?.tableView(tableView, estimatedHeightForHeaderInSection: section) ?? tableView.estimatedSectionHeaderHeight
+//    }
+//
+//    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        self.getSection(atIndex: section)?.tableView(tableView, viewForFooterInSection: section)
+//    }
+//
+//    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        self.getSection(atIndex: section)?.tableView(tableView, heightForFooterInSection: section) ?? tableView.sectionFooterHeight
+//    }
+//
+//    open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+//        self.getSection(atIndex: section)?.tableView(tableView, estimatedHeightForFooterInSection: section) ?? tableView.estimatedSectionHeaderHeight
+//    }
     
 }

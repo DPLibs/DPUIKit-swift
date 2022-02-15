@@ -53,7 +53,7 @@ class DemoTableViewController: DPViewController {
     
     lazy var sectionAdapter: DPTableSectionAdapter = {
         let result = self.createDemoTableSectionAdapter(number: 0)
-        result.tableView = self.tableViewController.tableView
+        result.setupTable(self.tableViewController.tableView)
         
         return result
     }()
@@ -112,15 +112,15 @@ class DemoTableViewController: DPViewController {
             .demoTableRowModel()
         ]
         
-        self.sectionAdapter.performUpdates(onTable: self.tableViewController.tableView, updates: [
-            .insertRows(rows, at: [.init(row: 2, section: 0), .init(row: 3, section: 0), .init(row: 3, section: 0)], with: .fade)
+        self.sectionAdapter.performUpdates(updates: [
+            .insertRows(rows, at: [2, 3, 4], with: .fade)
         ])
     }
     
     @objc
     private func tapInsertEnd () {
         let row = DemoTableRowCell.Model(title: "Setted")
-        self.sectionAdapter.performUpdates(onTable: self.tableViewController.tableView, updates: [.setRows([row], at: [.init(row: 1, section: 0)])])
+//        self.sectionAdapter.performUpdates(onTable: self.tableViewController.tableView, updates: [.setRows([row], at: [.init(row: 1, section: 0)])])
 //        let rows: [DPTableRowModel] = [
 //            .demoTableRowModel(),
 //            .demoTableRowModel(),
