@@ -26,7 +26,7 @@ open class DPTableSectionAdapter: NSObject {
     
     // MARK: - Props
     internal weak var tableView: UITableView?
-    internal weak var parent: DPTableAdapter?
+    internal weak var tableAdapter: DPTableAdapter?
     
     open var rows: [DPTableRowModel]
     open var header: DPTableSectionHeaderModel?
@@ -39,7 +39,7 @@ open class DPTableSectionAdapter: NSObject {
     open private(set) var lastContentOffset: CGPoint?
     
     public var sectionIndex: Int {
-        self.parent?.sections.firstIndex(of: self) ?? .zero
+        self.tableAdapter?.sections.firstIndex(of: self) ?? .zero
     }
     
     // MARK: - Methods

@@ -35,7 +35,7 @@ open class DPTableAdapter: NSObject {
     }
     
     open func sectionsDidSet() {
-        self.sections.forEach({ $0.parent = self })
+        self.sections.forEach({ $0.tableAdapter = self })
     }
     
 }
