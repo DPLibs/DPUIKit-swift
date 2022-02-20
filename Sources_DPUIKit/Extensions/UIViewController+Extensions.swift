@@ -20,4 +20,17 @@ public extension UIViewController {
         self.view.endEditing(true)
     }
     
+    // MARK: - Child methods
+    func addAsChildToParent(_ parent: UIViewController) {
+        parent.addChild(self)
+        self.didMove(toParent: parent)
+        self.willMove(toParent: parent)
+    }
+    
+    func removeAsChildFromParent() {
+        self.removeFromParent()
+        self.willMove(toParent: nil)
+        self.didMove(toParent: nil)
+    }
+    
 }

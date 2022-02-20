@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E24CF096279F2E10007EC2A9 /* DemoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24CF095279F2E10007EC2A9 /* DemoTableViewController.swift */; };
+		E23A5EAB27C27E2A004EE94F /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EAA27C27E2A004EE94F /* AppFlowViewController.swift */; };
+		E23A5EAD27C28329004EE94F /* AuthFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EAC27C28329004EE94F /* AuthFlowViewController.swift */; };
+		E23A5EAF27C2833D004EE94F /* MainFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EAE27C2833D004EE94F /* MainFlowViewController.swift */; };
+		E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EB027C287B9004EE94F /* AppTheme.swift */; };
 		E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735D42759547600DCEEFB /* AppDelegate.swift */; };
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
 		E26735EC2759552700DCEEFB /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E26735EB2759552700DCEEFB /* DPUIKit */; };
 		E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */; };
 		E2801389275E9DAB007980FD /* DemoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2801388275E9DAB007980FD /* DemoMainViewController.swift */; };
-		E2DA872627AAF1F800BCA2C4 /* DemoTableRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA872527AAF1F800BCA2C4 /* DemoTableRowCell.swift */; };
-		E2DA872827AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA872727AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E24CF095279F2E10007EC2A9 /* DemoTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTableViewController.swift; sourceTree = "<group>"; };
+		E23A5EAA27C27E2A004EE94F /* AppFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowViewController.swift; sourceTree = "<group>"; };
+		E23A5EAC27C28329004EE94F /* AuthFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowViewController.swift; sourceTree = "<group>"; };
+		E23A5EAE27C2833D004EE94F /* MainFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowViewController.swift; sourceTree = "<group>"; };
+		E23A5EB027C287B9004EE94F /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		E26735D12759547600DCEEFB /* DPUIKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DPUIKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -28,8 +32,6 @@
 		E26735E92759550100DCEEFB /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DPUIKit; path = ..; sourceTree = "<group>"; };
 		E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPageContainerViewController.swift; sourceTree = "<group>"; };
 		E2801388275E9DAB007980FD /* DemoMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMainViewController.swift; sourceTree = "<group>"; };
-		E2DA872527AAF1F800BCA2C4 /* DemoTableRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTableRowCell.swift; sourceTree = "<group>"; };
-		E2DA872727AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTableSectionHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E23A5EA627C27D64004EE94F /* Application Layer */ = {
+			isa = PBXGroup;
+			children = (
+				E26735DD2759547900DCEEFB /* Assets.xcassets */,
+				E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */,
+				E26735D42759547600DCEEFB /* AppDelegate.swift */,
+				E23A5EB027C287B9004EE94F /* AppTheme.swift */,
+			);
+			path = "Application Layer";
+			sourceTree = "<group>";
+		};
+		E23A5EA727C27D91004EE94F /* Presentation Layer */ = {
+			isa = PBXGroup;
+			children = (
+				E23A5EA927C27E1D004EE94F /* Flows */,
+				E26735EF27595B6400DCEEFB /* Screens */,
+			);
+			path = "Presentation Layer";
+			sourceTree = "<group>";
+		};
+		E23A5EA827C27DAA004EE94F /* Support Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Support Layer";
+			sourceTree = "<group>";
+		};
+		E23A5EA927C27E1D004EE94F /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				E23A5EAA27C27E2A004EE94F /* AppFlowViewController.swift */,
+				E23A5EAC27C28329004EE94F /* AuthFlowViewController.swift */,
+				E23A5EAE27C2833D004EE94F /* MainFlowViewController.swift */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
 		E26735C82759547500DCEEFB = {
 			isa = PBXGroup;
 			children = (
@@ -66,10 +105,9 @@
 			isa = PBXGroup;
 			children = (
 				E26735E22759547900DCEEFB /* Info.plist */,
-				E26735D42759547600DCEEFB /* AppDelegate.swift */,
-				E26735DD2759547900DCEEFB /* Assets.xcassets */,
-				E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */,
-				E26735EF27595B6400DCEEFB /* Screens */,
+				E23A5EA627C27D64004EE94F /* Application Layer */,
+				E23A5EA727C27D91004EE94F /* Presentation Layer */,
+				E23A5EA827C27DAA004EE94F /* Support Layer */,
 			);
 			path = DPUIKitDemo;
 			sourceTree = "<group>";
@@ -92,21 +130,10 @@
 		E26735EF27595B6400DCEEFB /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				E2DA872427AAF1C400BCA2C4 /* DemoTable */,
 				E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */,
 				E2801388275E9DAB007980FD /* DemoMainViewController.swift */,
 			);
 			path = Screens;
-			sourceTree = "<group>";
-		};
-		E2DA872427AAF1C400BCA2C4 /* DemoTable */ = {
-			isa = PBXGroup;
-			children = (
-				E24CF095279F2E10007EC2A9 /* DemoTableViewController.swift */,
-				E2DA872527AAF1F800BCA2C4 /* DemoTableRowCell.swift */,
-				E2DA872727AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift */,
-			);
-			path = DemoTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,12 +209,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2DA872627AAF1F800BCA2C4 /* DemoTableRowCell.swift in Sources */,
+				E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */,
 				E2801389275E9DAB007980FD /* DemoMainViewController.swift in Sources */,
-				E2DA872827AAF48500BCA2C4 /* DemoTableSectionHeaderView.swift in Sources */,
 				E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */,
-				E24CF096279F2E10007EC2A9 /* DemoTableViewController.swift in Sources */,
+				E23A5EAB27C27E2A004EE94F /* AppFlowViewController.swift in Sources */,
+				E23A5EAD27C28329004EE94F /* AuthFlowViewController.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,
+				E23A5EAF27C2833D004EE94F /* MainFlowViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

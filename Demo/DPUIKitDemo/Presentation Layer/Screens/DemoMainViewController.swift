@@ -35,8 +35,7 @@ class DemoMainViewController: DPViewController {
         ])
         
         let controlles: [UIViewController] = [
-            DemoPageContainerViewController(),
-            DemoTableViewController()
+            DemoPageContainerViewController()
         ]
         
         let itemsViews: [UIView] = controlles.map({ controller in

@@ -31,12 +31,6 @@ open class DPTableViewCell: UITableViewCell, DPViewProtocol {
     }
 
     // MARK: - Methods
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-
-        self.setupComponents()
-    }
-    
     open override func setSelected(_ selected: Bool, animated: Bool) {
         return
     }

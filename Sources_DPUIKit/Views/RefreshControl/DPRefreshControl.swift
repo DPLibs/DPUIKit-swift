@@ -47,7 +47,7 @@ open class DPRefreshControl: UIRefreshControl, DPViewProtocol, DPRefreshControlP
     }
     
     // MARK: - DPViewProtocol
-    public func commonInit() {
+    open func commonInit() {
         self.setupComponents()
     }
     

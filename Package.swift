@@ -27,10 +27,10 @@ let package = Package(
             dependencies: [
                 "Kingfisher"
             ],
-            path: "Sources",
-            linkerSettings: [
-                .linkedFramework("UIKit", .when(platforms: [.iOS]))
-            ]
+            path: "Sources_DPUIKit"
+//            linkerSettings: [
+//                .linkedFramework("UIKit", .when(platforms: [.iOS]))
+//            ]
         )
     ]
 )

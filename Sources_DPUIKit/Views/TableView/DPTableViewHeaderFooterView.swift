@@ -29,13 +29,6 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProto
             self.updateComponents()
         }
     }
-    
-    // MARK: - Methods
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-
-        self.setupComponents()
-    }
 
     // MARK: - DPViewProtocol
     open func commonInit() {
