@@ -27,12 +27,9 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
     public convenience init(
         transitionStyle style: UIPageViewController.TransitionStyle,
         navigationOrientation: UIPageViewController.NavigationOrientation,
-        options: [UIPageViewController.OptionsKey: Any]? = nil,
-        _model: DPViewModel = .init(),
-        _router: DPViewRouter = .init(),
-        _errorHandler: DPViewErrorHandler = .init()
+        options: [UIPageViewController.OptionsKey: Any]? = nil
     ) {
-        self.init(_model: _model, _router: _router, _errorHandler: _errorHandler)
+        self.init()
         
         self.pageViewController = UIPageViewController(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
         self.pageViewControllerDidSet()

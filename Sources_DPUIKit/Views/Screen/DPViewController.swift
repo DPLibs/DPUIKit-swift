@@ -23,34 +23,20 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
         self.commonInit()
     }
     
-    public convenience init(
-        _model: DPViewModel,
-        _router: DPViewRouter,
-        _errorHandler: DPViewErrorHandler
-    ) {
-        self.init(nibName: nil, bundle: nil)
-        
-        self._model = _model
-        self._router = _router
-        self._errorHandler = _errorHandler
-        
-        self.commonInit()
-    }
-    
     // MARK: - Props
-    open var _model: DPViewModel = DPViewModel() {
+    open var _model: DPViewModel? {
         didSet {
             self.modelDidSet()
         }
     }
     
-    open var _router: DPViewRouter = DPViewRouter() {
+    open var _router: DPViewRouter? = DPViewRouter() {
         didSet {
             self.routerDidSet()
         }
     }
     
-    open var _errorHandler: DPViewErrorHandler = DPViewErrorHandler() {
+    open var _errorHandler: DPViewErrorHandler? = DPViewErrorHandler() {
         didSet {
             self.errorHandlerDidSet()
         }
@@ -76,15 +62,15 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
     open func updateComponents() {}
     
     open func modelDidSet() {
-        self._model._output = self
+        self._model?._output = self
     }
     
     open func routerDidSet() {
-        self._router.viewController = self
+        self._router?.viewController = self
     }
     
     open func errorHandlerDidSet() {
-        self._errorHandler.viewController = self
+        self._errorHandler?.viewController = self
     }
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
@@ -98,7 +84,7 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
     // MARK: - DPViewModelOutput
     open func modelDidError(_ model: DPViewModel?, error: Error) {
         DispatchQueue.main.async { [weak self] in
-            self?._errorHandler.handleError(error)
+            self?._errorHandler?.handleError(error)
         }
     }
     

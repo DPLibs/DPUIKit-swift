@@ -63,11 +63,12 @@ class AppFlowViewController: DPFlowViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) { [weak self] in
             guard let self = self else { return }
 
-            if self.isAutorized {
-                self.showMain()
-            } else {
-                self.showAuth()
-            }
+//            if self.isAutorized {
+//                self.showMain()
+//            } else {
+//                self.showAuth()
+//            }
+            self.showMain()
         }
     }
     

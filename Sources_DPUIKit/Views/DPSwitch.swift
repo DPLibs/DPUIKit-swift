@@ -14,13 +14,13 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.commonInit()
+        self.setupComponents()
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.commonInit()
+        self.setupComponents()
     }
     
     // MARK: - Props
@@ -31,10 +31,6 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     }
     
     // MARK: - Methods
-    open func commonInit() {
-        self.setupComponents()
-    }
-    
     open func setupComponents() {}
     
     open func updateComponents() { }

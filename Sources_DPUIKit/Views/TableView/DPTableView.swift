@@ -56,13 +56,13 @@ open class DPTableView: UITableView, DPViewProtocol {
     public override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
         
-        self.commonInit()
+        self.setupComponents()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.commonInit()
+        self.setupComponents()
     }
     
     // MARK: - Props
@@ -79,9 +79,7 @@ open class DPTableView: UITableView, DPViewProtocol {
     }
     
     open weak var dataOutput: DPTableDataOutput?
-    
     open weak var cellsOutput: DPTableCellsOutput?
-    
     open weak var scrollOutput: DPTableScrollOutput?
     
     open var dataSourceAdapter: DPTableDataSourceAdapter? {
@@ -158,10 +156,6 @@ open class DPTableView: UITableView, DPViewProtocol {
     }
     
     // MARK: - DPViewProtocol
-    open func commonInit() {
-        self.setupComponents()
-    }
-    
     open func setupComponents() {
         self.delegateAdapter = .init()
         self.dataSourceAdapter = .init()

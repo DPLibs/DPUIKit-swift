@@ -11,4 +11,5 @@ import UIKit
 struct AppTheme {
     static let background: UIColor = .white
     static let mainColor: UIColor = .black
+    static let cardColor: UIColor = .lightGray
 }

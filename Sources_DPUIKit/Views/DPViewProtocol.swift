@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 public protocol DPViewProtocol {
-    func commonInit ()
     func setupComponents()
     func updateComponents()
     func setHidden(_ hidden: Bool, animated: Bool)

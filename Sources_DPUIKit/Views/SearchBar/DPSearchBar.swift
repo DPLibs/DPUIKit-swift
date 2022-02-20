@@ -14,20 +14,16 @@ open class DPSearchBar: UISearchBar, DPViewProtocol {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.commonInit()
+        self.setupComponents()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.commonInit()
-    }
-    
-    // MARK: - Methods
-    open func commonInit() {
         self.setupComponents()
     }
     
+    // MARK: - Methods
     open func setupComponents() {}
     
     open func updateComponents() {}

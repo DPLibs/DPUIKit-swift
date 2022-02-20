@@ -14,13 +14,13 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProto
     override public init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
 
-        self.commonInit()
+        self.setupComponents()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        self.commonInit()
+        self.setupComponents()
     }
     
     // MARK: - Props
@@ -31,10 +31,6 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProto
     }
 
     // MARK: - DPViewProtocol
-    open func commonInit() {
-        self.setupComponents()
-    }
-    
     open func setupComponents() {}
     
     open func updateComponents() {}

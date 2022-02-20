@@ -10,10 +10,15 @@ import DPUIKit
 
 class MainFlowViewController: DPFlowViewController {
     
+    lazy var flowTabBarController: MainTabBarController = .init()
+    
     override func setupComponents() {
         super.setupComponents()
         
         self.view.backgroundColor = AppTheme.background
+        self.rootViewController = self.flowTabBarController
     }
     
 }
+
+

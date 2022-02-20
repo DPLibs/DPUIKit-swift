@@ -21,27 +21,16 @@ open class DPView: UIView, DPViewProtocol {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.commonInit()
+        self.setupComponents()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.commonInit()
-    }
-    
-    // MARK: - Methods
-    open override func awakeFromNib() {
-        super.awakeFromNib()
-        
         self.setupComponents()
     }
     
     // MARK: - DPViewProtocol
-    open func commonInit() {
-        self.setupComponents()
-    }
-    
     open func setupComponents() {}
     
     open func updateComponents() {}

@@ -14,20 +14,20 @@ open class DPRefreshControl: UIRefreshControl, DPViewProtocol, DPRefreshControlP
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.commonInit()
+        self.setupComponents()
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        self.commonInit()
+        self.setupComponents()
     }
     
     public convenience init(didBeginRefreshing: (() -> Void)?) {
         self.init(frame: .zero)
         
         self.didBeginRefreshing = didBeginRefreshing
-        self.commonInit()
+        self.setupComponents()
     }
     
     // MARK: - Props
@@ -47,10 +47,6 @@ open class DPRefreshControl: UIRefreshControl, DPViewProtocol, DPRefreshControlP
     }
     
     // MARK: - DPViewProtocol
-    open func commonInit() {
-        self.setupComponents()
-    }
-    
     open func setupComponents() {
         self.addTarget(self, action: #selector(self.handleValueChanged(_:)), for: .valueChanged)
     }
