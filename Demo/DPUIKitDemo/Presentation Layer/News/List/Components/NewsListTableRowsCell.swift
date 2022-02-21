@@ -12,43 +12,34 @@ import UIKit
 class NewsListTableRowsCell: DPTableRowCell<NewsListTableRowsCell.Model> {
     
     // MARK: - Props
-    lazy var titleLabel: UILabel = {
-        let result = UILabel()
-        result.applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
-        
-        return result
-    }()
-    
-    lazy var bodyLabel: UILabel = {
-        let result = UILabel()
-        result.applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
+    lazy var newsView: NewsView = {
+        let result = NewsView()
+        result.titleLabel.applyStyles(.numberOfLines(2), .lineBreakMode(.byTruncatingTail))
+        result.bodyLabel.applyStyles(.numberOfLines(4), .lineBreakMode(.byTruncatingTail))
         
         return result
     }()
     
     // MARK: - Methods
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        self.newsView.alpha = highlighted ? 0.8 : 1.0
+    }
+    
     override func setupComponents() {
         super.setupComponents()
         
-        let containerView = UIView()
-        containerView.applyStyles(.backgroundColor(AppTheme.cardColor))
-        containerView.addToSuperview(self.contentView, withConstraints: [
+        self.newsView.addToSuperview(self.contentView, withConstraints: [
             .topEqualToSuperview(8),
             .bottomEqualToSuperview(),
             .leadingEqualToSuperview(8),
             .trailingEqualToSuperview(-8)
         ])
-        
-        let stackView = UIStackView(arrangedSubviews: [self.titleLabel, self.bodyLabel])
-        stackView.applyStyles(.axis(.vertical), .spacing(8), .directionalLayoutMargins(.init(top: 8, leading: 8, bottom: 8, trailing: 8)))
-        stackView.addToSuperview(containerView, withConstraints: [ .edgesToSuperview() ])
     }
     
     override func updateComponents() {
         super.updateComponents()
         
-        self.titleLabel.text = self.model?.title
-        self.bodyLabel.text = self.model?.body
+        self.newsView.news = self.model?.news
     }
     
 }
@@ -60,8 +51,6 @@ extension NewsListTableRowsCell {
         
         // MARK: - Init
         init(news: NewsModel) {
-            self.title = news.title
-            self.body = news.body
             self.news = news
         }
         
@@ -70,9 +59,7 @@ extension NewsListTableRowsCell {
             NewsListTableRowsCell.className
         }
         
-        let title: String
-        let body: String
-        let news: NewsModel?
+        let news: NewsModel
     }
     
 }

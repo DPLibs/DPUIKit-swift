@@ -9,4 +9,11 @@
 import Foundation
 import DPUIKit
 
-class NewsListViewRouter: DPViewRouter {}
+class NewsListViewRouter: DPViewRouter {
+    
+    func showNewsDetail(news: NewsModel) {
+        let vc = NewsDetailViewController(model: .init(news: news))
+        self.push(viewController: vc, animated: true)
+    }
+    
+}

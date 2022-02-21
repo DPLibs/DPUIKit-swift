@@ -23,6 +23,12 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
         self.commonInit()
     }
     
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.commonInit()
+    }
+    
     // MARK: - Props
     open var _model: DPViewModel? {
         didSet {

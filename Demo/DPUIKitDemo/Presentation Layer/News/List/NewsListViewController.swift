@@ -12,13 +12,16 @@ import DPUIKit
 
 class NewsListViewController: DPViewController {
     
-    // MARK: - Static
-    static func `default`() -> NewsListViewController {
-        let vc = NewsListViewController()
-        vc.model = .init()
-        vc.router = .init()
+    // MARK: - Init
+    override init() {
+        super.init()
         
-        return vc
+        self.model = .init()
+        self.router = .init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Props
@@ -76,6 +79,11 @@ extension NewsListViewController: DPTableDataOutput {
     
     func bottomAchived(_ tableView: DPTableView) {
         self.model?.loadMore()
+    }
+    
+    func selectRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell, row: DPTableRowModel) {
+        guard let model = row as? NewsListTableRowsCell.Model else { return }
+        self.router?.showNewsDetail(news: model.news)
     }
     
 }

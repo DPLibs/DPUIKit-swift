@@ -23,6 +23,15 @@
 		E26735EC2759552700DCEEFB /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E26735EB2759552700DCEEFB /* DPUIKit */; };
 		E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */; };
 		E2801389275E9DAB007980FD /* DemoMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2801388275E9DAB007980FD /* DemoMainViewController.swift */; };
+		E2FC50A927C375F700F320C5 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50A827C375F700F320C5 /* NewsView.swift */; };
+		E2FC50AF27C377A300F320C5 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */; };
+		E2FC50B127C3780300F320C5 /* NewsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */; };
+		E2FC50B527C37E8600F320C5 /* UserProfileViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50B227C37E8600F320C5 /* UserProfileViewRouter.swift */; };
+		E2FC50B627C37E8600F320C5 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50B327C37E8600F320C5 /* UserProfileViewModel.swift */; };
+		E2FC50B727C37E8600F320C5 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50B427C37E8600F320C5 /* UserProfileViewController.swift */; };
+		E2FC50B927C385CD00F320C5 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50B827C385CD00F320C5 /* UserModel.swift */; };
+		E2FC50D727C38C1500F320C5 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50D427C38C1500F320C5 /* UserInfoViewModel.swift */; };
+		E2FC50D827C38C1500F320C5 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50D527C38C1500F320C5 /* UserInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +53,15 @@
 		E26735E92759550100DCEEFB /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DPUIKit; path = ..; sourceTree = "<group>"; };
 		E26735ED275955DB00DCEEFB /* DemoPageContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoPageContainerViewController.swift; sourceTree = "<group>"; };
 		E2801388275E9DAB007980FD /* DemoMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMainViewController.swift; sourceTree = "<group>"; };
+		E2FC50A827C375F700F320C5 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModel.swift; sourceTree = "<group>"; };
+		E2FC50B227C37E8600F320C5 /* UserProfileViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewRouter.swift; sourceTree = "<group>"; };
+		E2FC50B327C37E8600F320C5 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
+		E2FC50B427C37E8600F320C5 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		E2FC50B827C385CD00F320C5 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		E2FC50D427C38C1500F320C5 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
+		E2FC50D527C38C1500F320C5 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +128,10 @@
 		E23A5EB727C2A8FF004EE94F /* User */ = {
 			isa = PBXGroup;
 			children = (
-				E23A5EB927C2A910004EE94F /* Profile */,
+				E2FC50BA27C385E700F320C5 /* Edit */,
 				E23A5EB827C2A904004EE94F /* List */,
+				E23A5EB927C2A910004EE94F /* Profile */,
+				E2FC50BD27C3868300F320C5 /* ProfileInfo */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -126,6 +146,9 @@
 		E23A5EB927C2A910004EE94F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E2FC50B427C37E8600F320C5 /* UserProfileViewController.swift */,
+				E2FC50B327C37E8600F320C5 /* UserProfileViewModel.swift */,
+				E2FC50B227C37E8600F320C5 /* UserProfileViewRouter.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -144,6 +167,8 @@
 		E23A5EBB27C2A926004EE94F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */,
+				E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -152,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				E23A5EC927C2AF21004EE94F /* NewsModel.swift */,
+				E2FC50B827C385CD00F320C5 /* UserModel.swift */,
 			);
 			path = "Domain Layer";
 			sourceTree = "<group>";
@@ -160,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				E23A5ECC27C2B043004EE94F /* NewsListTableRowsCell.swift */,
+				E2FC50A827C375F700F320C5 /* NewsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -185,9 +212,9 @@
 		E26735D32759547600DCEEFB /* DPUIKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E23A5EC827C2AF11004EE94F /* Domain Layer */,
 				E26735E22759547900DCEEFB /* Info.plist */,
 				E23A5EA627C27D64004EE94F /* Application Layer */,
+				E23A5EC827C2AF11004EE94F /* Domain Layer */,
 				E23A5EA727C27D91004EE94F /* Presentation Layer */,
 				E23A5EA827C27DAA004EE94F /* Support Layer */,
 			);
@@ -216,6 +243,22 @@
 				E2801388275E9DAB007980FD /* DemoMainViewController.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		E2FC50BA27C385E700F320C5 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		E2FC50BD27C3868300F320C5 /* ProfileInfo */ = {
+			isa = PBXGroup;
+			children = (
+				E2FC50D527C38C1500F320C5 /* UserInfoViewController.swift */,
+				E2FC50D427C38C1500F320C5 /* UserInfoViewModel.swift */,
+			);
+			path = ProfileInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,19 +334,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2FC50B127C3780300F320C5 /* NewsDetailViewModel.swift in Sources */,
+				E2FC50AF27C377A300F320C5 /* NewsDetailViewController.swift in Sources */,
+				E2FC50B727C37E8600F320C5 /* UserProfileViewController.swift in Sources */,
 				E23A5ECA27C2AF21004EE94F /* NewsModel.swift in Sources */,
 				E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */,
+				E2FC50D727C38C1500F320C5 /* UserInfoViewModel.swift in Sources */,
 				E2801389275E9DAB007980FD /* DemoMainViewController.swift in Sources */,
+				E2FC50A927C375F700F320C5 /* NewsView.swift in Sources */,
 				E23A5ECD27C2B043004EE94F /* NewsListTableRowsCell.swift in Sources */,
 				E23A5EB327C2A35C004EE94F /* MainTabBarController.swift in Sources */,
+				E2FC50D827C38C1500F320C5 /* UserInfoViewController.swift in Sources */,
 				E23A5EC527C2A98E004EE94F /* NewsListViewRouter.swift in Sources */,
 				E26735EE275955DB00DCEEFB /* DemoPageContainerViewController.swift in Sources */,
 				E23A5EAB27C27E2A004EE94F /* AppFlowViewController.swift in Sources */,
 				E23A5EC727C2A98E004EE94F /* NewsListViewController.swift in Sources */,
 				E23A5EAD27C28329004EE94F /* AuthFlowViewController.swift in Sources */,
 				E23A5EC627C2A98E004EE94F /* NewsListViewModel.swift in Sources */,
+				E2FC50B527C37E8600F320C5 /* UserProfileViewRouter.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,
 				E23A5EAF27C2833D004EE94F /* MainFlowViewController.swift in Sources */,
+				E2FC50B927C385CD00F320C5 /* UserModel.swift in Sources */,
+				E2FC50B627C37E8600F320C5 /* UserProfileViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

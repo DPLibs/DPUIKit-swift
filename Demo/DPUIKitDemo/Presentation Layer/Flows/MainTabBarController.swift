@@ -18,11 +18,9 @@ class MainTabBarController: DPTabBarController {
             var rootViewController: UIViewController {
                 switch type {
                 case .news:
-                    return NewsListViewController.default()
-                case .users:
-                    return .init()
+                    return NewsListViewController()
                 case .profile:
-                    return .init()
+                    return UserProfileViewController(model: .init(user: .init(firstName: "111", lastName: "222")))
                 }
             }
             
@@ -45,16 +43,13 @@ extension DPTabBarItem {
     
     enum TabBarItemType: Int, CaseIterable {
         case news = 0
-        case users = 1
-        case profile = 2
+        case profile = 1
     }
     
     convenience init(type: TabBarItemType) {
         switch type {
         case .news:
             self.init(title: "News", image: nil, tag: type.rawValue)
-        case .users:
-            self.init(title: "Users", image: nil, tag: type.rawValue)
         case .profile:
             self.init(title: "Profile", image: nil, tag: type.rawValue)
         }
