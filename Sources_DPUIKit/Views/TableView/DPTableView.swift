@@ -165,10 +165,4 @@ open class DPTableView: UITableView, DPViewProtocol {
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
     
-    @objc
-    open func tapButtonAction(_ button: UIButton) {}
-    
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
-    
 }

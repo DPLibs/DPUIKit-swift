@@ -81,12 +81,6 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
     
-    @objc
-    open func tapButtonAction(_ button: UIButton) {}
-    
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
-    
     // MARK: - DPViewModelOutput
     open func modelDidError(_ model: DPViewModel?, error: Error) {
         DispatchQueue.main.async { [weak self] in
@@ -95,8 +89,13 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
     }
     
     open func modelBeginLoading(_ model: DPViewModel?) {}
+    
     open func modelFinishLoading(_ model: DPViewModel?, withError error: Error?) {}
-    open func modelUpdated(_ model: DPViewModel?) {}
+    
+    open func modelUpdated(_ model: DPViewModel?) {
+        self.updateComponents()
+    }
+    
     open func modelReloaded(_ model: DPViewModel?) {}
     
 }

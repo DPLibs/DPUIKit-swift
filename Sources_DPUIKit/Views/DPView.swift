@@ -40,11 +40,5 @@ open class DPView: UIView, DPViewProtocol {
         
         self.isHidden = hidden
     }
-    
-    @objc
-    open func tapButtonAction(_ button: UIButton) {}
-    
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
 
 }

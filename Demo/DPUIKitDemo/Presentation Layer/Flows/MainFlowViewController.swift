@@ -10,8 +10,22 @@ import DPUIKit
 
 class MainFlowViewController: DPFlowViewController {
     
-    lazy var flowTabBarController: MainTabBarController = .init()
+    // MARK: - Init
+    init(user: UserModel) {
+        self.user = user
+        
+        super.init()
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Props
+    private var user: UserModel
+    lazy var flowTabBarController: MainTabBarController = .init(user: self.user)
+    
+    // MARK: - Methods
     override func setupComponents() {
         super.setupComponents()
         

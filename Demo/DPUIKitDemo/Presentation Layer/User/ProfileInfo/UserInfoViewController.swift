@@ -35,9 +35,9 @@ class UserInfoViewController: DPViewController {
     }
     
     lazy var stackScrollView: DPStackScrollView = {
-        let result = DPStackScrollView(arrangedSubviews: [self.firstNameLabel, self.lastNameLabel, .init()])
+        let result = DPStackScrollView(arrangedSubviews: [self.firstNameLabel, self.lastNameLabel, self.aboutLabel, .init()])
         result.axis = .vertical
-        result.stackView.spacing = 8
+        result.stackView.applyStyles(.directionalLayoutMargins(.init(top: 16, leading: 16, bottom: 16, trailing: 16)), .spacing(8))
         
         return result
     }()
@@ -47,6 +47,10 @@ class UserInfoViewController: DPViewController {
     }()
     
     lazy var lastNameLabel: UILabel = {
+        UILabel().applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
+    }()
+    
+    lazy var aboutLabel: UILabel = {
         UILabel().applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
     }()
     
@@ -66,12 +70,7 @@ class UserInfoViewController: DPViewController {
         
         self.firstNameLabel.text = self.model?.user?.firstName
         self.lastNameLabel.text = self.model?.user?.lastName
-    }
-    
-    override func modelUpdated(_ model: DPViewModel?) {
-        super.modelUpdated(model)
-        
-        self.updateComponents()
+        self.aboutLabel.text = self.model?.user?.about
     }
     
 }

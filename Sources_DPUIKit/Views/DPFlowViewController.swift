@@ -39,3 +39,18 @@ open class DPFlowViewController: DPViewController {
     }
     
 }
+
+// MARK: - UIViewController + DPFlowViewController
+public extension UIViewController {
+    
+    func findFlow<T: DPFlowViewController>(_ type: T.Type) -> T? {
+        guard let parent = self.parent else { return nil }
+        
+        if let flow = parent as? T {
+            return flow
+        } else {
+            return parent.findFlow(T.self)
+        }
+    }
+    
+}

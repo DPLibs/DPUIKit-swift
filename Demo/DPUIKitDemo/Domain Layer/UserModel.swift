@@ -8,11 +8,21 @@
 import Foundation
 
 struct UserModel {
-    let firstName: String
-    let lastName: String
+    
+    static func `default`() -> Self {
+        .init(firstName: "", lastName: "", about: "")
+    }
+    
+    var firstName: String
+    var lastName: String
+    var about: String
     
     var fio: String {
         "\(self.firstName) \(self.lastName)"
+    }
+    
+    var isFilled: Bool {
+        !self.firstName.isEmpty && !self.lastName.isEmpty
     }
     
 }

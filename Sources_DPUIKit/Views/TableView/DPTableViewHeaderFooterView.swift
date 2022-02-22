@@ -36,11 +36,5 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProto
     open func updateComponents() {}
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
-    @objc
-    open func tapButtonAction(_ button: UIButton) {}
-    
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
 
 }

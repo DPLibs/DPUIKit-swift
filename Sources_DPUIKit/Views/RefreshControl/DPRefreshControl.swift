@@ -55,12 +55,6 @@ open class DPRefreshControl: UIRefreshControl, DPViewProtocol, DPRefreshControlP
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
     
-    @objc
-    open func tapButtonAction(_ button: UIButton) {}
-    
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
-    
 }
 
 // MARK: - UIRefreshControl + DPRefreshControl

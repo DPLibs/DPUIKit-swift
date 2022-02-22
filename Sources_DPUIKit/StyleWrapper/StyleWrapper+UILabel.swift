@@ -21,15 +21,21 @@ public extension StyleWrapper where Element: UILabel {
         }
     }
     
-    static func textColor(_ color: UIColor?) -> StyleWrapper {
+    static func textColor(_ value: UIColor?) -> StyleWrapper {
         return .wrap { label in
-            label.textColor = color
+            label.textColor = value
         }
     }
     
     static func lineBreakMode(_ value: NSLineBreakMode) -> StyleWrapper {
         return .wrap { label in
             label.lineBreakMode = value
+        }
+    }
+    
+    static func font(_ value: UIFont?) -> StyleWrapper {
+        return .wrap { label in
+            label.font = value ?? .init()
         }
     }
     

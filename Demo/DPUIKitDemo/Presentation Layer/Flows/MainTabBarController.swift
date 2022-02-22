@@ -11,6 +11,21 @@ import UIKit
 
 class MainTabBarController: DPTabBarController {
     
+    // MARK: - Init
+    init(user: UserModel) {
+        self.user = user
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Props
+    private var user: UserModel
+    
+    // MARK: - Methods
     override func setupComponents() {
         super.setupComponents()
         
@@ -20,7 +35,7 @@ class MainTabBarController: DPTabBarController {
                 case .news:
                     return NewsListViewController()
                 case .profile:
-                    return UserProfileViewController(model: .init(user: .init(firstName: "111", lastName: "222")))
+                    return UserProfileViewController(model: .init(user: self.user))
                 }
             }
             

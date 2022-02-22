@@ -38,12 +38,6 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     open func setHidden(_ hidden: Bool, animated: Bool) {}
     
     @objc
-    open func tapButtonAction(_ button: UIButton) {}
-    
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
-    
-    @objc
     open func handleTap() {
         self.didTap?()
     }

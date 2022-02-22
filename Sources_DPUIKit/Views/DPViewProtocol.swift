@@ -12,6 +12,4 @@ public protocol DPViewProtocol {
     func setupComponents()
     func updateComponents()
     func setHidden(_ hidden: Bool, animated: Bool)
-    func tapButtonAction(_ button: UIButton)
-    func tapGestureAction(_ gesture: UITapGestureRecognizer)
 }

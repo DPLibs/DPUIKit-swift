@@ -62,10 +62,14 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
     
     open private(set) var pageSelectedIndex: Int?
     
-    public var pageSelected: UIViewController? {
-        guard let index = self.pageSelectedIndex, self.pages.indices.contains(index) else { return nil }
-        
-        return self.pages[index]
+    open var pageSelected: UIViewController? {
+        get {
+            guard let index = self.pageSelectedIndex, self.pages.indices.contains(index) else { return nil }
+            return self.pages[index]
+        }
+        set {
+            self.showPage(newValue, animated: false)
+        }
     }
     
     // MARK: - Methods
@@ -132,12 +136,17 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
         })
     }
     
+    open func showPage(_ page: UIViewController?, animated: Bool, completion: Completion? = nil) {
+        guard let page = page, let index = self.pages.firstIndex(of: page) else { return }
+        self.showPage(at: index, animated: animated, completion: completion)
+    }
+    
     open func setPages(_ pages: [UIViewController], animated: Bool, showPageAtIndex index: Int? = nil, completion: Completion? = nil) {
         self.pages = pages
         self.showPage(at: index ?? self.pageSelectedIndex ?? 0, animated: animated, completion: completion)
     }
     
-    open func showPage(direction: UIPageViewController.NavigationDirection, animated: Bool, completion: Completion? = nil) {
+    open func showNextPage(direction: UIPageViewController.NavigationDirection, animated: Bool, completion: Completion? = nil) {
         guard let index = self.generateNextIndex(forDirection: direction) else {
             completion?(false)
             return
@@ -167,14 +176,6 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
             return nil
         }
     }
-
-//    open func removePages(atRange range: Range<Int>, animated: Bool) {
-//        self.pages.removeSubrange(range)
-//        
-//        let index = self.pageSelectedIndex ?? self.pages.count - 1
-//        self.showPage(at: index, animated: animated)
-//    }
-    
     
     // MARK: - UIPageViewControllerDelegate
     open func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {

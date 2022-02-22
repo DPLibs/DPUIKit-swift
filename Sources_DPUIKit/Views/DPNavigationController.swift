@@ -23,6 +23,18 @@ open class DPNavigationController: UINavigationController, DPViewProtocol, UIGes
         self.commonInit()
     }
     
+    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        self.commonInit()
+    }
+    
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.commonInit()
+    }
+    
     // MARK: - Methods
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,12 +52,6 @@ open class DPNavigationController: UINavigationController, DPViewProtocol, UIGes
     open func updateComponents() {}
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
-    @objc
-    open func tapButtonAction(_ button: UIButton) {}
-    
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
     
     // MARK: - UIGestureRecognizerDelegate
     open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {

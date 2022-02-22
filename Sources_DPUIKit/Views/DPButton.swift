@@ -23,10 +23,24 @@ open class DPButton: UIButton, DPViewProtocol {
         self.setupComponents()
     }
     
+    public convenience init(type: UIButton.ButtonType, didTouchUpInside: Closure? = nil) {
+        self.init(type: type)
+        
+        self.didTouchUpInside = didTouchUpInside
+        self.didTouchUpInsideDidSet()
+    }
+    
+    public init(didTouchUpInside: Closure? = nil) {
+        super.init(frame: .zero)
+        
+        self.didTouchUpInside = didTouchUpInside
+        self.didTouchUpInsideDidSet()
+    }
+    
     // MARK: - Props
-    open var didTap: (() -> Void)? {
+    open var didTouchUpInside: Closure? {
         didSet {
-            self.didTapDidSet()
+            self.didTouchUpInsideDidSet()
         }
     }
     
@@ -37,23 +51,17 @@ open class DPButton: UIButton, DPViewProtocol {
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
     
-    @objc
-    open func tapButtonAction(_ button: UIButton) {}
-    
-    @objc
-    open func tapGestureAction(_ gesture: UITapGestureRecognizer) {}
-    
-    open func didTapDidSet() {
-        if self.didTap == nil {
-            self.removeTarget(self, action: #selector(self.handleDidTap), for: .touchUpInside)
+    open func didTouchUpInsideDidSet() {
+        if self.didTouchUpInside == nil {
+            self.removeTarget(self, action: #selector(self.handleTouchUpInside), for: .touchUpInside)
         } else {
-            self.addTarget(self, action: #selector(self.handleDidTap), for: .touchUpInside)
+            self.addTarget(self, action: #selector(self.handleTouchUpInside), for: .touchUpInside)
         }
     }
     
     @objc
-    open func handleDidTap() {
-        self.didTap?()
+    open func handleTouchUpInside() {
+        self.didTouchUpInside?()
     }
     
 }

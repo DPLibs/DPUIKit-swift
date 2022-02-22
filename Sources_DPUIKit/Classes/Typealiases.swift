@@ -8,3 +8,4 @@
 import Foundation
 
 public typealias Closure = () -> Void
+public typealias DataClosure<DataType> = (DataType) -> Void
