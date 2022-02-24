@@ -92,6 +92,53 @@ open class DPViewErrorHandler {
 An example of the interaction of all modules can be seen in more detail in the section [Demo](#Demo).
 
 ## Views
+
+### DPViewProtocol
+The library provides several custom views (`DPView`, `DPControl`, `DPSwitch` and others). They all implement a common protocol `DPViewProtocol`.
+
+```swift
+public protocol DPViewProtocol {
+    func setupComponents()
+    func updateComponents()
+    func setHidden(_ hidden: Bool, animated: Bool)
+}
+```
+
+### DPStackScrollView
+Is a container inside which are arranged `UIScrollView` and `UIStackView`. And also some methods for managing the view.
+
+```swift
+open class DPStackScrollView: DPView {
+    open lazy var scrollView: UIScrollView
+    open lazy var stackView: UIStackView
+
+    open var axis: NSLayoutConstraint.Axis
+    open func addArrangedSubviews(_ views: [UIView]) -> DPStackScrollView
+    open func removeAllArrangedSubviews() -> DPStackScrollView
+    ...
+}
+```
+
+### DPPageContainerViewController
+View controller providing interactions with `UIPageViewController`.
+* Stores an instance `DPPageContainerViewControllerDelegate` for event delegation.
+* Stores an instance `UIPageViewController` to manage it.
+* implements protocols `UIPageViewControllerDelegate` and `UIPageViewControllerDataSource`.
+
+```swift
+open class DPPageContainerViewController: DPViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+    open weak var delegate: DPPageContainerViewControllerDelegate?
+    open var pages: [UIViewController] = []
+    open var pageViewController: UIPageViewController
+    
+    open func showPage(at index: Int, animated: Bool, completion: Completion? = nil)
+    open func showPage(_ page: UIViewController?, animated: Bool, completion: Completion? = nil)
+    open func setPages(_ pages: [UIViewController], animated: Bool, showPageAtIndex index: Int? = nil, completion: Completion? = nil)
+    ...
+}
+```
+For more information about the use of various custom views, see the section [Demo](#Demo).
+
 ## ConstraintWrapper
 ## StyleWrapper
 ## Extensions
