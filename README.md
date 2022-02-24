@@ -1,10 +1,7 @@
-# proj-name 
-## proj-title
-
-[![version](https://img.shields.io/badge/version-1.0.1-yellow.svg)](https://semver.org)
-
 # DPUIKit
 An unobtrusive set of extensions and classes for UIKit.
+
+[![version](https://img.shields.io/badge/version-2.0.2-red.svg)](https://semver.org)
 
 ## Requirements
 * IOS 11 or above
