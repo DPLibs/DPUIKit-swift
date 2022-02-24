@@ -21,8 +21,8 @@ An unobtrusive set of extensions and classes for UIKit.
 ## MVVM
 A screen or part of a screen is described as follows:
 
-#### DPViewController
-`DPViewController` deals with displaying views and navigating to other screens. 
+### DPViewController
+Deals with displaying views and navigating to other screens. 
 * Stores an instance `DPViewModel`. And implements a protocol `DPViewModelOutput` for processing signals from `DPViewModel`.
 * Stores an instance `DPViewRouter` to implement navigation.
 * Stores an instance `DPViewErrorHandler` for handling and displaying errors.
@@ -35,6 +35,10 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
 }
 ```
 
+### DPViewModel
+Is the source of data and states for `DPViewController`.
+* Stores an instance `DPViewModelOutput` for notice `DPViewController`.
+* Сan store and monitor `Model`.
 
 ```swift
 class DPViewModel {
