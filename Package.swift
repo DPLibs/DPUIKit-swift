@@ -26,7 +26,8 @@ let package = Package(
             name: "DPUIKit",
             dependencies: [
                 "Kingfisher"
-            ]
+            ],
+            path: "Sources_DPUIKit"
         )
     ]
 )
