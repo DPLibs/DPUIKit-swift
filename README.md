@@ -2,8 +2,8 @@
 An unobtrusive set of extensions and classes for UIKit.
 
 ## Requirements
-IOS 11 or above
-Xcode 12.5 or above
+* IOS 11 or above
+* Xcode 12.5 or above
 
 ## Overview
 [MVVM](#MVVM)\
@@ -12,11 +12,13 @@ Xcode 12.5 or above
 [StyleWrapper](#StyleWrapper)\
 [Extensions](#Extensions)\
 [Demo](#Demo)\
-[Install](#Install)
-[License](#License)
-[Author](#MVAuthorVM)
+[Install](#Install)\
+[License](#License)\
+[Author](#MVAuthorVM)\
 
 ## MVVM
+
+
 ## Views
 ## ConstraintWrapper
 ## StyleWrapper
