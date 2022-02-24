@@ -12,7 +12,7 @@ An unobtrusive set of extensions and classes for UIKit.
 [Views](#Views)\
 [ConstraintWrapper](#ConstraintWrapper)\
 [StyleWrapper](#StyleWrapper)\
-[Extensions](#Extensions)\
+[Extensions and Classes](#Extensions-and-Classes)\
 [Demo](#Demo)\
 [Install](#Install)\
 [License](#License)\
@@ -210,7 +210,7 @@ class ViewController: UIViewController {
 }
 ```
 
-## Extensions
+## Extensions and Classes
 ## Demo
 
 ## Install
