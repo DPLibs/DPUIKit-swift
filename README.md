@@ -14,10 +14,36 @@ An unobtrusive set of extensions and classes for UIKit.
 [Demo](#Demo)\
 [Install](#Install)\
 [License](#License)\
-[Author](#MVAuthorVM)\
+[Author](#MVAuthorVM)
 
 ## MVVM
+A screen or part of a screen is described as follows:
 
+`DPViewController` - deals with displaying views and navigating to other screens. Stores an instance `DPViewModel`. 
+And implements a protocol `DPViewModelOutput` for processing signals from `DPViewModel`.
+
+```swift
+open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput {
+    open var _model: DPViewModel?
+    open var _router: DPViewRouter?
+    open var _errorHandler: DPViewErrorHandler?
+}
+```
+
+```swift
+public protocol DPViewModelOutput: AnyObject {
+    func modelDidError(_ model: DPViewModel?, error: Error)
+    func modelBeginLoading(_ model: DPViewModel?)
+    func modelFinishLoading(_ model: DPViewModel?, withError error: Error?)
+    func modelUpdated(_ model: DPViewModel?)
+    func modelReloaded(_ model: DPViewModel?)
+}
+
+class DPViewModel {
+    open weak var _ouput: DPViewModelOutput? 
+}
+
+```
 
 ## Views
 ## ConstraintWrapper
