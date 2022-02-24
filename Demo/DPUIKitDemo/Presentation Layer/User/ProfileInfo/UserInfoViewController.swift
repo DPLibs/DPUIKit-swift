@@ -70,7 +70,6 @@ class UserInfoViewController: DPViewController {
         
         self.firstNameLabel.text = self.model?.user?.firstName
         self.lastNameLabel.text = self.model?.user?.lastName
-        self.aboutLabel.text = self.model?.user?.about
     }
     
 }

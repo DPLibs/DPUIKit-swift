@@ -10,12 +10,11 @@ import Foundation
 struct UserModel {
     
     static func `default`() -> Self {
-        .init(firstName: "", lastName: "", about: "")
+        .init(firstName: "", lastName: "")
     }
     
     var firstName: String
     var lastName: String
-    var about: String
     
     var fio: String {
         "\(self.firstName) \(self.lastName)"

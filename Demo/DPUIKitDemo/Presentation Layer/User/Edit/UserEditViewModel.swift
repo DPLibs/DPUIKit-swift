@@ -1,5 +1,5 @@
 //
-//  UserEditInfoViewModel.swift
+//  UserEditViewModel.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 22.02.2022.
@@ -8,7 +8,7 @@
 import Foundation
 import DPUIKit
 
-class UserEditInfoViewModel: DPViewModel {
+class UserEditViewModel: DPViewModel {
     
     init(user: UserModel?) {
         self.user = user ?? .default()

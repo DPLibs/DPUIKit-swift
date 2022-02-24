@@ -1,5 +1,5 @@
 //
-//  UserEditInfoViewController.swift
+//  UserEditViewController.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 22.02.2022.
@@ -9,10 +9,10 @@ import Foundation
 import DPUIKit
 import UIKit
 
-class UserEditInfoViewController: DPViewController {
+class UserEditViewController: DPViewController {
     
     // MARK: - Init
-    init(model: UserEditInfoViewModel) {
+    init(model: UserEditViewModel) {
         super.init()
         
         self.model = model
@@ -23,8 +23,8 @@ class UserEditInfoViewController: DPViewController {
     }
     
     // MARK: - Props
-    private var model: UserEditInfoViewModel? {
-        get { self._model as? UserEditInfoViewModel }
+    private var model: UserEditViewModel? {
+        get { self._model as? UserEditViewModel }
         set { self._model = newValue }
     }
     
@@ -59,7 +59,7 @@ class UserEditInfoViewController: DPViewController {
     override func setupComponents() {
         super.setupComponents()
         
-        self.navigationItem.title = "Edit info"
+        self.navigationItem.title = "Edit User"
         self.view.backgroundColor = AppTheme.background
         let guide = self.view.safeAreaLayoutGuide
         

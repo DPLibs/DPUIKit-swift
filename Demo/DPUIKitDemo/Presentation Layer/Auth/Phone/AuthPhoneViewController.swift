@@ -12,6 +12,7 @@ import DPUIKit
 
 class AuthPhoneViewController: DPViewController {
     
+    // MARK: - Props
     var didTapConfirm: Closure?
     
     // MARK: - Methods
@@ -20,6 +21,7 @@ class AuthPhoneViewController: DPViewController {
         
         self.navigationItem.title = "Phone"
         self.view.backgroundColor = AppTheme.background
+        self.parent?.navigationItem.title = "Phone"
         
         let phoneLabel = UILabel().applyStyles(
             .text("+7 (900) 900 9090"),

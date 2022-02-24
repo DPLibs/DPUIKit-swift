@@ -12,6 +12,7 @@ import DPUIKit
 
 class AuthPhoneCodeViewController: DPViewController {
     
+    // MARK: - Props
     var didTapConfirm: Closure?
     
     // MARK: - Methods

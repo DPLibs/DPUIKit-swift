@@ -23,6 +23,12 @@ open class DPTabBarController: UITabBarController, DPViewProtocol {
         self.commonInit()
     }
     
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.commonInit()
+    }
+    
     // MARK: - Props
     open var items: [DPTabBarItem] = []
     

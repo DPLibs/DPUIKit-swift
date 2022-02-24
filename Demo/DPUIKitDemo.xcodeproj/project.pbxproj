@@ -7,11 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E23A5EAB27C27E2A004EE94F /* AppFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EAA27C27E2A004EE94F /* AppFlowViewController.swift */; };
-		E23A5EAD27C28329004EE94F /* AuthFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EAC27C28329004EE94F /* AuthFlowViewController.swift */; };
-		E23A5EAF27C2833D004EE94F /* MainFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EAE27C2833D004EE94F /* MainFlowViewController.swift */; };
 		E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EB027C287B9004EE94F /* AppTheme.swift */; };
-		E23A5EB327C2A35C004EE94F /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EB227C2A35C004EE94F /* MainTabBarController.swift */; };
 		E23A5EC527C2A98E004EE94F /* NewsListViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EC227C2A98E004EE94F /* NewsListViewRouter.swift */; };
 		E23A5EC627C2A98E004EE94F /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EC327C2A98E004EE94F /* NewsListViewModel.swift */; };
 		E23A5EC727C2A98E004EE94F /* NewsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EC427C2A98E004EE94F /* NewsListViewController.swift */; };
@@ -19,12 +15,15 @@
 		E23A5ECD27C2B043004EE94F /* NewsListTableRowsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5ECC27C2B043004EE94F /* NewsListTableRowsCell.swift */; };
 		E23D134A27C4F583001AB75D /* AuthPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D134727C4F583001AB75D /* AuthPhoneViewController.swift */; };
 		E23D135027C4F5E2001AB75D /* AuthPhoneCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D134D27C4F5E2001AB75D /* AuthPhoneCodeViewController.swift */; };
-		E23D135227C4FCE6001AB75D /* UserEditFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135127C4FCE6001AB75D /* UserEditFlowViewController.swift */; };
-		E23D135627C4FDD8001AB75D /* UserEditInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135527C4FDD8001AB75D /* UserEditInfoViewController.swift */; };
-		E23D135927C4FE0A001AB75D /* UserEditInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135827C4FE09001AB75D /* UserEditInfoViewModel.swift */; };
-		E23D135B27C4FEA5001AB75D /* UserEditFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135A27C4FEA5001AB75D /* UserEditFlowViewModel.swift */; };
-		E23D136227C5043A001AB75D /* UserEditAboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135F27C5043A001AB75D /* UserEditAboutViewModel.swift */; };
-		E23D136327C5043A001AB75D /* UserEditAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D136027C5043A001AB75D /* UserEditAboutViewController.swift */; };
+		E23D135627C4FDD8001AB75D /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135527C4FDD8001AB75D /* UserEditViewController.swift */; };
+		E23D135927C4FE0A001AB75D /* UserEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135827C4FE09001AB75D /* UserEditViewModel.swift */; };
+		E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E245788C27C68D7900917D31 /* InitialViewController.swift */; };
+		E252FBDC27C7659100F6F0F5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBDB27C7659100F6F0F5 /* MainTabBarController.swift */; };
+		E252FBE227C7661300F6F0F5 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBE127C7661300F6F0F5 /* AuthManager.swift */; };
+		E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBE327C7665900F6F0F5 /* UserManager.swift */; };
+		E252FBE627C7684E00F6F0F5 /* DPViewRouter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBE527C7684E00F6F0F5 /* DPViewRouter+Extensions.swift */; };
+		E252FBEF27C77D7300F6F0F5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */; };
+		E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */; };
 		E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735D42759547600DCEEFB /* AppDelegate.swift */; };
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
@@ -41,11 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E23A5EAA27C27E2A004EE94F /* AppFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowViewController.swift; sourceTree = "<group>"; };
-		E23A5EAC27C28329004EE94F /* AuthFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFlowViewController.swift; sourceTree = "<group>"; };
-		E23A5EAE27C2833D004EE94F /* MainFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainFlowViewController.swift; sourceTree = "<group>"; };
 		E23A5EB027C287B9004EE94F /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
-		E23A5EB227C2A35C004EE94F /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E23A5EC227C2A98E004EE94F /* NewsListViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewRouter.swift; sourceTree = "<group>"; };
 		E23A5EC327C2A98E004EE94F /* NewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModel.swift; sourceTree = "<group>"; };
 		E23A5EC427C2A98E004EE94F /* NewsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewController.swift; sourceTree = "<group>"; };
@@ -53,12 +48,15 @@
 		E23A5ECC27C2B043004EE94F /* NewsListTableRowsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListTableRowsCell.swift; sourceTree = "<group>"; };
 		E23D134727C4F583001AB75D /* AuthPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPhoneViewController.swift; sourceTree = "<group>"; };
 		E23D134D27C4F5E2001AB75D /* AuthPhoneCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPhoneCodeViewController.swift; sourceTree = "<group>"; };
-		E23D135127C4FCE6001AB75D /* UserEditFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditFlowViewController.swift; sourceTree = "<group>"; };
-		E23D135527C4FDD8001AB75D /* UserEditInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditInfoViewController.swift; sourceTree = "<group>"; };
-		E23D135827C4FE09001AB75D /* UserEditInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditInfoViewModel.swift; sourceTree = "<group>"; };
-		E23D135A27C4FEA5001AB75D /* UserEditFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditFlowViewModel.swift; sourceTree = "<group>"; };
-		E23D135F27C5043A001AB75D /* UserEditAboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditAboutViewModel.swift; sourceTree = "<group>"; };
-		E23D136027C5043A001AB75D /* UserEditAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditAboutViewController.swift; sourceTree = "<group>"; };
+		E23D135527C4FDD8001AB75D /* UserEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
+		E23D135827C4FE09001AB75D /* UserEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditViewModel.swift; sourceTree = "<group>"; };
+		E245788C27C68D7900917D31 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		E252FBDB27C7659100F6F0F5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E252FBE127C7661300F6F0F5 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		E252FBE327C7665900F6F0F5 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		E252FBE527C7684E00F6F0F5 /* DPViewRouter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DPViewRouter+Extensions.swift"; sourceTree = "<group>"; };
+		E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		E26735D12759547600DCEEFB /* DPUIKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DPUIKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,10 +89,12 @@
 		E23A5EA627C27D64004EE94F /* Application Layer */ = {
 			isa = PBXGroup;
 			children = (
-				E26735DD2759547900DCEEFB /* Assets.xcassets */,
-				E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */,
 				E26735D42759547600DCEEFB /* AppDelegate.swift */,
 				E23A5EB027C287B9004EE94F /* AppTheme.swift */,
+				E26735DD2759547900DCEEFB /* Assets.xcassets */,
+				E252FBDF27C765E200F6F0F5 /* Extensions */,
+				E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */,
+				E252FBE027C7660900F6F0F5 /* Managers */,
 			);
 			path = "Application Layer";
 			sourceTree = "<group>";
@@ -103,7 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				E23D134227C4F564001AB75D /* Auth */,
-				E23A5EA927C27E1D004EE94F /* Flows */,
+				E252FBED27C77D6A00F6F0F5 /* Coordinators */,
+				E252FBD927C7640B00F6F0F5 /* Initial */,
+				E252FBDA27C7658600F6F0F5 /* Main */,
 				E23A5EB427C2A8D4004EE94F /* News */,
 				E23A5EB727C2A8FF004EE94F /* User */,
 			);
@@ -115,17 +117,6 @@
 			children = (
 			);
 			path = "Support Layer";
-			sourceTree = "<group>";
-		};
-		E23A5EA927C27E1D004EE94F /* Flows */ = {
-			isa = PBXGroup;
-			children = (
-				E23A5EAA27C27E2A004EE94F /* AppFlowViewController.swift */,
-				E23A5EAC27C28329004EE94F /* AuthFlowViewController.swift */,
-				E23A5EAE27C2833D004EE94F /* MainFlowViewController.swift */,
-				E23A5EB227C2A35C004EE94F /* MainTabBarController.swift */,
-			);
-			path = Flows;
 			sourceTree = "<group>";
 		};
 		E23A5EB427C2A8D4004EE94F /* News */ = {
@@ -198,8 +189,8 @@
 		E23D134227C4F564001AB75D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				E23D134727C4F583001AB75D /* AuthPhoneViewController.swift */,
-				E23D134D27C4F5E2001AB75D /* AuthPhoneCodeViewController.swift */,
+				E252FBE727C76DA800F6F0F5 /* Phone */,
+				E252FBE827C76DB600F6F0F5 /* PhoneCode */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -207,38 +198,68 @@
 		E23D135427C4FCF2001AB75D /* Edit */ = {
 			isa = PBXGroup;
 			children = (
-				E23D135D27C5041E001AB75D /* About */,
-				E23D135C27C4FEAA001AB75D /* Flow */,
-				E23D135727C4FDF4001AB75D /* Info */,
+				E23D135527C4FDD8001AB75D /* UserEditViewController.swift */,
+				E23D135827C4FE09001AB75D /* UserEditViewModel.swift */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
 		};
-		E23D135727C4FDF4001AB75D /* Info */ = {
+		E252FBD927C7640B00F6F0F5 /* Initial */ = {
 			isa = PBXGroup;
 			children = (
-				E23D135527C4FDD8001AB75D /* UserEditInfoViewController.swift */,
-				E23D135827C4FE09001AB75D /* UserEditInfoViewModel.swift */,
+				E245788C27C68D7900917D31 /* InitialViewController.swift */,
 			);
-			path = Info;
+			path = Initial;
 			sourceTree = "<group>";
 		};
-		E23D135C27C4FEAA001AB75D /* Flow */ = {
+		E252FBDA27C7658600F6F0F5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				E23D135127C4FCE6001AB75D /* UserEditFlowViewController.swift */,
-				E23D135A27C4FEA5001AB75D /* UserEditFlowViewModel.swift */,
+				E252FBDB27C7659100F6F0F5 /* MainTabBarController.swift */,
 			);
-			path = Flow;
+			path = Main;
 			sourceTree = "<group>";
 		};
-		E23D135D27C5041E001AB75D /* About */ = {
+		E252FBDF27C765E200F6F0F5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E23D136027C5043A001AB75D /* UserEditAboutViewController.swift */,
-				E23D135F27C5043A001AB75D /* UserEditAboutViewModel.swift */,
+				E252FBE527C7684E00F6F0F5 /* DPViewRouter+Extensions.swift */,
 			);
-			path = About;
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E252FBE027C7660900F6F0F5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E252FBE127C7661300F6F0F5 /* AuthManager.swift */,
+				E252FBE327C7665900F6F0F5 /* UserManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		E252FBE727C76DA800F6F0F5 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				E23D134727C4F583001AB75D /* AuthPhoneViewController.swift */,
+			);
+			path = Phone;
+			sourceTree = "<group>";
+		};
+		E252FBE827C76DB600F6F0F5 /* PhoneCode */ = {
+			isa = PBXGroup;
+			children = (
+				E23D134D27C4F5E2001AB75D /* AuthPhoneCodeViewController.swift */,
+			);
+			path = PhoneCode;
+			sourceTree = "<group>";
+		};
+		E252FBED27C77D6A00F6F0F5 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */,
+				E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		E26735C82759547500DCEEFB = {
@@ -374,28 +395,27 @@
 				E2FC50B727C37E8600F320C5 /* UserProfileViewController.swift in Sources */,
 				E23A5ECA27C2AF21004EE94F /* NewsModel.swift in Sources */,
 				E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */,
+				E252FBDC27C7659100F6F0F5 /* MainTabBarController.swift in Sources */,
 				E2FC50D727C38C1500F320C5 /* UserInfoViewModel.swift in Sources */,
-				E23D135927C4FE0A001AB75D /* UserEditInfoViewModel.swift in Sources */,
+				E23D135927C4FE0A001AB75D /* UserEditViewModel.swift in Sources */,
 				E2FC50A927C375F700F320C5 /* NewsView.swift in Sources */,
+				E252FBE627C7684E00F6F0F5 /* DPViewRouter+Extensions.swift in Sources */,
 				E23A5ECD27C2B043004EE94F /* NewsListTableRowsCell.swift in Sources */,
-				E23A5EB327C2A35C004EE94F /* MainTabBarController.swift in Sources */,
+				E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */,
+				E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */,
 				E2FC50D827C38C1500F320C5 /* UserInfoViewController.swift in Sources */,
 				E23A5EC527C2A98E004EE94F /* NewsListViewRouter.swift in Sources */,
-				E23D136327C5043A001AB75D /* UserEditAboutViewController.swift in Sources */,
-				E23A5EAB27C27E2A004EE94F /* AppFlowViewController.swift in Sources */,
-				E23D135227C4FCE6001AB75D /* UserEditFlowViewController.swift in Sources */,
 				E23A5EC727C2A98E004EE94F /* NewsListViewController.swift in Sources */,
-				E23A5EAD27C28329004EE94F /* AuthFlowViewController.swift in Sources */,
-				E23D135B27C4FEA5001AB75D /* UserEditFlowViewModel.swift in Sources */,
+				E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */,
 				E23D134A27C4F583001AB75D /* AuthPhoneViewController.swift in Sources */,
+				E252FBEF27C77D7300F6F0F5 /* AppCoordinator.swift in Sources */,
 				E23A5EC627C2A98E004EE94F /* NewsListViewModel.swift in Sources */,
 				E2FC50B527C37E8600F320C5 /* UserProfileViewRouter.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,
-				E23D136227C5043A001AB75D /* UserEditAboutViewModel.swift in Sources */,
-				E23A5EAF27C2833D004EE94F /* MainFlowViewController.swift in Sources */,
 				E2FC50B927C385CD00F320C5 /* UserModel.swift in Sources */,
-				E23D135627C4FDD8001AB75D /* UserEditInfoViewController.swift in Sources */,
+				E23D135627C4FDD8001AB75D /* UserEditViewController.swift in Sources */,
 				E2FC50B627C37E8600F320C5 /* UserProfileViewModel.swift in Sources */,
+				E252FBE227C7661300F6F0F5 /* AuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
