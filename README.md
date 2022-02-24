@@ -89,8 +89,6 @@ open class DPViewErrorHandler {
 
 ```
 
-An example of the interaction of all modules can be seen in more detail in the section [Demo](#Demo).
-
 ## Views
 
 ### DPViewProtocol
@@ -143,9 +141,43 @@ public protocol DPPageContainerViewControllerDelegate: AnyObject {
     func didPageLimitReached(_ viewController: DPPageContainerViewController, for direction: UIPageViewController.NavigationDirection, fromSwipe: Bool)
 }
 ```
-For more information about the use of various custom views, see the section [Demo](#Demo).
 
 ## ConstraintWrapper
+View extensions setting auto layout constraints. Example:
+
+```swift
+class ViewController: UIViewController {
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let myView = UIView()
+        myView.addToSuperview(self.view, withConstraints: [ .edgesToSuperview() ])
+    }
+    
+}
+```
+
+The example above is similar to writing:
+```swift
+class ViewController: UIViewController {
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let myView = UIView()
+        myView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            myView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            myView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            myView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            myView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
+        ])
+    }
+    
+}
+
 ## StyleWrapper
 ## Extensions
 ## Demo
