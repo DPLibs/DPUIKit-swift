@@ -237,7 +237,7 @@ let package = Package(
 
 ### Install package via Xcode
 
-1. Go to File -> Swift Packages -> Add Package Dependency...
+1. Go to `File` -> `Swift Packages` -> `Add Package Dependency...`
 2. Then search for <https://github.com/DPLibs/DPUIKit.git>
 3. And choose the version you want
 
