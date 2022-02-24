@@ -136,6 +136,12 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
     open func setPages(_ pages: [UIViewController], animated: Bool, showPageAtIndex index: Int? = nil, completion: Completion? = nil)
     ...
 }
+
+public protocol DPPageContainerViewControllerDelegate: AnyObject {
+    func didSelectPage(_ viewController: DPPageContainerViewController, at index: Int)
+    func didSetPages(_ viewController: DPPageContainerViewController, pages: [UIViewController])
+    func didPageLimitReached(_ viewController: DPPageContainerViewController, for direction: UIPageViewController.NavigationDirection, fromSwipe: Bool)
+}
 ```
 For more information about the use of various custom views, see the section [Demo](#Demo).
 
