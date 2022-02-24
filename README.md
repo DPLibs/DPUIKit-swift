@@ -47,6 +47,9 @@ class DPViewModel {
 
 ```
 
+### DPViewModelOutput
+Interface for sending notifications from `DPViewModel`.
+
 ```swift
 public protocol DPViewModelOutput: AnyObject {
     func modelDidError(_ model: DPViewModel?, error: Error)
@@ -56,6 +59,10 @@ public protocol DPViewModelOutput: AnyObject {
     func modelReloaded(_ model: DPViewModel?)
 }
 ```
+
+### DPViewRouter
+Provides navigation between `DPViewController`.
+* Stores a link to `UIViewController` for its navigation.
 
 ```swift
 open class DPViewRouter {
@@ -69,6 +76,10 @@ open class DPViewRouter {
 
 ```
 
+### DPViewErrorHandler
+Needed to process and display errors.
+* Stores a link to `UIViewController` for show errors.
+
 ```swift
 open class DPViewErrorHandler {
     open weak var viewController: UIViewController?
@@ -77,6 +88,8 @@ open class DPViewErrorHandler {
 }
 
 ```
+
+An example of the interaction of all modules can be seen in more detail in the section [Demo](#Demo).
 
 ## Views
 ## ConstraintWrapper
