@@ -19,8 +19,10 @@ An unobtrusive set of extensions and classes for UIKit.
 ## MVVM
 A screen or part of a screen is described as follows:
 
-`DPViewController` - deals with displaying views and navigating to other screens. Stores an instance `DPViewModel`. 
-And implements a protocol `DPViewModelOutput` for processing signals from `DPViewModel`.
+`DPViewController` deals with displaying views and navigating to other screens. 
+* Stores an instance `DPViewModel`. And implements a protocol `DPViewModelOutput` for processing signals from `DPViewModel`.
+* Stores an instance `DPViewRouter` to implement navigation.
+* Stores an instance `DPViewErrorHandler` for handling and displaying errors.
 
 ```swift
 open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput {
@@ -31,6 +33,13 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
 ```
 
 ```swift
+class DPViewModel {
+    open weak var _ouput: DPViewModelOutput? 
+}
+
+```
+
+```swift
 public protocol DPViewModelOutput: AnyObject {
     func modelDidError(_ model: DPViewModel?, error: Error)
     func modelBeginLoading(_ model: DPViewModel?)
@@ -38,9 +47,25 @@ public protocol DPViewModelOutput: AnyObject {
     func modelUpdated(_ model: DPViewModel?)
     func modelReloaded(_ model: DPViewModel?)
 }
+```
 
-class DPViewModel {
-    open weak var _ouput: DPViewModelOutput? 
+```swift
+open class DPViewRouter {
+    open weak var viewController: UIViewController?
+
+    open func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil)
+    open func push(viewController: UIViewController, animated: Bool)
+    open func dismiss(animated: Bool, completion: (() -> Void)? = nil)
+    ...
+}
+
+```
+
+```swift
+open class DPViewErrorHandler {
+    open weak var viewController: UIViewController?
+    
+    open func handleError(_ error: Error?, completion: (() -> Void)? = nil)
 }
 
 ```
