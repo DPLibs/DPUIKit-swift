@@ -10,8 +10,6 @@ import UIKit
 
 // MARK: - Data Output
 public protocol DPTableDataOutput: AnyObject {
-    func beginRefreshing(_ tableView: DPTableView)
-    func endRefreshing(_ tableView: DPTableView)
     func selectRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell, row: DPTableRowModel)
     func scrollToPosition(_ tableView: DPTableView, position: UITableView.ScrollPosition, rowsOffset: Int)
     func topAchived(_ tableView: DPTableView)
@@ -19,8 +17,6 @@ public protocol DPTableDataOutput: AnyObject {
 }
 
 public extension DPTableDataOutput {
-    func beginRefreshing(_ tableView: DPTableView) {}
-    func endRefreshing(_ tableView: DPTableView) {}
     func selectRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell, row: DPTableRowModel) {}
     func scrollToPosition(_ tableView: DPTableView, position: UITableView.ScrollPosition, rowsOffset: Int) {}
     func topAchived(_ tableView: DPTableView) {}
@@ -120,24 +116,7 @@ open class DPTableView: UITableView, DPViewProtocol {
     
     open func didSetRefreshControl() {
         guard let refreshControl = self.refreshControl else { return }
-
-        refreshControl.addTarget(self, action: #selector(self.refreshControlValueChanged(_:)), for: .valueChanged)
         self.bringSubviewToFront(refreshControl)
-    }
-    
-    @objc
-    open func refreshControlValueChanged(_ refreshControl: UIRefreshControl) {
-        self.dataOutput?.beginRefreshing(self)
-    }
-    
-    open func beginRefreshing() {
-        self.refreshControl?.sendActions(for: .valueChanged)
-        self.reloadData()
-    }
-
-    open func endRefreshing() {
-        self.refreshControl?.endRefreshing()
-        self.dataOutput?.endRefreshing(self)
     }
     
     open func updatePlaceholderViewAutoHidden() {

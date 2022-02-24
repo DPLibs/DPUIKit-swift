@@ -34,9 +34,7 @@ open class DPStackScrollView: DPView {
     }()
     
     open var axis: NSLayoutConstraint.Axis {
-        get {
-            self.stackView.axis
-        }
+        get { self.stackView.axis }
         set {
             self.stackView.axis = newValue
             self.updateComponents()

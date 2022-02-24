@@ -40,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E2232E4827C7B8F500FD3E5E /* .keep_support_layer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .keep_support_layer; sourceTree = "<group>"; };
+		E2232E5427C7BB6400FD3E5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = DPUIKitDemo/Info.plist; sourceTree = SOURCE_ROOT; };
 		E23A5EB027C287B9004EE94F /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		E23A5EC227C2A98E004EE94F /* NewsListViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewRouter.swift; sourceTree = "<group>"; };
 		E23A5EC327C2A98E004EE94F /* NewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModel.swift; sourceTree = "<group>"; };
@@ -61,7 +63,6 @@
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E26735E02759547900DCEEFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E26735E22759547900DCEEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E26735E92759550100DCEEFB /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DPUIKit; path = ..; sourceTree = "<group>"; };
 		E2FC50A827C375F700F320C5 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +116,8 @@
 		E23A5EA827C27DAA004EE94F /* Support Layer */ = {
 			isa = PBXGroup;
 			children = (
+				E2232E5427C7BB6400FD3E5E /* Info.plist */,
+				E2232E4827C7B8F500FD3E5E /* .keep_support_layer */,
 			);
 			path = "Support Layer";
 			sourceTree = "<group>";
@@ -283,7 +286,6 @@
 		E26735D32759547600DCEEFB /* DPUIKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E26735E22759547900DCEEFB /* Info.plist */,
 				E23A5EA627C27D64004EE94F /* Application Layer */,
 				E23A5EC827C2AF11004EE94F /* Domain Layer */,
 				E23A5EA727C27D91004EE94F /* Presentation Layer */,

@@ -23,10 +23,17 @@ open class DPSwitch: UISwitch, DPViewProtocol {
         self.setupComponents()
     }
     
+    public init(didTouchUpInside: Closure? = nil) {
+        super.init(frame: .zero)
+        
+        self.didTouchUpInside = didTouchUpInside
+        self.didTouchUpInsideDidSet()
+    }
+    
     // MARK: - Props
-    open var didTap: (() -> Void)? {
+    open var didTouchUpInside: Closure? {
         didSet {
-            self.addTarget(self, action: #selector(self.handleTap), for: .touchUpInside)
+            self.didTouchUpInsideDidSet()
         }
     }
     
@@ -37,9 +44,17 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
     
+    open func didTouchUpInsideDidSet() {
+        if self.didTouchUpInside == nil {
+            self.removeTarget(self, action: #selector(self.handleTouchUpInside), for: .touchUpInside)
+        } else {
+            self.addTarget(self, action: #selector(self.handleTouchUpInside), for: .touchUpInside)
+        }
+    }
+    
     @objc
-    open func handleTap() {
-        self.didTap?()
+    open func handleTouchUpInside() {
+        self.didTouchUpInside?()
     }
     
 }

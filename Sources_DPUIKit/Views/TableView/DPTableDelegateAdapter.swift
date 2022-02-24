@@ -18,12 +18,8 @@ open class DPTableDelegateAdapter: NSObject, UITableViewDelegate {
     }
     
     open var sections: [DPTableSectionModel] {
-        get {
-            self.tableView?.sections ?? []
-        }
-        set {
-            self.tableView?.sections = newValue
-        }
+        get { self.tableView?.sections ?? [] }
+        set { self.tableView?.sections = newValue }
     }
     
     open internal(set) var lastContentOffset: CGPoint?
@@ -75,7 +71,7 @@ open class DPTableDelegateAdapter: NSObject, UITableViewDelegate {
         let offsetToBottom = self.sections.rowsCount - offsetToTop
         tableView.dataOutput?.scrollToPosition(tableView, position: .bottom, rowsOffset: offsetToBottom)
         
-        if offsetToBottom == 0 {
+        if offsetToBottom == 0, !self.sections.rowsIsEmpty {
             tableView.dataOutput?.bottomAchived(tableView)
         }
     }

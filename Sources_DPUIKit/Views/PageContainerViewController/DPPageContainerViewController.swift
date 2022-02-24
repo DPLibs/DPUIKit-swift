@@ -8,18 +8,6 @@
 import Foundation
 import UIKit
 
-public protocol DPPageContainerViewControllerDelegate: AnyObject {
-    func didSelectPage(_ viewController: DPPageContainerViewController, at index: Int)
-    func didSetPages(_ viewController: DPPageContainerViewController, pages: [UIViewController])
-    func didPageLimitReached(_ viewController: DPPageContainerViewController, for direction: UIPageViewController.NavigationDirection, fromSwipe: Bool)
-}
-
-public extension DPPageContainerViewControllerDelegate {
-    func didSelectPage(_ viewController: DPPageContainerViewController, at index: Int) {}
-    func didSetPages(_ viewController: DPPageContainerViewController, pages: [UIViewController]) {}
-    func didPageLimitReached(_ viewController: DPPageContainerViewController, for direction: UIPageViewController.NavigationDirection, fromSwipe: Bool) {}
-}
-
 open class DPPageContainerViewController: DPViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     public typealias Completion = (Bool) -> Void
     
