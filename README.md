@@ -13,6 +13,7 @@ An unobtrusive set of extensions and classes for UIKit.
 [ConstraintWrapper](#ConstraintWrapper)\
 [StyleWrapper](#StyleWrapper)\
 [Demo](#Demo)\
+[Xcode templates](#Xcode-templates)\
 [Install](#Install)\
 [License](#License)\
 [Author](#MVAuthorVM)
@@ -211,6 +212,8 @@ class ViewController: UIViewController {
 
 ## Demo
 A [small project]() demonstrating the interaction of MVVM modules in an application. Global navigation is carried out with the help of coordinators. This is a rather crude interpretation of the coordinator pattern. Improvements to this functionality are expected in the following features 👨‍💻.
+
+## Xcode templates
 
 ## Install
 Swift Package Manager(SPM) is Apple's dependency manager tool. It is now supported in Xcode 11. So it can be used in all appleOS types of projects. It can be used alongside other tools like CocoaPods and Carthage as well.
