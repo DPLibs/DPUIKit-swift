@@ -28,9 +28,6 @@ let package = Package(
                 "Kingfisher"
             ],
             path: "Sources_DPUIKit"
-//            linkerSettings: [
-//                .linkedFramework("UIKit", .when(platforms: [.iOS]))
-//            ]
         )
     ]
 )
