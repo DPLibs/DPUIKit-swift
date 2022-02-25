@@ -54,11 +54,6 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
         
         self.setupComponents()
         self.updateComponents()
-        
-        let myView = UIView()
-        myView.backgroundColor = .white
-        myView.layer.cornerRadius = 16
-        
     }
     
     // MARK: - DPViewProtocol
