@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct UserManager {
+class UserManager {
     
-    static var user: UserModel {
+    var user: UserModel {
         get {
             let firstName = UserDefaults.standard.string(forKey: "firstName") ?? ""
             let lastName = UserDefaults.standard.string(forKey: "lastName") ?? ""

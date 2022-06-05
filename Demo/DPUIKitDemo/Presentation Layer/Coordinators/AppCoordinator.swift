@@ -9,87 +9,80 @@ import Foundation
 import DPUIKit
 import UIKit
 
-class AppCoordinator {
+class AppCoordinator: DPWindowCoordinator {
     
     // MARK: - Init
-    init(window: UIWindow?) {
-        self.window = window
+    override init(window: UIWindow? = nil) {
+        self.userManager = .init()
+        self.authManager = .init()
+        
+        super.init(window: window)
+        
+        self.authManager.didLogout = { [weak self] in
+            self?.start()
+        }
     }
     
     // MARK: - Props
-    private weak var window: UIWindow?
-    
-    private var rootViewController: UIViewController? {
-        get { self.window?.rootViewController }
-        set {
-            self.window?.rootViewController = newValue
-            self.window?.makeKeyAndVisible()
-        }
-    }
-    
-    private var isAutorized: Bool {
-        get { AuthManager.isAutorized }
-        set { AuthManager.isAutorized = newValue }
-    }
-    
-    private var user: UserModel {
-        get { UserManager.user }
-        set { UserManager.user = newValue }
-    }
-    
-    private lazy var authCooridinator: AuthCoordinator = {
-        let result = AuthCoordinator()
-        result.didAutorized = { [weak self] in
-            self?.isAutorized = true
-            self?.start()
-        }
-        
-        return result
-    }()
+    let userManager: UserManager
+    let authManager: AuthManager
     
     // MARK: - Methods
-    func start() {
-        self.rootViewController = InitialViewController()
+    override func start() {
+        super.start()
         
+        self.showInitial()
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
             guard let self = self else { return }
-            
-            switch (self.isAutorized, self.user.isFilled) {
+
+            switch (self.authManager.isAutorized, self.userManager.user.isFilled) {
             case (false, false), (false, true):
-                self.startAuth()
+                self.showAuth()
             case (true, false):
-                self.startUserEdit()
+                self.showUserEdit()
             case (true, true):
-                self.startMain()
+                self.showMain()
             }
         }
     }
     
-    private func startAuth() {
-        self.rootViewController = self.authCooridinator.start()
+}
+
+// MARK: - Private
+private extension AppCoordinator {
+    
+    func showInitial() {
+        let vc = InitialViewController()
+        self.show(vc)
     }
     
-    private func startUserEdit() {
-        let vc = UserEditViewController(model: .init(user: self.user))
-        vc.didTapDone = { [weak self] user in
-            self?.user = user
+    func showAuth() {
+        let nc = DPNavigationController()
+        let coordinator = AuthCoordinator(navigationController: nc, loginHandlder: self.authManager)
+        coordinator.didFinish = { [weak self] _ in
             self?.start()
         }
-        
-        let navigation = DPNavigationController(rootViewController: vc)
-        self.rootViewController = navigation
+        coordinator.start()
+        self.show(nc)
     }
     
-    private func startMain() {
-        let vc = MainTabBarController(user: self.user)
-        vc.didLogout = { [weak self] in
-            self?.isAutorized = false
+    func showUserEdit() {
+        let nc = DPNavigationController()
+        let coordinator = UserEditCoordinator(navigationController: nc, user: self.userManager.user)
+        coordinator.didEditUser = { [weak self] user in
+            self?.userManager.user = user
+        }
+        coordinator.didFinish = { [weak self] _ in
             self?.start()
         }
-        vc.didUserEdit = { [weak self] user in
-            self?.user = user
-        }
-        self.rootViewController = vc
+        coordinator.start()
+        self.show(nc)
+    }
+    
+    func showMain() {
+        let coordinator = MainCoordinator(window: self.window, user: self.userManager.user)
+        coordinator.start()
     }
     
 }
