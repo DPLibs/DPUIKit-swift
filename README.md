@@ -8,9 +8,9 @@ An unobtrusive set of extensions and classes for UIKit.
 * Xcode 12.5 or above
 
 ## Overview
-[-> MVVM](/Docs/MVVM_3.0.0)\
-[-> Coordinators](/Docs/Coordinators_3.0.0)\
-[-> Xcode templates](/Docs/XCode_templates_3.0.0.md)\
+[MVVM ->](/Docs/MVVM_3.0.0.md)\
+[Coordinators ->](/Docs/Coordinators_3.0.0.md)\
+[Xcode templates ->](/Docs/XCode_templates_3.0.0.md)
 
 [Views](#Views)\
 [ConstraintWrapper](#ConstraintWrapper)\
