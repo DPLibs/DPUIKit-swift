@@ -6,11 +6,30 @@
 //
 
 import Foundation
+import DPUIKit
 
-struct AuthManager {
+protocol LoginHandlder: AnyObject {
+    func login()
+    func logout()
+}
+
+class AuthManager: LoginHandlder {
     
-    static var isAutorized: Bool {
+    // MARK: - Props
+    var isAutorized: Bool {
         get { UserDefaults.standard.bool(forKey: "isAutorized") }
         set { UserDefaults.standard.set(newValue, forKey: "isAutorized") }
+    }
+    
+    var didLogout: (() -> Void)?
+    
+    // MARK: - LoginHandlder
+    func login() {
+        self.isAutorized = true
+    }
+    
+    func logout() {
+        self.isAutorized = false
+        self.didLogout?()
     }
 }
