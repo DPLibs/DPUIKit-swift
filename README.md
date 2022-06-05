@@ -8,161 +8,16 @@ An unobtrusive set of extensions and classes for UIKit.
 * Xcode 12.5 or above
 
 ## Overview
-[MVVM](#MVVM)\
+[MVVM](/Docs/MVVM_3.0.0)\
+[MVVM](/Docs/Coordinators_3.0.0)\
 [Views](#Views)\
 [ConstraintWrapper](#ConstraintWrapper)\
 [StyleWrapper](#StyleWrapper)\
 [Demo](#Demo)\
-[Xcode templates](#Xcode-templates)\
+[Xcode templates](/Docs/XCode_templates_3.0.0.md)\
 [Install](#Install)\
 [License](#License)\
 [Author](#MVAuthorVM)
-
-## MVVM
-A screen or part of a screen is described as follows:
-
-### DPViewController
-Deals with displaying views and navigating to other screens. 
-* Stores an instance `DPViewModel`. And implements a protocol `DPViewModelOutput` for processing signals from `DPViewModel`.
-* Stores an instance `DPViewRouter` to implement navigation.
-* Stores an instance `DPViewErrorHandler` for handling and displaying errors.
-
-```swift
-open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput {
-    open var _model: DPViewModel?
-    open var _router: DPViewRouter?
-    open var _errorHandler: DPViewErrorHandler?
-}
-```
-
-### DPViewModel
-Is the source of data and states for `DPViewController`.
-* Stores an instance `DPViewModelOutput` for notice `DPViewController`.
-* Сan store and monitor `Model`.
-
-```swift
-class DPViewModel {
-    open weak var _ouput: DPViewModelOutput? 
-}
-
-```
-
-### DPViewModelOutput
-Interface for sending notifications from `DPViewModel`.
-
-```swift
-public protocol DPViewModelOutput: AnyObject {
-    func modelDidError(_ model: DPViewModel?, error: Error)
-    func modelBeginLoading(_ model: DPViewModel?)
-    func modelFinishLoading(_ model: DPViewModel?, withError error: Error?)
-    func modelUpdated(_ model: DPViewModel?)
-    func modelReloaded(_ model: DPViewModel?)
-}
-```
-
-### DPViewRouter
-Provides navigation between `DPViewController`.
-* Stores a link to `UIViewController` for its navigation.
-
-```swift
-open class DPViewRouter {
-    open weak var viewController: UIViewController?
-
-    open func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil)
-    open func push(viewController: UIViewController, animated: Bool)
-    open func dismiss(animated: Bool, completion: (() -> Void)? = nil)
-    ...
-}
-
-```
-
-### DPViewErrorHandler
-Needed to process and display errors.
-* Stores a link to `UIViewController` for show errors.
-
-```swift
-open class DPViewErrorHandler {
-    open weak var viewController: UIViewController?
-    
-    open func handleError(_ error: Error?, completion: (() -> Void)? = nil)
-}
-
-```
-
-The main concept is to implement an approach of simple scalability, flexibility and component unobtrusiveness. Therefore, MVVM does not always have to be built entirely on a legacy implementation. Those. initially there can only be a `ViewController`. For example: 
-
-```swift
-class TestViewController: DPViewController {}
-```
-
-If the controller needs to receive some data from the network or LDB, then add a `TestViewModel` to it: 
-
-```swift
-class TestViewModel: DPViewModel {
-   var testData: String?
-
-   func loadTestData() {
-      ...
-   }
-}
-
-class TestViewController: DPViewController {
-   override init() {
-      super.init()
-      self.model = TestViewModel()
-   }
-   ...
-
-   private var model: TestViewModel? {
-     get { self._model as? TestViewModel }
-     set { self._model = newValue }
-   }
-}
-```
-
-If the controller has unique navigation and unique error display, then also add `TestViewRouter` and `TestViewErrorHanlder` respectively:
-
-```swift
-class TestViewModel: DPViewModel {
-   var testData: String?
-
-   func loadTestData() {
-      ...
-   }
-}
-
-class TestViewRouter: DPViewRouter {
-   func showUniqueScreen() {
-      ...
-   }
-}
-
-class TestViewErrorHandler: DPViewErrorHandler {
-   func handleErrorUnique(_ error: Error) {
-      ...
-   }
-}
-
-class TestViewController: DPViewController {
-   override init() {
-      super.init()
-      self.model = TestViewModel()
-      self.router = TestViewRouter()
-      self.errorHandlder = TestViewErrorHandler()
-   }
-   ...
-
-   private var model: TestViewModel? {
-     get { self._model as? TestViewModel }
-     set { self._model = newValue }
-   }
-
-   private var router: TestViewRouter? { ... }
-   private var errorHandlder: TestViewErrorHandler? { ... }
-}
-```
-
-The `private` modifier for `model`, `router` and `errorHanlder` is not accidental. This makes inheritance easier. 
 
 ## Views
 
@@ -287,10 +142,6 @@ class ViewController: UIViewController {
 
 ## Demo
 A [small project](/Demo) demonstrating the interaction of MVVM modules in an application. Global navigation is carried out with the help of coordinators. This is a rather crude interpretation of the coordinator pattern. Improvements to this functionality are expected in the following features 👨‍💻.
-
-## Xcode templates
-The contents of the [folder](/Templates) (see version) must be copied to the folder `~/Library/Developer/Xcode/Templates`.
-![](/Images/templates_screen_shot.png)
 
 ## Install
 Swift Package Manager(SPM) is Apple's dependency manager tool. It is now supported in Xcode 11. So it can be used in all appleOS types of projects. It can be used alongside other tools like CocoaPods and Carthage as well.
