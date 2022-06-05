@@ -11,13 +11,18 @@ import UIKit
 open class DPNavigationCoordinator: DPCoordinatorProtocol {
     
     // MARK: - Init
+    
+    /// In the `init` you can pass `UINavigationController` for control
     public init(navigationController: UINavigationController?) {
         self.navigationController = navigationController
     }
     
     // MARK: - Props
+    
+    /// `UINavigationController` for control
     open weak var navigationController: UINavigationController?
     
+    /// Top controller in `navigationController` stack
     open var topViewController: UIViewController? {
         self.navigationController?.topViewController
     }
