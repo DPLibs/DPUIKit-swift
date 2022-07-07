@@ -1,7 +1,7 @@
 # DPUIKit
 An unobtrusive set of extensions and classes for UIKit.
 
-[![version](https://img.shields.io/badge/version-2.0.0-white.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-3.0.0-white.svg)](https://semver.org)
 
 ## Requirements
 * IOS 11 or above
