@@ -142,7 +142,7 @@ class ViewController: UIViewController {
 ```
 
 ## Demo
-A [small project](/Demo) demonstrating the interaction of MVVM modules in an application. Global navigation is carried out with the help of coordinators. This is a rather crude interpretation of the coordinator pattern. Improvements to this functionality are expected in the following features 👨‍💻.
+A [small project](/Demo) demonstrating the interaction of MVVM modules in an application.
 
 ## Install
 Swift Package Manager(SPM) is Apple's dependency manager tool. It is now supported in Xcode 11. So it can be used in all appleOS types of projects. It can be used alongside other tools like CocoaPods and Carthage as well.
