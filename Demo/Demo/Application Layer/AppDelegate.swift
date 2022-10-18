@@ -17,8 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         self.window = .init()
-//        self.window?.rootViewController = DPNavigationController(rootViewController: InitialViewController())
-//        self.window?.makeKeyAndVisible()
         self.appCooridinator.start()
         
         return true

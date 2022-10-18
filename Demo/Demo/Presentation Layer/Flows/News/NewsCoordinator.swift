@@ -12,8 +12,6 @@ import DPUIKit
 
 class NewsCoordinator: DPNavigationCoordinator {
     
-    // MARK: - Props
-    
     // MARK: - Methods
     override func start() {
         super.start()
