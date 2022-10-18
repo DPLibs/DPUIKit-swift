@@ -8,12 +8,7 @@
 import Foundation
 import DPUIKit
 
-protocol LoginHandlder: AnyObject {
-    func login()
-    func logout()
-}
-
-class AuthManager: LoginHandlder {
+class AuthManager {
     
     // MARK: - Props
     var isAutorized: Bool {

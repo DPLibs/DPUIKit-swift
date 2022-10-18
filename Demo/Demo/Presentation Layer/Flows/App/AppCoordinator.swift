@@ -24,8 +24,8 @@ class AppCoordinator: DPWindowCoordinator {
     }
     
     // MARK: - Props
-    let userManager: UserManager
-    let authManager: AuthManager
+    private let userManager: UserManager
+    private let authManager: AuthManager
     
     // MARK: - Methods
     override func start() {
@@ -59,20 +59,19 @@ private extension AppCoordinator {
     
     func showAuth() {
         let nc = DPNavigationController()
-        let coordinator = AuthCoordinator(navigationController: nc, loginHandlder: self.authManager)
+        
+        let coordinator = AuthCoordinator(navigationController: nc, authManager: self.authManager)
         coordinator.didFinish = { [weak self] _ in
             self?.start()
         }
         coordinator.start()
+        
         self.show(nc)
     }
     
     func showUserEdit() {
         let nc = DPNavigationController()
-        let coordinator = UserEditCoordinator(navigationController: nc, user: self.userManager.user)
-        coordinator.didEditUser = { [weak self] user in
-            self?.userManager.user = user
-        }
+        let coordinator = UserEditCoordinator(navigationController: nc, userManager: self.userManager)
         coordinator.didFinish = { [weak self] _ in
             self?.start()
         }
@@ -81,8 +80,11 @@ private extension AppCoordinator {
     }
     
     func showMain() {
-        let coordinator = MainCoordinator(window: self.window, user: self.userManager.user)
-        coordinator.start()
+        MainCoordinator(
+            window: self.window,
+            userManager: self.userManager,
+            authManager: self.authManager
+        ).start()
     }
     
 }

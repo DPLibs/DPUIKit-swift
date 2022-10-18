@@ -12,29 +12,32 @@ import DPUIKit
 class UserEditCoordinator: DPNavigationCoordinator {
     
     // MARK: - Init
-    init(navigationController: UINavigationController?, user: UserModel?) {
-        self.user = user
+    init(navigationController: UINavigationController?, userManager: UserManager) {
+        self.userManager = userManager
         
         super.init(navigationController: navigationController)
     }
     
     // MARK: - Props
-    var user: UserModel?
-    var didEditUser: ((UserModel) -> Void)?
+    private let userManager: UserManager
+    
+    private var user: UserModel {
+        get { self.userManager.user }
+        set {
+            self.userManager.user = newValue
+            
+            (self.navigationController?.viewControllers ?? []).forEach {
+                guard let vc = $0 as? UserEditable else { return }
+                vc.setUser(newValue)
+            }
+        }
+    }
     
     // MARK: - Methods
     override func start() {
         super.start()
         
         self.showUserEdit()
-    }
-    
-    override func finish() {
-        if let user = self.user {
-            self.didEditUser?(user)
-        }
-        
-        super.finish()
     }
     
 }
@@ -44,11 +47,13 @@ private extension UserEditCoordinator {
     
     func showUserEdit() {
         let vc = UserEditViewController(model: .init(user: self.user))
+        vc.coordinator = self
+        
         vc.didTapDone = { [weak self] user in
             self?.user = user
             self?.finish()
         }
-        vc.coordinator = self
+        
         self.push(vc)
     }
     

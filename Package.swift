@@ -27,7 +27,11 @@ let package = Package(
             dependencies: [
                 "Kingfisher"
             ],
-            path: "Sources/DPUIKit"
+            path: "Sources/DPUIKit",
+            exclude: [
+                "../../Demo",
+                "../../Docs"
+            ]
         )
     ]
 )

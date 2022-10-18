@@ -12,15 +12,31 @@ import DPUIKit
 class MainCoordinator: DPWindowCoordinator {
     
     // MARK: - Init
-    init(window: UIWindow?, user: UserModel) {
-        self.user = user
+    init(window: UIWindow?, userManager: UserManager, authManager: AuthManager) {
+        self.userManager = userManager
+        self.authManager = authManager
+        
         super.init(window: window)
     }
     
     // MARK: - Props
-    var user: UserModel
+    // MARK: - Props
+    private let userManager: UserManager
+    private let authManager: AuthManager
     
-    private lazy var tabbarController: MainTabBarController = {
+    // MARK: - Methods
+    override func start() {
+        super.start()
+        
+        self.showTabBarController()
+    }
+    
+}
+
+// MARK: - Private
+private extension MainCoordinator {
+    
+    func showTabBarController() {
         let itemsTypes: [DPTabBarItem.MainTabBarItemType] = [.news, .profile]
         
         let viewControllers: [UIViewController] = itemsTypes.map { type in
@@ -28,29 +44,21 @@ class MainCoordinator: DPWindowCoordinator {
             case .news:
                 let nc = DPNavigationController()
                 nc.tabBarItem = DPTabBarItem(type: type)
-                let coordinator = NewsCoordinator(navigationController: nc)
-                coordinator.start()
+                NewsCoordinator(navigationController: nc).start()
                 return nc
             case .profile:
                 let nc = DPNavigationController()
                 nc.tabBarItem = DPTabBarItem(type: type)
-                let coordinator = UserCoordinator(navigationController: nc, user: self.user)
-                coordinator.start()
+                UserCoordinator(navigationController: nc, userManager: self.userManager, authManager: self.authManager).start()
                 return nc
             }
         }
         
-        let result = MainTabBarController()
-        result.setViewControllers(viewControllers, animated: true)
-        result.coordinator = self
-        return result
-    }()
-    
-    // MARK: - Methods
-    override func start() {
-        super.start()
+        let vc = MainTabBarController()
+        vc.setViewControllers(viewControllers, animated: true)
+        vc.coordinator = self
         
-        self.show(self.tabbarController)
+        self.show(vc)
     }
     
 }
