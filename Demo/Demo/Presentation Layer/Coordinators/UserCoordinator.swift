@@ -45,15 +45,15 @@ class UserCoordinator: DPNavigationCoordinator {
 private extension UserCoordinator {
     
     func showProfile() {
-        let vc = UserProfileViewController(model: .init(user: self.user))
-        vc.didTapEdit = { [weak self] _ in
-            self?.showEdit()
-        }
-        vc.didTapExit = { [weak self] in
-            self?.loginHanlder?.logout()
-        }
-        vc.coordinator = self
-        self.push(vc)
+//        let vc = UserProfileViewController(model: .init(user: self.user))
+//        vc.didTapEdit = { [weak self] _ in
+//            self?.showEdit()
+//        }
+//        vc.didTapExit = { [weak self] in
+//            self?.loginHanlder?.logout()
+//        }
+//        vc.coordinator = self
+//        self.push(vc)
     }
     
     func showEdit() {
