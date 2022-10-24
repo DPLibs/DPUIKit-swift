@@ -17,11 +17,13 @@ open class DPTextView: UITextView, DPViewProtocol {
     
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
+        
         self.setupComponents()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
         self.setupComponents()
     }
     
@@ -42,7 +44,7 @@ open class DPTextView: UITextView, DPViewProtocol {
         didSet { self.setNeedsDisplay() }
     }
     
-    open var autoHeightSettings: AutoHeightSettings? {
+    open var autoHeightSettings: DPTextView.AutoHeightSettings? {
         didSet {
             self.oldSize = .zero
             self.setNeedsLayout()
@@ -187,8 +189,17 @@ open class DPTextView: UITextView, DPViewProtocol {
 public extension DPTextView {
     
     struct AutoHeightSettings {
+        
+        // MARK: - Init
+        public init(min: CGFloat, max: CGFloat) {
+            self.min = min
+            self.max = max
+        }
+        
+        // MARK: - Props
         public var min: CGFloat
         public var max: CGFloat
+        
     }
     
 }
