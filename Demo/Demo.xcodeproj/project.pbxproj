@@ -22,7 +22,6 @@
 		E23D135627C4FDD8001AB75D /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135527C4FDD8001AB75D /* UserEditViewController.swift */; };
 		E23D135927C4FE0A001AB75D /* UserEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135827C4FE09001AB75D /* UserEditViewModel.swift */; };
 		E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E245788C27C68D7900917D31 /* InitialViewController.swift */; };
-		E248035928FFF5B400ADA6A0 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = E248035828FFF5B400ADA6A0 /* PhoneNumberKit */; };
 		E252FBDC27C7659100F6F0F5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBDB27C7659100F6F0F5 /* MainTabBarController.swift */; };
 		E252FBE227C7661300F6F0F5 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBE127C7661300F6F0F5 /* AuthManager.swift */; };
 		E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBE327C7665900F6F0F5 /* UserManager.swift */; };
@@ -81,7 +80,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E26735EC2759552700DCEEFB /* DPUIKit in Frameworks */,
-				E248035928FFF5B400ADA6A0 /* PhoneNumberKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +342,6 @@
 			name = Demo;
 			packageProductDependencies = (
 				E26735EB2759552700DCEEFB /* DPUIKit */,
-				E248035828FFF5B400ADA6A0 /* PhoneNumberKit */,
 			);
 			productName = DPUIKitDemo;
 			productReference = E26735D12759547600DCEEFB /* Demo.app */;
@@ -375,7 +372,6 @@
 			);
 			mainGroup = E26735C82759547500DCEEFB;
 			packageReferences = (
-				E248035728FFF5B400ADA6A0 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			productRefGroup = E26735D22759547600DCEEFB /* Products */;
 			projectDirPath = "";
@@ -642,23 +638,7 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		E248035728FFF5B400ADA6A0 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		E248035828FFF5B400ADA6A0 /* PhoneNumberKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E248035728FFF5B400ADA6A0 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
-			productName = PhoneNumberKit;
-		};
 		E26735EB2759552700DCEEFB /* DPUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DPUIKit;
