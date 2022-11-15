@@ -8,15 +8,16 @@
 import Foundation
 import DPUIKit
 import UIKit
-import PhoneNumberKit
 
 class InitialViewController: DPViewController {
     
     // MARK: - Props
     lazy var label: UILabel = {
-        UILabel()
-            .applyStyles(.textColor(AppTheme.mainColor), .text("Initial"), .textAlignment(.center))
-            .applyConstraints(.widthGreaterThanOrEqualToConstant(100))
+        UILabel().applyStyles(
+            .textColor(AppTheme.mainColor),
+            .text("Initial"),
+            .textAlignment(.center)
+        )
     }()
     
     lazy var activity: UIActivityIndicatorView = {
@@ -38,9 +39,13 @@ class InitialViewController: DPViewController {
         
         self.view.backgroundColor = AppTheme.background
         
+        self.label.applyConstraints(
+            .width(100, relation: .greaterThanOrEqual)
+        )
+        
         UIStackView(arrangedSubviews: [self.activity, self.label])
             .applyStyles(.axis(.vertical), .spacing(8))
-            .addToSuperview(self.view, withConstraints: [ .centerEqualToSuperview() ])
+            .addToSuperview(self.view, withConstraints: [ .center() ])
     }
     
 }

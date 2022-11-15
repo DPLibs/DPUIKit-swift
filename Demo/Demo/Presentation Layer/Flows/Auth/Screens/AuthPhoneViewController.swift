@@ -34,10 +34,9 @@ class AuthPhoneViewController: DPViewController {
             self?.didTapConfirm?()
         }.applyStyles(.setTitle("Next"))
         
-        let stackView = UIStackView(arrangedSubviews: [phoneLabel, confirmButton])
-        stackView.applyStyles(.axis(.vertical), .spacing(8))
-        
-        stackView.addToSuperview(self.view, withConstraints: [ .centerEqualToSuperview() ])
+        UIStackView(arrangedSubviews: [phoneLabel, confirmButton])
+            .applyStyles(.axis(.vertical), .spacing(8))
+            .addToSuperview(self.view, withConstraints: [ .center() ])
     }
     
 }

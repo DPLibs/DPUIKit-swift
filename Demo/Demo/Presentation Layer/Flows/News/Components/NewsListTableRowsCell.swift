@@ -29,10 +29,7 @@ class NewsListTableRowsCell: DPTableRowCell<NewsListTableRowsCell.Model> {
         super.setupComponents()
         
         self.newsView.addToSuperview(self.contentView, withConstraints: [
-            .topEqualToSuperview(8),
-            .bottomEqualToSuperview(),
-            .leadingEqualToSuperview(8),
-            .trailingEqualToSuperview(-8)
+            .edges(.init(top: 8, leading: 8, bottom: 0, trailing: -8))
         ])
     }
     

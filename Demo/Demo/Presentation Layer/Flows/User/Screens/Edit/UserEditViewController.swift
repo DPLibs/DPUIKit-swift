@@ -61,16 +61,16 @@ class UserEditViewController: DPViewController {
         
         self.navigationItem.title = "Edit User"
         self.view.backgroundColor = AppTheme.background
-        let guide = self.view.safeAreaLayoutGuide
         
-        let stackView = UIStackView(arrangedSubviews: [self.firstNameTextField, self.lastNameTextField, self.doneButton, .init()])
-        stackView.applyStyles(.axis(.vertical), .spacing(8), .directionalLayoutMargins(.init(top: 16, leading: 16, bottom: 16, trailing: 16)))
-        stackView.addToSuperview(self.view, withConstraints: [
-            .topEqualTo(guide.topAnchor),
-            .bottomEqualTo(guide.bottomAnchor),
-            .leadingEqualTo(guide.leadingAnchor),
-            .trailingEqualTo(guide.trailingAnchor)
-        ])
+        UIStackView(arrangedSubviews: [self.firstNameTextField, self.lastNameTextField, self.doneButton, .init()])
+            .applyStyles(
+                .axis(.vertical),
+                .spacing(8),
+                .directionalLayoutMargins(.init(top: 16, leading: 16, bottom: 16, trailing: 16))
+            )
+            .addToSuperview(self.view, withConstraints: [
+                .edges(to: .safeArea)
+            ])
         
         self.firstNameTextField.text = self.model?.user.firstName
         self.lastNameTextField.text = self.model?.user.lastName
