@@ -8,9 +8,11 @@ An unobtrusive set of extensions and classes for UIKit.
 * Xcode 12.5 or above
 
 ## Features
+- [x] MVVM
 - [x] Coordinators
 - [ ] UITableView adapter 👨‍💻
 - [ ] UICollectionView adapter 👨‍💻
+- [ ] DPLabel 👨‍💻
 - [ ] DPTextField 👨‍💻
 - [ ] SelfSizing views 👨‍💻
 - [ ] Static layout 👨‍💻
