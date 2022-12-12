@@ -9,11 +9,11 @@ An unobtrusive set of extensions and classes for UIKit.
 
 ## Features
 
-- [x] MVVM module.
-- [x] Coordinators.
-- [ ] UITableView adapter 👨‍💻.
-- [ ] UICollectionView adapter 👨‍💻.
-- [ ] DPTextField 👨‍💻.
+- [x] MVVM module
+- [x] Coordinators
+- [ ] UITableView adapter 👨‍💻
+- [ ] UICollectionView adapter 👨‍💻
+- [ ] DPTextField 👨‍💻
 
 ## Overview
 [&#8594; MVVM](/Docs/MVVM_3.0.0.md)\
