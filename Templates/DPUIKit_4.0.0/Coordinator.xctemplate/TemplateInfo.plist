@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Kind</key>
+	<string>Xcode.IDEFoundation.TextSubstitutionFileTemplateKind</string>
+	<key>Description</key>
+	<string>Coordiantor module</string>
+	<key>SortOrder</key>
+	<string>2</string>
+	<key>AllowedTypes</key>
+	<array>
+		<string>public.swift-source</string>
+	</array>
+	<key>DefaultCompletionName</key>
+	<string>File</string>
+	<key>MainTemplateFile</key>
+	<string>___FILEBASENAME___</string>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>productName</string>
+			<key>Description</key>
+			<string>Module name</string>
+			<key>Default</key>
+			<string></string>
+			<key>Name</key>
+			<string>Module name</string>
+			<key>Required</key>
+			<string>YES</string>
+			<key>Type</key>
+			<string>text</string>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>prefixSuperclass</string>
+			<key>Description</key>
+			<string>Prefix superclass</string>
+			<key>Default</key>
+			<string>DP</string>
+			<key>Name</key>
+			<string>Prefix superclass</string>
+			<key>Required</key>
+			<string>YES</string>
+			<key>Type</key>
+			<string>text</string>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>coordiantorType</string>
+			<key>Description</key>
+			<string>Coordiantor type</string>
+			<key>Name</key>
+			<string>Coordiantor type</string>
+			<key>Required</key>
+			<string>YES</string>
+			<key>Type</key>
+			<string>popup</string>
+			<key>Default</key>
+			<string>Navigation</string>
+			<key>Values</key>
+			<array>
+				<string>Navigation</string>
+				<string>Window</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
