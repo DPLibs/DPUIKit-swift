@@ -16,9 +16,9 @@ An unobtrusive set of extensions and classes for UIKit.
 - [ ] Static layout 👨‍💻
 
 ## Overview
-[&#8594; MVVM](/Docs/MVVM_3.0.0.md)\
-[&#8594; Coordinators](/Docs/Coordinators_3.0.0.md)\
-[&#8594; Xcode templates](/Docs/XCode_templates_3.0.0.md)
+[&#8594; MVVM](/Docs/MVVM.md)\
+[&#8594; Coordinators](/Docs/Coordinators.md)\
+[&#8594; Xcode templates](/Docs/XCode_templates.md)
 
 [&#8595; Views](#Views)\
 [&#8595; ConstraintWrapper](#ConstraintWrapper)\
