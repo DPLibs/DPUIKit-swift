@@ -14,6 +14,8 @@ An unobtrusive set of extensions and classes for UIKit.
 - [ ] UITableView adapter 👨‍💻
 - [ ] UICollectionView adapter 👨‍💻
 - [ ] DPTextField 👨‍💻
+- [ ] SelfSizing views 👨‍💻
+- [ ] Static layout 👨‍💻
 
 ## Overview
 [&#8594; MVVM](/Docs/MVVM_3.0.0.md)\
