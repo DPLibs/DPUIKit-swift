@@ -33,10 +33,9 @@ class AuthPhoneCodeViewController: DPViewController {
             self?.didTapConfirm?()
         }.applyStyles(.setTitle("Send code"))
         
-        let stackView = UIStackView(arrangedSubviews: [codeLabel, confirmButton])
-        stackView.applyStyles(.axis(.vertical), .spacing(8))
-        
-        stackView.addToSuperview(self.view, withConstraints: [ .centerEqualToSuperview() ])
+        UIStackView(arrangedSubviews: [codeLabel, confirmButton])
+            .applyStyles(.axis(.vertical), .spacing(8))
+            .addToSuperview(self.view, withConstraints: [ .center() ])
     }
     
 }

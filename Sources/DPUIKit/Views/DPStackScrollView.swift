@@ -59,8 +59,8 @@ open class DPStackScrollView: DPView {
     open override func setupComponents() {
         super.setupComponents()
         
-        self.scrollView.addToSuperview(self, withConstraints: [ .edgesToSuperview() ])
-        self.stackView.addToSuperview(self.scrollView, withConstraints: [ .edgesToSuperview() ])
+        self.scrollView.addToSuperview(self, withConstraints: [ .edges() ])
+        self.stackView.addToSuperview(self.scrollView, withConstraints: [ .edges() ])
     }
     
     open override func updateComponents() {

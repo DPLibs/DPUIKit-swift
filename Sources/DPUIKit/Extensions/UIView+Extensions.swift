@@ -139,20 +139,6 @@ public extension UIView {
         self.layer.removeAnimation(forKey: kRotationAnimationKey)
     }
     
-    func createStackView(margins directionalLayoutMargins: NSDirectionalEdgeInsets = .zero) -> UIStackView {
-        let result = UIStackView(arrangedSubviews: [self])
-        result.applyStyles(.directionalLayoutMargins(directionalLayoutMargins))
-        
-        return result
-    }
-    
-    func createContainerView(insets: NSDirectionalEdgeInsets = .zero) -> UIView {
-        let result = UIView()
-        self.addToSuperview(result, withConstraints: [ .edgesToSuperview(insets) ])
-        
-        return result
-    }
-    
     func removeAllSubviews() {
         self.subviews.forEach({ $0.removeFromSuperview() })
     }

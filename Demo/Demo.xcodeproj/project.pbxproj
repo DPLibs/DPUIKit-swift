@@ -22,16 +22,15 @@
 		E23D135627C4FDD8001AB75D /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135527C4FDD8001AB75D /* UserEditViewController.swift */; };
 		E23D135927C4FE0A001AB75D /* UserEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135827C4FE09001AB75D /* UserEditViewModel.swift */; };
 		E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E245788C27C68D7900917D31 /* InitialViewController.swift */; };
-		E248035928FFF5B400ADA6A0 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = E248035828FFF5B400ADA6A0 /* PhoneNumberKit */; };
 		E252FBDC27C7659100F6F0F5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBDB27C7659100F6F0F5 /* MainTabBarController.swift */; };
 		E252FBE227C7661300F6F0F5 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBE127C7661300F6F0F5 /* AuthManager.swift */; };
 		E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBE327C7665900F6F0F5 /* UserManager.swift */; };
 		E252FBEF27C77D7300F6F0F5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */; };
 		E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */; };
+		E2563D712947C4C200391C7F /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E2563D702947C4C200391C7F /* DPUIKit */; };
 		E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735D42759547600DCEEFB /* AppDelegate.swift */; };
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
-		E26735EC2759552700DCEEFB /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E26735EB2759552700DCEEFB /* DPUIKit */; };
 		E2FC50A927C375F700F320C5 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50A827C375F700F320C5 /* NewsView.swift */; };
 		E2FC50AF27C377A300F320C5 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */; };
 		E2FC50B127C3780300F320C5 /* NewsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */; };
@@ -62,11 +61,11 @@
 		E252FBE327C7665900F6F0F5 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		E2563D6F2947C4B400391C7F /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DPUIKit; path = ..; sourceTree = "<group>"; };
 		E26735D12759547600DCEEFB /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E26735E02759547900DCEEFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E26735E92759550100DCEEFB /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DPUIKit; path = ..; sourceTree = "<group>"; };
 		E2FC50A827C375F700F320C5 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModel.swift; sourceTree = "<group>"; };
@@ -80,8 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E26735EC2759552700DCEEFB /* DPUIKit in Frameworks */,
-				E248035928FFF5B400ADA6A0 /* PhoneNumberKit in Frameworks */,
+				E2563D712947C4C200391C7F /* DPUIKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +303,7 @@
 		E26735E82759550100DCEEFB /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				E26735E92759550100DCEEFB /* DPUIKit */,
+				E2563D6F2947C4B400391C7F /* DPUIKit */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -343,8 +341,7 @@
 			);
 			name = Demo;
 			packageProductDependencies = (
-				E26735EB2759552700DCEEFB /* DPUIKit */,
-				E248035828FFF5B400ADA6A0 /* PhoneNumberKit */,
+				E2563D702947C4C200391C7F /* DPUIKit */,
 			);
 			productName = DPUIKitDemo;
 			productReference = E26735D12759547600DCEEFB /* Demo.app */;
@@ -375,7 +372,6 @@
 			);
 			mainGroup = E26735C82759547500DCEEFB;
 			packageReferences = (
-				E248035728FFF5B400ADA6A0 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 			);
 			productRefGroup = E26735D22759547600DCEEFB /* Products */;
 			projectDirPath = "";
@@ -642,24 +638,8 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		E248035728FFF5B400ADA6A0 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		E248035828FFF5B400ADA6A0 /* PhoneNumberKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E248035728FFF5B400ADA6A0 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
-			productName = PhoneNumberKit;
-		};
-		E26735EB2759552700DCEEFB /* DPUIKit */ = {
+		E2563D702947C4C200391C7F /* DPUIKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DPUIKit;
 		};

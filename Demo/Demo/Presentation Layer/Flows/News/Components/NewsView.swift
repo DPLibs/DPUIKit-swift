@@ -38,9 +38,9 @@ class NewsView: DPView {
         
         self.applyStyles(.backgroundColor(AppTheme.cardColor))
         
-        let stackView = UIStackView(arrangedSubviews: [self.titleLabel, self.bodyLabel])
-        stackView.applyStyles(.axis(.vertical), .spacing(8), .directionalLayoutMargins(.init(top: 8, leading: 8, bottom: 8, trailing: 8)))
-        stackView.addToSuperview(self, withConstraints: [ .edgesToSuperview() ])
+        UIStackView(arrangedSubviews: [self.titleLabel, self.bodyLabel])
+            .applyStyles(.axis(.vertical), .spacing(8), .directionalLayoutMargins(.init(top: 8, leading: 8, bottom: 8, trailing: 8)))
+            .addToSuperview(self, withConstraints: [ .edges() ])
     }
     
     override func updateComponents() {

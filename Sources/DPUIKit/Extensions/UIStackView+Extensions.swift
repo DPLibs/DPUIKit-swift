@@ -22,4 +22,12 @@ public extension UIStackView {
         return self
     }
     
+    /// Remove all subviews and add a views to the end of the arrangedSubviews list.
+    /// - Parameter views: List of subviews for add.
+    ///
+    @discardableResult
+    func setArrangedSubviews(_ views: [UIView]) -> UIStackView  {
+        self.removeAllArrangedSubviews().addArrangedSubviews(views)
+    }
+    
 }
