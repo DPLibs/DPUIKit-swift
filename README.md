@@ -7,6 +7,15 @@ An unobtrusive set of extensions and classes for UIKit.
 * IOS 11 or above
 * Xcode 12.5 or above
 
+## Features
+
+- [x] MVVM module.
+- [x] Coordinators.
+- [ ] UITableView adapter.
+- [ ] UICollectionView adapter.
+- [ ] DPTextField.
+- [ ] And more features 👨‍💻.
+
 ## Overview
 [&#8594; MVVM](/Docs/MVVM_3.0.0.md)\
 [&#8594; Coordinators](/Docs/Coordinators_3.0.0.md)\
