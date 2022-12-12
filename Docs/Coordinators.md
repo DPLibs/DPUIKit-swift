@@ -1,4 +1,4 @@
-# Coordinators (3.0.0)
+# Coordinators
 `Coordinators` are used to navigate between screens and implement flow. They implement the `DPCoordinatorProtocol` protocol:
 
 ```swift

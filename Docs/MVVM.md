@@ -1,4 +1,4 @@
-# MVVM (3.0.0)
+# MVVM
 A screen or part of a screen is described as follows:
 
 ### DPViewController
