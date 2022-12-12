@@ -7,18 +7,26 @@ An unobtrusive set of extensions and classes for UIKit.
 * IOS 11 or above
 * Xcode 12.5 or above
 
-## Overview
-[**MVVM**](/Docs/MVVM.md)\
-[**Coordinators**](/Docs/Coordinators.md)\
-[**Xcode templates**](/Docs/XCode_templates.md)
+## Features
+- [x] Coordinators
+- [ ] UITableView adapter 👨‍💻
+- [ ] UICollectionView adapter 👨‍💻
+- [ ] DPTextField 👨‍💻
+- [ ] SelfSizing views 👨‍💻
+- [ ] Static layout 👨‍💻
 
-[Views](#Views)\
-[ConstraintWrapper](#ConstraintWrapper)\
-[StyleWrapper](#StyleWrapper)\
-[Demo](#Demo)\
-[Install](#Install)\
-[License](#License)\
-[Author](#MVAuthorVM)
+## Overview
+[&#8594; MVVM](/Docs/MVVM_3.0.0.md)\
+[&#8594; Coordinators](/Docs/Coordinators_3.0.0.md)\
+[&#8594; Xcode templates](/Docs/XCode_templates_3.0.0.md)
+
+[&#8595; Views](#Views)\
+[&#8595; ConstraintWrapper](#ConstraintWrapper)\
+[&#8595; StyleWrapper](#StyleWrapper)\
+[&#8595; Demo](#Demo)\
+[&#8595; Install](#Install)\
+[&#8595; License](#License)\
+[&#8595; Author](#MVAuthorVM)
 
 ## Views
 
