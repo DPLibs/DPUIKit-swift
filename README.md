@@ -9,16 +9,16 @@ An unobtrusive set of extensions and classes for UIKit.
 
 ## Overview
 [&#8594; MVVM](/Docs/MVVM_3.0.0.md)\
-[**Coordinators**](/Docs/Coordinators_3.0.0.md)\
-[**Xcode templates**](/Docs/XCode_templates_3.0.0.md)
+[&#8594; Coordinators](/Docs/Coordinators_3.0.0.md)\
+[&#8594; Xcode templates](/Docs/XCode_templates_3.0.0.md)
 
-[Views](#Views)\
-[ConstraintWrapper](#ConstraintWrapper)\
-[StyleWrapper](#StyleWrapper)\
-[Demo](#Demo)\
-[Install](#Install)\
-[License](#License)\
-[Author](#MVAuthorVM)
+[&#8595; Views](#Views)\
+[&#8595; ConstraintWrapper](#ConstraintWrapper)\
+[&#8595; StyleWrapper](#StyleWrapper)\
+[&#8595; Demo](#Demo)\
+[&#8595; Install](#Install)\
+[&#8595; License](#License)\
+[&#8595; Author](#MVAuthorVM)
 
 ## Views
 
