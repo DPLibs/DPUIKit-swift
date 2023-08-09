@@ -12,9 +12,7 @@ open class DPTableDelegateAdapter: NSObject, UITableViewDelegate {
     
     // MARK: - Props
     open weak var tableView: DPTableView? {
-        didSet {
-            self.tableView?.delegate = self
-        }
+        didSet { self.tableView?.delegate = self }
     }
     
     open var sections: [DPTableSectionModel] {

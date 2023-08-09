@@ -12,9 +12,7 @@ open class DPView: UIView, DPViewProtocol {
     
     // MARK: - Model
     open var _model: Any? {
-        didSet {
-            self.updateComponents()
-        }
+        didSet { self.updateComponents() }
     }
     
     // MARK: - Init

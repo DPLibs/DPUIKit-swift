@@ -10,13 +10,6 @@ import UIKit
 
 open class DPTableViewCell: UITableViewCell, DPViewProtocol {
     
-    // MARK: - Props
-    open var _model: Any? {
-        didSet {
-            self.updateComponents()
-        }
-    }
-    
     // MARK: - Init
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -29,20 +22,17 @@ open class DPTableViewCell: UITableViewCell, DPViewProtocol {
 
         self.setupComponents()
     }
+    
+    // MARK: - Props
+    open var _model: Any? {
+        didSet { self.updateComponents() }
+    }
 
     // MARK: - Methods
-    open override func setSelected(_ selected: Bool, animated: Bool) {
-        return
-    }
-    
-    open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        return
-    }
-
-    // MARK: - DPViewProtocol
     open func setupComponents() {
         self.backgroundColor = .clear
         self.contentView.backgroundColor = .clear
+        self.selectionStyle = .none
     }
     
     open func updateComponents() {}

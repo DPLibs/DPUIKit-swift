@@ -32,9 +32,7 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     
     // MARK: - Props
     open var didTouchUpInside: (() -> Void)? {
-        didSet {
-            self.didTouchUpInsideDidSet()
-        }
+        didSet { self.didTouchUpInsideDidSet() }
     }
     
     // MARK: - Methods
