@@ -12,9 +12,7 @@ open class DPTableDataSourceAdapter: NSObject, UITableViewDataSource {
     
     // MARK: - Props
     open weak var tableView: DPTableView? {
-        didSet {
-            self.tableView?.dataSource = self
-        }
+        didSet { self.tableView?.dataSource = self }
     }
     
     open var sections: [DPTableSectionModel] {
