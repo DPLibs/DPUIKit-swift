@@ -17,7 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         self.window = .init()
-        self.appCooridinator.start()
+//        self.appCooridinator.start()
+        self.window?.rootViewController = TestViewController()
+        self.window?.makeKeyAndVisible()
         
         return true
     }

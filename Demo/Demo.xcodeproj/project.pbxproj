@@ -31,6 +31,7 @@
 		E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735D42759547600DCEEFB /* AppDelegate.swift */; };
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
+		E2C71ABD2AACA130005C17E7 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71ABC2AACA130005C17E7 /* TestViewController.swift */; };
 		E2FC50A927C375F700F320C5 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50A827C375F700F320C5 /* NewsView.swift */; };
 		E2FC50AF27C377A300F320C5 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */; };
 		E2FC50B127C3780300F320C5 /* NewsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */; };
@@ -66,6 +67,7 @@
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E26735E02759547900DCEEFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E2C71ABC2AACA130005C17E7 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		E2FC50A827C375F700F320C5 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModel.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 		E26735D32759547600DCEEFB /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				E2C71ABB2AACA11F005C17E7 /* Table */,
 				E23A5EA627C27D64004EE94F /* Application Layer */,
 				E23A5EC827C2AF11004EE94F /* Domain Layer */,
 				E23A5EA727C27D91004EE94F /* Presentation Layer */,
@@ -313,6 +316,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2C71ABB2AACA11F005C17E7 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				E2C71ABC2AACA130005C17E7 /* TestViewController.swift */,
+			);
+			path = Table;
 			sourceTree = "<group>";
 		};
 		E2FC50BD27C3868300F320C5 /* Profile */ = {
@@ -413,6 +424,7 @@
 				E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */,
 				E204C072284D33520097611F /* UserEditable.swift in Sources */,
 				E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */,
+				E2C71ABD2AACA130005C17E7 /* TestViewController.swift in Sources */,
 				E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */,
 				E2FC50D827C38C1500F320C5 /* UserProfileViewController.swift in Sources */,
 				E23A5EC727C2A98E004EE94F /* NewsListViewController.swift in Sources */,
