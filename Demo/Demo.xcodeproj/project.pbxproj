@@ -32,6 +32,18 @@
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
 		E2C71ABD2AACA130005C17E7 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71ABC2AACA130005C17E7 /* TestViewController.swift */; };
+		E2C71AC72AAF2B1A005C17E7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71AC62AAF2B1A005C17E7 /* TableViewCell.swift */; };
+		E2C71AC92AAF2B3A005C17E7 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71AC82AAF2B3A005C17E7 /* TableView.swift */; };
+		E2C71ACB2AAF2B5D005C17E7 /* TableViewCellModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71ACA2AAF2B5D005C17E7 /* TableViewCellModelProtocol.swift */; };
+		E2C71ACD2AAF33E2005C17E7 /* TableViewCellAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71ACC2AAF33E2005C17E7 /* TableViewCellAdapter.swift */; };
+		E2C71ACF2AAF4DA4005C17E7 /* TableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71ACE2AAF4DA4005C17E7 /* TableViewAdapter.swift */; };
+		E2C71AD22AAF4DDD005C17E7 /* TableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71AD12AAF4DDD005C17E7 /* TableViewCellProtocol.swift */; };
+		E2C71AD52AAF4E08005C17E7 /* TableViewAdapterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71AD42AAF4E08005C17E7 /* TableViewAdapterProtocol.swift */; };
+		E2C71AD82AAF4FCC005C17E7 /* TableViewSectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71AD72AAF4FCC005C17E7 /* TableViewSectionProtocol.swift */; };
+		E2C71ADA2AAF5095005C17E7 /* TableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71AD92AAF5095005C17E7 /* TableViewSection.swift */; };
+		E2C71ADD2AAF5358005C17E7 /* TableHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71ADC2AAF5358005C17E7 /* TableHeaderFooterView.swift */; };
+		E2C71ADF2AAF5396005C17E7 /* TableViewHeaderFooterViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71ADE2AAF5396005C17E7 /* TableViewHeaderFooterViewProtocol.swift */; };
+		E2C71AE12AAF5440005C17E7 /* TableViewHeaderFooterModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C71AE02AAF5440005C17E7 /* TableViewHeaderFooterModelProtocol.swift */; };
 		E2FC50A927C375F700F320C5 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50A827C375F700F320C5 /* NewsView.swift */; };
 		E2FC50AF27C377A300F320C5 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */; };
 		E2FC50B127C3780300F320C5 /* NewsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */; };
@@ -68,6 +80,18 @@
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E26735E02759547900DCEEFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2C71ABC2AACA130005C17E7 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		E2C71AC62AAF2B1A005C17E7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		E2C71AC82AAF2B3A005C17E7 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		E2C71ACA2AAF2B5D005C17E7 /* TableViewCellModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModelProtocol.swift; sourceTree = "<group>"; };
+		E2C71ACC2AAF33E2005C17E7 /* TableViewCellAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellAdapter.swift; sourceTree = "<group>"; };
+		E2C71ACE2AAF4DA4005C17E7 /* TableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapter.swift; sourceTree = "<group>"; };
+		E2C71AD12AAF4DDD005C17E7 /* TableViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellProtocol.swift; sourceTree = "<group>"; };
+		E2C71AD42AAF4E08005C17E7 /* TableViewAdapterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAdapterProtocol.swift; sourceTree = "<group>"; };
+		E2C71AD72AAF4FCC005C17E7 /* TableViewSectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSectionProtocol.swift; sourceTree = "<group>"; };
+		E2C71AD92AAF5095005C17E7 /* TableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewSection.swift; sourceTree = "<group>"; };
+		E2C71ADC2AAF5358005C17E7 /* TableHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderFooterView.swift; sourceTree = "<group>"; };
+		E2C71ADE2AAF5396005C17E7 /* TableViewHeaderFooterViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderFooterViewProtocol.swift; sourceTree = "<group>"; };
+		E2C71AE02AAF5440005C17E7 /* TableViewHeaderFooterModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderFooterModelProtocol.swift; sourceTree = "<group>"; };
 		E2FC50A827C375F700F320C5 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		E2FC50AC27C377A300F320C5 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		E2FC50B027C3780200F320C5 /* NewsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModel.swift; sourceTree = "<group>"; };
@@ -321,9 +345,53 @@
 		E2C71ABB2AACA11F005C17E7 /* Table */ = {
 			isa = PBXGroup;
 			children = (
+				E2C71AC82AAF2B3A005C17E7 /* TableView.swift */,
+				E2C71ACC2AAF33E2005C17E7 /* TableViewCellAdapter.swift */,
 				E2C71ABC2AACA130005C17E7 /* TestViewController.swift */,
+				E2C71AD32AAF4DF8005C17E7 /* Adapter */,
+				E2C71AD02AAF4DCE005C17E7 /* Cell */,
+				E2C71ADB2AAF5347005C17E7 /* HeaderFooterView */,
+				E2C71AD62AAF4FBE005C17E7 /* Section */,
 			);
 			path = Table;
+			sourceTree = "<group>";
+		};
+		E2C71AD02AAF4DCE005C17E7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E2C71AC62AAF2B1A005C17E7 /* TableViewCell.swift */,
+				E2C71ACA2AAF2B5D005C17E7 /* TableViewCellModelProtocol.swift */,
+				E2C71AD12AAF4DDD005C17E7 /* TableViewCellProtocol.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E2C71AD32AAF4DF8005C17E7 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				E2C71ACE2AAF4DA4005C17E7 /* TableViewAdapter.swift */,
+				E2C71AD42AAF4E08005C17E7 /* TableViewAdapterProtocol.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
+		E2C71AD62AAF4FBE005C17E7 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				E2C71AD72AAF4FCC005C17E7 /* TableViewSectionProtocol.swift */,
+				E2C71AD92AAF5095005C17E7 /* TableViewSection.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		E2C71ADB2AAF5347005C17E7 /* HeaderFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				E2C71ADC2AAF5358005C17E7 /* TableHeaderFooterView.swift */,
+				E2C71AE02AAF5440005C17E7 /* TableViewHeaderFooterModelProtocol.swift */,
+				E2C71ADE2AAF5396005C17E7 /* TableViewHeaderFooterViewProtocol.swift */,
+			);
+			path = HeaderFooterView;
 			sourceTree = "<group>";
 		};
 		E2FC50BD27C3868300F320C5 /* Profile */ = {
@@ -410,12 +478,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2C71ADA2AAF5095005C17E7 /* TableViewSection.swift in Sources */,
 				E2FC50B127C3780300F320C5 /* NewsDetailViewModel.swift in Sources */,
+				E2C71AC92AAF2B3A005C17E7 /* TableView.swift in Sources */,
 				E204C068284B8EC30097611F /* MainCoordinator.swift in Sources */,
 				E2FC50AF27C377A300F320C5 /* NewsDetailViewController.swift in Sources */,
 				E23D135027C4F5E2001AB75D /* AuthPhoneCodeViewController.swift in Sources */,
 				E23A5ECA27C2AF21004EE94F /* NewsModel.swift in Sources */,
 				E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */,
+				E2C71AD82AAF4FCC005C17E7 /* TableViewSectionProtocol.swift in Sources */,
 				E252FBDC27C7659100F6F0F5 /* MainTabBarController.swift in Sources */,
 				E2FC50D727C38C1500F320C5 /* UserProfileViewModel.swift in Sources */,
 				E23D135927C4FE0A001AB75D /* UserEditViewModel.swift in Sources */,
@@ -423,18 +494,27 @@
 				E23A5ECD27C2B043004EE94F /* NewsListTableRowsCell.swift in Sources */,
 				E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */,
 				E204C072284D33520097611F /* UserEditable.swift in Sources */,
+				E2C71ADF2AAF5396005C17E7 /* TableViewHeaderFooterViewProtocol.swift in Sources */,
+				E2C71AE12AAF5440005C17E7 /* TableViewHeaderFooterModelProtocol.swift in Sources */,
+				E2C71ACF2AAF4DA4005C17E7 /* TableViewAdapter.swift in Sources */,
 				E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */,
+				E2C71AC72AAF2B1A005C17E7 /* TableViewCell.swift in Sources */,
 				E2C71ABD2AACA130005C17E7 /* TestViewController.swift in Sources */,
 				E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */,
+				E2C71ADD2AAF5358005C17E7 /* TableHeaderFooterView.swift in Sources */,
 				E2FC50D827C38C1500F320C5 /* UserProfileViewController.swift in Sources */,
 				E23A5EC727C2A98E004EE94F /* NewsListViewController.swift in Sources */,
 				E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */,
 				E23D134A27C4F583001AB75D /* AuthPhoneViewController.swift in Sources */,
+				E2C71AD22AAF4DDD005C17E7 /* TableViewCellProtocol.swift in Sources */,
 				E252FBEF27C77D7300F6F0F5 /* AppCoordinator.swift in Sources */,
+				E2C71AD52AAF4E08005C17E7 /* TableViewAdapterProtocol.swift in Sources */,
 				E204C06E284D31C00097611F /* NewsCoordinator.swift in Sources */,
 				E23A5EC627C2A98E004EE94F /* NewsListViewModel.swift in Sources */,
+				E2C71ACD2AAF33E2005C17E7 /* TableViewCellAdapter.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,
 				E2FC50B927C385CD00F320C5 /* UserModel.swift in Sources */,
+				E2C71ACB2AAF2B5D005C17E7 /* TableViewCellModelProtocol.swift in Sources */,
 				E23D135627C4FDD8001AB75D /* UserEditViewController.swift in Sources */,
 				E2369045284A6368007EED26 /* UserEditCoordinator.swift in Sources */,
 				E252FBE227C7661300F6F0F5 /* AuthManager.swift in Sources */,
