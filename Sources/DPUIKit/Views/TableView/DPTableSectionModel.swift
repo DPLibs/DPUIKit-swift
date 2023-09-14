@@ -11,18 +11,18 @@ open class DPTableSectionModel {
 
     // MARK: - Props
     open var rows: [DPTableRowModel]
-    open var header: DPTableSectionHeaderModel?
-    open var footer: DPTableSectionHeaderModel?
+//    open var header: DPTableSectionHeaderModel?
+//    open var footer: DPTableSectionHeaderModel?
 
     // MARK: - Init
     public init(
-        rows: [DPTableRowModel],
-        header: DPTableSectionHeaderModel? = nil,
-        footer: DPTableSectionHeaderModel? = nil
+        rows: [DPTableRowModel]
+//        header: DPTableSectionHeaderModel? = nil,
+//        footer: DPTableSectionHeaderModel? = nil
     ) {
         self.rows = rows
-        self.header = header
-        self.footer = footer
+//        self.header = header
+//        self.footer = footer
     }
     
 }
@@ -48,13 +48,13 @@ public extension Array where Element == DPTableSectionModel {
         self.rowsCount == 0
     }
     
-    var headersIsEmpty: Bool {
-        self.filter({ $0.header != nil }).isEmpty
-    }
-    
-    var footersIsEmpty: Bool {
-        self.filter({ $0.footer != nil }).isEmpty
-    }
+//    var headersIsEmpty: Bool {
+//        self.filter({ $0.header != nil }).isEmpty
+//    }
+//
+//    var footersIsEmpty: Bool {
+//        self.filter({ $0.footer != nil }).isEmpty
+//    }
     
     func getRow(at indexPath: IndexPath) -> DPTableRowModel? {
         guard self.indices.contains(indexPath.section) else { return nil }

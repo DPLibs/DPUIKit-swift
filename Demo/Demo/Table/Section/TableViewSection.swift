@@ -8,7 +8,20 @@
 import Foundation
 
 public struct TableViewSection: TableViewSectionProtocol {
+    
+    // MARK: - Init
+    public init(
+        models: [TableViewCellModelProtocol] = [],
+        header: TableViewHeaderFooterModelProtocol? = nil,
+        footer: TableViewHeaderFooterModelProtocol? = nil
+    ) {
+        self.models = models
+        self.header = header
+        self.footer = footer
+    }
+    
+    // MARK: - Props
     public var models: [TableViewCellModelProtocol]
     public var header: TableViewHeaderFooterModelProtocol?
-    public var fotter: TableViewHeaderFooterModelProtocol?
+    public var footer: TableViewHeaderFooterModelProtocol?
 }

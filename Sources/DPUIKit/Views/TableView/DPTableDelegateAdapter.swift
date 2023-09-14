@@ -146,56 +146,56 @@ open class DPTableDelegateAdapter: NSObject, UITableViewDelegate {
     }
     
     // MARK: - UITableViewDelegate + Header In Section
-    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard
-            let model = self.sections[section].header,
-            let viewIdentifier = model.viewIdentifier,
-            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier) as? DPTableViewHeaderFooterView
-        else {
-            return nil
-        }
+//    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        guard
+//            let model = self.sections[section].header,
+//            let viewIdentifier = model.viewIdentifier,
+//            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier) as? DPTableViewHeaderFooterView
+//        else {
+//            return nil
+//        }
+//
+//        view._model = model
+//        return view
+//    }
 
-        view._model = model
-        return view
-    }
-
-    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let model = self.sections[section].header else { return .zero }
-
-        return model.viewHeight
-    }
-
-    open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        guard let model = self.sections[section].header else { return .zero }
-
-        return model.viewEstimatedHeight
-    }
+//    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        guard let model = self.sections[section].header else { return .zero }
+//
+//        return model.viewHeight
+//    }
+//
+//    open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+//        guard let model = self.sections[section].header else { return .zero }
+//
+//        return model.viewEstimatedHeight
+//    }
 
     // MARK: - UITableViewDelegate + Footer In Section
-    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard
-            let model = self.sections[section].footer,
-            let viewIdentifier = model.viewIdentifier,
-            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier) as? DPTableViewHeaderFooterView
-        else {
-            return nil
-        }
-
-        view._model = model
-        return view
-    }
-
-    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard let model = self.sections[section].footer else { return .zero }
-
-        return model.viewEstimatedHeight
-    }
-
-    open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        guard let model = self.sections[section].footer else { return .zero }
-
-        return model.viewEstimatedHeight
-    }
+//    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        guard
+//            let model = self.sections[section].footer,
+//            let viewIdentifier = model.viewIdentifier,
+//            let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier) as? DPTableViewHeaderFooterView
+//        else {
+//            return nil
+//        }
+//
+//        view._model = model
+//        return view
+//    }
+//
+//    open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        guard let model = self.sections[section].footer else { return .zero }
+//
+//        return model.viewEstimatedHeight
+//    }
+//
+//    open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+//        guard let model = self.sections[section].footer else { return .zero }
+//
+//        return model.viewEstimatedHeight
+//    }
 
     // MARK: - UITableViewDelegate + Swipe
     open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

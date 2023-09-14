@@ -78,11 +78,11 @@ open class DPTableView: UITableView, DPViewProtocol {
     open weak var cellsOutput: DPTableCellsOutput?
     open weak var scrollOutput: DPTableScrollOutput?
     
-    open var dataSourceAdapter: DPTableDataSourceAdapter? {
-        didSet {
-            self.didSetDataSourceAdapter()
-        }
-    }
+//    open var dataSourceAdapter: DPTableDataSourceAdapter? {
+//        didSet {
+//            self.didSetDataSourceAdapter()
+//        }
+//    }
     
     open var delegateAdapter: DPTableDelegateAdapter? {
         didSet {
@@ -92,7 +92,7 @@ open class DPTableView: UITableView, DPViewProtocol {
     
     open var sections: [DPTableSectionModel] = [] {
         didSet {
-            self.updatePlaceholderViewAutoHidden()
+//            self.updatePlaceholderViewAutoHidden()
         }
     }
     
@@ -106,9 +106,9 @@ open class DPTableView: UITableView, DPViewProtocol {
     open var placeholderViewAutoHiddenEnabled: Bool = true
     
     // MARK: - Methods
-    open func didSetDataSourceAdapter() {
-        self.dataSourceAdapter?.tableView = self
-    }
+//    open func didSetDataSourceAdapter() {
+//        self.dataSourceAdapter?.tableView = self
+//    }
     
     open func didSetDelegateAdapter() {
         self.delegateAdapter?.tableView = self
@@ -119,15 +119,15 @@ open class DPTableView: UITableView, DPViewProtocol {
         self.bringSubviewToFront(refreshControl)
     }
     
-    open func updatePlaceholderViewAutoHidden() {
-        guard self.placeholderViewAutoHiddenEnabled else { return }
-        
-        var isEmpty: Bool {
-            self.sections.rowsIsEmpty && self.sections.headersIsEmpty && self.sections.footersIsEmpty
-        }
-        
-        self.placeholderView?.setHidden(!isEmpty, animated: true)
-    }
+//    open func updatePlaceholderViewAutoHidden() {
+//        guard self.placeholderViewAutoHiddenEnabled else { return }
+//
+//        var isEmpty: Bool {
+//            self.sections.rowsIsEmpty && self.sections.headersIsEmpty && self.sections.footersIsEmpty
+//        }
+//
+//        self.placeholderView?.setHidden(!isEmpty, animated: true)
+//    }
     
     open func reloadData(with sections: [DPTableSectionModel]) {
         self.sections = sections
@@ -137,7 +137,7 @@ open class DPTableView: UITableView, DPViewProtocol {
     // MARK: - DPViewProtocol
     open func setupComponents() {
         self.delegateAdapter = .init()
-        self.dataSourceAdapter = .init()
+//        self.dataSourceAdapter = .init()
     }
     
     open func updateComponents() {}

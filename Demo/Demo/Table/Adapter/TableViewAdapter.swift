@@ -11,23 +11,17 @@ import UIKit
 open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     
     // MARK: - Props
-    public typealias CellContext = (cell: UITableViewCell, model: TableViewCellModelProtocol, indexPath: IndexPath)
-    public typealias CellContextClosure = (CellContext) -> Void
-    
-    public typealias HeaderFotterContext = (view: UITableViewHeaderFooterView, model: TableViewHeaderFooterModelProtocol, section: Int)
-    public typealias HeaderFotterContextClosure = (HeaderFotterContext) -> Void
-    
     open var sections: [TableViewSectionProtocol] = []
     public private(set) var identifiers: Set<String> = []
     
-    open var onCellForRow: CellContextClosure?
-    open var onWillDisplayRow: CellContextClosure?
+    open var onCellForRow: TableViewCellContextClosure?
+    open var onWillDisplayRow: TableViewCellContextClosure?
     
-    open var didSelectRow: CellContextClosure?
-    open var didDeselectRow: CellContextClosure?
+    open var didSelectRow: TableViewCellContextClosure?
+    open var didDeselectRow: TableViewCellContextClosure?
     
-    open var onViewForHeader: HeaderFotterContextClosure?
-    open var onViewForFooter: HeaderFotterContextClosure?
+    open var onViewForHeader: TableViewHeaderFotterContextClosure?
+    open var onViewForFooter: TableViewHeaderFotterContextClosure?
     
     // MARK: - Methods
     open func section(at index: Int) -> TableViewSectionProtocol? {
@@ -35,7 +29,7 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
         return self.sections[index]
     }
     
-    open func model(at indexPath: IndexPath) -> TableViewCellModelProtocol? {
+    open func model(at indexPath: IndexPath) -> (TableViewCellModelProtocol)? {
         guard
             let section = self.section(at: indexPath.section),
             section.models.indices.contains(indexPath.row)
@@ -72,9 +66,9 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
         
         if let cell = cell as? TableViewCellProtocol {
             cell._model = model
+            model.cellAdapter?.onCellForRow?((cell, model, indexPath))
+            self.onCellForRow?((cell, model, indexPath))
         }
-        
-        self.onCellForRow?((cell, model, indexPath))
         
         return cell
     }
@@ -135,7 +129,7 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     }
     
     open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let model = self.section(at: section)?.fotter else { return UIView() }
+        guard let model = self.section(at: section)?.footer else { return UIView() }
         
         let viewIdentifier = self.identifier(for: model.viewClass)
         
@@ -163,7 +157,7 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     }
     
     open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        guard let model = self.section(at: section)?.fotter else { return TableConstants.headerFooterHeight }
+        guard let model = self.section(at: section)?.footer else { return TableConstants.headerFooterHeight }
         return model.viewHeight
     }
     
@@ -173,7 +167,7 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     }
     
     open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        guard let model = self.section(at: section)?.fotter else { return TableConstants.headerFooterEstimatedHeight }
+        guard let model = self.section(at: section)?.footer else { return TableConstants.headerFooterEstimatedHeight }
         return model.viewEstimatedHeight
     }
     
