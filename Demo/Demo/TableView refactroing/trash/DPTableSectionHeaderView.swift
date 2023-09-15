@@ -5,10 +5,10 @@
 //  Created by Дмитрий Поляков on 03.09.2021.
 //
 
-import Foundation
-import UIKit
-
-//open class DPTableSectionHeaderView<SectionHeaderModel: DPTableSectionHeaderModel>: DPTableViewHeaderFooterView {
+//import Foundation
+//import UIKit
+//
+//open class DPTableSectionHeaderView<SectionHeaderModel: DPTableViewHeaderFooterViewModel>: DPTableViewHeaderFooterView {
 //    
 //    // MARK: - Props
 //    open var model: SectionHeaderModel? {

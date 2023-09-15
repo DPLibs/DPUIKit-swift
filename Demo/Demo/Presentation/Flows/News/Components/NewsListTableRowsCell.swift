@@ -9,9 +9,14 @@ import Foundation
 import DPUIKit
 import UIKit
 
-class NewsListTableRowsCell: DPTableRowCell<NewsListTableRowsCell.Model> {
+class NewsListTableRowsCell: DPTableViewCell {
     
     // MARK: - Props
+    var model: Model? {
+        get { self._model as? Model }
+        set { self._model = newValue }
+    }
+    
     lazy var newsView: NewsView = {
         let result = NewsView()
         result.titleLabel.applyStyles(.numberOfLines(2), .lineBreakMode(.byTruncatingTail))
@@ -44,19 +49,18 @@ class NewsListTableRowsCell: DPTableRowCell<NewsListTableRowsCell.Model> {
 // MARK: - Model
 extension NewsListTableRowsCell {
     
-    class Model: DPTableRowModel {
+    class Model: DPTableViewCellModelProtocol {
         
         // MARK: - Init
-        init(news: NewsModel) {
+        init(news: NewsModel, onCellLeading: ((DPTableCellContext) -> UISwipeActionsConfiguration?)? = nil) {
             self.news = news
+            self.onCellLeading = onCellLeading
         }
         
         // MARK: - Props
-        override var cellIdentifier: String? {
-            NewsListTableRowsCell.className
-        }
-        
+        let cellClass: DPTableViewCellProtocol.Type = NewsListTableRowsCell.self
         let news: NewsModel
+        var onCellLeading: ((DPTableCellContext) -> UISwipeActionsConfiguration?)?
     }
     
 }

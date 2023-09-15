@@ -34,7 +34,13 @@ class NewsListViewController: DPViewController {
     lazy var tableView: DPTableView = {
         let result = DPTableView()
         result.registerCellClasses([ NewsListTableRowsCell.self ])
-        result.dataOutput = self
+        result.adapter?.onBottomAchived = { [weak self] in
+            self?.model?.loadMore()
+        }
+        result.adapter?.didSelectRow = { [weak self] ctx in
+            guard let model = ctx.model as? NewsListTableRowsCell.Model else { return }
+            self?.didSelect?(model.news)
+        }
         
         return result
     }()
@@ -55,11 +61,20 @@ class NewsListViewController: DPViewController {
         super.updateComponents()
         
         let news = self.model?.news ?? []
-        let rows: [DPTableRowModel] = news.map({ NewsListTableRowsCell.Model(news: $0) })
+        let rows: [DPTableViewCellModelProtocol] = news.map({
+            NewsListTableRowsCell.Model(news: $0) {[weak self] ctx in
+                    let actions: [UIContextualAction] = [
+                        .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
+                            handler(true)
+                            self?.showInfo()
+                        })
+                    ]
+                    return .init(actions: actions)
+                }
+        })
         
         DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            self.tableView.reloadData(with: [ .init(rows: rows) ])
+            self?.tableView.reloadData([ DPTableSection(rows: rows) ])
         }
         
     }
@@ -68,18 +83,10 @@ class NewsListViewController: DPViewController {
         self.updateComponents()
     }
     
-}
-
-// MARK: - DPTableDataOutput
-extension NewsListViewController: DPTableDataOutput {
-    
-    func bottomAchived(_ tableView: DPTableView) {
-        self.model?.loadMore()
-    }
-    
-    func selectRow(_ tableView: DPTableView, indexPath: IndexPath, cell: UITableViewCell, row: DPTableRowModel) {
-        guard let model = row as? NewsListTableRowsCell.Model else { return }
-        self.didSelect?(model.news)
+    private func showInfo() {
+        let alert = UIAlertController(title: "Info alert", message: nil, preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .cancel))
+        self.present(alert, animated: true)
     }
     
 }

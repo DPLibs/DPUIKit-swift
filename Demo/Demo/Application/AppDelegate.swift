@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = .init()
 //        self.appCooridinator.start()
-        self.window?.rootViewController = TestViewController()
+        self.window?.rootViewController = NewsListViewController()
         self.window?.makeKeyAndVisible()
         
         return true

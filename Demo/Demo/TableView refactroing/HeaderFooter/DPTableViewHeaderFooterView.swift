@@ -8,33 +8,26 @@
 import Foundation
 import UIKit
 
-open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPViewProtocol {
+open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPTableViewHeaderFooterViewProtocol {
     
     // MARK: - Init
     override public init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-
         self.setupComponents()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         self.setupComponents()
     }
     
     // MARK: - Props
-    open var _model: Any? {
-        didSet {
-            self.updateComponents()
-        }
+    open var _model: DPTableViewHeaderFooterViewModelProtocol? {
+        didSet { self.updateComponents() }
     }
 
     // MARK: - DPViewProtocol
     open func setupComponents() {}
     
     open func updateComponents() {}
-    
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-
 }

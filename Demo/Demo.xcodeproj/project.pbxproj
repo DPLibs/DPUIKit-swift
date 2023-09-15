@@ -11,6 +11,25 @@
 		E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204C069284C1D160097611F /* UserCoordinator.swift */; };
 		E204C06E284D31C00097611F /* NewsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204C06D284D31C00097611F /* NewsCoordinator.swift */; };
 		E204C072284D33520097611F /* UserEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204C071284D33520097611F /* UserEditable.swift */; };
+		E2275BB62AB45E6500B153B2 /* DPTableDelegateAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BAA2AB45E6500B153B2 /* DPTableDelegateAdapter.swift */; };
+		E2275BB72AB45E6500B153B2 /* DPTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BAB2AB45E6500B153B2 /* DPTableViewHeaderFooterView.swift */; };
+		E2275BB82AB45E6500B153B2 /* DPTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BAC2AB45E6500B153B2 /* DPTableSection.swift */; };
+		E2275BB92AB45E6500B153B2 /* DPTableView+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BAE2AB45E6500B153B2 /* DPTableView+Update.swift */; };
+		E2275BBA2AB45E6500B153B2 /* DPTableSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BAF2AB45E6500B153B2 /* DPTableSectionHeaderView.swift */; };
+		E2275BBB2AB45E6500B153B2 /* DPTableDataSourceAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BB02AB45E6500B153B2 /* DPTableDataSourceAdapter.swift */; };
+		E2275BBC2AB45E6500B153B2 /* DPTableViewHeaderFooterViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BB12AB45E6500B153B2 /* DPTableViewHeaderFooterViewModelProtocol.swift */; };
+		E2275BBE2AB45E6500B153B2 /* DPTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BB32AB45E6500B153B2 /* DPTableViewCellModel.swift */; };
+		E2275BBF2AB45E6500B153B2 /* DPTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BB42AB45E6500B153B2 /* DPTableView.swift */; };
+		E2275BC02AB45E6500B153B2 /* DPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BB52AB45E6500B153B2 /* DPTableViewCell.swift */; };
+		E2275BC22AB45FE700B153B2 /* DPTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BC12AB45FE700B153B2 /* DPTableAdapter.swift */; };
+		E2275BC62AB4629300B153B2 /* DPTableRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BC52AB4629300B153B2 /* DPTableRowCell.swift */; };
+		E2275BC82AB4637300B153B2 /* DPTableConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BC72AB4637300B153B2 /* DPTableConstants.swift */; };
+		E2275BCA2AB4640900B153B2 /* DPTableViewCellModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BC92AB4640900B153B2 /* DPTableViewCellModelProtocol.swift */; };
+		E2275BCC2AB4642C00B153B2 /* DPTableViewCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BCB2AB4642C00B153B2 /* DPTableViewCellProtocol.swift */; };
+		E2275BD02AB4753400B153B2 /* DPTableSectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BCF2AB4753400B153B2 /* DPTableSectionProtocol.swift */; };
+		E2275BD32AB4771C00B153B2 /* DPTableViewHeaderFooterViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BD22AB4771C00B153B2 /* DPTableViewHeaderFooterViewProtocol.swift */; };
+		E2275BD52AB478CD00B153B2 /* DPTableViewHeaderFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BD42AB478CD00B153B2 /* DPTableViewHeaderFooterViewModel.swift */; };
+		E2275BD72AB47ACE00B153B2 /* DPTableTypealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BD62AB47ACE00B153B2 /* DPTableTypealiases.swift */; };
 		E2369045284A6368007EED26 /* UserEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2369044284A6368007EED26 /* UserEditCoordinator.swift */; };
 		E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EB027C287B9004EE94F /* AppTheme.swift */; };
 		E23A5EC627C2A98E004EE94F /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EC327C2A98E004EE94F /* NewsListViewModel.swift */; };
@@ -62,6 +81,25 @@
 		E204C06D284D31C00097611F /* NewsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCoordinator.swift; sourceTree = "<group>"; };
 		E204C071284D33520097611F /* UserEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditable.swift; sourceTree = "<group>"; };
 		E2096D4528FF487C0029F41B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2275BAA2AB45E6500B153B2 /* DPTableDelegateAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableDelegateAdapter.swift; sourceTree = "<group>"; };
+		E2275BAB2AB45E6500B153B2 /* DPTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		E2275BAC2AB45E6500B153B2 /* DPTableSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableSection.swift; sourceTree = "<group>"; };
+		E2275BAE2AB45E6500B153B2 /* DPTableView+Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DPTableView+Update.swift"; sourceTree = "<group>"; };
+		E2275BAF2AB45E6500B153B2 /* DPTableSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableSectionHeaderView.swift; sourceTree = "<group>"; };
+		E2275BB02AB45E6500B153B2 /* DPTableDataSourceAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableDataSourceAdapter.swift; sourceTree = "<group>"; };
+		E2275BB12AB45E6500B153B2 /* DPTableViewHeaderFooterViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableViewHeaderFooterViewModelProtocol.swift; sourceTree = "<group>"; };
+		E2275BB32AB45E6500B153B2 /* DPTableViewCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableViewCellModel.swift; sourceTree = "<group>"; };
+		E2275BB42AB45E6500B153B2 /* DPTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableView.swift; sourceTree = "<group>"; };
+		E2275BB52AB45E6500B153B2 /* DPTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableViewCell.swift; sourceTree = "<group>"; };
+		E2275BC12AB45FE700B153B2 /* DPTableAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableAdapter.swift; sourceTree = "<group>"; };
+		E2275BC52AB4629300B153B2 /* DPTableRowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DPTableRowCell.swift; sourceTree = "<group>"; };
+		E2275BC72AB4637300B153B2 /* DPTableConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableConstants.swift; sourceTree = "<group>"; };
+		E2275BC92AB4640900B153B2 /* DPTableViewCellModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableViewCellModelProtocol.swift; sourceTree = "<group>"; };
+		E2275BCB2AB4642C00B153B2 /* DPTableViewCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableViewCellProtocol.swift; sourceTree = "<group>"; };
+		E2275BCF2AB4753400B153B2 /* DPTableSectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableSectionProtocol.swift; sourceTree = "<group>"; };
+		E2275BD22AB4771C00B153B2 /* DPTableViewHeaderFooterViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableViewHeaderFooterViewProtocol.swift; sourceTree = "<group>"; };
+		E2275BD42AB478CD00B153B2 /* DPTableViewHeaderFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableViewHeaderFooterViewModel.swift; sourceTree = "<group>"; };
+		E2275BD62AB47ACE00B153B2 /* DPTableTypealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableTypealiases.swift; sourceTree = "<group>"; };
 		E2369044284A6368007EED26 /* UserEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditCoordinator.swift; sourceTree = "<group>"; };
 		E23A5EB027C287B9004EE94F /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		E23A5EC327C2A98E004EE94F /* NewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModel.swift; sourceTree = "<group>"; };
@@ -136,6 +174,64 @@
 				E2096D4528FF487C0029F41B /* Info.plist */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		E2275BA92AB45E6500B153B2 /* TableView refactroing */ = {
+			isa = PBXGroup;
+			children = (
+				E2275BC12AB45FE700B153B2 /* DPTableAdapter.swift */,
+				E2275BC72AB4637300B153B2 /* DPTableConstants.swift */,
+				E2275BD62AB47ACE00B153B2 /* DPTableTypealiases.swift */,
+				E2275BB42AB45E6500B153B2 /* DPTableView.swift */,
+				E2275BAE2AB45E6500B153B2 /* DPTableView+Update.swift */,
+				E2275BC42AB4620600B153B2 /* Cell */,
+				E2275BD12AB476F500B153B2 /* HeaderFooter */,
+				E2275BCE2AB4744800B153B2 /* Section */,
+				E2275BC32AB4605100B153B2 /* trash */,
+			);
+			path = "TableView refactroing";
+			sourceTree = "<group>";
+		};
+		E2275BC32AB4605100B153B2 /* trash */ = {
+			isa = PBXGroup;
+			children = (
+				E2275BB32AB45E6500B153B2 /* DPTableViewCellModel.swift */,
+				E2275BAF2AB45E6500B153B2 /* DPTableSectionHeaderView.swift */,
+				E2275BC52AB4629300B153B2 /* DPTableRowCell.swift */,
+				E2275BAA2AB45E6500B153B2 /* DPTableDelegateAdapter.swift */,
+				E2275BB02AB45E6500B153B2 /* DPTableDataSourceAdapter.swift */,
+				E2275BD42AB478CD00B153B2 /* DPTableViewHeaderFooterViewModel.swift */,
+			);
+			path = trash;
+			sourceTree = "<group>";
+		};
+		E2275BC42AB4620600B153B2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E2275BB52AB45E6500B153B2 /* DPTableViewCell.swift */,
+				E2275BCB2AB4642C00B153B2 /* DPTableViewCellProtocol.swift */,
+				E2275BC92AB4640900B153B2 /* DPTableViewCellModelProtocol.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E2275BCE2AB4744800B153B2 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				E2275BAC2AB45E6500B153B2 /* DPTableSection.swift */,
+				E2275BCF2AB4753400B153B2 /* DPTableSectionProtocol.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		E2275BD12AB476F500B153B2 /* HeaderFooter */ = {
+			isa = PBXGroup;
+			children = (
+				E2275BB12AB45E6500B153B2 /* DPTableViewHeaderFooterViewModelProtocol.swift */,
+				E2275BAB2AB45E6500B153B2 /* DPTableViewHeaderFooterView.swift */,
+				E2275BD22AB4771C00B153B2 /* DPTableViewHeaderFooterViewProtocol.swift */,
+			);
+			path = HeaderFooter;
 			sourceTree = "<group>";
 		};
 		E2322B8328FF2DD10046912A /* Flows */ = {
@@ -327,6 +423,7 @@
 		E26735D32759547600DCEEFB /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				E2275BA92AB45E6500B153B2 /* TableView refactroing */,
 				E23A5EA627C27D64004EE94F /* Application */,
 				E23A5EC827C2AF11004EE94F /* Domain */,
 				E23A5EA727C27D91004EE94F /* Presentation */,
@@ -500,45 +597,64 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2275BD72AB47ACE00B153B2 /* DPTableTypealiases.swift in Sources */,
 				E2C71ADA2AAF5095005C17E7 /* TableViewSection.swift in Sources */,
 				E2FC50B127C3780300F320C5 /* NewsDetailViewModel.swift in Sources */,
 				E267A0E12AB354A00070C631 /* TableTypealiases.swift in Sources */,
 				E2C71AC92AAF2B3A005C17E7 /* TableView.swift in Sources */,
+				E2275BBC2AB45E6500B153B2 /* DPTableViewHeaderFooterViewModelProtocol.swift in Sources */,
+				E2275BCC2AB4642C00B153B2 /* DPTableViewCellProtocol.swift in Sources */,
+				E2275BB72AB45E6500B153B2 /* DPTableViewHeaderFooterView.swift in Sources */,
 				E204C068284B8EC30097611F /* MainCoordinator.swift in Sources */,
 				E2FC50AF27C377A300F320C5 /* NewsDetailViewController.swift in Sources */,
 				E23D135027C4F5E2001AB75D /* AuthPhoneCodeViewController.swift in Sources */,
+				E2275BD32AB4771C00B153B2 /* DPTableViewHeaderFooterViewProtocol.swift in Sources */,
+				E2275BB92AB45E6500B153B2 /* DPTableView+Update.swift in Sources */,
+				E2275BBB2AB45E6500B153B2 /* DPTableDataSourceAdapter.swift in Sources */,
+				E2275BC62AB4629300B153B2 /* DPTableRowCell.swift in Sources */,
 				E23A5ECA27C2AF21004EE94F /* NewsModel.swift in Sources */,
 				E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */,
 				E2C71AD82AAF4FCC005C17E7 /* TableViewSectionProtocol.swift in Sources */,
+				E2275BB62AB45E6500B153B2 /* DPTableDelegateAdapter.swift in Sources */,
 				E267A0E42AB37A050070C631 /* TableViewCellOutput.swift in Sources */,
 				E252FBDC27C7659100F6F0F5 /* MainTabBarController.swift in Sources */,
 				E2FC50D727C38C1500F320C5 /* UserProfileViewModel.swift in Sources */,
 				E23D135927C4FE0A001AB75D /* UserEditViewModel.swift in Sources */,
 				E2C71AE32AAFAD27005C17E7 /* TableConstants.swift in Sources */,
+				E2275BD02AB4753400B153B2 /* DPTableSectionProtocol.swift in Sources */,
 				E2FC50A927C375F700F320C5 /* NewsView.swift in Sources */,
 				E23A5ECD27C2B043004EE94F /* NewsListTableRowsCell.swift in Sources */,
 				E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */,
 				E204C072284D33520097611F /* UserEditable.swift in Sources */,
+				E2275BB82AB45E6500B153B2 /* DPTableSection.swift in Sources */,
 				E2C71ADF2AAF5396005C17E7 /* TableViewHeaderFooterViewProtocol.swift in Sources */,
 				E2C71AE12AAF5440005C17E7 /* TableViewHeaderFooterModelProtocol.swift in Sources */,
 				E2C71ACF2AAF4DA4005C17E7 /* TableViewAdapter.swift in Sources */,
+				E2275BC82AB4637300B153B2 /* DPTableConstants.swift in Sources */,
 				E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */,
 				E2C71AC72AAF2B1A005C17E7 /* TableViewCell.swift in Sources */,
 				E2C71ABD2AACA130005C17E7 /* TestViewController.swift in Sources */,
+				E2275BD52AB478CD00B153B2 /* DPTableViewHeaderFooterViewModel.swift in Sources */,
 				E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */,
 				E2C71ADD2AAF5358005C17E7 /* TableHeaderFooterView.swift in Sources */,
+				E2275BCA2AB4640900B153B2 /* DPTableViewCellModelProtocol.swift in Sources */,
+				E2275BBA2AB45E6500B153B2 /* DPTableSectionHeaderView.swift in Sources */,
 				E2FC50D827C38C1500F320C5 /* UserProfileViewController.swift in Sources */,
 				E23A5EC727C2A98E004EE94F /* NewsListViewController.swift in Sources */,
 				E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */,
+				E2275BC22AB45FE700B153B2 /* DPTableAdapter.swift in Sources */,
 				E23D134A27C4F583001AB75D /* AuthPhoneViewController.swift in Sources */,
 				E2C71AD22AAF4DDD005C17E7 /* TableViewCellProtocol.swift in Sources */,
 				E252FBEF27C77D7300F6F0F5 /* AppCoordinator.swift in Sources */,
+				E2275BBF2AB45E6500B153B2 /* DPTableView.swift in Sources */,
 				E2C71AD52AAF4E08005C17E7 /* TableViewAdapterProtocol.swift in Sources */,
 				E204C06E284D31C00097611F /* NewsCoordinator.swift in Sources */,
 				E23A5EC627C2A98E004EE94F /* NewsListViewModel.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,
+				E2275BC02AB45E6500B153B2 /* DPTableViewCell.swift in Sources */,
 				E267A0E82AB37A410070C631 /* TableViewCellNotifier.swift in Sources */,
 				E2FC50B927C385CD00F320C5 /* UserModel.swift in Sources */,
+				E2275BBE2AB45E6500B153B2 /* DPTableViewCellModel.swift in Sources */,
 				E2C71ACB2AAF2B5D005C17E7 /* TableViewCellModelProtocol.swift in Sources */,
 				E23D135627C4FDD8001AB75D /* UserEditViewController.swift in Sources */,
 				E2369045284A6368007EED26 /* UserEditCoordinator.swift in Sources */,

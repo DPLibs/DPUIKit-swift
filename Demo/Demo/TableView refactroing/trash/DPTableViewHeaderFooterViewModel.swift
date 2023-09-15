@@ -1,14 +1,13 @@
 //
-//  DPTableSectionHeaderModel.swift
-//  DPUIKit
+//  DPTableViewHeaderFooterViewModel.swift
+//  Demo
 //
-//  Created by Дмитрий Поляков on 03.09.2021.
+//  Created by Дмитрий Поляков on 15.09.2023.
 //
 
 import Foundation
-import UIKit
 
-//open class DPTableSectionHeaderModel {
+//open class DPTableViewHeaderFooterViewModel {
 //
 //    // MARK: - Props
 //    open var viewIdentifier: String? {

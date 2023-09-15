@@ -7,24 +7,23 @@
 
 import Foundation
 import UIKit
+import DPUIKit
 
-open class DPTableViewCell: UITableViewCell, DPViewProtocol {
+open class DPTableViewCell: UITableViewCell, DPTableViewCellProtocol {
     
     // MARK: - Init
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
         self.setupComponents()
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         self.setupComponents()
     }
     
     // MARK: - Props
-    open var _model: Any? {
+    open var _model: DPTableViewCellModelProtocol? {
         didSet { self.updateComponents() }
     }
 
@@ -36,7 +35,4 @@ open class DPTableViewCell: UITableViewCell, DPViewProtocol {
     }
     
     open func updateComponents() {}
-    
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
 }
