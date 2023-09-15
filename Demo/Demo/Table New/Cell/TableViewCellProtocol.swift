@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 public protocol TableViewCellProtocol: UITableViewCell {
-    var _model: Any? { get set }
+    var _model: TableViewCellModelProtocol? { get set }
 }

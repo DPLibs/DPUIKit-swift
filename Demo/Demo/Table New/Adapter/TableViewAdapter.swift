@@ -29,13 +29,13 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
         return self.sections[index]
     }
     
-    open func model(at indexPath: IndexPath) -> (TableViewCellModelProtocol)? {
+    open func row(at indexPath: IndexPath) -> TableViewCellModelProtocol? {
         guard
             let section = self.section(at: indexPath.section),
-            section.models.indices.contains(indexPath.row)
+            section.rows.indices.contains(indexPath.row)
         else { return nil }
         
-        return section.models[indexPath.row]
+        return section.rows[indexPath.row]
     }
     
     open func identifier(for `class`: AnyClass) -> String {
@@ -49,25 +49,27 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard self.sections.indices.contains(section) else { return 0 }
-        return self.sections[section].models.count
+        return self.sections[section].rows.count
     }
     
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let model = self.model(at: indexPath) else { return .init() }
+        guard let row = self.row(at: indexPath) else { return .init() }
         
-        let cellIdentifier = self.identifier(for: model.cellClass)
+        let cellIdentifier = self.identifier(for: row.cellClass)
         
         if !self.identifiers.contains(cellIdentifier) {
-            tableView.register(model.cellClass, forCellReuseIdentifier: cellIdentifier)
+            tableView.register(row.cellClass, forCellReuseIdentifier: cellIdentifier)
             self.identifiers.insert(cellIdentifier)
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         if let cell = cell as? TableViewCellProtocol {
-            cell._model = model
-            model.cellAdapter?.onCellForRow?((cell, model, indexPath))
-            self.onCellForRow?((cell, model, indexPath))
+            cell._model = row
+            
+            let context = (cell, row, indexPath)
+            
+            self.onCellForRow?(context)
         }
         
         return cell
@@ -75,22 +77,22 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     
     // MARK: - UITableViewDelegate - Methods
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let model = self.model(at: indexPath) else { return }
+        guard let model = self.row(at: indexPath) else { return }
         self.onWillDisplayRow?((cell, model, indexPath))
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.model(at: indexPath)?.cellHeight ?? TableConstants.cellHeight
+        self.row(at: indexPath)?.cellHeight ?? TableConstants.cellHeight
     }
     
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.model(at: indexPath)?.cellEstimatedHeight ?? TableConstants.cellEstimatedHeight
+        self.row(at: indexPath)?.cellEstimatedHeight ?? TableConstants.cellEstimatedHeight
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
             let cell = tableView.cellForRow(at: indexPath),
-            let model = self.model(at: indexPath)
+            let model = self.row(at: indexPath)
         else { return }
         
         self.didSelectRow?((cell, model, indexPath))
@@ -99,7 +101,7 @@ open class TableViewAdapter: NSObject, TableViewAdapterProtocol {
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard
             let cell = tableView.cellForRow(at: indexPath),
-            let model = self.model(at: indexPath)
+            let model = self.row(at: indexPath)
         else { return }
         
         self.didDeselectRow?((cell, model, indexPath))

@@ -22,20 +22,15 @@ class TestViewController: DPViewController {
         
         self.tableView.adapter = TableViewAdapter()
         
-        let models = (0...100).map { int in
-            TestTableViewCell.Model(
-                id: .int(int),
-                title: int.description,
-                cellAdapter: TableViewCellAdapter(
-                    onCellForRow: { ctx in
-                        print("!!!", ctx)
-//                        guard let _model
-                    }
-                )
-            )
+        DispatchQueue.global().async {
+            let rows = (0...1_000).map { int in
+                return TestTableViewCell.Model(title: int.description)
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadRows(rows)
+            }
         }
-        
-        self.tableView.reloadRows(models)
     }
     
 }
@@ -65,12 +60,16 @@ class TestTableViewCell: TableViewCell {
 
 extension TestTableViewCell {
     
+//    typealias Adapter = TableViewCellAdapter<TestTableViewCell, Model>
+    
     struct Model: TableViewCellModelProtocol {
-        let id: TableUUID
-        let cellClass: AnyClass = TestTableViewCell.self
-
+        let cellClass: TableViewCellProtocol.Type = TestTableViewCell.self
+        
+        init(title: String) {
+            self.title = title
+        }
+        
         let title: String
-        var cellAdapter: TableViewCellAdapterProtocol?
     }
     
 }

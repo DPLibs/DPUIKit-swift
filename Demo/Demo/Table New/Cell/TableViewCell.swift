@@ -22,12 +22,8 @@ open class TableViewCell: UITableViewCell, TableViewCellProtocol {
     }
     
     // MARK: - Props
-    open var _model: Any? {
+    open var _model: TableViewCellModelProtocol? {
         didSet { self.updateComponents() }
-    }
-    
-    open class var identifer: String {
-        String(describing: self)
     }
     
     // MARK: - Methods

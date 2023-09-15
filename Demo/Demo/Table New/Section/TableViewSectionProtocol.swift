@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol TableViewSectionProtocol {
-    var models: [TableViewCellModelProtocol] { get set }
+    var rows: [TableViewCellModelProtocol] { get set }
     var header: TableViewHeaderFooterModelProtocol? { get set }
     var footer: TableViewHeaderFooterModelProtocol? { get set }
 }
