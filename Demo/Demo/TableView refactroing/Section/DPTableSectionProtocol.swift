@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol DPTableSectionProtocol {
-    var rows: [DPTableViewCellModelProtocol] { get set }
+    var rows: [DPTableRowModelProtocol] { get set }
     var header: DPTableViewHeaderFooterViewModelProtocol? { get set }
     var footer: DPTableViewHeaderFooterViewModelProtocol? { get set }
 }
@@ -16,7 +16,7 @@ public protocol DPTableSectionProtocol {
 // MARK: - Default
 public extension DPTableSectionProtocol {
     
-    func row(at index: Int) -> DPTableViewCellModelProtocol? {
+    func row(at index: Int) -> DPTableRowModelProtocol? {
         guard self.rows.indices.contains(index) else { return nil }
         return self.rows[index]
     }
@@ -26,7 +26,7 @@ public extension DPTableSectionProtocol {
 // MARK: - Array + DPTableSection
 public extension Array where Element == DPTableSectionProtocol {
     
-    func row(at indexPath: IndexPath) -> DPTableViewCellModelProtocol? {
+    func row(at indexPath: IndexPath) -> DPTableRowModelProtocol? {
         guard self.indices.contains(indexPath.section) else { return nil }
         return self[indexPath.section].row(at: indexPath.row)
     }

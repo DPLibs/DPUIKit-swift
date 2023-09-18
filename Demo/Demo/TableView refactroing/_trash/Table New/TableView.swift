@@ -5,34 +5,34 @@
 //  Created by Дмитрий Поляков on 11.09.2023.
 //
 
-import Foundation
-import UIKit
-
-open class TableView: UITableView {
-    
-    // MARK: - Props
-    open var adapter: TableViewAdapterProtocol? {
-        didSet {
-            self.delegate = self.adapter
-            self.dataSource = self.adapter
-        }
-    }
-    
-    open var sections: [TableViewSectionProtocol] {
-        get { self.adapter?.sections ?? [] }
-        set { self.adapter?.sections = newValue }
-    }
-    
-    // MARK: - Methods
-    open func reloadSections(_ sections: [TableViewSectionProtocol]) {
-        self.adapter?.sections = sections
-        self.reloadData()
-    }
-    
-    open func reloadRows(_ rows: [TableViewCellModelProtocol]) {
-        self.adapter?.sections = [ TableViewSection(rows: rows) ]
-        self.reloadData()
-    }
+//import Foundation
+//import UIKit
+//
+//open class TableView: UITableView {
+//    
+//    // MARK: - Props
+//    open var adapter: TableViewAdapterProtocol? {
+//        didSet {
+//            self.delegate = self.adapter
+//            self.dataSource = self.adapter
+//        }
+//    }
+//    
+//    open var sections: [TableViewSectionProtocol] {
+//        get { self.adapter?.sections ?? [] }
+//        set { self.adapter?.sections = newValue }
+//    }
+//    
+//    // MARK: - Methods
+//    open func reloadSections(_ sections: [TableViewSectionProtocol]) {
+//        self.adapter?.sections = sections
+//        self.reloadData()
+//    }
+//    
+//    open func reloadRows(_ rows: [TableViewCellModelProtocol]) {
+//        self.adapter?.sections = [ TableViewSection(rows: rows) ]
+//        self.reloadData()
+//    }
     
     // MARK: - Update
 //    public struct Update {
@@ -64,7 +64,7 @@ open class TableView: UITableView {
 //        self.scrollToRow(at: indexPath, at: scrollPosition, animated: animated)
 //    }
     
-}
+//}
 
 //// MARK: - Updates
 //public extension TableView.Update {

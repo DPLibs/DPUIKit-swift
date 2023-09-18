@@ -68,7 +68,7 @@ public extension DPTableView.Update {
     }
     
     // MARK: - Insert - Rows
-    static func insertRows(_ rows: [DPTableViewCellModelProtocol], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation) -> Self {
+    static func insertRows(_ rows: [DPTableRowModelProtocol], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation) -> Self {
         .init { tableView in
             for (offset, indexPath) in indexPaths.enumerated() {
                 tableView.sections[indexPath.section].rows.insert(rows[offset], at: indexPath.row)
@@ -79,7 +79,7 @@ public extension DPTableView.Update {
     }
     
     // MARK: - Reload - Rows
-    static func reloadRows(newRows rows: [DPTableViewCellModelProtocol], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation) -> Self {
+    static func reloadRows(newRows rows: [DPTableRowModelProtocol], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation) -> Self {
         .init { tableView in
             for (offset, indexPath) in indexPaths.enumerated() {
                 tableView.sections[indexPath.section].rows[indexPath.row] = rows[offset]

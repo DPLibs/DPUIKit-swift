@@ -89,12 +89,12 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         guard let row = self.sections.row(at: indexPath) else { return .init() }
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: row.cellClass), for: indexPath)
         
-        if let cell = cell as? DPTableViewCellProtocol {
+        if let cell = cell as? DPTableRowCellProtocol {
             cell._model = row
             
             let context: DPTableCellContext = (cell, row, indexPath)
             self.onCellForRow?(context)
-            row.onCellForRow?(context)
+            row.output?.onCell?(context)
         }
 
         return cell
@@ -102,10 +102,10 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     // MARK: - UITableViewDelegate + Row
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? DPTableViewCellProtocol, let model = self.sections.row(at: indexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol, let model = self.sections.row(at: indexPath) {
             let context: DPTableCellContext = (cell, model, indexPath)
             self.willDisplayRow?(context)
-            model.willDisplayRow?(context)
+            model.output?.willDisplay?(context)
         }
 
         let offsetToTop = self.calculateRowsCountOrLess(at: indexPath)
@@ -125,24 +125,24 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
-            let cell = self.tableView?.cellForRow(at: indexPath) as? DPTableViewCellProtocol,
+            let cell = self.tableView?.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return }
         
         let context: DPTableCellContext = (cell, model, indexPath)
         self.didSelectRow?(context)
-        model.didSelectRow?(context)
+        model.output?.didSelect?(context)
     }
     
     open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard
-            let cell = self.tableView?.cellForRow(at: indexPath) as? DPTableViewCellProtocol,
+            let cell = self.tableView?.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return }
         
         let context: DPTableCellContext = (cell, model, indexPath)
         self.didDeselectRow?(context)
-        model.didDeselectRow?(context)
+        model.output?.didDeselect?(context)
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -241,46 +241,46 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     // MARK: - UITableViewDelegate + Swipe
     open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard
-            let cell = tableView.cellForRow(at: indexPath) as? DPTableViewCellProtocol,
+            let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return .empty }
 
         let context: DPTableCellContext = (cell, model, indexPath)
-        return self.onCellLeading?(context) ?? model.onCellLeading?(context) ?? .empty
+        return self.onCellLeading?(context) ?? model.output?.onCellLeading?(context) ?? .empty
     }
 
     open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard
-            let cell = tableView.cellForRow(at: indexPath) as? DPTableViewCellProtocol,
+            let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return .empty }
 
         let context: DPTableCellContext = (cell, model, indexPath)
-        return self.onCellTrailing?(context) ?? model.onCellTrailing?(context) ?? .empty
+        return self.onCellTrailing?(context) ?? model.output?.onCellTrailing?(context) ?? .empty
     }
 
     // MARK: - UITableViewDelegate + Edit
     open func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         guard
-            let cell = tableView.cellForRow(at: indexPath) as? DPTableViewCellProtocol,
+            let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return }
 
         let context: DPTableCellContext = (cell, model, indexPath)
         self.willBeginEditingRow?(context)
-        model.willBeginEditingRow?(context)
+        model.output?.willBeginEditing?(context)
     }
 
     open func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
         guard
             let indexPath = indexPath,
-            let cell = tableView.cellForRow(at: indexPath) as? DPTableViewCellProtocol,
+            let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return }
         
         let context: DPTableCellContext = (cell, model, indexPath)
         self.didEndEditingRow?(context)
-        model.didEndEditingRow?(context)
+        model.output?.didEndEditing?(context)
     }
     
 }

@@ -1,31 +1,32 @@
 //
-//  TableViewCell.swift
-//  Demo
+//  DPTableRowCell.swift
+//  DPUIKit
 //
-//  Created by Дмитрий Поляков on 11.09.2023.
+//  Created by Дмитрий Поляков on 03.09.2021.
 //
 
 import Foundation
 import UIKit
+import DPUIKit
 
-open class TableViewCell: UITableViewCell, TableViewCellProtocol {
+open class DPTableRowCell: UITableViewCell, DPTableRowCellProtocol {
     
     // MARK: - Init
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupComponents()
     }
-    
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
+
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         self.setupComponents()
     }
     
     // MARK: - Props
-    open var _model: TableViewCellModelProtocol? {
+    open var _model: DPTableRowModelProtocol? {
         didSet { self.updateComponents() }
     }
-    
+
     // MARK: - Methods
     open func setupComponents() {
         self.backgroundColor = .clear

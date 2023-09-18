@@ -9,7 +9,7 @@ import Foundation
 import DPUIKit
 import UIKit
 
-class NewsListTableRowsCell: DPTableViewCell {
+class NewsListTableRowsCell: DPTableRowCell {
     
     // MARK: - Props
     var model: Model? {
@@ -49,7 +49,7 @@ class NewsListTableRowsCell: DPTableViewCell {
 // MARK: - Model
 extension NewsListTableRowsCell {
     
-    class Model: DPTableViewCellModelProtocol {
+    class Model: DPTableRowModelProtocol {
         
         // MARK: - Init
         init(news: NewsModel, onCellLeading: ((DPTableCellContext) -> UISwipeActionsConfiguration?)? = nil) {
@@ -58,7 +58,7 @@ extension NewsListTableRowsCell {
         }
         
         // MARK: - Props
-        let cellClass: DPTableViewCellProtocol.Type = NewsListTableRowsCell.self
+        let cellClass: DPTableRowCellProtocol.Type = NewsListTableRowsCell.self
         let news: NewsModel
         var onCellLeading: ((DPTableCellContext) -> UISwipeActionsConfiguration?)?
     }

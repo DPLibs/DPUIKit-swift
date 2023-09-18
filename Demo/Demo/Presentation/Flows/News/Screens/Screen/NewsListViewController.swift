@@ -61,7 +61,7 @@ class NewsListViewController: DPViewController {
         super.updateComponents()
         
         let news = self.model?.news ?? []
-        let rows: [DPTableViewCellModelProtocol] = news.map({
+        let rows: [DPTableRowModelProtocol] = news.map({
             NewsListTableRowsCell.Model(news: $0) {[weak self] ctx in
                     let actions: [UIContextualAction] = [
                         .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in

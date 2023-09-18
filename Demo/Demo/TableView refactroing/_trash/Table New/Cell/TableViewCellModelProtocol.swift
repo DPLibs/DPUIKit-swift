@@ -8,16 +8,16 @@
 import Foundation
 import UIKit
 
-public protocol TableViewCellModelProtocol {
-    var cellClass: TableViewCellProtocol.Type { get }
-    var cellHeight: CGFloat { get }
-    var cellEstimatedHeight: CGFloat { get }
-}
-
-public extension TableViewCellModelProtocol {
-    var cellHeight: CGFloat { TableConstants.cellHeight }
-    var cellEstimatedHeight: CGFloat { TableConstants.cellEstimatedHeight }
-}
+//public protocol TableViewCellModelProtocol {
+//    var cellClass: TableViewCellProtocol.Type { get }
+//    var cellHeight: CGFloat { get }
+//    var cellEstimatedHeight: CGFloat { get }
+//}
+//
+//public extension TableViewCellModelProtocol {
+//    var cellHeight: CGFloat { TableConstants.cellHeight }
+//    var cellEstimatedHeight: CGFloat { TableConstants.cellEstimatedHeight }
+//}
 
 //public struct TableID: Equatable, ExpressibleByStringLiteral {
 //

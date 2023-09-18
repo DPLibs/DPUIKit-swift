@@ -11,7 +11,7 @@ public struct DPTableSection: DPTableSectionProtocol {
     
     // MARK: - Init
     public init(
-        rows: [DPTableViewCellModelProtocol] = [],
+        rows: [DPTableRowModelProtocol] = [],
         header: DPTableViewHeaderFooterViewModelProtocol? = nil,
         footer: DPTableViewHeaderFooterViewModelProtocol? = nil
     ) {
@@ -21,7 +21,7 @@ public struct DPTableSection: DPTableSectionProtocol {
     }
 
     // MARK: - Props
-    public var rows: [DPTableViewCellModelProtocol]
+    public var rows: [DPTableRowModelProtocol]
     public var header: DPTableViewHeaderFooterViewModelProtocol?
     public var footer: DPTableViewHeaderFooterViewModelProtocol?
 }
