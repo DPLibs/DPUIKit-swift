@@ -46,6 +46,7 @@
 		E252FBEF27C77D7300F6F0F5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */; };
 		E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */; };
 		E2563D712947C4C200391C7F /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E2563D702947C4C200391C7F /* DPUIKit */; };
+		E258BFEF2AB89E6800161C0C /* DPTableRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258BFEE2AB89E6800161C0C /* DPTableRowModel.swift */; };
 		E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735D42759547600DCEEFB /* AppDelegate.swift */; };
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
@@ -115,6 +116,7 @@
 		E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		E2563D6F2947C4B400391C7F /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DPUIKit; path = ..; sourceTree = "<group>"; };
+		E258BFEE2AB89E6800161C0C /* DPTableRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableRowModel.swift; sourceTree = "<group>"; };
 		E26735D12759547600DCEEFB /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				E2275BC92AB4640900B153B2 /* DPTableRowModelProtocol.swift */,
+				E258BFEE2AB89E6800161C0C /* DPTableRowModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				E2275BBC2AB45E6500B153B2 /* DPTableViewHeaderFooterViewModelProtocol.swift in Sources */,
 				E2275BCC2AB4642C00B153B2 /* DPTableRowCellProtocol.swift in Sources */,
 				E2275BB72AB45E6500B153B2 /* DPTableViewHeaderFooterView.swift in Sources */,
+				E258BFEF2AB89E6800161C0C /* DPTableRowModel.swift in Sources */,
 				E204C068284B8EC30097611F /* MainCoordinator.swift in Sources */,
 				E2FC50AF27C377A300F320C5 /* NewsDetailViewController.swift in Sources */,
 				E23D135027C4F5E2001AB75D /* AuthPhoneCodeViewController.swift in Sources */,
