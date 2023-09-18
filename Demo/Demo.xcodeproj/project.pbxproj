@@ -29,8 +29,6 @@
 		E2275BD32AB4771C00B153B2 /* DPTableViewHeaderFooterViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BD22AB4771C00B153B2 /* DPTableViewHeaderFooterViewProtocol.swift */; };
 		E2275BD52AB478CD00B153B2 /* DPTableViewHeaderFooterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BD42AB478CD00B153B2 /* DPTableViewHeaderFooterViewModel.swift */; };
 		E2275BD72AB47ACE00B153B2 /* DPTableTypealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BD62AB47ACE00B153B2 /* DPTableTypealiases.swift */; };
-		E2275BD92AB86ED000B153B2 /* DPTableRowOutputProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BD82AB86ED000B153B2 /* DPTableRowOutputProtocol.swift */; };
-		E2275BDC2AB8702400B153B2 /* DPTableRowOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2275BDB2AB8702400B153B2 /* DPTableRowOutput.swift */; };
 		E2369045284A6368007EED26 /* UserEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2369044284A6368007EED26 /* UserEditCoordinator.swift */; };
 		E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EB027C287B9004EE94F /* AppTheme.swift */; };
 		E23A5EC627C2A98E004EE94F /* NewsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EC327C2A98E004EE94F /* NewsListViewModel.swift */; };
@@ -100,8 +98,6 @@
 		E2275BD22AB4771C00B153B2 /* DPTableViewHeaderFooterViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableViewHeaderFooterViewProtocol.swift; sourceTree = "<group>"; };
 		E2275BD42AB478CD00B153B2 /* DPTableViewHeaderFooterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableViewHeaderFooterViewModel.swift; sourceTree = "<group>"; };
 		E2275BD62AB47ACE00B153B2 /* DPTableTypealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableTypealiases.swift; sourceTree = "<group>"; };
-		E2275BD82AB86ED000B153B2 /* DPTableRowOutputProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableRowOutputProtocol.swift; sourceTree = "<group>"; };
-		E2275BDB2AB8702400B153B2 /* DPTableRowOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableRowOutput.swift; sourceTree = "<group>"; };
 		E2369044284A6368007EED26 /* UserEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditCoordinator.swift; sourceTree = "<group>"; };
 		E23A5EB027C287B9004EE94F /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		E23A5EC327C2A98E004EE94F /* NewsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModel.swift; sourceTree = "<group>"; };
@@ -211,7 +207,6 @@
 			children = (
 				E2275BDE2AB870F800B153B2 /* Cell */,
 				E2275BDD2AB870E800B153B2 /* Model */,
-				E2275BDA2AB8700100B153B2 /* Output */,
 			);
 			path = Row;
 			sourceTree = "<group>";
@@ -233,15 +228,6 @@
 				E2275BB12AB45E6500B153B2 /* DPTableViewHeaderFooterViewModelProtocol.swift */,
 			);
 			path = HeaderFooter;
-			sourceTree = "<group>";
-		};
-		E2275BDA2AB8700100B153B2 /* Output */ = {
-			isa = PBXGroup;
-			children = (
-				E2275BD82AB86ED000B153B2 /* DPTableRowOutputProtocol.swift */,
-				E2275BDB2AB8702400B153B2 /* DPTableRowOutput.swift */,
-			);
-			path = Output;
 			sourceTree = "<group>";
 		};
 		E2275BDD2AB870E800B153B2 /* Model */ = {
@@ -651,7 +637,6 @@
 				E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */,
 				E204C072284D33520097611F /* UserEditable.swift in Sources */,
 				E2275BB82AB45E6500B153B2 /* DPTableSection.swift in Sources */,
-				E2275BD92AB86ED000B153B2 /* DPTableRowOutputProtocol.swift in Sources */,
 				E2C71ADF2AAF5396005C17E7 /* TableViewHeaderFooterViewProtocol.swift in Sources */,
 				E2C71AE12AAF5440005C17E7 /* TableViewHeaderFooterModelProtocol.swift in Sources */,
 				E2C71ACF2AAF4DA4005C17E7 /* TableViewAdapter.swift in Sources */,
@@ -667,7 +652,6 @@
 				E2FC50D827C38C1500F320C5 /* UserProfileViewController.swift in Sources */,
 				E23A5EC727C2A98E004EE94F /* NewsListViewController.swift in Sources */,
 				E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */,
-				E2275BDC2AB8702400B153B2 /* DPTableRowOutput.swift in Sources */,
 				E2275BC22AB45FE700B153B2 /* DPTableAdapter.swift in Sources */,
 				E23D134A27C4F583001AB75D /* AuthPhoneViewController.swift in Sources */,
 				E2C71AD22AAF4DDD005C17E7 /* TableViewCellProtocol.swift in Sources */,

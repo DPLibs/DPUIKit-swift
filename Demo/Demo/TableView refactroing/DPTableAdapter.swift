@@ -34,15 +34,15 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open var willBeginEditingRow: DPTableCellContextClosure?
     open var didEndEditingRow: DPTableCellContextClosure?
     
+    open var onCellLeading: ((DPTableCellContext) -> UISwipeActionsConfiguration?)?
+    open var onCellTrailing: ((DPTableCellContext) -> UISwipeActionsConfiguration?)?
+    
     open var onScrolling: (((position: UITableView.ScrollPosition, rowsOffset: Int)) -> Void)?
     open var didScroll: (((position: UITableView.ScrollPosition, isDragging: Bool)) -> Void)?
     open var onScrolled: (((position: UITableView.ScrollPosition, isAchived: Bool)) -> Void)?
     
     open var onTopAchived: (() -> Void)?
     open var onBottomAchived: (() -> Void)?
-    
-    var onCellLeading: ((DPTableCellContext) -> UISwipeActionsConfiguration?)?
-    var onCellTrailing: ((DPTableCellContext) -> UISwipeActionsConfiguration?)?
     
     // MARK: - Methods
     open func calculateRowsCountOrLess(at indexPath: IndexPath) -> Int {
@@ -94,7 +94,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             
             let context: DPTableCellContext = (cell, row, indexPath)
             self.onCellForRow?(context)
-            row.output?.onCell?(context)
+            row.onCell?(context)
         }
 
         return cell
@@ -105,7 +105,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         if let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol, let model = self.sections.row(at: indexPath) {
             let context: DPTableCellContext = (cell, model, indexPath)
             self.willDisplayRow?(context)
-            model.output?.willDisplay?(context)
+            model.willDisplay?(context)
         }
 
         let offsetToTop = self.calculateRowsCountOrLess(at: indexPath)
@@ -131,7 +131,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         
         let context: DPTableCellContext = (cell, model, indexPath)
         self.didSelectRow?(context)
-        model.output?.didSelect?(context)
+        model.didSelect?(context)
     }
     
     open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -142,7 +142,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         
         let context: DPTableCellContext = (cell, model, indexPath)
         self.didDeselectRow?(context)
-        model.output?.didDeselect?(context)
+        model.didDeselect?(context)
     }
     
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -246,7 +246,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         else { return .empty }
 
         let context: DPTableCellContext = (cell, model, indexPath)
-        return self.onCellLeading?(context) ?? model.output?.onCellLeading?(context) ?? .empty
+        return self.onCellLeading?(context) ?? model.onCellLeading?(context) ?? .empty
     }
 
     open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -256,7 +256,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         else { return .empty }
 
         let context: DPTableCellContext = (cell, model, indexPath)
-        return self.onCellTrailing?(context) ?? model.output?.onCellTrailing?(context) ?? .empty
+        return self.onCellTrailing?(context) ?? model.onCellTrailing?(context) ?? .empty
     }
 
     // MARK: - UITableViewDelegate + Edit
@@ -268,7 +268,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
 
         let context: DPTableCellContext = (cell, model, indexPath)
         self.willBeginEditingRow?(context)
-        model.output?.willBeginEditing?(context)
+        model.willBeginEditing?(context)
     }
 
     open func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
@@ -280,7 +280,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         
         let context: DPTableCellContext = (cell, model, indexPath)
         self.didEndEditingRow?(context)
-        model.output?.didEndEditing?(context)
+        model.didEndEditing?(context)
     }
     
 }
