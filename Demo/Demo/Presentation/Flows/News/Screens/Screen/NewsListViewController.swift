@@ -33,8 +33,12 @@ class NewsListViewController: DPViewController {
     
     lazy var tableView: DPTableView = {
         let result = DPTableView()
-        result.adapter?.onBottomAchived = { [weak self] in
+        result.adapter?.onDisplayLastRow = { [weak self] in
+            print("!!! onDisplayLastRow")
             self?.model?.loadMore()
+        }
+        result.adapter?.onDisplayFirstRow = {
+            print("!!! onDisplayFirstRow")
         }
         result.adapter?.didSelectRow = { [weak self] ctx in
             guard let model = ctx.model as? NewsListTableRowsCell.Model else { return }
