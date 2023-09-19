@@ -49,7 +49,7 @@ open class DPTableView: UITableView {
     
     // MARK: - DPViewProtocol
     open func setupComponents() {
-        self.adapter = .init()
+        self.adapter = DPTableAdapter()
     }
     
     open func updateComponents() {}

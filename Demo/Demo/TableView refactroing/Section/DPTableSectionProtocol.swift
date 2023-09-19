@@ -31,4 +31,14 @@ public extension Array where Element == DPTableSectionProtocol {
         return self[indexPath.section].row(at: indexPath.row)
     }
     
+    func header(at index: Int) -> DPTableViewHeaderFooterViewModelProtocol? {
+        guard self.indices.contains(index) else { return nil }
+        return self[index].header
+    }
+    
+    func footer(at index: Int) -> DPTableViewHeaderFooterViewModelProtocol? {
+        guard self.indices.contains(index) else { return nil }
+        return self[index].footer
+    }
+    
 }

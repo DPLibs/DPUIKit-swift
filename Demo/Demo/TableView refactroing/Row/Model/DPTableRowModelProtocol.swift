@@ -10,8 +10,8 @@ import UIKit
 
 public protocol DPTableRowModelProtocol {
     var cellClass: DPTableRowCellProtocol.Type { get }
-    var cellHeight: CGFloat { get }
-    var cellEstimatedHeight: CGFloat { get }
+    var cellHeight: CGFloat? { get }
+    var cellEstimatedHeight: CGFloat? { get }
     
     var didSelect: DPTableCellContextClosure? { get }
     var didDeselect: DPTableCellContextClosure? { get }
@@ -25,8 +25,8 @@ public protocol DPTableRowModelProtocol {
  
 // MARK: - Default
 public extension DPTableRowModelProtocol {
-    var cellHeight: CGFloat { DPTableConstants.Cell.heihgt }
-    var cellEstimatedHeight: CGFloat { DPTableConstants.Cell.estimatedHeight }
+    var cellHeight: CGFloat? { nil }
+    var cellEstimatedHeight: CGFloat? { nil }
     
     var didSelect: DPTableCellContextClosure? { nil }
     var didDeselect: DPTableCellContextClosure? { nil }

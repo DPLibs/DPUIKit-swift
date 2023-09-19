@@ -33,7 +33,6 @@ class NewsListViewController: DPViewController {
     
     lazy var tableView: DPTableView = {
         let result = DPTableView()
-        result.registerCellClasses([ NewsListTableRowsCell.self ])
         result.adapter?.onBottomAchived = { [weak self] in
             self?.model?.loadMore()
         }
@@ -62,15 +61,16 @@ class NewsListViewController: DPViewController {
         
         let news = self.model?.news ?? []
         let rows: [DPTableRowModelProtocol] = news.map({
-            NewsListTableRowsCell.Model(news: $0) {[weak self] ctx in
-                    let actions: [UIContextualAction] = [
-                        .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
-                            handler(true)
-                            self?.showInfo()
-                        })
-                    ]
-                    return .init(actions: actions)
-                }
+            NewsListTableRowsCell.Model(news: $0)
+//            {[weak self] ctx in
+//                    let actions: [UIContextualAction] = [
+//                        .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
+//                            handler(true)
+//                            self?.showInfo()
+//                        })
+//                    ]
+//                    return .init(actions: actions)
+//                }
         })
         
         DispatchQueue.main.async { [weak self] in
