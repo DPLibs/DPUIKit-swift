@@ -9,7 +9,7 @@ import Foundation
 
 class UserManager {
     
-    var user: UserModel {
+    var user: User {
         get {
             let firstName = UserDefaults.standard.string(forKey: "firstName") ?? ""
             let lastName = UserDefaults.standard.string(forKey: "lastName") ?? ""
