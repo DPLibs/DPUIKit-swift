@@ -30,7 +30,8 @@ final class AdsViewController: DPViewController {
     }
     
     private lazy var collectionView: DPCollectionView = {
-        let result = DPCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = UICollectionViewFlowLayout()
+        let result = DPCollectionView(frame: .zero, collectionViewLayout: layout)
         result.adapter?.onDisplayLastItem = { [weak self] in
             self?.model?.loadMore()
         }

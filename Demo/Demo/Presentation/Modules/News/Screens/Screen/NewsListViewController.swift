@@ -10,6 +10,17 @@ import Foundation
 import UIKit
 import DPUIKit
 
+struct Test1: DPRepresentableModel {
+    
+}
+
+class Test2: DPRepresentableModel {
+    
+    struct Test3: DPRepresentableModel {}
+    
+    class Test4: DPRepresentableModel {}
+}
+
 class NewsListViewController: DPViewController {
     
     // MARK: - Init
@@ -54,6 +65,13 @@ class NewsListViewController: DPViewController {
         
         self.navigationItem.title = "News"
         self.model?.reload()
+        
+        let test1 = Test1()
+        let test2 = Test2()
+        let test3 = Test2.Test3()
+        let test4 = Test2.Test4()
+        
+        print("!!!", test1._representableIdentifier, test2._representableIdentifier, test3._representableIdentifier, test4._representableIdentifier)
     }
     
     override func updateComponents() {

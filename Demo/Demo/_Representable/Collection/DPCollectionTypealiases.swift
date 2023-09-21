@@ -7,8 +7,5 @@
 
 import Foundation
 
-//public typealias DPTableConcrectCellContext<Cell: DPTableRowCellProtocol, Model: DPTableRowModelProtocol> = (cell: Cell, model: Model, indexPath: IndexPath)
-
 public typealias DPCollectionItemContext = (cell: DPCollectionItemCellProtocol, model: DPCollectionItemModelProtocol, indexPath: IndexPath)
 public typealias DPCollectionItemContextClosure = (DPCollectionItemContext) -> Void
-//public typealias DPTableCellContextToSwipeActionsConfiguration = (DPTableCellContext) -> UISwipeActionsConfiguration?

@@ -13,14 +13,14 @@ public protocol DPTableRowModelProtocol {
     var cellHeight: CGFloat? { get }
     var cellEstimatedHeight: CGFloat? { get }
     
-    var didSelect: DPTableCellContextClosure? { get }
-    var didDeselect: DPTableCellContextClosure? { get }
-    var onCell: DPTableCellContextClosure? { get }
-    var willDisplay: DPTableCellContextClosure? { get }
-    var willBeginEditing: DPTableCellContextClosure? { get }
-    var didEndEditing: DPTableCellContextClosure? { get }
-    var onCellLeading: DPTableCellContextToSwipeActionsConfiguration? { get }
-    var onCellTrailing: DPTableCellContextToSwipeActionsConfiguration? { get }
+    var didSelect: DPTableRowContextClosure? { get }
+    var didDeselect: DPTableRowContextClosure? { get }
+    var onCell: DPTableRowContextClosure? { get }
+    var willDisplay: DPTableRowContextClosure? { get }
+    var willBeginEditing: DPTableRowContextClosure? { get }
+    var didEndEditing: DPTableRowContextClosure? { get }
+    var onCellLeading: DPTableRowContextToSwipeActionsConfiguration? { get }
+    var onCellTrailing: DPTableRowContextToSwipeActionsConfiguration? { get }
 }
  
 // MARK: - Default
@@ -28,12 +28,12 @@ public extension DPTableRowModelProtocol {
     var cellHeight: CGFloat? { nil }
     var cellEstimatedHeight: CGFloat? { nil }
     
-    var didSelect: DPTableCellContextClosure? { nil }
-    var didDeselect: DPTableCellContextClosure? { nil }
-    var onCell: DPTableCellContextClosure? { nil }
-    var willDisplay: DPTableCellContextClosure? { nil }
-    var willBeginEditing: DPTableCellContextClosure? { nil }
-    var didEndEditing: DPTableCellContextClosure? { nil }
-    var onCellLeading: DPTableCellContextToSwipeActionsConfiguration? { nil }
-    var onCellTrailing: DPTableCellContextToSwipeActionsConfiguration? { nil }
+    var didSelect: DPTableRowContextClosure? { nil }
+    var didDeselect: DPTableRowContextClosure? { nil }
+    var onCell: DPTableRowContextClosure? { nil }
+    var willDisplay: DPTableRowContextClosure? { nil }
+    var willBeginEditing: DPTableRowContextClosure? { nil }
+    var didEndEditing: DPTableRowContextClosure? { nil }
+    var onCellLeading: DPTableRowContextToSwipeActionsConfiguration? { nil }
+    var onCellTrailing: DPTableRowContextToSwipeActionsConfiguration? { nil }
 }

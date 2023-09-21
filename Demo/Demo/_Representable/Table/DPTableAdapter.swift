@@ -27,23 +27,24 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
     
     open internal(set) var lastContentOffset: CGPoint?
+    open internal(set) var rowAdapters: [String: DPTableRowAdapterProtocol] = [:]
     open internal(set) var registeredСellIdentifiers: Set<String> = []
     open internal(set) var registeredHeaderFooterViewsIdentifiers: Set<String> = []
     
-    open var didSelectRow: DPTableCellContextClosure?
-    open var didDeselectRow: DPTableCellContextClosure?
+    open var didSelectRow: DPTableRowContextClosure?
+    open var didDeselectRow: DPTableRowContextClosure?
     
-    open var onCellForRow: DPTableCellContextClosure?
-    open var willDisplayRow: DPTableCellContextClosure?
+    open var onCellForRow: DPTableRowContextClosure?
+    open var willDisplayRow: DPTableRowContextClosure?
     
     open var onDisplayFirstRow: (() -> Void)?
     open var onDisplayLastRow: (() -> Void)?
     
-    open var willBeginEditingRow: DPTableCellContextClosure?
-    open var didEndEditingRow: DPTableCellContextClosure?
+    open var willBeginEditingRow: DPTableRowContextClosure?
+    open var didEndEditingRow: DPTableRowContextClosure?
     
-    open var onCellLeading: DPTableCellContextToSwipeActionsConfiguration?
-    open var onCellTrailing: DPTableCellContextToSwipeActionsConfiguration?
+    open var onCellLeading: DPTableRowContextToSwipeActionsConfiguration?
+    open var onCellTrailing: DPTableRowContextToSwipeActionsConfiguration?
     
     open var didScroll: (((direction: UITableView.ScrollPosition, isDragging: Bool, isAchived: Bool)) -> Void)?
     
@@ -71,7 +72,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         if let cell = cell as? DPTableRowCellProtocol {
             cell._model = row
             
-            let context: DPTableCellContext = (cell, row, indexPath)
+            let context: DPTableRowContext = (cell, row, indexPath)
             self.onCellForRow?(context)
             row.onCell?(context)
         }
@@ -82,7 +83,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     // MARK: - UITableViewDelegate
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? DPTableRowCellProtocol, let model = self.sections.row(at: indexPath) {
-            let context: DPTableCellContext = (cell, model, indexPath)
+            let context: DPTableRowContext = (cell, model, indexPath)
             self.willDisplayRow?(context)
             model.willDisplay?(context)
         }
@@ -165,7 +166,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let model = self.sections.row(at: indexPath)
         else { return .empty }
 
-        let context: DPTableCellContext = (cell, model, indexPath)
+        let context: DPTableRowContext = (cell, model, indexPath)
         return model.onCellLeading?(context) ?? self.onCellLeading?(context) ?? .empty
     }
 
@@ -175,7 +176,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let model = self.sections.row(at: indexPath)
         else { return .empty }
 
-        let context: DPTableCellContext = (cell, model, indexPath)
+        let context: DPTableRowContext = (cell, model, indexPath)
         return model.onCellTrailing?(context) ?? self.onCellTrailing?(context) ?? .empty
     }
     
@@ -186,7 +187,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let model = self.sections.row(at: indexPath)
         else { return }
         
-        let context: DPTableCellContext = (cell, model, indexPath)
+        let context: DPTableRowContext = (cell, model, indexPath)
         self.didSelectRow?(context)
         model.didSelect?(context)
     }
@@ -197,7 +198,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let model = self.sections.row(at: indexPath)
         else { return }
         
-        let context: DPTableCellContext = (cell, model, indexPath)
+        let context: DPTableRowContext = (cell, model, indexPath)
         self.didDeselectRow?(context)
         model.didDeselect?(context)
     }
@@ -209,7 +210,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let model = self.sections.row(at: indexPath)
         else { return }
 
-        let context: DPTableCellContext = (cell, model, indexPath)
+        let context: DPTableRowContext = (cell, model, indexPath)
         self.willBeginEditingRow?(context)
         model.willBeginEditing?(context)
     }
@@ -221,7 +222,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let model = self.sections.row(at: indexPath)
         else { return }
         
-        let context: DPTableCellContext = (cell, model, indexPath)
+        let context: DPTableRowContext = (cell, model, indexPath)
         self.didEndEditingRow?(context)
         model.didEndEditing?(context)
     }

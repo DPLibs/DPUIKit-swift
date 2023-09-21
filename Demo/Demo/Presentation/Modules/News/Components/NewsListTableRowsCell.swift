@@ -52,7 +52,7 @@ extension NewsListTableRowsCell {
     class Model: DPTableRowModelProtocol {
         
         // MARK: - Init
-        init(news: News, onCellLeading: ((DPTableCellContext) -> UISwipeActionsConfiguration?)? = nil) {
+        init(news: News, onCellLeading: ((DPTableRowContext) -> UISwipeActionsConfiguration?)? = nil) {
             self.news = news
             self.onCellLeading = onCellLeading
         }
@@ -60,7 +60,7 @@ extension NewsListTableRowsCell {
         // MARK: - Props
         let cellClass: DPTableRowCellProtocol.Type = NewsListTableRowsCell.self
         let news: News
-        var onCellLeading: ((DPTableCellContext) -> UISwipeActionsConfiguration?)?
+        var onCellLeading: ((DPTableRowContext) -> UISwipeActionsConfiguration?)?
     }
     
 }

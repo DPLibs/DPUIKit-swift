@@ -6,14 +6,18 @@
 //
 
 import Foundation
+import UIKit
 
 public struct DPCollectionSection: DPCollectionSectionProtocol {
     
     public init(
-        items: [DPCollectionItemModelProtocol] = []
+        items: [DPCollectionItemModelProtocol] = [],
+        inset: UIEdgeInsets? = nil
     ) {
         self.items = items
+        self.inset = inset
     }
     
     public var items: [DPCollectionItemModelProtocol]
+    public var inset: UIEdgeInsets?
 }

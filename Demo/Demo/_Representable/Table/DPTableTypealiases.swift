@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 
-public typealias DPTableConcrectCellContext<Cell: DPTableRowCellProtocol, Model: DPTableRowModelProtocol> = (cell: Cell, model: Model, indexPath: IndexPath)
+public typealias DPTableRowContext = (cell: DPTableRowCellProtocol, model: DPTableRowModelProtocol, indexPath: IndexPath)
+public typealias DPTableRowContextClosure = (DPTableRowContext) -> Void
+public typealias DPTableRowContextToSwipeActionsConfiguration = (DPTableRowContext) -> UISwipeActionsConfiguration?
 
-public typealias DPTableCellContext = (cell: DPTableRowCellProtocol, model: DPTableRowModelProtocol, indexPath: IndexPath)
-public typealias DPTableCellContextClosure = (DPTableCellContext) -> Void
-public typealias DPTableCellContextToSwipeActionsConfiguration = (DPTableCellContext) -> UISwipeActionsConfiguration?
+
+

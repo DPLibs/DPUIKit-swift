@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import DPUIKit
 
 open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -64,11 +65,6 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         return cell
     }
     
-    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        print("!!!", kind)
-        return UICollectionReusableView()
-    }
-    
     // MARK: - UICollectionViewDelegate
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard
@@ -111,6 +107,10 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     // MARK: - UICollectionViewDelegateFlowLayout
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         self.sections.item(at: indexPath)?.cellSize ?? (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize ?? .zero
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        self.sections.inset(at: section) ?? (collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
     }
     
 }
