@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol DPTableRowAdaptable {
+public protocol DPTableRowAdapterProtocol {
     var modelRepresentableIdentifier: String { get }
     var cellClass: DPTableRowCellProtocol.Type { get }
     
@@ -24,7 +24,7 @@ public protocol DPTableRowAdaptable {
     func onCellTrailing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration?
 }
 
-open class DPTableRowAdapter<Cell: DPTableRowCellProtocol, Model: DPRepresentableModel>: DPTableRowAdaptable {
+open class DPTableRowAdapter<Cell: DPTableRowCellProtocol, Model: DPRepresentableModel>: DPTableRowAdapterProtocol {
     
     // MARK: - Init
     public init(

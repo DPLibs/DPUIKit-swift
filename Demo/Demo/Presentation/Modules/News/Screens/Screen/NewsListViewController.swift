@@ -31,30 +31,29 @@ class NewsListViewController: DPViewController {
         set { self._model = newValue }
     }
     
-    lazy var tableView: DPTableView = {
+    private lazy var tableView: DPTableView = {
+        let newsAdapter = NewsListTableRowCell.Adapter(
+            didSelect: { [weak self] ctx in
+                self?.didSelect?(ctx.model.news)
+            },
+            onCellLeading: { [weak self] _ in
+                let actions: [UIContextualAction] = [
+                    .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
+                        handler(true)
+                        self?.showInfo()
+                    })
+                ]
+                return .init(actions: actions)
+            }
+        )
+        
         let result = DPTableView()
-        result.adapter?.addRowAdapters([
-            NewsListTableRowsCell.Adapter(
-//                cellHeight: 300,
-//                didSelect: { [weak self] ctx in
-//                    self?.didSelect?(ctx.model.news)
-//                },
-//                onCellLeading: { [weak self] ctx in
-//                    let actions: [UIContextualAction] = [
-//                        .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
-//                            handler(true)
-//                            self?.showInfo()
-//                        })
-//                    ]
-//                    return .init(actions: actions)
-//                }
-            )
-        ])
-        result.adapter?.addTitleAdapters([
-            NewsListTableTitleView.Adapter(viewHeight: 100)
-        ])
+        result.refreshControl = DPRefreshControl(didBeginRefreshing: { [weak self] in
+            self?.model?.reload()
+        })
+        result.adapter?.addRowAdapters([ newsAdapter ])
         result.adapter?.onDisplayLastRow = { [weak self] in
-//            self?.model?.loadMore()
+            self?.model?.loadMore()
         }
         
         return result
@@ -67,9 +66,7 @@ class NewsListViewController: DPViewController {
         self.view.backgroundColor = .white
         self.navigationItem.title = "News"
         
-        self.tableView.backgroundColor = .red
         self.tableView.addToSuperview(self.view, withConstraints: [ .edges(to: .safeArea) ])
-        
         self.model?.reload()
     }
     
@@ -77,21 +74,24 @@ class NewsListViewController: DPViewController {
         super.updateComponents()
         
         let rows: [DPRepresentableModel] = (self.model?.news ?? []).map({
-            NewsListTableRowsCell.Model(news: $0)
+            NewsListTableRowCell.Model(news: $0)
         })
         
         self.tableView.reloadData([
-            DPTableSection(
-                rows: rows
-//                header: NewsListTableTitleView.Model(title: "HEADER"),
-//                footer: NewsListTableTitleView.Model(title: "FOOTER")
-            )
+            DPTableSection(rows: rows)
         ])
-        
     }
     
     override func modelReloaded(_ model: DPViewModel?) {
+        super.modelReloaded(model)
+        
         self.updateComponents()
+    }
+    
+    override func modelFinishLoading(_ model: DPViewModel?, withError error: Error?) {
+        super.modelFinishLoading(model, withError: error)
+        
+        self.tableView.refreshControl?.endRefreshing()
     }
     
     private func showInfo() {

@@ -1,5 +1,5 @@
 //
-//  NewsListTableRowsCell.swift
+//  NewsListTableRowCell.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 20.02.2022.
@@ -9,7 +9,7 @@ import Foundation
 import DPUIKit
 import UIKit
 
-class NewsListTableRowsCell: DPTableRowCell {
+class NewsListTableRowCell: DPTableRowCell {
     
     // MARK: - Props
     var model: Model? {
@@ -47,9 +47,9 @@ class NewsListTableRowsCell: DPTableRowCell {
 }
 
 // MARK: - Model
-extension NewsListTableRowsCell {
+extension NewsListTableRowCell {
     
-    typealias Adapter = DPTableRowAdapter<NewsListTableRowsCell, Model>
+    typealias Adapter = DPTableRowAdapter<NewsListTableRowCell, Model>
     
     class Model: DPRepresentableModel {
         

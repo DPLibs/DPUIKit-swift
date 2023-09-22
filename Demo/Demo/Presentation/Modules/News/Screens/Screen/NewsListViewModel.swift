@@ -30,6 +30,7 @@ class NewsListViewModel: DPViewModel {
             }
             self?.news += .generate(count: 10)
             self?._output?.modelReloaded(self)
+            self?._output?.modelFinishLoading(self, withError: nil)
         }
     }
     

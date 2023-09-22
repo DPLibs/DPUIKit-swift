@@ -79,7 +79,7 @@ public extension DPTableView.Update {
     }
     
     // MARK: - Reload - Rows
-    static func reloadRows(newRows rows: [DPRepresentableModel], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation) -> Self {
+    static func setRows(_ rows: [DPRepresentableModel], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation) -> Self {
         .init { tableView in
             for (offset, indexPath) in indexPaths.enumerated() {
                 tableView.sections[indexPath.section].rows[indexPath.row] = rows[offset]
