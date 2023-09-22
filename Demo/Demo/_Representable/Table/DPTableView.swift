@@ -49,6 +49,8 @@ open class DPTableView: UITableView {
     
     // MARK: - DPViewProtocol
     open func setupComponents() {
+        self.backgroundColor = .white
+        self.separatorStyle = .none
         self.adapter = DPTableAdapter()
     }
     

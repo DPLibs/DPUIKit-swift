@@ -8,15 +8,15 @@
 import Foundation
 
 public protocol DPTableSectionProtocol {
-    var rows: [DPTableRowModelProtocol] { get set }
-    var header: DPTableViewHeaderFooterViewModelProtocol? { get set }
-    var footer: DPTableViewHeaderFooterViewModelProtocol? { get set }
+    var rows: [DPRepresentableModel] { get set }
+    var header: DPRepresentableModel? { get set }
+    var footer: DPRepresentableModel? { get set }
 }
 
 // MARK: - Default
 public extension DPTableSectionProtocol {
     
-    func row(at index: Int) -> DPTableRowModelProtocol? {
+    func row(at index: Int) -> DPRepresentableModel? {
         guard self.rows.indices.contains(index) else { return nil }
         return self.rows[index]
     }
@@ -26,17 +26,17 @@ public extension DPTableSectionProtocol {
 // MARK: - Array + DPTableSection
 public extension Array where Element == DPTableSectionProtocol {
     
-    func row(at indexPath: IndexPath) -> DPTableRowModelProtocol? {
+    func row(at indexPath: IndexPath) -> DPRepresentableModel? {
         guard self.indices.contains(indexPath.section) else { return nil }
         return self[indexPath.section].row(at: indexPath.row)
     }
     
-    func header(at index: Int) -> DPTableViewHeaderFooterViewModelProtocol? {
+    func header(at index: Int) -> DPRepresentableModel? {
         guard self.indices.contains(index) else { return nil }
         return self[index].header
     }
     
-    func footer(at index: Int) -> DPTableViewHeaderFooterViewModelProtocol? {
+    func footer(at index: Int) -> DPRepresentableModel? {
         guard self.indices.contains(index) else { return nil }
         return self[index].footer
     }

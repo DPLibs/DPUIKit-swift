@@ -11,9 +11,9 @@ public struct DPTableSection: DPTableSectionProtocol {
     
     // MARK: - Init
     public init(
-        rows: [DPTableRowModelProtocol] = [],
-        header: DPTableViewHeaderFooterViewModelProtocol? = nil,
-        footer: DPTableViewHeaderFooterViewModelProtocol? = nil
+        rows: [DPRepresentableModel] = [],
+        header: DPRepresentableModel? = nil,
+        footer: DPRepresentableModel? = nil
     ) {
         self.rows = rows
         self.header = header
@@ -21,7 +21,7 @@ public struct DPTableSection: DPTableSectionProtocol {
     }
 
     // MARK: - Props
-    public var rows: [DPTableRowModelProtocol]
-    public var header: DPTableViewHeaderFooterViewModelProtocol?
-    public var footer: DPTableViewHeaderFooterViewModelProtocol?
+    public var rows: [DPRepresentableModel]
+    public var header: DPRepresentableModel?
+    public var footer: DPRepresentableModel?
 }

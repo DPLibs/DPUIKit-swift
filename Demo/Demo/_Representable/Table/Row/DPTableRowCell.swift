@@ -10,7 +10,7 @@ import UIKit
 import DPUIKit
 
 public protocol DPTableRowCellProtocol: UITableViewCell {
-    var _model: DPTableRowModelProtocol? { get set }
+    var _model: DPRepresentableModel? { get set }
 }
 
 open class DPTableRowCell: UITableViewCell, DPTableRowCellProtocol {
@@ -27,7 +27,7 @@ open class DPTableRowCell: UITableViewCell, DPTableRowCellProtocol {
     }
     
     // MARK: - Props
-    open var _model: DPTableRowModelProtocol? {
+    open var _model: DPRepresentableModel? {
         didSet { self.updateComponents() }
     }
 

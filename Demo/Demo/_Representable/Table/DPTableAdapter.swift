@@ -11,7 +11,14 @@ import UIKit
 open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Init
-    public override init() {}
+    public init(
+        rowAdapters: [DPTableRowAdaptable] = [],
+        titleAdapters: [DPTableTitleAdaptable] = []
+    ) {
+        super.init()
+        self.addRowAdapters(rowAdapters)
+        self.addTitleAdapters(titleAdapters)
+    }
     
     // MARK: - Props
     open weak var tableView: DPTableView? {
@@ -27,7 +34,8 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
     
     open internal(set) var lastContentOffset: CGPoint?
-    open internal(set) var rowAdapters: [String: DPTableRowAdapterProtocol] = [:]
+    open internal(set) var rowAdapters: [String: DPTableRowAdaptable] = [:]
+    open internal(set) var titleAdapters: [String: DPTableTitleAdaptable] = [:]
     open internal(set) var registeredСellIdentifiers: Set<String> = []
     open internal(set) var registeredHeaderFooterViewsIdentifiers: Set<String> = []
     
@@ -36,6 +44,9 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     open var onCellForRow: DPTableRowContextClosure?
     open var willDisplayRow: DPTableRowContextClosure?
+    
+    open var onHeightForRow: DPTableRowContextToCGFloat?
+    open var onEstimatedHeightForRow: DPTableRowContextToCGFloat?
     
     open var onDisplayFirstRow: (() -> Void)?
     open var onDisplayLastRow: (() -> Void)?
@@ -48,6 +59,39 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     open var didScroll: (((direction: UITableView.ScrollPosition, isDragging: Bool, isAchived: Bool)) -> Void)?
     
+    // MARK: - Methods
+    public func addRowAdapters(_ rowAdapters: [DPTableRowAdaptable]) {
+        for adapter in rowAdapters {
+            self.rowAdapters[adapter.modelRepresentableIdentifier] = adapter
+        }
+    }
+    
+    public func addTitleAdapters(_ titleAdapters: [DPTableTitleAdaptable]) {
+        for adapter in titleAdapters {
+            self.titleAdapters[adapter.modelRepresentableIdentifier] = adapter
+        }
+    }
+    
+    public func rowAdapter(at indexPath: IndexPath) -> DPTableRowAdaptable? {
+        guard
+            self.sections.indices.contains(indexPath.section),
+            self.sections[indexPath.section].rows.indices.contains(indexPath.row)
+        else { return nil }
+        
+        let model = self.sections[indexPath.section].rows[indexPath.row]
+        return self.rowAdapters[model._representableIdentifier]
+    }
+    
+    public func headerAdapter(at index: Int) -> DPTableTitleAdaptable? {
+        guard self.sections.indices.contains(index), let header = self.sections[index].header else { return nil }
+        return self.titleAdapters[header._representableIdentifier]
+    }
+    
+    public func footerAdapter(at index: Int) -> DPTableTitleAdaptable? {
+        guard self.sections.indices.contains(index), let footer = self.sections[index].footer else { return nil }
+        return self.titleAdapters[footer._representableIdentifier]
+    }
+    
     // MARK: - UITableViewDataSource
     open func numberOfSections(in tableView: UITableView) -> Int {
         self.sections.count
@@ -59,24 +103,29 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
 
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let row = self.sections.row(at: indexPath) else { return UITableViewCell() }
-        let cellIdentifier = String(describing: row.cellClass)
+        guard
+            let model = self.sections.row(at: indexPath),
+            let adapter = self.rowAdapters[model._representableIdentifier]
+        else { return UITableViewCell() }
+        
+        let cellClass = adapter.cellClass
+        let cellIdentifier = String(describing: cellClass)
         
         if !self.registeredСellIdentifiers.contains(cellIdentifier) {
-            tableView.register(row.cellClass, forCellReuseIdentifier: cellIdentifier)
+            tableView.register(cellClass, forCellReuseIdentifier: cellIdentifier)
             self.registeredСellIdentifiers.insert(cellIdentifier)
         }
-         
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
         if let cell = cell as? DPTableRowCellProtocol {
-            cell._model = row
+            cell._model = model
             
-            let context: DPTableRowContext = (cell, row, indexPath)
+            let context: DPTableRowContext = (cell, model, indexPath)
             self.onCellForRow?(context)
-            row.onCell?(context)
+            adapter.onCell(cell: cell, model: model, indexPath: indexPath)
         }
-
+        
         return cell
     }
     
@@ -85,66 +134,82 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         if let cell = cell as? DPTableRowCellProtocol, let model = self.sections.row(at: indexPath) {
             let context: DPTableRowContext = (cell, model, indexPath)
             self.willDisplayRow?(context)
-            model.willDisplay?(context)
+            self.rowAdapters[model._representableIdentifier]?.willDisplay(cell: cell, model: model, indexPath: indexPath)
         }
-        
+
         if indexPath == IndexPath(row: 0, section: 0) {
             self.onDisplayFirstRow?()
         }
-        
+
         if !self.sections.isEmpty, indexPath == IndexPath(row: (self.sections.last?.rows.count ?? 0) - 1, section: self.sections.count - 1) {
             self.onDisplayLastRow?()
         }
     }
-    
+
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.sections.row(at: indexPath)?.cellHeight ?? tableView.rowHeight
+        guard let model = self.sections.row(at: indexPath) else { return tableView.rowHeight }
+        let adapter = self.rowAdapters[model._representableIdentifier]
+        return adapter?.onCellHeight(model: model, indexPath: indexPath) ?? tableView.rowHeight
     }
-    
+
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        self.sections.row(at: indexPath)?.cellEstimatedHeight ?? tableView.estimatedRowHeight
+        guard let model = self.sections.row(at: indexPath) else { return tableView.estimatedRowHeight }
+        let adapter = self.rowAdapters[model._representableIdentifier]
+        return adapter?.onCellEstimatedHeight(model: model, indexPath: indexPath) ?? tableView.estimatedRowHeight
     }
     
     // MARK: - UITableViewDelegate + Header In Section
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = self.sections.header(at: section) else { return UIView() }
-        let viewIdentifier = String(describing: header.viewClass)
+        guard
+            let header = self.sections.header(at: section),
+            let adapter = self.titleAdapters[header._representableIdentifier]
+        else { return nil }
+
+        let viewClass = adapter.viewClass
+        let viewIdentifier = String(describing: viewClass)
+
+        if !self.registeredHeaderFooterViewsIdentifiers.contains(viewIdentifier) {
+            tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: viewIdentifier)
+            self.registeredHeaderFooterViewsIdentifiers.insert(viewIdentifier)
+        }
+
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier)
+
+        if let view = view as? DPTableTitleViewProtocol {
+            view._model = header
+        }
+
+        return view
+    }
+
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let adapter = self.headerAdapter(at: section) else { return 0 }
+        return adapter.viewHeight ?? tableView.sectionHeaderHeight
+    }
+
+    open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        guard let adapter = self.headerAdapter(at: section) else { return 0 }
+        return adapter.viewEstimatedHeight ?? tableView.estimatedSectionHeaderHeight
+    }
+
+    // MARK: - UITableViewDelegate + Footer In Section
+    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard
+            let footer = self.sections.footer(at: section),
+            let adapter = self.titleAdapters[footer._representableIdentifier]
+        else { return nil }
+        
+        let viewClass = adapter.viewClass
+        let viewIdentifier = String(describing: viewClass)
         
         if !self.registeredHeaderFooterViewsIdentifiers.contains(viewIdentifier) {
-            tableView.register(header.viewClass, forHeaderFooterViewReuseIdentifier: viewIdentifier)
+            tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: viewIdentifier)
             self.registeredHeaderFooterViewsIdentifiers.insert(viewIdentifier)
         }
         
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier)
         
-        if let view = view as? DPTableViewHeaderFooterViewProtocol {
-            view._model = header
-        }
-        
-        return view
-    }
-
-    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        self.sections.header(at: section)?.viewHeight ?? tableView.sectionHeaderHeight
-    }
-
-    open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        self.sections.header(at: section)?.viewEstimatedHeight ?? tableView.estimatedSectionHeaderHeight
-    }
-
-    // MARK: - UITableViewDelegate + Footer In Section
-    open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let footer = self.sections.footer(at: section) else { return nil }
-        let viewIdentifier = String(describing: footer.viewClass)
-        
-        if !self.registeredHeaderFooterViewsIdentifiers.contains(viewIdentifier) {
-            tableView.register(footer.viewClass, forHeaderFooterViewReuseIdentifier: viewIdentifier)
-            self.registeredHeaderFooterViewsIdentifiers.insert(viewIdentifier)
-        }
-        
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: footer.viewClass))
-        
-        if let view = view as? DPTableViewHeaderFooterViewProtocol {
+        if let view = view as? DPTableTitleViewProtocol {
             view._model = footer
         }
         
@@ -152,32 +217,34 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
 
     open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        self.sections.footer(at: section)?.viewHeight ?? tableView.sectionFooterHeight
+        guard let adapter = self.footerAdapter(at: section) else { return 0 }
+        return adapter.viewHeight ?? tableView.sectionFooterHeight
     }
 
     open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        self.sections.footer(at: section)?.viewEstimatedHeight ?? tableView.estimatedSectionFooterHeight
+        guard let adapter = self.footerAdapter(at: section) else { return 0 }
+        return adapter.viewHeight ?? tableView.estimatedSectionFooterHeight
     }
 
     // MARK: - UITableViewDelegate + Swipe
     open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
-            let model = self.sections.row(at: indexPath)
-        else { return .empty }
+            let model = self.sections.row(at: indexPath),
+            let adapter = self.rowAdapters[model._representableIdentifier]
+        else { return nil }
 
-        let context: DPTableRowContext = (cell, model, indexPath)
-        return model.onCellLeading?(context) ?? self.onCellLeading?(context) ?? .empty
+        return adapter.onCellLeading(cell: cell, model: model, indexPath: indexPath) ?? self.onCellLeading?((cell, model, indexPath)) ?? nil
     }
 
     open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
-            let model = self.sections.row(at: indexPath)
-        else { return .empty }
+            let model = self.sections.row(at: indexPath),
+            let adapter = self.rowAdapters[model._representableIdentifier]
+        else { return nil }
 
-        let context: DPTableRowContext = (cell, model, indexPath)
-        return model.onCellTrailing?(context) ?? self.onCellTrailing?(context) ?? .empty
+        return adapter.onCellTrailing(cell: cell, model: model, indexPath: indexPath) ?? self.onCellTrailing?((cell, model, indexPath)) ?? nil
     }
     
     // MARK: - UITableViewDelegate + Select
@@ -186,21 +253,19 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let cell = self.tableView?.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return }
-        
-        let context: DPTableRowContext = (cell, model, indexPath)
-        self.didSelectRow?(context)
-        model.didSelect?(context)
+
+        self.didSelectRow?((cell, model, indexPath))
+        self.rowAdapters[model._representableIdentifier]?.didSelect(cell: cell, model: model, indexPath: indexPath)
     }
-    
+
     open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard
             let cell = self.tableView?.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return }
-        
-        let context: DPTableRowContext = (cell, model, indexPath)
-        self.didDeselectRow?(context)
-        model.didDeselect?(context)
+
+        self.didDeselectRow?((cell, model, indexPath))
+        self.rowAdapters[model._representableIdentifier]?.didDeselect(cell: cell, model: model, indexPath: indexPath)
     }
 
     // MARK: - UITableViewDelegate + Edit
@@ -210,9 +275,8 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let model = self.sections.row(at: indexPath)
         else { return }
 
-        let context: DPTableRowContext = (cell, model, indexPath)
-        self.willBeginEditingRow?(context)
-        model.willBeginEditing?(context)
+        self.willBeginEditingRow?((cell, model, indexPath))
+        self.rowAdapters[model._representableIdentifier]?.willBeginEditing(cell: cell, model: model, indexPath: indexPath)
     }
 
     open func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
@@ -222,9 +286,8 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             let model = self.sections.row(at: indexPath)
         else { return }
         
-        let context: DPTableRowContext = (cell, model, indexPath)
-        self.didEndEditingRow?(context)
-        model.didEndEditing?(context)
+        self.didEndEditingRow?((cell, model, indexPath))
+        self.rowAdapters[model._representableIdentifier]?.didEndEditing(cell: cell, model: model, indexPath: indexPath)
     }
     
     // MARK: - UITableViewDelegate + Scroll

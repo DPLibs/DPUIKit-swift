@@ -1,5 +1,5 @@
 //
-//  DPTableViewHeaderFooterView.swift
+//  DPTableTitleView.swift
 //  DPUIKit
 //
 //  Created by Дмитрий Поляков on 03.09.2021.
@@ -8,7 +8,11 @@
 import Foundation
 import UIKit
 
-open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPTableViewHeaderFooterViewProtocol {
+public protocol DPTableTitleViewProtocol: UITableViewHeaderFooterView {
+    var _model: DPRepresentableModel? { get set }
+}
+
+open class DPTableTitleView: UITableViewHeaderFooterView, DPTableTitleViewProtocol {
     
     // MARK: - Init
     override public init(reuseIdentifier: String?) {
@@ -22,7 +26,7 @@ open class DPTableViewHeaderFooterView: UITableViewHeaderFooterView, DPTableView
     }
     
     // MARK: - Props
-    open var _model: DPTableViewHeaderFooterViewModelProtocol? {
+    open var _model: DPRepresentableModel? {
         didSet { self.updateComponents() }
     }
 

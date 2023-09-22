@@ -8,55 +8,47 @@
 import Foundation
 import UIKit
 
-public protocol DPTableRowAdapterProtocol {
+public protocol DPTableRowAdaptable {
     var modelRepresentableIdentifier: String { get }
-    
     var cellClass: DPTableRowCellProtocol.Type { get }
-    var cellHeight: CGFloat? { get }
-    var cellEstimatedHeight: CGFloat? { get }
     
-    func handleDidSelect(_ context: DPTableRowContext)
-    func handleDidDeselect(_ context: DPTableRowContext)
-    func handleOnCell(_ context: DPTableRowContext)
-    func handleWillDisplay(_ context: DPTableRowContext)
-    func handleWillBeginEditing(_ context: DPTableRowContext)
-    func handleDidEndEditing(_ context: DPTableRowContext)
-    func handleOnCellLeading(_ context: DPTableRowContext) -> UISwipeActionsConfiguration?
-    func handleOnCellTrailing(_ context: DPTableRowContext) -> UISwipeActionsConfiguration?
+    func didSelect(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    func didDeselect(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    func onCell(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    func willDisplay(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    func onCellHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat?
+    func onCellEstimatedHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat?
+    func willBeginEditing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    func didEndEditing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    func onCellLeading(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    func onCellTrailing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration?
 }
 
-// MARK: - Protocol - Default
-public extension DPTableRowAdapterProtocol {
-    var cellHeight: CGFloat? { nil }
-    var cellEstimatedHeight: CGFloat? { nil }
-    
-    func handleDidSelect(_ context: DPTableRowContext) {}
-    func handleDidDeselect(_ context: DPTableRowContext) {}
-    func handleOnCell(_ context: DPTableRowContext) {}
-    func handleWillDisplay(_ context: DPTableRowContext) {}
-    func handleWillBeginEditing(_ context: DPTableRowContext) {}
-    func handleDidEndEditing(_ context: DPTableRowContext) {}
-    func handleOnCellLeading(_ context: DPTableRowContext) -> UISwipeActionsConfiguration? { nil }
-    func handleOnCellTrailing(_ context: DPTableRowContext) -> UISwipeActionsConfiguration? { nil }
-}
-
-open class DPTableRowAdapter<Cell: DPTableRowCellProtocol, Model: DPRepresentableModel>: DPTableRowAdapterProtocol {
+open class DPTableRowAdapter<Cell: DPTableRowCellProtocol, Model: DPRepresentableModel>: DPTableRowAdaptable {
     
     // MARK: - Init
     public init(
+        cellHeight: CGFloat? = nil,
+        cellEstimatedHeight: CGFloat? = nil,
         didSelect: RowContextClosure? = nil,
         didDeselect: RowContextClosure? = nil,
         onCell: RowContextClosure? = nil,
         willDisplay: RowContextClosure? = nil,
+        onCellHeight: RowContextToCGFloat? = nil,
+        onCellEstimatedHeight: RowContextToCGFloat? = nil,
         willBeginEditing: RowContextClosure? = nil,
         didEndEditing: RowContextClosure? = nil,
         onCellLeading: RowContextToSwipeActionsConfiguration? = nil,
         onCellTrailing: RowContextToSwipeActionsConfiguration? = nil
     ) {
+        self.cellHeight = cellHeight
+        self.cellEstimatedHeight = cellEstimatedHeight
         self.didSelect = didSelect
         self.didDeselect = didDeselect
         self.onCell = onCell
         self.willDisplay = willDisplay
+        self.onCellHeight = onCellHeight
+        self.onCellEstimatedHeight = onCellEstimatedHeight
         self.willBeginEditing = willBeginEditing
         self.didEndEditing = didEndEditing
         self.onCellLeading = onCellLeading
@@ -67,6 +59,7 @@ open class DPTableRowAdapter<Cell: DPTableRowCellProtocol, Model: DPRepresentabl
     public typealias RowContext = (cell: Cell, model: Model, indexPath: IndexPath)
     public typealias RowContextClosure = (RowContext) -> Void
     public typealias RowContextToSwipeActionsConfiguration = (RowContext) -> UISwipeActionsConfiguration?
+    public typealias RowContextToCGFloat = ((model: Model, indexPath: IndexPath)) -> CGFloat?
     
     // MARK: - Props
     public let modelRepresentableIdentifier: String = DPRepresentableIdentifier.produce(Model.self)
@@ -79,54 +72,61 @@ open class DPTableRowAdapter<Cell: DPTableRowCellProtocol, Model: DPRepresentabl
     open var didDeselect: RowContextClosure?
     open var onCell: RowContextClosure?
     open var willDisplay: RowContextClosure?
+    open var onCellHeight: RowContextToCGFloat?
+    open var onCellEstimatedHeight: RowContextToCGFloat?
     open var willBeginEditing: RowContextClosure?
     open var didEndEditing: RowContextClosure?
     open var onCellLeading: RowContextToSwipeActionsConfiguration?
     open var onCellTrailing: RowContextToSwipeActionsConfiguration?
     
     // MARK: - Methods
-    open func resolveRowContext(of commonContext: DPTableRowContext) -> RowContext? {
-        guard let cell = commonContext.cell as? Cell, let model = commonContext.model as? Model else { return nil }
-        return (cell, model, commonContext.indexPath)
+    open func didSelect(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) {
+        guard let cell = cell as? Cell, let model = model as? Model else { return }
+        self.didSelect?((cell, model, indexPath))
     }
     
-    open func handleDidSelect(_ context: DPTableRowContext) {
-        guard let context = self.resolveRowContext(of: context) else { return }
-        self.didSelect?(context)
+    open func didDeselect(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) {
+        guard let cell = cell as? Cell, let model = model as? Model else { return }
+        self.didDeselect?((cell, model, indexPath))
     }
     
-    open func handleDidDeselect(_ context: DPTableRowContext) {
-        guard let context = self.resolveRowContext(of: context) else { return }
-        self.didDeselect?(context)
+    open func onCell(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) {
+        guard let cell = cell as? Cell, let model = model as? Model else { return }
+        self.onCell?((cell, model, indexPath))
     }
     
-    open func handleOnCell(_ context: DPTableRowContext) {
-        guard let context = self.resolveRowContext(of: context) else { return }
-        self.onCell?(context)
+    open func willDisplay(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) {
+        guard let cell = cell as? Cell, let model = model as? Model else { return }
+        self.willDisplay?((cell, model, indexPath))
     }
     
-    open func handleWillDisplay(_ context: DPTableRowContext) {
-        guard let context = self.resolveRowContext(of: context) else { return }
-        self.willDisplay?(context)
+    open func onCellHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat? {
+        guard let model = model as? Model else { return nil }
+        return self.onCellHeight?((model, indexPath)) ?? self.cellHeight
     }
     
-    open func handleWillBeginEditing(_ context: DPTableRowContext) {
-        guard let context = self.resolveRowContext(of: context) else { return }
-        self.willBeginEditing?(context)
+    open func onCellEstimatedHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat? {
+        guard let model = model as? Model else { return nil }
+        return self.onCellEstimatedHeight?((model, indexPath)) ?? self.cellEstimatedHeight
     }
     
-    open func handleDidEndEditing(_ context: DPTableRowContext) {
-        guard let context = self.resolveRowContext(of: context) else { return }
-        self.didEndEditing?(context)
+    open func willBeginEditing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) {
+        guard let cell = cell as? Cell, let model = model as? Model else { return }
+        self.willBeginEditing?((cell, model, indexPath))
     }
     
-    open func handleOnCellLeading(_ context: DPTableRowContext) -> UISwipeActionsConfiguration? {
-        guard let context = self.resolveRowContext(of: context) else { return nil }
-        return self.onCellLeading?(context)
+    open func didEndEditing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) {
+        guard let cell = cell as? Cell, let model = model as? Model else { return }
+        self.didEndEditing?((cell, model, indexPath))
     }
     
-    open func handleOnCellTrailing(_ context: DPTableRowContext) -> UISwipeActionsConfiguration? {
-        guard let context = self.resolveRowContext(of: context) else { return nil }
-        return self.onCellTrailing?(context)
+    open func onCellLeading(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let cell = cell as? Cell, let model = model as? Model else { return nil }
+        return self.onCellLeading?((cell, model, indexPath))
+    }
+    
+    open func onCellTrailing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let cell = cell as? Cell, let model = model as? Model else { return nil }
+        return self.onCellTrailing?((cell, model, indexPath))
     }
 }

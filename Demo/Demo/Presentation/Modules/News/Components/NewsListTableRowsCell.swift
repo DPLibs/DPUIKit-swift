@@ -34,7 +34,7 @@ class NewsListTableRowsCell: DPTableRowCell {
         super.setupComponents()
         
         self.newsView.addToSuperview(self.contentView, withConstraints: [
-            .edges(.init(top: 8, leading: 8, bottom: 0, trailing: -8))
+            .edges(.init(top: 0, leading: 8, bottom: -8, trailing: -8))
         ])
     }
     
@@ -49,18 +49,17 @@ class NewsListTableRowsCell: DPTableRowCell {
 // MARK: - Model
 extension NewsListTableRowsCell {
     
-    class Model: DPTableRowModelProtocol {
+    typealias Adapter = DPTableRowAdapter<NewsListTableRowsCell, Model>
+    
+    class Model: DPRepresentableModel {
         
         // MARK: - Init
-        init(news: News, onCellLeading: ((DPTableRowContext) -> UISwipeActionsConfiguration?)? = nil) {
+        init(news: News) {
             self.news = news
-            self.onCellLeading = onCellLeading
         }
         
         // MARK: - Props
-        let cellClass: DPTableRowCellProtocol.Type = NewsListTableRowsCell.self
         let news: News
-        var onCellLeading: ((DPTableRowContext) -> UISwipeActionsConfiguration?)?
     }
     
 }

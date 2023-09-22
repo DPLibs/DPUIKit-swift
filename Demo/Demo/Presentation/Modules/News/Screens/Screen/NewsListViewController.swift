@@ -10,17 +10,6 @@ import Foundation
 import UIKit
 import DPUIKit
 
-struct Test1: DPRepresentableModel {
-    
-}
-
-class Test2: DPRepresentableModel {
-    
-    struct Test3: DPRepresentableModel {}
-    
-    class Test4: DPRepresentableModel {}
-}
-
 class NewsListViewController: DPViewController {
     
     // MARK: - Init
@@ -44,56 +33,60 @@ class NewsListViewController: DPViewController {
     
     lazy var tableView: DPTableView = {
         let result = DPTableView()
+        result.adapter?.addRowAdapters([
+            NewsListTableRowsCell.Adapter(
+//                cellHeight: 300,
+//                didSelect: { [weak self] ctx in
+//                    self?.didSelect?(ctx.model.news)
+//                },
+//                onCellLeading: { [weak self] ctx in
+//                    let actions: [UIContextualAction] = [
+//                        .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
+//                            handler(true)
+//                            self?.showInfo()
+//                        })
+//                    ]
+//                    return .init(actions: actions)
+//                }
+            )
+        ])
+        result.adapter?.addTitleAdapters([
+            NewsListTableTitleView.Adapter(viewHeight: 100)
+        ])
         result.adapter?.onDisplayLastRow = { [weak self] in
-            self?.model?.loadMore()
-        }
-        result.adapter?.didSelectRow = { [weak self] ctx in
-            guard let model = ctx.model as? NewsListTableRowsCell.Model else { return }
-            self?.didSelect?(model.news)
+//            self?.model?.loadMore()
         }
         
         return result
     }()
     
     // MARK: - Methods
-    override func loadView() {
-        self.view = self.tableView
-    }
-    
     override func setupComponents() {
         super.setupComponents()
         
+        self.view.backgroundColor = .white
         self.navigationItem.title = "News"
+        
+        self.tableView.backgroundColor = .red
+        self.tableView.addToSuperview(self.view, withConstraints: [ .edges(to: .safeArea) ])
+        
         self.model?.reload()
-        
-        let test1 = Test1()
-        let test2 = Test2()
-        let test3 = Test2.Test3()
-        let test4 = Test2.Test4()
-        
-        print("!!!", test1._representableIdentifier, test2._representableIdentifier, test3._representableIdentifier, test4._representableIdentifier)
     }
     
     override func updateComponents() {
         super.updateComponents()
         
-        let news = self.model?.news ?? []
-        let rows: [DPTableRowModelProtocol] = news.map({
+        let rows: [DPRepresentableModel] = (self.model?.news ?? []).map({
             NewsListTableRowsCell.Model(news: $0)
-            {[weak self] ctx in
-                    let actions: [UIContextualAction] = [
-                        .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
-                            handler(true)
-                            self?.showInfo()
-                        })
-                    ]
-                    return .init(actions: actions)
-                }
         })
         
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData([ DPTableSection(rows: rows) ])
-        }
+        self.tableView.reloadData([
+            DPTableSection(
+                rows: rows
+//                header: NewsListTableTitleView.Model(title: "HEADER"),
+//                footer: NewsListTableTitleView.Model(title: "FOOTER")
+            )
+        ])
         
     }
     
