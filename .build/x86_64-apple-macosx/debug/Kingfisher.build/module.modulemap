@@ -1,4 +1,0 @@
-module Kingfisher {
-    header "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/Kingfisher.build/Kingfisher-Swift.h"
-    requires objc
-}

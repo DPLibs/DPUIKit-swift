@@ -1,4 +1,0 @@
-module DPUIKit {
-    header "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/DPUIKit-Swift.h"
-    requires objc
-}
