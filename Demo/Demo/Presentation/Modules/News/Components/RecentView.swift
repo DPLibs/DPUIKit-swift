@@ -1,5 +1,5 @@
 //
-//  NewsView.swift
+//  RecentView.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 21.02.2022.
@@ -9,27 +9,14 @@ import Foundation
 import DPUIKit
 import UIKit
 
-class NewsView: DPView {
+final class RecentView: DPView {
     
     // MARK: - Props
-    lazy var titleLabel: UILabel = {
-        let result = UILabel()
-        result.applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
-        
-        return result
-    }()
+    let titleLabel = UILabel().applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
+    let bodyLabel = UILabel().applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
     
-    lazy var bodyLabel: UILabel = {
-        let result = UILabel()
-        result.applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
-        
-        return result
-    }()
-    
-    var news: News? {
-        didSet {
-            self.updateComponents()
-        }
+    var recent: Recent? {
+        didSet { self.updateComponents() }
     }
     
     // MARK: - Methods
@@ -46,8 +33,8 @@ class NewsView: DPView {
     override func updateComponents() {
         super.updateComponents()
         
-        self.titleLabel.text = self.news?.title
-        self.bodyLabel.text = self.news?.body
+        self.titleLabel.text = self.recent?.title
+        self.bodyLabel.text = self.recent?.body
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  NewsDetailViewController.swift
+//  RecentViewController.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 21.02.2022.
@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 import DPUIKit
 
-class NewsDetailViewController: DPViewController {
+final class RecentViewController: DPViewController {
     
     // MARK: - Init
-    init(model: NewsDetailViewModel) {
+    init(model: RecentViewModel) {
         super.init()
         
         self.model = model
@@ -24,22 +24,20 @@ class NewsDetailViewController: DPViewController {
     }
     
     // MARK: - Props
-    private var model: NewsDetailViewModel? {
-        get { self._model as? NewsDetailViewModel }
+    private var model: RecentViewModel? {
+        get { self._model as? RecentViewModel }
         set { self._model = newValue }
     }
     
-    lazy var stackScrollView: DPStackScrollView = {
-        let result = DPStackScrollView(arrangedSubviews: [self.newsView])
-        result.axis = .vertical
-        
+    private lazy var recentView: RecentView = {
+        let result = RecentView()
+        result.titleLabel.font = .systemFont(ofSize: 24, weight: .medium)
         return result
     }()
     
-    lazy var newsView: NewsView = {
-        let result = NewsView()
-        result.titleLabel.font = .systemFont(ofSize: 24, weight: .medium)
-        
+    private lazy var stackScrollView: DPStackScrollView = {
+        let result = DPStackScrollView(arrangedSubviews: [self.recentView])
+        result.axis = .vertical
         return result
     }()
     
@@ -52,8 +50,8 @@ class NewsDetailViewController: DPViewController {
         super.setupComponents()
         
         self.view.backgroundColor = AppTheme.background
-        self.navigationItem.title = self.model?.news.title
-        self.newsView.news = self.model?.news
+        self.navigationItem.title = self.model?.recent.title
+        self.recentView.recent = self.model?.recent
     }
     
 }

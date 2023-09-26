@@ -36,10 +36,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         }
     }
     
-    open var sections: [DPTableSectionProtocol] {
-        get { self.tableView?.sections ?? [] }
-        set { self.tableView?.sections = newValue }
-    }
+    open var sections: [DPTableSectionProtocol] = []
     
     open internal(set) var lastContentOffset: CGPoint?
     open internal(set) var rowAdapters: [String: DPTableRowAdapterProtocol] = [:]
@@ -74,16 +71,31 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open var didScroll: (((direction: UITableView.ScrollPosition, isDragging: Bool, isAchived: Bool)) -> Void)?
     
     // MARK: - Methods
-    public func addRowAdapters(_ rowAdapters: [DPTableRowAdapterProtocol]) {
+    open func addRowAdapters(_ rowAdapters: [DPTableRowAdapterProtocol]) {
         for adapter in rowAdapters {
             self.rowAdapters[adapter.modelRepresentableIdentifier] = adapter
         }
     }
     
-    public func addTitleAdapters(_ titleAdapters: [DPTableTitleAdapterProtocol]) {
+    open func addTitleAdapters(_ titleAdapters: [DPTableTitleAdapterProtocol]) {
         for adapter in titleAdapters {
             self.titleAdapters[adapter.modelRepresentableIdentifier] = adapter
         }
+    }
+    
+    open func reloadData(_ sections: [DPTableSectionProtocol]) {
+        self.sections = sections
+        self.tableView?.reloadData()
+    }
+    
+    open func performBatchUpdates(_ updates: [DPTableUpdate], completion: ((Bool) -> Void)? = nil) {
+        self.tableView?.performBatchUpdates(
+            { [weak self] in
+                guard let self = self else { return }
+                updates.forEach({ $0.perform(self) })
+            },
+            completion: completion
+        )
     }
     
     // MARK: - UITableViewDataSource

@@ -1,5 +1,5 @@
 //
-//  NewsListViewController.swift
+//  RecentsViewController.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 20.02.2022.
@@ -10,12 +10,11 @@ import Foundation
 import UIKit
 import DPUIKit
 
-class NewsListViewController: DPViewController {
+class RecentsViewController: DPViewController {
     
     // MARK: - Init
     override init() {
         super.init()
-        
         self.model = .init()
     }
     
@@ -24,37 +23,46 @@ class NewsListViewController: DPViewController {
     }
     
     // MARK: - Props
-    var didSelect: ((News) -> Void)?
+    var didSelect: ((Recent) -> Void)?
     
-    private var model: NewsListViewModel? {
-        get { self._model as? NewsListViewModel }
+    private var model: RecentsViewModel? {
+        get { self._model as? RecentsViewModel }
         set { self._model = newValue }
     }
     
     private lazy var tableView: DPTableView = {
-        let newsAdapter = NewsListTableRowCell.Adapter(
+        let recentAdapter = RecentTableRowCell.Adapter(
             didSelect: { [weak self] ctx in
-                self?.didSelect?(ctx.model.news)
+                self?.didSelect?(ctx.model.recent)
             },
             onCellLeading: { [weak self] _ in
-                let actions: [UIContextualAction] = [
+                return .init(actions: [
                     .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
                         handler(true)
                         self?.showInfo()
                     })
-                ]
-                return .init(actions: actions)
+                ])
+            },
+            onCellTrailing: { [weak self] ctx in
+                return .init(actions: [
+                    .init(style: .destructive, title: "Delete", handler: { [weak self] _, _, handler in
+                        handler(true)
+                        self?.tableView.adapter?.performBatchUpdates([ .deleteRows(at: [ctx.indexPath], with: .automatic) ])
+                    })
+                ])
             }
         )
         
+        let adapter = DPTableAdapter(rowAdapters: [ recentAdapter ])
+        adapter.onDisplayLastRow = { [weak self] in
+            self?.model?.loadMore()
+        }
+        
         let result = DPTableView()
+        result.adapter = adapter
         result.refreshControl = DPRefreshControl(didBeginRefreshing: { [weak self] in
             self?.model?.reload()
         })
-        result.adapter?.addRowAdapters([ newsAdapter ])
-        result.adapter?.onDisplayLastRow = { [weak self] in
-            self?.model?.loadMore()
-        }
         
         return result
     }()
@@ -64,20 +72,29 @@ class NewsListViewController: DPViewController {
         super.setupComponents()
         
         self.view.backgroundColor = .white
-        self.navigationItem.title = "News"
+        self.navigationItem.title = "Recents"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.add))
         
         self.tableView.addToSuperview(self.view, withConstraints: [ .edges(to: .safeArea) ])
+        
+        self.model?.didAdd = { [weak self] recent, index in
+            let model = RecentTableRowCell.Model(recent: recent)
+            self?.tableView.adapter?.performBatchUpdates([
+                .insertRows([model], at: [.init(row: 0, section: 0)], with: .fade)
+            ])
+        }
+        
         self.model?.reload()
     }
     
     override func updateComponents() {
         super.updateComponents()
         
-        let rows: [DPRepresentableModel] = (self.model?.news ?? []).map({
-            NewsListTableRowCell.Model(news: $0)
+        let rows: [DPRepresentableModel] = (self.model?.recents ?? []).map({
+            RecentTableRowCell.Model(recent: $0)
         })
         
-        self.tableView.reloadData([
+        self.tableView.adapter?.reloadData([
             DPTableSection(rows: rows)
         ])
     }
@@ -94,7 +111,17 @@ class NewsListViewController: DPViewController {
         self.tableView.refreshControl?.endRefreshing()
     }
     
-    private func showInfo() {
+}
+
+// MARK: - Private
+private extension RecentsViewController {
+    
+    @objc
+    func add() {
+        self.model?.add()
+    }
+    
+    func showInfo() {
         let alert = UIAlertController(title: "Info alert", message: nil, preferredStyle: .alert)
         alert.addAction(.init(title: "OK", style: .cancel))
         self.present(alert, animated: true)

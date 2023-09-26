@@ -37,14 +37,14 @@ class MainCoordinator: DPWindowCoordinator {
 private extension MainCoordinator {
     
     func showTabBarController() {
-        let itemsTypes: [DPTabBarItem.MainTabBarItemType] = [.news, .profile]
+        let itemsTypes: [DPTabBarItem.MainTabBarItemType] = [.recents, .profile]
         
         let viewControllers: [UIViewController] = itemsTypes.map { type in
             switch type {
-            case .news:
+            case .recents:
                 let nc = DPNavigationController()
                 nc.tabBarItem = DPTabBarItem(type: type)
-                NewsCoordinator(navigationController: nc).start()
+                RecentsCoordinator(navigationController: nc).start()
                 return nc
             case .profile:
                 let nc = DPNavigationController()

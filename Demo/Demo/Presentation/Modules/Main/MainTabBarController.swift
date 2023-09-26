@@ -16,14 +16,14 @@ class MainTabBarController: DPTabBarController {}
 extension DPTabBarItem {
 
     enum MainTabBarItemType: Int, CaseIterable {
-        case news = 0
+        case recents = 0
         case profile = 1
     }
 
     convenience init(type: MainTabBarItemType) {
         switch type {
-        case .news:
-            self.init(title: "News", image: nil, tag: type.rawValue)
+        case .recents:
+            self.init(title: "Recents", image: nil, tag: type.rawValue)
         case .profile:
             self.init(title: "Profile", image: nil, tag: type.rawValue)
         }

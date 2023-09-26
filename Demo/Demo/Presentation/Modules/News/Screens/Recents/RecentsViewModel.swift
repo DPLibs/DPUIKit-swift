@@ -1,5 +1,5 @@
 //
-//  NewsListViewModel.swift
+//  RecentsViewModel.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 20.02.2022.
@@ -9,26 +9,38 @@
 import Foundation
 import DPUIKit
 
-class NewsListViewModel: DPViewModel {
+class RecentsViewModel: DPViewModel {
     
     // MARK: - Props
-    private(set) var news: [News] = []
+    private(set) var recents: [Recent] = []
+    var didAdd: ((_ recent: Recent, _ index: Int) -> Void)?
     
     // MARK: - Methods
     override func reload() {
-        self._reload(isReload: true)
+        self.reload(isReload: true)
     }
     
     override func loadMore() {
-        self._reload(isReload: false)
+        self.reload(isReload: false)
     }
     
-    private func _reload(isReload: Bool) {
+    func add() {
+        let recent = Recent.moc()
+        self.recents.insert(recent, at: 0)
+        self.didAdd?(recent, 0)
+    }
+    
+}
+
+// MARK: - Private
+private extension RecentsViewModel {
+    
+    func reload(isReload: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .microseconds(500)) { [weak self] in
             if isReload {
-                self?.news.removeAll()
+                self?.recents.removeAll()
             }
-            self?.news += .generate(count: 10)
+            self?.recents += .moc(count: 10)
             self?._output?.modelReloaded(self)
             self?._output?.modelFinishLoading(self, withError: nil)
         }

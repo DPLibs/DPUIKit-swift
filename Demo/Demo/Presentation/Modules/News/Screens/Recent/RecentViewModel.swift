@@ -1,5 +1,5 @@
 //
-//  NewsDetailViewModel.swift
+//  RecentViewModel.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 21.02.2022.
@@ -8,14 +8,14 @@
 import Foundation
 import DPUIKit
 
-class NewsDetailViewModel: DPViewModel {
+class RecentViewModel: DPViewModel {
     
     // MARK: - Init
-    init(news: News) {
-        self.news = news
+    init(recent: Recent) {
+        self.recent = recent
     }
     
     // MARK: - Props
-    let news: News
+    let recent: Recent
     
 }

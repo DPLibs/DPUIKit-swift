@@ -1,5 +1,5 @@
 //
-//  NewsCoordinator.swift
+//  RecentsCoordinator.swift
 //  DPUIKitDemo
 //
 //  Created by Дмитрий Поляков on 05.06.2022.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
-class NewsCoordinator: DPNavigationCoordinator {
+class RecentsCoordinator: DPNavigationCoordinator {
     
     // MARK: - Methods
     override func start() {
@@ -22,19 +22,19 @@ class NewsCoordinator: DPNavigationCoordinator {
 }
 
 // MARK: - Private
-private extension NewsCoordinator {
+private extension RecentsCoordinator {
     
     func showList() {
-        let vc = NewsListViewController()
-        vc.didSelect = { [weak self] news in
-            self?.showDetail(news)
+        let vc = RecentsViewController()
+        vc.didSelect = { [weak self] recent in
+            self?.showDetail(recent)
         }
         vc.coordinator = self
         self.show(vc)
     }
     
-    func showDetail(_ news: News) {
-        let vc = NewsDetailViewController(model: .init(news: news))
+    func showDetail(_ recent: Recent) {
+        let vc = RecentViewController(model: .init(recent: recent))
         self.push(vc)
     }
     

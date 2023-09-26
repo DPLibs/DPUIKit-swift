@@ -34,23 +34,18 @@ open class DPTableView: UITableView {
         didSet { self.adapter?.tableView = self }
     }
     
-    open var sections: [DPTableSectionProtocol] = []
-    
     // MARK: - Methods
     open func didSetRefreshControl() {
         guard let refreshControl = self.refreshControl else { return }
         self.bringSubviewToFront(refreshControl)
     }
     
-    open func reloadData(_ sections: [DPTableSectionProtocol]) {
-        self.sections = sections
-        self.reloadData()
-    }
-    
     // MARK: - DPViewProtocol
     open func setupComponents() {
         self.backgroundColor = .white
         self.separatorStyle = .none
+        self.keyboardDismissMode = .onDrag
+
         self.adapter = DPTableAdapter()
     }
     
