@@ -1,0 +1,62 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "136dfd5b86d0b88139ffa6953b3787cbb3e205fa08d29c3c9a45c75c19ba2995"
+build_start_time: [1695757393, 652174000]
+build_end_time: [1695757399, 660185000]
+inputs:
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/Mixin/Mixin+Equals.swift": [1695757389, 755929453]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/Mixin/Mixin+Hash.swift": [1695757389, 756029660]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/Mixin/Mixin.swift": [1695757389, 756128242]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/LineList/LineList.swift": [1695757389, 756419697]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/LineList/SourceRange/Position.swift": [1695757389, 756553821]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/LineList/SourceRange/SourceRange.swift"
+  : [1695757389, 756635194]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Metadata.swift": [1695757389, 756729110]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Module.swift": [1695757389, 756811359]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/OperatingSystem.swift": [1695757389, 756906524]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Platform.swift": [1695757389, 756976190]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/Relationship.swift": [1695757389, 757252270]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/RelationshipKind.swift": [1695757389, 757381810]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/SourceOrigin.swift": [1695757389, 757472101]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/Swift/GenericConstraints.swift"
+  : [1695757389, 757611849]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Relationship/Swift/Swift.swift": [1695757389, 757696514]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/SemanticVersion.swift": [1695757389, 757871804]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/AccessControl.swift": [1695757389, 758072760]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Availability/Availability.swift"
+  : [1695757389, 758204967]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Availability/AvailabilityItem.swift"
+  : [1695757389, 758519879]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Availability/Domain.swift": [1695757389, 758616628]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/DeclarationFragments/DeclarationFragments.swift"
+  : [1695757389, 758755293]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/DeclarationFragments/Fragment/Fragment.swift"
+  : [1695757389, 758938624]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/DeclarationFragments/Fragment/FragmentKind.swift"
+  : [1695757389, 759027373]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/FunctionSignature/FunctionParameter.swift"
+  : [1695757389, 759150663]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/FunctionSignature/FunctionSignature.swift"
+  : [1695757389, 759260120]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Identifier.swift": [1695757389, 759338369]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/KindIdentifier.swift": [1695757389, 759521783]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Location.swift": [1695757389, 759663657]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Mutability.swift": [1695757389, 759787447]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Names.swift": [1695757389, 759876071]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/SPI.swift": [1695757389, 759983069]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Snippet.swift": [1695757389, 760070485]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/Extension.swift": [1695757389, 760216025]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/GenericConstraint.swift"
+  : [1695757389, 760316565]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/GenericParameter.swift": [1695757389, 760414106]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/Generics.swift": [1695757389, 760487521]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Swift/Namespace.swift": [1695757389, 760570395]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/Symbol.swift": [1695757389, 760672602]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/Symbol/SymbolKind.swift": [1695757389, 760776768]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/SymbolGraph/SymbolGraph.swift": [1695757389, 760856600]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/GraphCollector.swift": [1695757389, 762549454]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/UnifiedSymbol+Encodable.swift"
+  : [1695757389, 762675869]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/UnifiedSymbol.swift": [1695757389, 762765118]
+  ? "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/UnifiedSymbolGraph+Encodable.swift"
+  : [1695757389, 762854700]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-symbolkit/Sources/SymbolKit/UnifiedSymbolGraph/UnifiedSymbolGraph.swift": [1695757389, 762991240]

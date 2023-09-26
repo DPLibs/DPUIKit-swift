@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "48e96d6a835b815809a361d79868f0f51d4da4711ba9af938edb85f6d015edea"
+build_start_time: [1695757393, 645648000]
+build_end_time: [1695757399, 624273000]
+inputs:
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-plugin/Sources/Snippets/Model/Snippet.swift": [1695757389, 293993059]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-plugin/Sources/Snippets/Parsing/SnippetParser.swift": [1695757389, 294139599]

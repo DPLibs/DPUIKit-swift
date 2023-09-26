@@ -1,0 +1,23 @@
+{
+  "": {
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/master.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/SnippetBuildCommand.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/SnippetBuildCommand.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/SnippetBuildCommand.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/SnippetBuildCommand~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/SnippetBuildCommand.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/Utility/SymbolGraph+Snippet.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/Utility/SymbolGraph+Snippet.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/Utility/SymbolGraph+Snippet.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/Utility/SymbolGraph+Snippet~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/Utility/SymbolGraph+Snippet.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/Utility/URL+Status.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/Utility/URL+Status.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/Utility/URL+Status.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/Utility/URL+Status~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/snippet_extract.build/Utility/URL+Status.swiftdeps"
+  }
+}

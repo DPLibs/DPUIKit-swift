@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "e15cc76dce98fe22a38d64f05b4cc7841325ef4eb83df72322f9975e8d189f69"
+build_start_time: [1695757399, 877921000]
+build_end_time: [1695757400, 316989000]
+inputs:
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/SnippetBuildCommand.swift": [1695757389, 307925802]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/Utility/SymbolGraph+Snippet.swift": [1695757389, 308075675]
+  "/Users/diman/Dev/DPUIKit/.build/checkouts/swift-docc-plugin/Sources/snippet-extract/Utility/URL+Status.swift": [1695757389, 308156341]

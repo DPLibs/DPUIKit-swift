@@ -1,0 +1,509 @@
+{
+  "": {
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/master.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Constraints/DPCenterConstraint.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPCenterConstraint.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPCenterConstraint.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPCenterConstraint~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPCenterConstraint.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Constraints/DPConstraint.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPConstraint.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPConstraint.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPConstraint~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPConstraint.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Constraints/DPEdgesConstraint.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPEdgesConstraint.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPEdgesConstraint.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPEdgesConstraint~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPEdgesConstraint.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Constraints/DPLayoutConstraint.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPLayoutConstraint.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPLayoutConstraint.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPLayoutConstraint~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPLayoutConstraint.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Constraints/DPSizeConstraint.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPSizeConstraint.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPSizeConstraint.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPSizeConstraint~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Constraints/DPSizeConstraint.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Layout/DPLayoutGuide.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuide.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuide.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuide~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuide.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Layout/DPLayoutGuideAnchorType.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuideAnchorType.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuideAnchorType.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuideAnchorType~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuideAnchorType.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Layout/DPLayoutGuideType.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuideType.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuideType.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuideType~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutGuideType.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Layout/DPLayoutRelation.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutRelation.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutRelation.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutRelation~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Layout/DPLayoutRelation.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/DPConstraintWrapper+AspectRatio.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+AspectRatio.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+AspectRatio.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+AspectRatio~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+AspectRatio.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/DPConstraintWrapper+Center.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Center.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Center.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Center~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Center.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/DPConstraintWrapper+Edge.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Edge.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Edge.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Edge~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Edge.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/DPConstraintWrapper+Edges.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Edges.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Edges.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Edges~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Edges.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/DPConstraintWrapper+Height.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Height.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Height.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Height~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Height.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/DPConstraintWrapper+Size.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Size.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Size.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Size~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Size.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/DPConstraintWrapper+Width.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Width.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Width.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Width~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper+Width.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/DPConstraintWrapper.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/DPConstraintWrapper.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/AutoLayout/Wrapper/UIView+DPConstraintWrapper.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/UIView+DPConstraintWrapper.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/UIView+DPConstraintWrapper.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/UIView+DPConstraintWrapper~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/AutoLayout/Wrapper/UIView+DPConstraintWrapper.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Classes/DPImage.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Classes/DPImage.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Classes/DPImage.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Classes/DPImage~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Classes/DPImage.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Coordinators/DPCoordinatableViewController.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPCoordinatableViewController.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPCoordinatableViewController.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPCoordinatableViewController~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPCoordinatableViewController.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Coordinators/DPCoordinatorProtocol.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPCoordinatorProtocol.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPCoordinatorProtocol.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPCoordinatorProtocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPCoordinatorProtocol.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Coordinators/DPNavigationCoordinator.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPNavigationCoordinator.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPNavigationCoordinator.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPNavigationCoordinator~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPNavigationCoordinator.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Coordinators/DPWindowCoordinator.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPWindowCoordinator.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPWindowCoordinator.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPWindowCoordinator~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Coordinators/DPWindowCoordinator.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/NSMutableAttributedString+StyleWrapper.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/NSMutableAttributedString+StyleWrapper.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/NSMutableAttributedString+StyleWrapper.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/NSMutableAttributedString+StyleWrapper~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/NSMutableAttributedString+StyleWrapper.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UIApplication+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIApplication+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIApplication+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIApplication+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIApplication+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UIButton+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIButton+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIButton+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIButton+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIButton+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UIColor+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIColor+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIColor+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIColor+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIColor+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UIImage+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIImage+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIImage+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIImage+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIImage+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UIImageView+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIImageView+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIImageView+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIImageView+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIImageView+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UILabel+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UILabel+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UILabel+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UILabel+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UILabel+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UIStackView+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIStackView+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIStackView+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIStackView+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIStackView+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UITableViewCell+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UITableViewCell+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UITableViewCell+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UITableViewCell+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UITableViewCell+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UITapGestureRecognizer+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UITapGestureRecognizer+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UITapGestureRecognizer+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UITapGestureRecognizer+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UITapGestureRecognizer+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UIView+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIView+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIView+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIView+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIView+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Extensions/UIViewController+Extensions.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIViewController+Extensions.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIViewController+Extensions.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIViewController+Extensions~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Extensions/UIViewController+Extensions.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/DPRepresentableIdentifier.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/DPRepresentableIdentifier.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/DPRepresentableIdentifier.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/DPRepresentableIdentifier~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/DPRepresentableIdentifier.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/DPRepresentableModel.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/DPRepresentableModel.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/DPRepresentableModel.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/DPRepresentableModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/DPRepresentableModel.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/DPTableAdapter.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableAdapter.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableAdapter.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableAdapter~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableAdapter.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/DPTableUpdate.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableUpdate.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableUpdate.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableUpdate~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableUpdate.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/DPTableView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/DPTableView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/HeaderFooter/DPTableTitleAdapter.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/HeaderFooter/DPTableTitleAdapter.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/HeaderFooter/DPTableTitleAdapter.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/HeaderFooter/DPTableTitleAdapter~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/HeaderFooter/DPTableTitleAdapter.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/HeaderFooter/DPTableTitleView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/HeaderFooter/DPTableTitleView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/HeaderFooter/DPTableTitleView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/HeaderFooter/DPTableTitleView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/HeaderFooter/DPTableTitleView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/Row/DPTableRowAdapter.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Row/DPTableRowAdapter.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Row/DPTableRowAdapter.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Row/DPTableRowAdapter~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Row/DPTableRowAdapter.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/Row/DPTableRowCell.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Row/DPTableRowCell.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Row/DPTableRowCell.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Row/DPTableRowCell~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Row/DPTableRowCell.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/Section/DPTableSection.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Section/DPTableSection.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Section/DPTableSection.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Section/DPTableSection~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Section/DPTableSection.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Representable/Table/Section/DPTableSectionProtocol.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Section/DPTableSectionProtocol.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Section/DPTableSectionProtocol.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Section/DPTableSectionProtocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Representable/Table/Section/DPTableSectionProtocol.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Screen/DPViewController.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewController.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewController.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewController~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewController.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Screen/DPViewErrorHandler.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewErrorHandler.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewErrorHandler.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewErrorHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewErrorHandler.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Screen/DPViewModel.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewModel.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewModel.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewModel.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Screen/DPViewModelOutput.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewModelOutput.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewModelOutput.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewModelOutput~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Screen/DPViewModelOutput.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/Stylable.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/Stylable.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/Stylable.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/Stylable~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/Stylable.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UIActivityIndicatorView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIActivityIndicatorView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIActivityIndicatorView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIActivityIndicatorView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIActivityIndicatorView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UIButton.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIButton.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIButton.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIButton~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIButton.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UICollectionView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UICollectionView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UICollectionView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UICollectionView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UICollectionView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UIImageView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIImageView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIImageView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIImageView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIImageView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UILabel.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UILabel.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UILabel.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UILabel~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UILabel.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UINavigationBar.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UINavigationBar.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UINavigationBar.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UINavigationBar~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UINavigationBar.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UIScrollView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIScrollView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIScrollView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIScrollView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIScrollView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UISearchBar.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UISearchBar.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UISearchBar.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UISearchBar~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UISearchBar.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UIStackView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIStackView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIStackView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIStackView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIStackView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UISwitch.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UISwitch.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UISwitch.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UISwitch~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UISwitch.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UITabBar.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITabBar.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITabBar.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITabBar~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITabBar.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UITableCell.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITableCell.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITableCell.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITableCell~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITableCell.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UITableView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITableView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITableView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITableView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITableView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UITextField.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITextField.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITextField.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITextField~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UITextField.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper+UIView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper+UIView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/StyleWrapper/StyleWrapper.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/StyleWrapper/StyleWrapper.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/ViewControllers/DPNavigationController.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/DPNavigationController.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/DPNavigationController.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/DPNavigationController~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/DPNavigationController.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/ViewControllers/PageContainerViewController/DPPageContainerViewController.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/PageContainerViewController/DPPageContainerViewController.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/PageContainerViewController/DPPageContainerViewController.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/PageContainerViewController/DPPageContainerViewController~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/PageContainerViewController/DPPageContainerViewController.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/ViewControllers/PageContainerViewController/DPPageContainerViewControllerDelegate.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/PageContainerViewController/DPPageContainerViewControllerDelegate.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/PageContainerViewController/DPPageContainerViewControllerDelegate.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/PageContainerViewController/DPPageContainerViewControllerDelegate~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/PageContainerViewController/DPPageContainerViewControllerDelegate.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/ViewControllers/TabBar/DPTabBarController.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/TabBar/DPTabBarController.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/TabBar/DPTabBarController.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/TabBar/DPTabBarController~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/TabBar/DPTabBarController.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/ViewControllers/TabBar/DPTabBarItem.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/TabBar/DPTabBarItem.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/TabBar/DPTabBarItem.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/TabBar/DPTabBarItem~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/ViewControllers/TabBar/DPTabBarItem.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/DPButton.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPButton.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPButton.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPButton~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPButton.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/DPControl.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPControl.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPControl.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPControl~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPControl.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/DPRefreshControl.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPRefreshControl.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPRefreshControl.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPRefreshControl~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPRefreshControl.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/DPStackScrollView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPStackScrollView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPStackScrollView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPStackScrollView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPStackScrollView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/DPSwitch.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPSwitch.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPSwitch.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPSwitch~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPSwitch.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/DPTextView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPTextView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPTextView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPTextView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPTextView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/DPView.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPView.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPView.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPView~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPView.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/DPViewProtocol.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPViewProtocol.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPViewProtocol.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPViewProtocol~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/DPViewProtocol.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/SearchBar/DPSearchBar.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBar.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBar.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBar~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBar.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/SearchBar/DPSearchBarAdapter.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapter.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapter.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapter~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapter.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/SearchBar/DPSearchBarAdapterOutput.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapterOutput.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapterOutput.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapterOutput~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapterOutput.swiftdeps"
+  },
+  "/Users/diman/Dev/DPUIKit/Sources/DPUIKit/Views/SearchBar/DPSearchBarAdapterOutputUI.swift": {
+    "dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapterOutputUI.d",
+    "object": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapterOutputUI.swift.o",
+    "swiftmodule": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapterOutputUI~partial.swiftmodule",
+    "swift-dependencies": "/Users/diman/Dev/DPUIKit/.build/x86_64-apple-macosx/debug/DPUIKit.build/Views/SearchBar/DPSearchBarAdapterOutputUI.swiftdeps"
+  }
+}
