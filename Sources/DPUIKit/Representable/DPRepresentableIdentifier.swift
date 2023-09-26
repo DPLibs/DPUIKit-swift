@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum DPRepresentableIdentifier {
+public enum DPRepresentableIdentifier {
     
-    static func produce<Subject>(_ subject: Subject) -> String {
+    public static func produce<Subject>(_ subject: Subject) -> String {
         String(reflecting: subject)
     }
     

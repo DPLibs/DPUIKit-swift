@@ -12,7 +12,7 @@ public protocol DPRepresentableModel {
 }
 
 // MARK: - Default
-extension DPRepresentableModel {
+public extension DPRepresentableModel {
     
     var _representableIdentifier: String {
         DPRepresentableIdentifier.produce(Self.self)

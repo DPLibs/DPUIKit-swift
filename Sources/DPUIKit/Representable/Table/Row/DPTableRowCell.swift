@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import DPUIKit
 
 public protocol DPTableRowCellProtocol: UITableViewCell {
     var _model: DPRepresentableModel? { get set }

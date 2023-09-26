@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol DPTableTitleAdapterProtocol {
     var modelRepresentableIdentifier: String { get }
