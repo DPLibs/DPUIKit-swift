@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// `UITableView` management component
 open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Init
