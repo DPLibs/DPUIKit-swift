@@ -8,18 +8,23 @@
 import Foundation
 import UIKit
 
+public protocol DPRefreshControlProtocol {
+    var isRefreshing: Bool { get }
+    
+    func beginRefreshing()
+    func endRefreshing()
+}
+
 open class DPRefreshControl: UIRefreshControl, DPViewProtocol, DPRefreshControlProtocol {
     
     // MARK: - Init
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.setupComponents()
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         self.setupComponents()
     }
     
@@ -54,14 +59,5 @@ open class DPRefreshControl: UIRefreshControl, DPViewProtocol, DPRefreshControlP
     open func updateComponents() {}
     
     open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
-}
-
-// MARK: - UIRefreshControl + DPRefreshControl
-public extension UIRefreshControl {
-    
-    static func refreshControl(didBeginRefreshing: (() -> Void)?) -> DPRefreshControl {
-        .init(didBeginRefreshing: didBeginRefreshing)
-    }
     
 }

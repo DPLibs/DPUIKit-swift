@@ -113,7 +113,6 @@
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E26735E02759547900DCEEFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2F86CA22AC2CCF3002AF6D7 /* DPTableUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPTableUpdate.swift; sourceTree = "<group>"; };
-		E2F86CA42AC2D22D002AF6D7 /* Table TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Table TODO.md"; sourceTree = "<group>"; };
 		E2FC50A827C375F700F320C5 /* RecentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentView.swift; sourceTree = "<group>"; };
 		E2FC50AC27C377A300F320C5 /* RecentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
 		E2FC50B027C3780200F320C5 /* RecentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentViewModel.swift; sourceTree = "<group>"; };
@@ -154,7 +153,6 @@
 		E2275BA92AB45E6500B153B2 /* Table */ = {
 			isa = PBXGroup;
 			children = (
-				E2F86CA42AC2D22D002AF6D7 /* Table TODO.md */,
 				E2275BC12AB45FE700B153B2 /* DPTableAdapter.swift */,
 				E2F86CA22AC2CCF3002AF6D7 /* DPTableUpdate.swift */,
 				E2275BB42AB45E6500B153B2 /* DPTableView.swift */,

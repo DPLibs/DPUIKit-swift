@@ -10,11 +10,6 @@ import UIKit
 
 open class DPView: UIView, DPViewProtocol {
     
-    // MARK: - Model
-    open var _model: Any? {
-        didSet { self.updateComponents() }
-    }
-    
     // MARK: - Init
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +23,11 @@ open class DPView: UIView, DPViewProtocol {
         self.setupComponents()
     }
     
+    // MARK: - Props
+    open var _model: Any? {
+        didSet { self.updateComponents() }
+    }
+    
     // MARK: - DPViewProtocol
     open func setupComponents() {}
     
@@ -35,7 +35,6 @@ open class DPView: UIView, DPViewProtocol {
     
     open func setHidden(_ hidden: Bool, animated: Bool) {
         guard self.isHidden != hidden else { return }
-        
         self.isHidden = hidden
     }
 

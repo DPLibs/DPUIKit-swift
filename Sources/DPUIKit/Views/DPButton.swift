@@ -13,26 +13,22 @@ open class DPButton: UIButton, DPViewProtocol {
     // MARK: - Init
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.setupComponents()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         self.setupComponents()
     }
     
     public convenience init(type: UIButton.ButtonType, didTouchUpInside: (() -> Void)? = nil) {
         self.init(type: type)
-        
         self.didTouchUpInside = didTouchUpInside
         self.didTouchUpInsideDidSet()
     }
     
     public init(didTouchUpInside: (() -> Void)? = nil) {
         super.init(frame: .zero)
-        
         self.didTouchUpInside = didTouchUpInside
         self.didTouchUpInsideDidSet()
     }

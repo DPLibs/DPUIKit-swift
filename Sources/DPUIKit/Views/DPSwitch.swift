@@ -13,19 +13,16 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     // MARK: - Init
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.setupComponents()
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         self.setupComponents()
     }
     
     public init(didTouchUpInside: (() -> Void)? = nil) {
         super.init(frame: .zero)
-        
         self.didTouchUpInside = didTouchUpInside
         self.didTouchUpInsideDidSet()
     }
