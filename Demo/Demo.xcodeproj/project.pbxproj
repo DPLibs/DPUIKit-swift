@@ -360,7 +360,7 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		E258BFF62ABAD3B200161C0C /* Collection */ = {
+		E258BFF62ABAD3B200161C0C /* _Collection */ = {
 			isa = PBXGroup;
 			children = (
 				E258C0192ABC253400161C0C /* Collection TODO.md */,
@@ -370,18 +370,17 @@
 				E258BFFA2ABAD47B00161C0C /* Item */,
 				E258C0052ABAD7A300161C0C /* Section */,
 			);
-			path = Collection;
+			path = _Collection;
 			sourceTree = "<group>";
 		};
-		E258BFF72ABAD3CC00161C0C /* _Representable */ = {
+		E258BFF72ABAD3CC00161C0C /* Representable */ = {
 			isa = PBXGroup;
 			children = (
 				E258C01E2ABC3E1800161C0C /* DPRepresentableIdentifier.swift */,
 				E258C01A2ABC2C5E00161C0C /* DPRepresentableModel.swift */,
-				E258BFF62ABAD3B200161C0C /* Collection */,
 				E2275BA92AB45E6500B153B2 /* Table */,
 			);
-			path = _Representable;
+			path = Representable;
 			sourceTree = "<group>";
 		};
 		E258BFFA2ABAD47B00161C0C /* Item */ = {
@@ -458,7 +457,8 @@
 		E26735D32759547600DCEEFB /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				E258BFF72ABAD3CC00161C0C /* _Representable */,
+				E258BFF62ABAD3B200161C0C /* _Collection */,
+				E258BFF72ABAD3CC00161C0C /* Representable */,
 				E23A5EA627C27D64004EE94F /* Application */,
 				E23A5EC827C2AF11004EE94F /* Domain */,
 				E23A5EA727C27D91004EE94F /* Presentation */,
