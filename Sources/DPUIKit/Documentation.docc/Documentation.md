@@ -13,7 +13,7 @@ swift package --allow-writing-to-directory /docs \
 swift package --allow-writing-to-directory ./docs \
     generate-documentation --target DPUIKit --output-path ./docs
 
-$(xcrun --find docc) process-archive transform-for-static-hosting DPUIKit.doccarchive --hosting-base-path ./DPUIKit.doccarchive --output-path ./docs/
+$(xcrun --find docc) process-archive transform-for-static-hosting DPUIKit.doccarchive --hosting-base-path https://dplibs.github.io/DPUIKit-swift/ --output-path ./test
 ```
 
 ## Overview
