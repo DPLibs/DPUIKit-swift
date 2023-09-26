@@ -16,5 +16,5 @@ swift package --allow-writing-to-directory /docs \
     generate-documentation --target DPUIKit \
     --disable-indexing \
     --transform-for-static-hosting \
-    --hosting-base-path https://github.com/DPLibs/DPUIKit-swift \
+    --hosting-base-path https://dplibs.github.io/DPUIKit-swift/ \
     --output-path /docs
