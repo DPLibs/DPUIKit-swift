@@ -1,8 +1,8 @@
 //
-//  DPTableSectionProtocol.swift
-//  Demo
+//  DPTableSection.swift
+//  
 //
-//  Created by Дмитрий Поляков on 15.09.2023.
+//  Created by Дмитрий Поляков on 20.02.2022.
 //
 
 import Foundation
@@ -13,7 +13,26 @@ public protocol DPTableSectionProtocol {
     var footer: DPRepresentableModel? { get set }
 }
 
-// MARK: - Default
+public struct DPTableSection: DPTableSectionProtocol {
+    
+    // MARK: - Init
+    public init(
+        rows: [DPRepresentableModel] = [],
+        header: DPRepresentableModel? = nil,
+        footer: DPRepresentableModel? = nil
+    ) {
+        self.rows = rows
+        self.header = header
+        self.footer = footer
+    }
+
+    // MARK: - Props
+    public var rows: [DPRepresentableModel]
+    public var header: DPRepresentableModel?
+    public var footer: DPRepresentableModel?
+}
+
+// MARK: - DPTableSection + Methods
 public extension DPTableSectionProtocol {
     
     func row(at index: Int) -> DPRepresentableModel? {
@@ -23,7 +42,7 @@ public extension DPTableSectionProtocol {
     
 }
 
-// MARK: - Array + DPTableSection
+// MARK: - DPTableSection + Array
 public extension Array where Element == DPTableSectionProtocol {
     
     func row(at indexPath: IndexPath) -> DPRepresentableModel? {

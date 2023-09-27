@@ -1,7 +1,7 @@
 # MVVM
 A screen or part of a screen is described as follows:
 
-### DPViewController
+### ``DPViewController``
 Deals with displaying views and navigating to other screens. 
 * Stores an instance `DPViewModel`. And implements a protocol `DPViewModelOutput` for processing signals from `DPViewModel`.
 * Stores an instance `DPViewErrorHandler` for handling and displaying errors.
@@ -13,7 +13,7 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
 }
 ```
 
-### DPViewModel
+### ``DPViewModel``
 Is the source of data and states for `DPViewController`.
 * Stores an instance `DPViewModelOutput` for notice `DPViewController`.
 * Сan store and monitor `Model`.
@@ -119,3 +119,10 @@ class TestViewController: DPViewController {
 ```
 
 The `private` modifier for `model` and `errorHanlder` is not accidental. This makes inheritance easier.
+
+## Topics
+
+- ``DPViewController``
+- ``DPViewModel``
+- ``DPViewModelOutput``
+- ``DPViewErrorHandler``
