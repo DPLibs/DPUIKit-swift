@@ -2,6 +2,9 @@
 
 An unobtrusive set of extensions and classes for UIKit.
 
+## Overview
+Test text.
+
 ```swift
 swift package --allow-writing-to-directory /docs \
     generate-documentation --target DPUIKit \
@@ -13,15 +16,7 @@ swift package --allow-writing-to-directory /docs \
 swift package --allow-writing-to-directory ./docs \
     generate-documentation --target DPUIKit --output-path ./docs
 
-$(xcrun --find docc) process-archive transform-for-static-hosting DPUIKit.doccarchive --hosting-base-path ./DPUIKit-swift --output-path ./docs
+$(xcrun --find docc) process-archive transform-for-static-hosting DPUIKit.doccarchive --hosting-base-path DPUIKit-swift --output-path ./docs
 ```
 
-## Overview
-
-
-
 ## Topics
-
-### 
-
-- 
