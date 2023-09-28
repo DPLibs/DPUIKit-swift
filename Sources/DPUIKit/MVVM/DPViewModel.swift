@@ -7,6 +7,11 @@
 
 import Foundation
 
+/// Is the source of data and states for ``DPViewController``.
+///
+/// Part of <doc:MVVM>. 
+/// Stores an instance ``DPViewModelOutput`` for notice ``DPViewController``.
+/// Сan store and monitor `Model`.
 open class DPViewModel {
     
     // MARK: - Init

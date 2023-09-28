@@ -8,21 +8,22 @@
 import Foundation
 import UIKit
 
+/// Needed to process and display errors.
+///
+/// Part of <doc:MVVM>. 
+/// Stores a link to `UIViewController` for show errors.
 open class DPViewErrorHandler {
-    
-    // MARK: - Props
-    open weak var viewController: UIViewController?
     
     // MARK: - Init
     public init() {}
     
+    // MARK: - Props
+    open weak var viewController: UIViewController?
+    
     // MARK: - Methods
-    open func handleError(_ error: Error?, completion: (() -> Void)? = nil) {
-        guard let error = error else { return }
-        
+    open func handleError(_ error: Error, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert)
         alert.addAction(.init(title: "OK", style: .cancel, handler: nil))
-        
         self.viewController?.present(alert, animated: true, completion: completion)
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Is a container inside which are arranged `UIScrollView` and `UIStackView`. And also some methods for managing the view.
 open class DPStackScrollView: DPView {
     
     // MARK: - Init

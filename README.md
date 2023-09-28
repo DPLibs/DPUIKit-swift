@@ -1,155 +1,32 @@
 # DPUIKit
+
 An unobtrusive set of extensions and classes for UIKit.
 
 [![version](https://img.shields.io/badge/version-4.0.0-white.svg)](https://semver.org)
 
 ## Requirements
+
 * IOS 11 or above
 * Xcode 12.5 or above
 
 ## Features
+
 - [x] MVVM
 - [x] Coordinators
-- [ ] UITableView adapter 👨‍💻
+- [x] UITableView adapter 👨‍💻
 - [ ] UICollectionView adapter 👨‍💻
 - [ ] DPLabel 👨‍💻
 - [ ] DPTextField 👨‍💻
 - [ ] SelfSizing views 👨‍💻
 - [ ] Static layout 👨‍💻
+- [ ] MVVM Docc tutorial 👨‍💻
+- [ ] Coordinators Docc tutorial 👨‍💻
+- [ ] UITableView adapter Docc tutorial 👨‍💻
+- [ ] UICollectionView adapter Docc tutorial 👨‍💻
 
-## Overview
-[&#8594; MVVM](/Docs/MVVM.md)\
-[&#8594; Coordinators](/Docs/Coordinators.md)\
-[&#8594; Xcode templates](/Docs/XCode_templates.md)
+## Documentaion
 
-[&#8595; Views](#Views)\
-[&#8595; ConstraintWrapper](#ConstraintWrapper)\
-[&#8595; StyleWrapper](#StyleWrapper)\
-[&#8595; Demo](#Demo)\
-[&#8595; Install](#Install)\
-[&#8595; License](#License)\
-[&#8595; Author](#MVAuthorVM)
-
-## Views
-
-### DPViewProtocol
-The library provides several custom views (`DPView`, `DPControl`, `DPSwitch` and others). They all implement a common protocol `DPViewProtocol`.
-
-```swift
-public protocol DPViewProtocol {
-    func setupComponents()
-    func updateComponents()
-    func setHidden(_ hidden: Bool, animated: Bool)
-}
-```
-
-### DPStackScrollView
-Is a container inside which are arranged `UIScrollView` and `UIStackView`. And also some methods for managing the view.
-
-```swift
-open class DPStackScrollView: DPView {
-    open lazy var scrollView: UIScrollView
-    open lazy var stackView: UIStackView
-
-    open var axis: NSLayoutConstraint.Axis
-    open func addArrangedSubviews(_ views: [UIView]) -> DPStackScrollView
-    open func removeAllArrangedSubviews() -> DPStackScrollView
-    ...
-}
-```
-
-### DPPageContainerViewController
-View controller providing interactions with `UIPageViewController`.
-* Stores an instance `DPPageContainerViewControllerDelegate` for event delegation.
-* Stores an instance `UIPageViewController` to manage it.
-* implements protocols `UIPageViewControllerDelegate` and `UIPageViewControllerDataSource`.
-
-```swift
-open class DPPageContainerViewController: DPViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    open weak var delegate: DPPageContainerViewControllerDelegate?
-    open var pages: [UIViewController] = []
-    open var pageViewController: UIPageViewController
-    
-    open func showPage(at index: Int, animated: Bool, completion: Completion? = nil)
-    open func showPage(_ page: UIViewController?, animated: Bool, completion: Completion? = nil)
-    open func setPages(_ pages: [UIViewController], animated: Bool, showPageAtIndex index: Int? = nil, completion: Completion? = nil)
-    ...
-}
-
-public protocol DPPageContainerViewControllerDelegate: AnyObject {
-    func didSelectPage(_ viewController: DPPageContainerViewController, at index: Int)
-    func didSetPages(_ viewController: DPPageContainerViewController, pages: [UIViewController])
-    func didPageLimitReached(_ viewController: DPPageContainerViewController, for direction: UIPageViewController.NavigationDirection, fromSwipe: Bool)
-}
-```
-
-## AutoLayout
-View extensions setting auto layout constraints. Example:
-
-```swift
-class ViewController: UIViewController {
-
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let myView = UIView()
-        myView.addToSuperview(self.view, withConstraints: [ .edges() ])
-    }
-    
-}
-```
-
-The example above is similar to writing:
-```swift
-class ViewController: UIViewController {
-
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let myView = UIView()
-        myView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            myView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            myView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            myView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            myView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
-        ])
-    }
-    
-}
-```
-
-## StyleWrapper
-View extensions setting styles. Example:
-
-```swift
-class ViewController: UIViewController {
-
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let myView = UIView()
-        myView.applyStyles(.backgroundColor(.white), .cornerRadius(16))
-    }
-    
-}
-```
-
-The example above is similar to writing:
-```swift
-class ViewController: UIViewController {
-
-    open override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let myView = UIView()
-        myView.backgroundColor = .white
-        myView.layer.cornerRadius = 16
-    }
-    
-}
-```
+[See documentaion](https://dplibs.github.io/DPUIKit-swift/documentation/dpuikit/)
 
 ## Demo
 A [small project](/Demo) demonstrating the interaction of MVVM modules in an application.

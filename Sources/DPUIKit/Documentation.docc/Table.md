@@ -1,5 +1,9 @@
 # Table
 
+@Metadata {
+    @Available(iOS, introduced: "11.0")
+}
+
 ## Overview
 
 ## Topics

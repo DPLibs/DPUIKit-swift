@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// `UIViewController` interface which can store a strong reference to the ``DPCoordinatorProtocol``
 public protocol DPCoordinatableViewController: UIViewController {
     
     /// Property to store a strong reference to the `coordinator`

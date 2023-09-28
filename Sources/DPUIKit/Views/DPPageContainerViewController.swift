@@ -8,8 +8,24 @@
 import Foundation
 import UIKit
 
+public protocol DPPageContainerViewControllerDelegate: AnyObject {
+    func didSelectPage(_ viewController: DPPageContainerViewController, at index: Int)
+    func didSetPages(_ viewController: DPPageContainerViewController, pages: [UIViewController])
+    func didPageLimitReached(_ viewController: DPPageContainerViewController, for direction: UIPageViewController.NavigationDirection, fromSwipe: Bool)
+}
+
+public extension DPPageContainerViewControllerDelegate {
+    func didSelectPage(_ viewController: DPPageContainerViewController, at index: Int) {}
+    func didSetPages(_ viewController: DPPageContainerViewController, pages: [UIViewController]) {}
+    func didPageLimitReached(_ viewController: DPPageContainerViewController, for direction: UIPageViewController.NavigationDirection, fromSwipe: Bool) {}
+}
+
+/// View controller providing interactions with `UIPageViewController`.
+/// 
+/// Stores an instance `DPPageContainerViewControllerDelegate` for event delegation.
+/// Stores an instance `UIPageViewController` to manage it.
+/// implements protocols `UIPageViewControllerDelegate` and `UIPageViewControllerDataSource`.
 open class DPPageContainerViewController: DPViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    public typealias Completion = (Bool) -> Void
     
     // MARK: - Init
     public convenience init(
@@ -22,6 +38,9 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
         self.pageViewController = UIPageViewController(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
         self.pageViewControllerDidSet()
     }
+    
+    // MARK: - Types
+    public typealias Completion = (Bool) -> Void
     
     // MARK: - Props
     open weak var delegate: DPPageContainerViewControllerDelegate?
@@ -37,15 +56,12 @@ open class DPPageContainerViewController: DPViewController, UIPageViewController
         didSet {
             oldValue.view.removeFromSuperview()
             oldValue.removeFromParent()
-            
             self.pageViewControllerDidSet()
         }
     }
     
     open var swipeIsEnabled: Bool = true {
-        didSet {
-            self.swipeIsEnabledDidSet()
-        }
+        didSet { self.swipeIsEnabledDidSet() }
     }
     
     open private(set) var pageSelectedIndex: Int?

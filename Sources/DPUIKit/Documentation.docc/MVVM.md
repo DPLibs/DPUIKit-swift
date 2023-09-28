@@ -1,58 +1,17 @@
 # MVVM
-A screen or part of a screen is described as follows:
 
-### ``DPViewController``
-Deals with displaying views and navigating to other screens. 
-* Stores an instance `DPViewModel`. And implements a protocol `DPViewModelOutput` for processing signals from `DPViewModel`.
-* Stores an instance `DPViewErrorHandler` for handling and displaying errors.
+Module for designing a screen or part of a screen
 
-```swift
-open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput {
-    open var _model: DPViewModel?
-    open var _errorHandler: DPViewErrorHandler?
-}
-```
-
-### ``DPViewModel``
-Is the source of data and states for `DPViewController`.
-* Stores an instance `DPViewModelOutput` for notice `DPViewController`.
-* Сan store and monitor `Model`.
-
-```swift
-class DPViewModel {
-    open weak var _ouput: DPViewModelOutput? 
+@Metadata {
+    @Available(iOS, introduced: "11.0")
 }
 
-```
+## Overview
 
-### DPViewModelOutput
-Interface for sending notifications from `DPViewModel`.
+Consists of the following components: ``DPViewController``, ``DPViewModel``, ``DPViewModelOutput`` and ``DPViewErrorHandler``.
 
-```swift
-public protocol DPViewModelOutput: AnyObject {
-    func modelDidError(_ model: DPViewModel?, error: Error)
-    func modelBeginReloading(_ model: DPViewModel?)
-    func modelBeginLoading(_ model: DPViewModel?)
-    func modelFinishLoading(_ model: DPViewModel?, withError error: Error?)
-    func modelUpdated(_ model: DPViewModel?)
-    func modelReloaded(_ model: DPViewModel?)
-}
-```
 
-### DPViewErrorHandler
-Needed to process and display errors.
-* Stores a link to `UIViewController` for show errors.
-
-```swift
-open class DPViewErrorHandler {
-    open weak var viewController: UIViewController?
-    
-    open func handleError(_ error: Error?, completion: (() -> Void)? = nil)
-}
-
-```
-
-The main concept is to implement an approach of simple scalability, flexibility and component unobtrusiveness. Therefore, MVVM does not always have to be built entirely on a legacy implementation. Those. initially there can only be a `ViewController`. For example: 
+The main concept is to implement an approach of simple scalability, flexibility and component unobtrusiveness. Therefore, `MVVM` does not always have to be built entirely on a legacy implementation. Those. initially there can only be a `TestViewController`. For example: 
 
 ```swift
 class TestViewController: DPViewController {}

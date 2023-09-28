@@ -1,27 +1,21 @@
 # ``DPUIKit``
 
-An unobtrusive set of extensions and classes for UIKit.
+An unobtrusive set of extensions and classes for UIKit
+
+@Metadata {
+    @Available(iOS, introduced: "11.0")
+}
 
 ## Overview
-Test text.
 
-```swift
-swift package --allow-writing-to-directory /docs \
-    generate-documentation --target DPUIKit \
-    --disable-indexing \
-    --transform-for-static-hosting \
-    --hosting-base-path https://dplibs.github.io/DPUIKit-swift/ \
-    --output-path /docs
-
-swift package --allow-writing-to-directory ./docs \
-    generate-documentation --target DPUIKit --output-path ./docs
-
-$(xcrun --find docc) process-archive transform-for-static-hosting DPUIKit.doccarchive --hosting-base-path DPUIKit-swift --output-path ./docs
-```
+Facilitates and speeds up development on UIKit. The library contains extensions of system components and custom components. Both often migrate from project to project. Offers packaged solutions: for designing screens, for navigation in the application, for working with various UI representations and etc.
 
 ## Topics
 
 - <doc:MVVM>
 - <doc:Coordinators>
 - <doc:Table>
+- <doc:AutoLayout>
+- <doc:StyleWrapper>
 - <doc:Xcode_templates>
+

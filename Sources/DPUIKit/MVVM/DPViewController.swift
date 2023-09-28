@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+/// Needed to display views and transition to other screens.
+///
+/// Part of <doc:MVVM>.
+/// Stores an instance of ``DPViewModel``. And implements the ``DPViewModelOutput`` protocol to process signals from ``DPViewModel``.
+/// Stores an instance of ``DPViewErrorHandler`` for handling and displaying errors.
 open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput, DPCoordinatableViewController {
     
     // MARK: - Init
@@ -17,19 +22,16 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
         self.commonInit()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         self.commonInit()
     }
     
     public init() {
         super.init(nibName: nil, bundle: nil)
-        
         self.commonInit()
     }
     
@@ -106,21 +108,21 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
     
     // MARK: - DPViewModelOutput
     open func modelDidError(_ model: DPViewModel?, error: Error) {
-        DispatchQueue.main.async { [weak self] in
-            self?._errorHandler?.handleError(error)
-        }
+        self._errorHandler?.handleError(error)
     }
     
     open func modelBeginReloading(_ model: DPViewModel?) {}
     
     open func modelBeginLoading(_ model: DPViewModel?) {}
     
-    open func modelFinishLoading(_ model: DPViewModel?, withError error: Error?) {}
+    open func modelFinishLoading(_ model: DPViewModel?, withError error: Error?) {
+        if let error {
+            self._errorHandler?.handleError(error)
+        }
+    }
     
     open func modelUpdated(_ model: DPViewModel?) {
-        DispatchQueue.main.async { [weak self] in
-            self?.updateComponents()
-        }
+        self.updateComponents()
     }
     
     open func modelReloaded(_ model: DPViewModel?) {}

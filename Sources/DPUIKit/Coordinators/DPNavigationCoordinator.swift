@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Manages within the `UINavigationController`.
 open class DPNavigationCoordinator: DPCoordinatorProtocol {
     
     // MARK: - Init
