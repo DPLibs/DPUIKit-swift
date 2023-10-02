@@ -43,8 +43,6 @@ open class DPButton: UIButton, DPViewProtocol {
     
     open func updateComponents() {}
     
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
     open func didTouchUpInsideDidSet() {
         if self.didTouchUpInside == nil {
             self.removeTarget(self, action: #selector(self.handleTouchUpInside), for: .touchUpInside)

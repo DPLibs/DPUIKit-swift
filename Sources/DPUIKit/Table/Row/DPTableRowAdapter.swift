@@ -8,22 +8,49 @@
 import Foundation
 import UIKit
 
+/// Component for managing a [UITableViewCell](https://developer.apple.com/documentation/uikit/uitableviewcell).
 public protocol DPTableRowAdapterProtocol {
+    
+    /// Model reuse identifier.
+    /// This property is used to search for a match between the adapter and the model.
     var modelRepresentableIdentifier: String { get }
+    
+    /// Cell type.
+    /// Using this property, the cell is registered in the table, and the cell is returned in the ``DPTableAdapter/tableView(_:cellForRowAt:)``.
     var cellClass: DPTableRowCellProtocol.Type { get }
     
+    /// Called in the ``DPTableAdapter/tableView(_:didSelectRowAt:)``.
     func didSelect(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    
+    /// Called in the ``DPTableAdapter/tableView(_:didDeselectRowAt:)``.
     func didDeselect(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    
+    /// Called in the ``DPTableAdapter/tableView(_:cellForRowAt:)``.
     func onCell(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    
+    /// Called in the ``DPTableAdapter/tableView(_:willDisplay:forRowAt:)``.
     func willDisplay(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    
+    /// Called in the ``DPTableAdapter/tableView(_:heightForRowAt:)``.
     func onCellHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat?
+    
+    /// Called in the ``DPTableAdapter/tableView(_:estimatedHeightForRowAt:)``.
     func onCellEstimatedHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat?
+    
+    /// Called in the ``DPTableAdapter/tableView(_:willBeginEditingRowAt:)``.
     func willBeginEditing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    
+    /// Called in the ``DPTableAdapter/tableView(_:didEndEditingRowAt:)``.
     func didEndEditing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    
+    /// Called in the ``DPTableAdapter/tableView(_:leadingSwipeActionsConfigurationForRowAt:)``.
     func onCellLeading(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    
+    /// Called in the ``DPTableAdapter/tableView(_:trailingSwipeActionsConfigurationForRowAt:)``.
     func onCellTrailing(cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration?
 }
 
+/// Basic implementation of the ``DPTableRowAdapterProtocol``.
 open class DPTableRowAdapter<Cell: DPTableRowCellProtocol, Model: DPRepresentableModel>: DPTableRowAdapterProtocol {
     
     // MARK: - Init
@@ -65,18 +92,40 @@ open class DPTableRowAdapter<Cell: DPTableRowCellProtocol, Model: DPRepresentabl
     public let modelRepresentableIdentifier: String = DPRepresentableIdentifier.produce(Model.self)
     public let cellClass: DPTableRowCellProtocol.Type = Cell.self
     
+    /// The value of this property will be returned ``onCellHeight(model:indexPath:)`` if ``onCellHeight`` is not defined.
     open var cellHeight: CGFloat?
+    
+    /// The value of this property will be returned ``onCellEstimatedHeight(model:indexPath:)`` if ``onCellEstimatedHeight`` is not defined.
     open var cellEstimatedHeight: CGFloat?
     
+    /// Called in the ``didSelect(cell:model:indexPath:)``.
     open var didSelect: RowContextClosure?
+    
+    /// Called in the ``didDeselect(cell:model:indexPath:)``.
     open var didDeselect: RowContextClosure?
+    
+    /// Called in the ``onCell(cell:model:indexPath:)``.
     open var onCell: RowContextClosure?
+    
+    /// Called in the ``willDisplay(cell:model:indexPath:)``.
     open var willDisplay: RowContextClosure?
+    
+    /// Called in the ``onCellHeight(model:indexPath:)``.
     open var onCellHeight: RowContextToCGFloat?
+    
+    /// Called in the ``onCellEstimatedHeight(model:indexPath:)``.
     open var onCellEstimatedHeight: RowContextToCGFloat?
+    
+    /// Called in the ``willBeginEditing(cell:model:indexPath:)``.
     open var willBeginEditing: RowContextClosure?
+    
+    /// Called in the ``didEndEditing(cell:model:indexPath:)``.
     open var didEndEditing: RowContextClosure?
+    
+    /// Called in the ``onCellLeading(cell:model:indexPath:)``.
     open var onCellLeading: RowContextToSwipeActionsConfiguration?
+    
+    /// Called in the ``onCellTrailing(cell:model:indexPath:)``.
     open var onCellTrailing: RowContextToSwipeActionsConfiguration?
     
     // MARK: - Methods

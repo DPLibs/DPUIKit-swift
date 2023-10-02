@@ -27,7 +27,4 @@ open class DPSearchBar: UISearchBar, DPViewProtocol {
     open func setupComponents() {}
     
     open func updateComponents() {}
-    
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
 }

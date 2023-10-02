@@ -47,8 +47,6 @@ open class DPNavigationController: UINavigationController, DPViewProtocol, UIGes
     
     open func updateComponents() {}
     
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
     // MARK: - UIGestureRecognizerDelegate
     open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-/// `UITableView` management component
+/// Component for managing a [UITableView](https://developer.apple.com/documentation/uikit/uitableview).
 open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Init
@@ -30,6 +30,10 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     public typealias TitleContextToCGFloat = ((model: DPRepresentableModel, section: Int)) -> CGFloat?
     
     // MARK: - Props
+    
+    /// Weak reference to ``DPTableView``.
+    ///
+    /// When installed, this adapter is matched to the [UITableViewDelegate](https://developer.apple.com/documentation/uikit/uitableviewdelegate) and [UITableViewDataSource](https://developer.apple.com/documentation/uikit/uitableviewdatasource) of the ``DPTableView``.
     open weak var tableView: DPTableView? {
         didSet {
             self.tableView?.dataSource = self
@@ -37,58 +41,107 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         }
     }
     
+    /// An array of sections.
+    ///
+    /// Used to display `cells` and other `subviews` of a ``tableView``.
     open var sections: [DPTableSectionProtocol] = []
     
     open internal(set) var lastContentOffset: CGPoint?
+    
+    /// Cells adapters.
     open internal(set) var rowAdapters: [String: DPTableRowAdapterProtocol] = [:]
+    
+    /// Titles views adapters.
     open internal(set) var titleAdapters: [String: DPTableTitleAdapterProtocol] = [:]
+    
+    /// Registered cell IDs.
     open internal(set) var registeredСellIdentifiers: Set<String> = []
+    
+    /// Registered header/footer view identifiers.
     open internal(set) var registeredHeaderFooterViewsIdentifiers: Set<String> = []
     
+    /// Called int the ``tableView(_:didSelectRowAt:)``.
     open var didSelectRow: RowContextClosure?
+    
+    /// Called int the ``tableView(_:didDeselectRowAt:)``.
     open var didDeselectRow: RowContextClosure?
     
+    /// Called int the ``tableView(_:cellForRowAt:)``.
     open var onCellForRow: RowContextClosure?
+    
+    /// Called int the ``tableView(_:willDisplay:forRowAt:)``.
     open var willDisplayRow: RowContextClosure?
     
+    /// Called int the ``tableView(_:heightForRowAt:)`` if ``DPTableRowAdapter/onCellHeight(model:indexPath:)`` return `nil`.
     open var onHeightForRow: RowContextToCGFloat?
+    
+    /// Called int the ``tableView(_:estimatedHeightForRowAt:)``  if ``DPTableRowAdapter/onCellEstimatedHeight(model:indexPath:)`` return `nil`.
     open var onEstimatedHeightForRow: RowContextToCGFloat?
     
+    /// Called int the ``tableView(_:willDisplay:forRowAt:)`` when the first cell is displayed.
     open var onDisplayFirstRow: Closure?
+    
+    /// Called int the ``tableView(_:willDisplay:forRowAt:)`` when the last cell is displayed.
     open var onDisplayLastRow: Closure?
     
+    /// Called int the ``tableView(_:willBeginEditingRowAt:)``.
     open var willBeginEditingRow: RowContextClosure?
-    open var didEndEditingRow:RowContextClosure?
     
+    /// Called int the ``tableView(_:didEndEditingRowAt:)``.
+    open var didEndEditingRow: RowContextClosure?
+    
+    /// Called int the ``tableView(_:leadingSwipeActionsConfigurationForRowAt:)``  if ``DPTableRowAdapter/onCellLeading(cell:model:indexPath:)`` return `nil`.
     open var onCellLeading: RowContextToSwipeActionsConfiguration?
+    
+    /// Called int the ``tableView(_:trailingSwipeActionsConfigurationForRowAt:)``  if ``DPTableRowAdapter/onCellTrailing(cell:model:indexPath:)`` return `nil`.
     open var onCellTrailing: RowContextToSwipeActionsConfiguration?
     
+    /// Called int the ``tableView(_:heightForHeaderInSection:)``  if ``DPTableTitleAdapter/onViewHeight(model:section:)`` return `nil`.
     open var onHeightForHeaderInSection: TitleContextToCGFloat?
+    
+    /// Called int the ``tableView(_:estimatedHeightForHeaderInSection:)``  if ``DPTableTitleAdapter/onViewEstimatedHeight(model:section:)`` return `nil`.
     open var onEstimatedHeightForHeaderInSection: TitleContextToCGFloat?
     
+    /// Called int the ``tableView(_:heightForFooterInSection:)`` if ``DPTableTitleAdapter/onViewHeight(model:section:)`` return `nil`.
     open var onHeightForFooterInSection: TitleContextToCGFloat?
+    
+    /// Called int the ``tableView(_:estimatedHeightForFooterInSection:)`` if ``DPTableTitleAdapter/onViewEstimatedHeight(model:section:)`` return `nil`.
     open var onEstimatedHeightForFooterInSection: TitleContextToCGFloat?
     
+    /// Called int the ``scrollViewDidScroll(_:)``.
     open var didScroll: (((direction: UITableView.ScrollPosition, isDragging: Bool, isAchived: Bool)) -> Void)?
     
     // MARK: - Methods
+    
+    /// Add adapters for cells.
     open func addRowAdapters(_ rowAdapters: [DPTableRowAdapterProtocol]) {
         for adapter in rowAdapters {
             self.rowAdapters[adapter.modelRepresentableIdentifier] = adapter
         }
     }
     
+    /// Add adapters for titles views.
     open func addTitleAdapters(_ titleAdapters: [DPTableTitleAdapterProtocol]) {
         for adapter in titleAdapters {
             self.titleAdapters[adapter.modelRepresentableIdentifier] = adapter
         }
     }
     
+    /// Reload data with a new array of sections.
+    ///
+    /// Install new sections and call `tableView.reloadData()`.
+    ///
+    /// - Parameter sections: new array of sections. Will be installed in ``sections``.
     open func reloadData(_ sections: [DPTableSectionProtocol]) {
         self.sections = sections
         self.tableView?.reloadData()
     }
     
+    /// Update data using an updates array.
+    ///
+    /// Call `tableView.performBatchUpdates()` with updates array.
+    ///
+    /// - Parameter updates: array of ``DPTableUpdate``.
     open func performBatchUpdates(_ updates: [DPTableUpdate], completion: ((Bool) -> Void)? = nil) {
         self.tableView?.performBatchUpdates(
             { [weak self] in

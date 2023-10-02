@@ -57,7 +57,4 @@ open class DPRefreshControl: UIRefreshControl, DPViewProtocol, DPRefreshControlP
     }
     
     open func updateComponents() {}
-    
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
 }

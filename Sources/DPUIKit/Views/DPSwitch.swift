@@ -35,9 +35,7 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     // MARK: - Methods
     open func setupComponents() {}
     
-    open func updateComponents() { }
-    
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
+    open func updateComponents() {}
     
     open func didTouchUpInsideDidSet() {
         if self.didTouchUpInside == nil {

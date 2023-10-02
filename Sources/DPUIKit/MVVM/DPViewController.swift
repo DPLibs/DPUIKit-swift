@@ -104,8 +104,6 @@ open class DPViewController: UIViewController, DPViewProtocol, DPViewModelOutput
         self._errorHandler?.viewController = self
     }
     
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
     // MARK: - DPViewModelOutput
     open func modelDidError(_ model: DPViewModel?, error: Error) {
         self._errorHandler?.handleError(error)

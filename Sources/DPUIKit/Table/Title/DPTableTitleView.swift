@@ -8,11 +8,17 @@
 import Foundation
 import UIKit
 
+/// Protocol for defining a custom [UITableViewHeaderFooterView](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterview).
 public protocol DPTableTitleViewProtocol: UITableViewHeaderFooterView {
+    
+    /// View model.
+    /// Set to the cell in the ``DPTableAdapter/tableView(_:viewForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:viewForFooterInSection:)``.
+    /// Can also be set by using certain ``DPTableUpdate`` in the ``DPTableAdapter/performBatchUpdates(_:completion:)``.
     var _model: DPRepresentableModel? { get set }
 }
 
-open class DPTableTitleView: UITableViewHeaderFooterView, DPTableTitleViewProtocol {
+/// Basic implementation of the ``DPTableTitleViewProtocol``.
+open class DPTableTitleView: UITableViewHeaderFooterView, DPTableTitleViewProtocol, DPViewProtocol {
     
     // MARK: - Init
     override public init(reuseIdentifier: String?) {

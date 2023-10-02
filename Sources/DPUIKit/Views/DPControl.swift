@@ -25,8 +25,5 @@ open class DPControl: UIControl, DPViewProtocol {
     open func setupComponents() {}
     
     open func updateComponents() {}
-    
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
 }
  

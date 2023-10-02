@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-open class DPTableView: UITableView {
+/// Custom component [UITableView](https://developer.apple.com/documentation/uikit/uitableview).
+open class DPTableView: UITableView, DPViewProtocol {
     
     // MARK: - Init
     public override init(frame: CGRect, style: UITableView.Style) {
@@ -23,19 +24,20 @@ open class DPTableView: UITableView {
     
     // MARK: - Props
     open override var refreshControl: UIRefreshControl? {
-        didSet { self.didSetRefreshControl() }
+        didSet { self.bringRefreshControlToFront() }
     }
     
     open override var tableHeaderView: UIView? {
-        didSet { self.didSetRefreshControl() }
+        didSet { self.bringRefreshControlToFront() }
     }
     
+    /// Property for storing a strong reference to ``DPTableAdapter``.
     open var adapter: DPTableAdapter? {
         didSet { self.adapter?.tableView = self }
     }
     
     // MARK: - Methods
-    open func didSetRefreshControl() {
+    open func bringRefreshControlToFront() {
         guard let refreshControl = self.refreshControl else { return }
         self.bringSubviewToFront(refreshControl)
     }
@@ -45,8 +47,6 @@ open class DPTableView: UITableView {
         self.backgroundColor = .white
         self.separatorStyle = .none
         self.keyboardDismissMode = .onDrag
-
-        self.adapter = DPTableAdapter()
     }
     
     open func updateComponents() {}

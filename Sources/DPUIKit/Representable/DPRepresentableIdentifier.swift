@@ -7,8 +7,10 @@
 
 import Foundation
 
+/// Component for generating reuse identifier
 public enum DPRepresentableIdentifier {
     
+    /// Method for generating a reuse identifier. The `object type` is usually passed as a subject.
     public static func produce<Subject>(_ subject: Subject) -> String {
         String(reflecting: subject)
     }

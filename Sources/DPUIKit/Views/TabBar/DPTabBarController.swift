@@ -59,9 +59,6 @@ open class DPTabBarController: UITabBarController, DPViewProtocol, DPCoordinatab
     
     open func updateComponents() {}
     
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
     // MARK: - DPCoordinatableViewController
     open var coordinator: DPCoordinatorProtocol?
-    
 }
