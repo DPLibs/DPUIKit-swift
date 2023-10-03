@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import DPUIKit
 
-open class DPCollectionView: UICollectionView {
+open class DPCollectionView: UICollectionView, DPViewProtocol {
     
     // MARK: - Init
     public override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {

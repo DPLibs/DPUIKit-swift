@@ -12,7 +12,7 @@ import UIKit
 public protocol DPTableRowAdapterProtocol {
     
     /// Model reuse identifier.
-    /// This property is used to search for a match between the adapter and the model.
+    /// This property is used to search for a match between ``DPTableRowAdapterProtocol`` and ``DPRepresentableModel``.
     var modelRepresentableIdentifier: String { get }
     
     /// Cell type.

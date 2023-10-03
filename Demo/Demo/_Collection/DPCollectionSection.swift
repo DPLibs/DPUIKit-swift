@@ -1,5 +1,5 @@
 //
-//  DPCollectionSectionProtocol.swift
+//  DPCollectionSection.swift
 //  Demo
 //
 //  Created by Дмитрий Поляков on 20.09.2023.
@@ -13,7 +13,21 @@ public protocol DPCollectionSectionProtocol {
     var inset: UIEdgeInsets? { get }
 }
 
-// MARK: - Default
+public struct DPCollectionSection: DPCollectionSectionProtocol {
+    
+    public init(
+        items: [DPCollectionItemModelProtocol] = [],
+        inset: UIEdgeInsets? = nil
+    ) {
+        self.items = items
+        self.inset = inset
+    }
+    
+    public var items: [DPCollectionItemModelProtocol]
+    public var inset: UIEdgeInsets?
+}
+
+// MARK: - DPCollectionSectionProtocol + Methods
 public extension DPCollectionSectionProtocol {
     
     func item(at index: Int) -> DPCollectionItemModelProtocol? {
@@ -23,7 +37,7 @@ public extension DPCollectionSectionProtocol {
     
 }
 
-// MARK: - Array + DPTableSection
+// MARK: - DPCollectionSectionProtocol + Array
 public extension Array where Element == DPCollectionSectionProtocol {
     
     func item(at indexPath: IndexPath) -> DPCollectionItemModelProtocol? {
@@ -35,15 +49,5 @@ public extension Array where Element == DPCollectionSectionProtocol {
         guard self.indices.contains(index) else { return nil }
         return self[index].inset
     }
-    
-//    func header(at index: Int) -> DPTableViewHeaderFooterViewModelProtocol? {
-//        guard self.indices.contains(index) else { return nil }
-//        return self[index].header
-//    }
-//
-//    func footer(at index: Int) -> DPTableViewHeaderFooterViewModelProtocol? {
-//        guard self.indices.contains(index) else { return nil }
-//        return self[index].footer
-//    }
     
 }

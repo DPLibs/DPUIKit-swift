@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+public protocol DPCollectionItemCellProtocol: UICollectionViewCell {
+    var _model: DPCollectionItemModelProtocol? { get set }
+}
+
 open class DPCollectionItemCell: UICollectionViewCell, DPCollectionItemCellProtocol {
     
     // MARK: - Init

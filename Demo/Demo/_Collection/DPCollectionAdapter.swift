@@ -9,12 +9,25 @@ import Foundation
 import UIKit
 import DPUIKit
 
+/// Component for managing a [UICollectionView](https://developer.apple.com/documentation/uikit/uicollectionview).
 open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Init
     public override init() {}
     
+    // MARK: - Types
+    public typealias Closure = () -> Void
+    public typealias ItemContext = (cell: DPCollectionItemCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    public typealias ItemContextClosure = (ItemContext) -> Void
+//    public typealias RowContextToSwipeActionsConfiguration = (RowContext) -> UISwipeActionsConfiguration?
+//    public typealias RowContextToCGFloat = (RowContext) -> CGFloat?
+//    public typealias TitleContextToCGFloat = ((model: DPRepresentableModel, section: Int)) -> CGFloat?
+    
     // MARK: - Props
+    
+    /// Weak reference to ``DPCollectionView``.
+    ///
+    /// When installed, this adapter is matched to the [UICollectionViewDelegate](https://developer.apple.com/documentation/uikit/uicollectionviewdelegate) and [UICollectionViewDataSource](https://developer.apple.com/documentation/uikit/uicollectionviewdatasource) of the ``DPCollectionView``.
     open weak var collectionView: DPCollectionView? {
         didSet {
             self.collectionView?.dataSource = self
@@ -22,16 +35,25 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         }
     }
     
+    /// An array of sections.
+    ///
+    /// Used to display `cells` and other `subviews` of a ``collectionView``.
     open var sections: [DPCollectionSectionProtocol] = []
+    
+    /// Cells adapters.
+    open internal(set) var itemAdapters: [String: DPCollectionItemAdapterProtocol] = [:]
+    
+    /// Registered cell IDs.
     open internal(set) var registeredСellIdentifiers: Set<String> = []
     
     open var onCellForItem: DPCollectionItemContextClosure?
     open var willDisplayItem: DPCollectionItemContextClosure?
     open var didSelectItem: DPCollectionItemContextClosure?
     open var didDeselectItem: DPCollectionItemContextClosure?
-    
     open var onDisplayFirstItem: (() -> Void)?
     open var onDisplayLastItem: (() -> Void)?
+    
+    // MARK: - Methods
     
     // MARK: - UICollectionViewDataSource
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -109,7 +131,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         self.sections.item(at: indexPath)?.cellSize ?? (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize ?? .zero
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         self.sections.inset(at: section) ?? (collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
     }
     
