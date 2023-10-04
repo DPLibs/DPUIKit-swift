@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
+/// Custom component [UICollectionView](https://developer.apple.com/documentation/uikit/uicollectionview).
 open class DPCollectionView: UICollectionView, DPViewProtocol {
     
     // MARK: - Init
@@ -23,25 +24,26 @@ open class DPCollectionView: UICollectionView, DPViewProtocol {
     }
     
     // MARK: - Props
+    
+    open override var refreshControl: UIRefreshControl? {
+        didSet { self.bringRefreshControlToFront() }
+    }
+    
+    /// Property for storing a strong reference to ``DPCollectionAdapter``.
     open var adapter: DPCollectionAdapter? {
         didSet { self.adapter?.collectionView = self }
     }
     
     // MARK: - Methods
     open func setupComponents() {
-        self.adapter = DPCollectionAdapter()
+        self.backgroundColor = .white
+        self.keyboardDismissMode = .onDrag
     }
     
     open func updateComponents() {}
     
-    open func reloadData(_ sections: [DPCollectionSectionProtocol]) {
-        self.adapter?.sections = sections
-        self.reloadData()
+    open func bringRefreshControlToFront() {
+        guard let refreshControl = self.refreshControl else { return }
+        self.bringSubviewToFront(refreshControl)
     }
-    
-    open func reloadData(_ items: [DPCollectionItemModelProtocol]) {
-        self.adapter?.sections = [ DPCollectionSection(items: items) ]
-        self.reloadData()
-    }
-    
 }

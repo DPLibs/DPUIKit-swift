@@ -7,12 +7,19 @@
 
 import Foundation
 import UIKit
+import DPUIKit
 
+/// Protocol for defining a custom [UICollectionViewCell](https://developer.apple.com/documentation/uikit/uicollectionviewcell).
 public protocol DPCollectionItemCellProtocol: UICollectionViewCell {
-    var _model: DPCollectionItemModelProtocol? { get set }
+    
+    /// Cell model.
+    /// Set to the cell in the ``DPCollectionAdapter/collectionView(_:cellForItemAt:)``.
+    /// Can also be set by using certain ``DPCollectionUpdate`` in the ``DPCollectionAdapter/performBatchUpdates(_:completion:)``.
+    var _model: DPRepresentableModel? { get set }
 }
 
-open class DPCollectionItemCell: UICollectionViewCell, DPCollectionItemCellProtocol {
+/// Basic implementation of the ``DPCollectionItemCellProtocol``.
+open class DPCollectionItemCell: UICollectionViewCell, DPCollectionItemCellProtocol, DPViewProtocol {
     
     // MARK: - Init
     public override init(frame: CGRect) {
@@ -26,7 +33,7 @@ open class DPCollectionItemCell: UICollectionViewCell, DPCollectionItemCellProto
     }
     
     // MARK: - Props
-    open var _model: DPCollectionItemModelProtocol? {
+    open var _model: DPRepresentableModel? {
         didSet { self.updateComponents() }
     }
     

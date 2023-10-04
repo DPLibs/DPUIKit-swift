@@ -13,15 +13,19 @@ import DPUIKit
 open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Init
-    public override init() {}
+    public init(itemAdapters: [DPCollectionItemAdapterProtocol] = []) {
+        super.init()
+        self.addItemAdapters(itemAdapters)
+    }
     
     // MARK: - Types
     public typealias Closure = () -> Void
     public typealias ItemContext = (cell: DPCollectionItemCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
     public typealias ItemContextClosure = (ItemContext) -> Void
-//    public typealias RowContextToSwipeActionsConfiguration = (RowContext) -> UISwipeActionsConfiguration?
-//    public typealias RowContextToCGFloat = (RowContext) -> CGFloat?
-//    public typealias TitleContextToCGFloat = ((model: DPRepresentableModel, section: Int)) -> CGFloat?
+    public typealias ItemContextToCGSize = ((model: DPRepresentableModel, indexPath: IndexPath)) -> CGSize?
+    public typealias SectionContext = (model: DPCollectionSectionProtocol, index: Int)
+    public typealias SectionContextToUIEdgeInsets = (SectionContext) -> UIEdgeInsets?
+    public typealias SectionContextToCGFloat = (SectionContext) -> CGFloat?
     
     // MARK: - Props
     
@@ -46,14 +50,69 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// Registered cell IDs.
     open internal(set) var registeredСellIdentifiers: Set<String> = []
     
-    open var onCellForItem: DPCollectionItemContextClosure?
-    open var willDisplayItem: DPCollectionItemContextClosure?
-    open var didSelectItem: DPCollectionItemContextClosure?
-    open var didDeselectItem: DPCollectionItemContextClosure?
-    open var onDisplayFirstItem: (() -> Void)?
-    open var onDisplayLastItem: (() -> Void)?
+    /// Called int the ``collectionView(_:cellForItemAt:))``.
+    open var onCellForItem: ItemContextClosure?
+    
+    /// Called int the ``collectionView(_:willDisplay:forItemAt:)``.
+    open var willDisplayItem: ItemContextClosure?
+    
+    /// Called int the ``collectionView(_:didSelectItemAt:)``.
+    open var didSelectItem: ItemContextClosure?
+    
+    /// Called int the ``collectionView(_:didSelectItemAt:)``.
+    open var didDeselectItem: ItemContextClosure?
+    
+    /// Called int the ``collectionView(_:willDisplay:forItemAt:)`` when the first cell is displayed.
+    open var onDisplayFirstItem: Closure?
+    
+    /// Called int the ``collectionView(_:willDisplay:forItemAt:)`` when the last cell is displayed.
+    open var onDisplayLastItem: Closure?
+    
+    /// Called int the ``collectionView(_:layout:sizeForItemAt:)``.
+    open var onSizeForItem: ItemContextToCGSize?
+    
+    /// Called int the ``collectionView(_:layout:insetForSectionAt:)``.
+    open var onInsetForSection: SectionContextToUIEdgeInsets?
+    
+    /// Called int the ``collectionView(_:layout:minimumLineSpacingForSectionAt:)``.
+    open var onMinimumLineSpacingForSection: SectionContextToCGFloat?
+    
+    /// Called int the ``collectionView(_:layout:minimumInteritemSpacingForSectionAt:)``.
+    open var onMinimumInteritemSpacingForSection: SectionContextToCGFloat?
     
     // MARK: - Methods
+    
+    /// Add adapters for cells.
+    open func addItemAdapters(_ itemAdapters: [DPCollectionItemAdapterProtocol]) {
+        for adapter in itemAdapters {
+            self.itemAdapters[adapter.modelRepresentableIdentifier] = adapter
+        }
+    }
+    
+    /// Reload data with a new array of sections.
+    ///
+    /// Install new sections and call `collectionView.reloadData()`.
+    ///
+    /// - Parameter sections: new array of sections. Will be installed in ``sections``.
+    open func reloadData(_ sections: [DPCollectionSectionProtocol]) {
+        self.sections = sections
+        self.collectionView?.reloadData()
+    }
+    
+    /// Update data using an updates array.
+    ///
+    /// Call `tableView.performBatchUpdates()` with updates array.
+    ///
+    /// - Parameter updates: array of ``DPCollectionUpdate``.
+    open func performBatchUpdates(_ updates: [DPCollectionUpdate], completion: ((Bool) -> Void)? = nil) {
+        self.collectionView?.performBatchUpdates(
+            { [weak self] in
+                guard let self = self else { return }
+                updates.forEach({ $0.perform(self) })
+            },
+            completion: completion
+        )
+    }
     
     // MARK: - UICollectionViewDataSource
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -66,73 +125,104 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = self.sections.item(at: indexPath) else { return UICollectionViewCell() }
-        let cellIdentifier = String(describing: item.cellClass)
+        guard
+            let model = self.sections.item(at: indexPath),
+            let adapter = self.itemAdapters[model._representableIdentifier]
+        else { return UICollectionViewCell() }
+        
+        let cellClass = adapter.cellClass
+        let cellIdentifier = String(describing: cellClass)
         
         if !self.registeredСellIdentifiers.contains(cellIdentifier) {
-            collectionView.register(item.cellClass, forCellWithReuseIdentifier: cellIdentifier)
+            collectionView.register(cellClass, forCellWithReuseIdentifier: cellIdentifier)
             self.registeredСellIdentifiers.insert(cellIdentifier)
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
         
         if let cell = cell as? DPCollectionItemCellProtocol {
-            cell._model = item
+            cell._model = model
             
-            let context: DPCollectionItemContext = (cell, item, indexPath)
-            self.onCellForItem?(context)
-            item.onCell?(context)
+            self.onCellForItem?((cell, model, indexPath))
+            adapter.onCell(cell: cell, model: model, indexPath: indexPath)
         }
-
+        
         return cell
     }
     
     // MARK: - UICollectionViewDelegate
-    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard
-            let cell = self.collectionView?.cellForItem(at: indexPath) as? DPCollectionItemCellProtocol,
-            let model = self.sections.item(at: indexPath)
-        else { return }
-        
-        let context: DPCollectionItemContext = (cell, model, indexPath)
-        self.didSelectItem?(context)
-        model.didSelect?(context)
-    }
-
-    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard
-            let cell = self.collectionView?.cellForItem(at: indexPath) as? DPCollectionItemCellProtocol,
-            let model = self.sections.item(at: indexPath)
-        else { return }
-        
-        let context: DPCollectionItemContext = (cell, model, indexPath)
-        self.didDeselectItem?(context)
-        model.didDeselect?(context)
-    }
-    
     open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = cell as? DPCollectionItemCellProtocol, let model = self.sections.item(at: indexPath) {
-            let context: DPCollectionItemContext = (cell, model, indexPath)
-            self.willDisplayItem?(context)
-            model.willDisplay?(context)
+            self.willDisplayItem?((cell, model, indexPath))
+            self.itemAdapters[model._representableIdentifier]?.willDisplay(cell: cell, model: model, indexPath: indexPath)
         }
-        
-        if indexPath == IndexPath(item: 0, section: 0) {
+
+        if indexPath == IndexPath(row: 0, section: 0) {
             self.onDisplayFirstItem?()
         }
-        
-        if !self.sections.isEmpty, indexPath == IndexPath(item: (self.sections.last?.items.count ?? 0) - 1, section: self.sections.count - 1) {
+
+        if !self.sections.isEmpty, indexPath == IndexPath(row: (self.sections.last?.items.count ?? 0) - 1, section: self.sections.count - 1) {
             self.onDisplayLastItem?()
         }
     }
     
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard
+            let cell = collectionView.cellForItem(at: indexPath) as? DPCollectionItemCellProtocol,
+            let model = self.sections.item(at: indexPath)
+        else { return }
+
+        self.didSelectItem?((cell, model, indexPath))
+        self.itemAdapters[model._representableIdentifier]?.didSelect(cell: cell, model: model, indexPath: indexPath)
+    }
+
+    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard
+            let cell = collectionView.cellForItem(at: indexPath) as? DPCollectionItemCellProtocol,
+            let model = self.sections.item(at: indexPath)
+        else { return }
+
+        self.didDeselectItem?((cell, model, indexPath))
+        self.itemAdapters[model._representableIdentifier]?.didDeselect(cell: cell, model: model, indexPath: indexPath)
+    }
+    
     // MARK: - UICollectionViewDelegateFlowLayout
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        self.sections.item(at: indexPath)?.cellSize ?? (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize ?? .zero
+        let defaultValue: CGSize = (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize ?? .zero
+        
+        guard let model = self.sections.item(at: indexPath) else { return defaultValue }
+        let adapter = self.itemAdapters[model._representableIdentifier]
+        
+        return adapter?.onSizeForItem(model: model, indexPath: indexPath) ?? self.onSizeForItem?((model, indexPath)) ?? defaultValue
     }
     
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        self.sections.inset(at: section) ?? (collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
+        let defaultValue = (collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
+        
+        guard let model = self.sections.section(at: section) else { return defaultValue }
+        return self.onInsetForSection?((model, section)) ?? defaultValue
     }
+
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let defaultValue = (collectionViewLayout as? UICollectionViewFlowLayout)?.minimumLineSpacing ?? .zero
+        
+        guard let model = self.sections.section(at: section) else { return defaultValue }
+        return self.onMinimumLineSpacingForSection?((model, section)) ?? defaultValue
+    }
+
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        let defaultValue = (collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing ?? .zero
+        
+        guard let model = self.sections.section(at: section) else { return defaultValue }
+        return self.onMinimumInteritemSpacingForSection?((model, section)) ?? defaultValue
+    }
+
+//    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//
+//    }
+//
+//    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+//
+//    }
     
 }

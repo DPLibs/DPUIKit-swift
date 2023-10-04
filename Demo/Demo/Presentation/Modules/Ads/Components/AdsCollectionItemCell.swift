@@ -52,8 +52,9 @@ final class AdsCollectionItemCell: DPCollectionItemCell {
 // MARK: - Model
 extension AdsCollectionItemCell {
     
-    struct Model: DPCollectionItemModelProtocol {
-        let cellClass: DPCollectionItemCellProtocol.Type = AdsCollectionItemCell.self
+    typealias Adapter = DPCollectionItemAdapter<AdsCollectionItemCell, Model>
+    
+    struct Model: DPRepresentableModel {
         let ads: Ads
     }
     

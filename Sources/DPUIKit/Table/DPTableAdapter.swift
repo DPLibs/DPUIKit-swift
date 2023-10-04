@@ -26,7 +26,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     public typealias RowContext = (cell: DPTableRowCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
     public typealias RowContextClosure = (RowContext) -> Void
     public typealias RowContextToSwipeActionsConfiguration = (RowContext) -> UISwipeActionsConfiguration?
-    public typealias RowContextToCGFloat = (RowContext) -> CGFloat?
+    public typealias RowContextToCGFloat = ((model: DPRepresentableModel, indexPath: IndexPath)) -> CGFloat?
     public typealias TitleContextToCGFloat = ((model: DPRepresentableModel, section: Int)) -> CGFloat?
     
     // MARK: - Props
@@ -207,13 +207,21 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = self.sections.row(at: indexPath) else { return tableView.rowHeight }
         let adapter = self.rowAdapters[model._representableIdentifier]
-        return adapter?.onCellHeight(model: model, indexPath: indexPath) ?? tableView.rowHeight
+        
+        return
+            adapter?.onCellHeight(model: model, indexPath: indexPath) ??
+            self.onHeightForRow?((model, indexPath)) ??
+            tableView.rowHeight
     }
 
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = self.sections.row(at: indexPath) else { return tableView.estimatedRowHeight }
         let adapter = self.rowAdapters[model._representableIdentifier]
-        return adapter?.onCellEstimatedHeight(model: model, indexPath: indexPath) ?? tableView.estimatedRowHeight
+        
+        return
+            adapter?.onCellEstimatedHeight(model: model, indexPath: indexPath) ??
+            self.onEstimatedHeightForRow?((model, indexPath)) ??
+            tableView.estimatedRowHeight
     }
     
     // MARK: - UITableViewDelegate + Header In Section
@@ -336,7 +344,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     // MARK: - UITableViewDelegate + Select
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
-            let cell = self.tableView?.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
+            let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return }
 
@@ -346,7 +354,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
 
     open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard
-            let cell = self.tableView?.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
+            let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellProtocol,
             let model = self.sections.row(at: indexPath)
         else { return }
 

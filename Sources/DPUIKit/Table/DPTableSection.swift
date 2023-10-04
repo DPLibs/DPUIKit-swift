@@ -9,8 +9,14 @@ import Foundation
 
 /// Protocol for defining a `section` in an ``DPTableAdapter/sections``.
 public protocol DPTableSectionProtocol {
+    
+    /// An array of table cell models.
     var rows: [DPRepresentableModel] { get set }
+    
+    /// Header model.
     var header: DPRepresentableModel? { get set }
+    
+    /// Footer model.
     var footer: DPRepresentableModel? { get set }
 }
 
@@ -29,14 +35,8 @@ public struct DPTableSection: DPTableSectionProtocol {
     }
 
     // MARK: - Props
-    
-    /// An array of table cell models.
     public var rows: [DPRepresentableModel]
-    
-    /// Header model.
     public var header: DPRepresentableModel?
-    
-    /// Footer model.
     public var footer: DPRepresentableModel?
 }
 

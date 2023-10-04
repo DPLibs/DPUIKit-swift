@@ -32,6 +32,11 @@ final class AdsViewController: DPViewController {
     private lazy var collectionView: DPCollectionView = {
         let layout = UICollectionViewFlowLayout()
         let result = DPCollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        result.adapter = DPCollectionAdapter(itemAdapters: [
+            AdsCollectionItemCell.Adapter()
+        ])
+        
         result.adapter?.onDisplayLastItem = { [weak self] in
             self?.model?.loadMore()
         }
@@ -53,11 +58,13 @@ final class AdsViewController: DPViewController {
     override func updateComponents() {
         super.updateComponents()
         
-        let items: [DPCollectionItemModelProtocol] = (self.model?.ads ?? []).map({
+        let items: [DPRepresentableModel] = (self.model?.ads ?? []).map({
             AdsCollectionItemCell.Model(ads: $0)
         })
         
-        self.collectionView.reloadData(items)
+        self.collectionView.adapter?.reloadData([
+            DPCollectionSection(items: items)
+        ])
     }
     
     override func modelReloaded(_ model: DPViewModel?) {

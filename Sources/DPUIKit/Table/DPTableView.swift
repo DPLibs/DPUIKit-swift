@@ -37,12 +37,6 @@ open class DPTableView: UITableView, DPViewProtocol {
     }
     
     // MARK: - Methods
-    open func bringRefreshControlToFront() {
-        guard let refreshControl = self.refreshControl else { return }
-        self.bringSubviewToFront(refreshControl)
-    }
-    
-    // MARK: - DPViewProtocol
     open func setupComponents() {
         self.backgroundColor = .white
         self.separatorStyle = .none
@@ -50,4 +44,9 @@ open class DPTableView: UITableView, DPViewProtocol {
     }
     
     open func updateComponents() {}
+    
+    open func bringRefreshControlToFront() {
+        guard let refreshControl = self.refreshControl else { return }
+        self.bringSubviewToFront(refreshControl)
+    }
 }
