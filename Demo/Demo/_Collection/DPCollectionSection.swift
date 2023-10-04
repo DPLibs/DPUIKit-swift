@@ -10,24 +10,38 @@ import UIKit
 import DPUIKit
 
 /// Protocol for defining a `section` in an ``DPCollectionAdapter/sections``.
-public protocol DPCollectionSectionProtocol {
+public protocol DPCollectionSectionType {
     
     /// An array of table cell models.
     var items: [DPRepresentableModel] { get set }
+    
+    /// Header model.
+    var header: DPRepresentableModel? { get set }
+    
+    /// Footer model.
+    var footer: DPRepresentableModel? { get set }
 }
 
-/// Basic implementation of the ``DPCollectionSectionProtocol``.
-public struct DPCollectionSection: DPCollectionSectionProtocol {
+/// Basic implementation of the ``DPCollectionSectionType``.
+public struct DPCollectionSection: DPCollectionSectionType {
     
-    public init(items: [DPRepresentableModel] = []) {
+    public init(
+        items: [DPRepresentableModel] = [],
+        header: DPRepresentableModel? = nil,
+        footer: DPRepresentableModel? = nil
+    ) {
         self.items = items
+        self.header = header
+        self.footer = footer
     }
     
     public var items: [DPRepresentableModel]
+    public var header: DPRepresentableModel?
+    public var footer: DPRepresentableModel?
 }
 
-// MARK: - DPCollectionSectionProtocol + Methods
-public extension DPCollectionSectionProtocol {
+// MARK: - DPCollectionSectionType + Methods
+public extension DPCollectionSectionType {
     
     /// Returns the cell model or `nil`.
     ///
@@ -39,8 +53,8 @@ public extension DPCollectionSectionProtocol {
     
 }
 
-// MARK: - DPCollectionSectionProtocol + Array
-public extension Array where Element == DPCollectionSectionProtocol {
+// MARK: - DPCollectionSectionType + Array
+public extension Array where Element == DPCollectionSectionType {
     
     /// Returns the cell model or `nil`.
     ///
@@ -53,9 +67,25 @@ public extension Array where Element == DPCollectionSectionProtocol {
     /// Returns the section or `nil`.
     ///
     /// - Parameter index: section number in the sections.
-    func section(at index: Int) -> DPCollectionSectionProtocol? {
+    func section(at index: Int) -> DPCollectionSectionType? {
         guard self.indices.contains(index) else { return nil }
         return self[index]
+    }
+    
+    /// Returns the header model or `nil`.
+    ///
+    /// - Parameter index: section number.
+    func header(at index: Int) -> DPRepresentableModel? {
+        guard self.indices.contains(index) else { return nil }
+        return self[index].header
+    }
+    
+    /// Returns the footer model or `nil`.
+    ///
+    /// - Parameter index: section number.
+    func footer(at index: Int) -> DPRepresentableModel? {
+        guard self.indices.contains(index) else { return nil }
+        return self[index].footer
     }
     
 }

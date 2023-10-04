@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import DPUIKit
 
 /// Component for updating ``DPCollectionView`` data and ``DPCollectionAdapter/sections``.
 public struct DPCollectionUpdate {
@@ -18,203 +19,192 @@ public struct DPCollectionUpdate {
 // MARK: - Store
 public extension DPCollectionUpdate {
     
-//    /// Adds new sections.
-//    ///
-//    /// - Parameter sections: array of sections for installation.
-//    /// - Parameter indexSet: numbers in the ``DPTableAdapter/sections`` for installation.
-//    /// - Parameter rowAnimation: animation type.
-//    static func insertSections(_ sections: [DPTableSectionProtocol], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            for (offset, index) in indexSet.enumerated() {
-//                adapter.sections.insert(sections[offset], at: index)
-//            }
-//
-//            adapter.tableView?.insertSections(indexSet, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Set new sections at `indexSet`.
-//    ///
-//    /// - Parameter sections: array of sections for installation.
-//    /// - Parameter indexSet: numbers in the ``DPTableAdapter/sections`` for installation.
-//    /// - Parameter rowAnimation: animation type.
-//    static func setSections(_ sections: [DPTableSectionProtocol], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            for (offset, index) in indexSet.enumerated() {
-//                adapter.sections[index] = sections[offset]
-//            }
-//
-//            adapter.tableView?.reloadSections(indexSet, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Set new sections by `ID`.
-//    ///
-//    /// - Parameter sections: array of sections for installation.
-//    /// - Parameter rowAnimation: animation type.
-//    @available(iOS 13.0, *)
-//    static func setSections<S: DPTableSectionProtocol & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            var indicies: [Int] = []
-//
-//            for (sectionOffset, section) in adapter.sections.enumerated() {
-//                guard let section = section as? S, sections.contains(where: { $0.id == section.id }) else { continue }
-//                indicies += [sectionOffset]
-//                adapter.sections[sectionOffset] = section
-//            }
-//
-//            adapter.tableView?.reloadSections(IndexSet(indicies), with: rowAnimation)
-//        }
-//    }
-//
-//    /// Reload sections.
-//    ///
-//    /// - Parameter indexSet: numbers in the ``DPTableAdapter/sections`` for reload.
-//    /// - Parameter rowAnimation: animation type.
-//    static func reloadSections(at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            adapter.tableView?.reloadSections(indexSet, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Delete sections at `indexSet`.
-//    ///
-//    /// - Parameter indexSet: numbers in the ``DPTableAdapter/sections`` for delete.
-//    /// - Parameter rowAnimation: animation type.
-//    static func deleteSections(at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            for index in indexSet {
-//                adapter.sections.remove(at: index)
-//            }
-//
-//            adapter.tableView?.deleteSections(indexSet, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Delete sections by `ID`.
-//    ///
-//    /// - Parameter sections: array of sections for delete.
-//    /// - Parameter rowAnimation: animation type.
-//    @available(iOS 13.0, *)
-//    static func deleteSections<S: DPTableSectionProtocol & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            var indicies: [Int] = []
-//
-//            for (sectionOffset, section) in adapter.sections.enumerated() {
-//                guard let section = section as? S, sections.contains(where: { $0.id == section.id }) else { continue }
-//                indicies += [sectionOffset]
-//            }
-//
-//            guard !indicies.isEmpty else { return }
-//            let indexSet = IndexSet(indicies)
-//
-//            for index in indexSet {
-//                adapter.sections.remove(at: index)
-//            }
-//
-//            adapter.tableView?.deleteSections(indexSet, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Adds new rows.
-//    ///
-//    /// - Parameter rows: array of rows for installation.
-//    /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPTableAdapter/sections`` for installation.
-//    /// - Parameter rowAnimation: animation type.
-//    static func insertRows(_ rows: [DPRepresentableModel], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            for (offset, indexPath) in indexPaths.enumerated() {
-//                adapter.sections[indexPath.section].rows.insert(rows[offset], at: indexPath.row)
-//            }
-//
-//            adapter.tableView?.insertRows(at: indexPaths, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Set new rows at `indexPaths`.
-//    ///
-//    /// - Parameter rows: array of rows for installation.
-//    /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPTableAdapter/sections`` for installation.
-//    /// - Parameter rowAnimation: animation type.
-//    static func setRows(_ rows: [DPRepresentableModel], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            for (offset, indexPath) in indexPaths.enumerated() {
-//                adapter.sections[indexPath.section].rows[indexPath.row] = rows[offset]
-//            }
-//
-//            adapter.tableView?.reloadRows(at: indexPaths, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Set new rows by `ID`.
-//    ///
-//    /// - Parameter rows: array of rows for installation.
-//    /// - Parameter rowAnimation: animation type.
-//    @available(iOS 13.0, *)
-//    static func setRows<R: DPRepresentableModel & Identifiable>(_ rows: [R],with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            var indexPaths: [IndexPath] = []
-//
-//            for (sectionOffset, section) in adapter.sections.enumerated() {
-//                for (rowOffset, row) in section.rows.enumerated() {
-//                    guard let row = row as? R, rows.contains(where: { $0.id == row.id }) else { continue }
-//                    indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
-//                    adapter.sections[sectionOffset].rows[rowOffset] = row
-//                }
-//            }
-//
-//            adapter.tableView?.reloadRows(at: indexPaths, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Reload rows.
-//    ///
-//    /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPTableAdapter/sections`` for installation.
-//    /// - Parameter rowAnimation: animation type.
-//    static func reloadRows(at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            adapter.tableView?.reloadRows(at: indexPaths, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Delete rows at `indexPaths`.
-//    ///
-//    /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPTableAdapter/sections`` for installation.
-//    /// - Parameter rowAnimation: animation type.
-//    static func deleteRows(at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            for indexPath in indexPaths {
-//                adapter.sections[indexPath.section].rows.remove(at: indexPath.row)
-//            }
-//
-//            adapter.tableView?.deleteRows(at: indexPaths, with: rowAnimation)
-//        }
-//    }
-//
-//    /// Delete rows by `ID`.
-//    ///
-//    /// - Parameter sections: array of rows for delete.
-//    /// - Parameter rowAnimation: animation type.
-//    @available(iOS 13.0, *)
-//    static func deleteRows<R: DPRepresentableModel & Identifiable>(_ rows: [R], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
-//        DPTableUpdate { adapter in
-//            var indexPaths: [IndexPath] = []
-//
-//            for (sectionOffset, section) in adapter.sections.enumerated() {
-//                for (rowOffset, row) in section.rows.enumerated() {
-//                    guard let row = row as? R, rows.contains(where: { $0.id == row.id }) else { continue }
-//                    indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
-//                }
-//            }
-//
-//            guard !indexPaths.isEmpty else { return }
-//
-//            for indexPath in indexPaths {
-//                adapter.sections[indexPath.section].rows.remove(at: indexPath.row)
-//            }
-//
-//            adapter.tableView?.deleteRows(at: indexPaths, with: rowAnimation)
-//        }
-//    }
+    /// Adds new sections.
+    ///
+    /// - Parameter sections: array of sections for installation.
+    /// - Parameter indexSet: numbers in the ``DPCollectionAdapter/sections`` for installation.
+    static func insertSections(_ sections: [DPCollectionSectionType], at indexSet: IndexSet) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            for (offset, index) in indexSet.enumerated() {
+                adapter.sections.insert(sections[offset], at: index)
+            }
+
+            adapter.collectionView?.insertSections(indexSet)
+        }
+    }
+
+    /// Set new sections at `indexSet`.
+    ///
+    /// - Parameter sections: array of sections for installation.
+    /// - Parameter indexSet: numbers in the ``DPCollectionAdapter/sections`` for installation.
+    static func setSections(_ sections: [DPCollectionSectionType], at indexSet: IndexSet) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            for (offset, index) in indexSet.enumerated() {
+                adapter.sections[index] = sections[offset]
+            }
+
+            adapter.collectionView?.reloadSections(indexSet)
+        }
+    }
+
+    /// Set new sections by `ID`.
+    ///
+    /// - Parameter sections: array of sections for installation.
+    @available(iOS 13.0, *)
+    static func setSections<S: DPCollectionSectionType & Identifiable>(_ sections: [S]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indicies: [Int] = []
+
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                guard let section = section as? S, sections.contains(where: { $0.id == section.id }) else { continue }
+                indicies += [sectionOffset]
+                adapter.sections[sectionOffset] = section
+            }
+
+            adapter.collectionView?.reloadSections(IndexSet(indicies))
+        }
+    }
+
+    /// Reload sections.
+    ///
+    /// - Parameter indexSet: numbers in the ``DPCollectionAdapter/sections`` for reload.
+    static func reloadSections(at indexSet: IndexSet) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            adapter.collectionView?.reloadSections(indexSet)
+        }
+    }
+
+    /// Delete sections at `indexSet`.
+    ///
+    /// - Parameter indexSet: numbers in the ``DPCollectionAdapter/sections`` for delete.
+    static func deleteSections(at indexSet: IndexSet) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            for index in indexSet {
+                adapter.sections.remove(at: index)
+            }
+
+            adapter.collectionView?.deleteSections(indexSet)
+        }
+    }
+
+    /// Delete sections by `ID`.
+    ///
+    /// - Parameter sections: array of sections for delete.
+    @available(iOS 13.0, *)
+    static func deleteSections<S: DPCollectionSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indicies: [Int] = []
+
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                guard let section = section as? S, sections.contains(where: { $0.id == section.id }) else { continue }
+                indicies += [sectionOffset]
+            }
+
+            guard !indicies.isEmpty else { return }
+            let indexSet = IndexSet(indicies)
+
+            for index in indexSet {
+                adapter.sections.remove(at: index)
+            }
+
+            adapter.collectionView?.deleteSections(indexSet)
+        }
+    }
+
+    /// Adds new items.
+    ///
+    /// - Parameter items: array of items for installation.
+    /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPCollectionAdapter/sections`` for installation.
+    static func insertItems(_ items: [DPRepresentableModel], at indexPaths: [IndexPath]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            for (offset, indexPath) in indexPaths.enumerated() {
+                adapter.sections[indexPath.section].items.insert(items[offset], at: indexPath.item)
+            }
+
+            adapter.collectionView?.insertItems(at: indexPaths)
+        }
+    }
+
+    /// Set new items at `indexPaths`.
+    ///
+    /// - Parameter rows: array of items for installation.
+    /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPCollectionAdapter/sections`` for installation.
+    /// - Parameter rowAnimation: animation type.
+    static func setItems(_ items: [DPRepresentableModel], at indexPaths: [IndexPath]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            for (offset, indexPath) in indexPaths.enumerated() {
+                adapter.sections[indexPath.section].items[indexPath.item] = items[offset]
+            }
+
+            adapter.collectionView?.reloadItems(at: indexPaths)
+        }
+    }
+
+    /// Set new items by `ID`.
+    ///
+    /// - Parameter items: array of items for installation.
+    @available(iOS 13.0, *)
+    static func setItems<I: DPRepresentableModel & Identifiable>(_ items: [I]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indexPaths: [IndexPath] = []
+
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                for (itemOffset, item) in section.items.enumerated() {
+                    guard let item = item as? I, items.contains(where: { $0.id == item.id }) else { continue }
+                    indexPaths += [ IndexPath(item: itemOffset, section: sectionOffset) ]
+                    adapter.sections[sectionOffset].items[itemOffset] = item
+                }
+            }
+
+            adapter.collectionView?.reloadItems(at: indexPaths)
+        }
+    }
+
+    /// Reload items.
+    ///
+    /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPCollectionAdapter/sections`` for installation.
+    static func reloadItems(at indexPaths: [IndexPath]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            adapter.collectionView?.reloadItems(at: indexPaths)
+        }
+    }
+
+    /// Delete items at `indexPaths`.
+    ///
+    /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPCollectionAdapter/sections`` for installation.
+    static func deleteItems(at indexPaths: [IndexPath]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            for indexPath in indexPaths {
+                adapter.sections[indexPath.section].items.remove(at: indexPath.item)
+            }
+
+            adapter.collectionView?.deleteItems(at: indexPaths)
+        }
+    }
+
+    /// Delete items by `ID`.
+    ///
+    /// - Parameter sections: array of items for delete.
+    @available(iOS 13.0, *)
+    static func deleteItems<I: DPRepresentableModel & Identifiable>(_ items: [I]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indexPaths: [IndexPath] = []
+
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                for (itemOffset, item) in section.items.enumerated() {
+                    guard let item = item as? I, items.contains(where: { $0.id == item.id }) else { continue }
+                    indexPaths += [ IndexPath(row: itemOffset, section: sectionOffset) ]
+                }
+            }
+
+            guard !indexPaths.isEmpty else { return }
+
+            for indexPath in indexPaths {
+                adapter.sections[indexPath.section].items.remove(at: indexPath.row)
+            }
+
+            adapter.collectionView?.deleteItems(at: indexPaths)
+        }
+    }
     
 }

@@ -10,7 +10,7 @@ import UIKit
 import DPUIKit
 
 /// Protocol for defining a custom [UICollectionViewCell](https://developer.apple.com/documentation/uikit/uicollectionviewcell).
-public protocol DPCollectionItemCellProtocol: UICollectionViewCell {
+public protocol DPCollectionItemCellType: UICollectionViewCell {
     
     /// Cell model.
     /// Set to the cell in the ``DPCollectionAdapter/collectionView(_:cellForItemAt:)``.
@@ -18,8 +18,8 @@ public protocol DPCollectionItemCellProtocol: UICollectionViewCell {
     var _model: DPRepresentableModel? { get set }
 }
 
-/// Basic implementation of the ``DPCollectionItemCellProtocol``.
-open class DPCollectionItemCell: UICollectionViewCell, DPCollectionItemCellProtocol, DPViewProtocol {
+/// Basic implementation of the ``DPCollectionItemCellType``.
+open class DPCollectionItemCell: UICollectionViewCell, DPCollectionItemCellType, DPViewProtocol {
     
     // MARK: - Init
     public override init(frame: CGRect) {

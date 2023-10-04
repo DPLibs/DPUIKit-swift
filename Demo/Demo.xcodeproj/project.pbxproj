@@ -11,6 +11,10 @@
 		E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204C069284C1D160097611F /* UserCoordinator.swift */; };
 		E204C072284D33520097611F /* UserEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204C071284D33520097611F /* UserEditable.swift */; };
 		E21601A32ACC55500075321B /* DPCollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601A22ACC55500075321B /* DPCollectionUpdate.swift */; };
+		E21601A62ACD862A0075321B /* DPCollectionSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601A52ACD862A0075321B /* DPCollectionSupplementaryView.swift */; };
+		E21601A82ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601A72ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift */; };
+		E21601AA2ACD8ECC0075321B /* AdsCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601A92ACD8ECC0075321B /* AdsCollectionHeaderView.swift */; };
+		E21601AC2ACD93900075321B /* AdsCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601AB2ACD93900075321B /* AdsCollectionFooterView.swift */; };
 		E2369045284A6368007EED26 /* UserEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2369044284A6368007EED26 /* UserEditCoordinator.swift */; };
 		E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EB027C287B9004EE94F /* AppTheme.swift */; };
 		E23A5ECA27C2AF21004EE94F /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EC927C2AF21004EE94F /* Recent.swift */; };
@@ -55,6 +59,10 @@
 		E204C071284D33520097611F /* UserEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditable.swift; sourceTree = "<group>"; };
 		E2096D4528FF487C0029F41B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21601A22ACC55500075321B /* DPCollectionUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionUpdate.swift; sourceTree = "<group>"; };
+		E21601A52ACD862A0075321B /* DPCollectionSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionSupplementaryView.swift; sourceTree = "<group>"; };
+		E21601A72ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionSupplementaryAdapter.swift; sourceTree = "<group>"; };
+		E21601A92ACD8ECC0075321B /* AdsCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionHeaderView.swift; sourceTree = "<group>"; };
+		E21601AB2ACD93900075321B /* AdsCollectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionFooterView.swift; sourceTree = "<group>"; };
 		E2369044284A6368007EED26 /* UserEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditCoordinator.swift; sourceTree = "<group>"; };
 		E23A5EB027C287B9004EE94F /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		E23A5EC927C2AF21004EE94F /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
@@ -112,6 +120,15 @@
 				E2096D4528FF487C0029F41B /* Info.plist */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		E21601A42ACD86200075321B /* Supplementary */ = {
+			isa = PBXGroup;
+			children = (
+				E21601A52ACD862A0075321B /* DPCollectionSupplementaryView.swift */,
+				E21601A72ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift */,
+			);
+			path = Supplementary;
 			sourceTree = "<group>";
 		};
 		E2322B8328FF2DD10046912A /* Modules */ = {
@@ -255,6 +272,7 @@
 				E21601A22ACC55500075321B /* DPCollectionUpdate.swift */,
 				E258BFF82ABAD41E00161C0C /* DPCollectionView.swift */,
 				E258BFFA2ABAD47B00161C0C /* Item */,
+				E21601A42ACD86200075321B /* Supplementary */,
 			);
 			path = _Collection;
 			sourceTree = "<group>";
@@ -281,6 +299,8 @@
 		E258C00F2ABAE21200161C0C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E21601AB2ACD93900075321B /* AdsCollectionFooterView.swift */,
+				E21601A92ACD8ECC0075321B /* AdsCollectionHeaderView.swift */,
 				E258C0102ABAE22A00161C0C /* AdsCollectionItemCell.swift */,
 			);
 			path = Components;
@@ -461,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21601AA2ACD8ECC0075321B /* AdsCollectionHeaderView.swift in Sources */,
 				E2C376282ACB0ECB002EB93E /* RecentViewController.swift in Sources */,
 				E204C068284B8EC30097611F /* MainCoordinator.swift in Sources */,
 				E2C3762A2ACB0ECB002EB93E /* RecentTableRowCell.swift in Sources */,
@@ -469,6 +490,7 @@
 				E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */,
 				E252FBDC27C7659100F6F0F5 /* MainTabBarController.swift in Sources */,
 				E2FC50D727C38C1500F320C5 /* UserProfileViewModel.swift in Sources */,
+				E21601AC2ACD93900075321B /* AdsCollectionFooterView.swift in Sources */,
 				E23D135927C4FE0A001AB75D /* UserEditViewModel.swift in Sources */,
 				E258C0132ABAE2AC00161C0C /* Ads.swift in Sources */,
 				E258BFFC2ABAD49000161C0C /* DPCollectionItemCell.swift in Sources */,
@@ -481,10 +503,12 @@
 				E2C376292ACB0ECB002EB93E /* RecentViewModel.swift in Sources */,
 				E2C3762B2ACB0ECB002EB93E /* RecentView.swift in Sources */,
 				E2C376182ACB0CC7002EB93E /* DPCollectionItemAdapter.swift in Sources */,
+				E21601A62ACD862A0075321B /* DPCollectionSupplementaryView.swift in Sources */,
 				E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */,
 				E204C072284D33520097611F /* UserEditable.swift in Sources */,
 				E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */,
 				E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */,
+				E21601A82ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift in Sources */,
 				E2FC50D827C38C1500F320C5 /* UserProfileViewController.swift in Sources */,
 				E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */,
 				E258C00D2ABAE20200161C0C /* AdsViewModel.swift in Sources */,

@@ -12,7 +12,7 @@ import UIKit
 public protocol DPTableTitleViewProtocol: UITableViewHeaderFooterView {
     
     /// View model.
-    /// Set to the cell in the ``DPTableAdapter/tableView(_:viewForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:viewForFooterInSection:)``.
+    /// Set to view in the ``DPTableAdapter/tableView(_:viewForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:viewForFooterInSection:)``.
     /// Can also be set by using certain ``DPTableUpdate`` in the ``DPTableAdapter/performBatchUpdates(_:completion:)``.
     var _model: DPRepresentableModel? { get set }
 }

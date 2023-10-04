@@ -13,19 +13,26 @@ import DPUIKit
 open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Init
-    public init(itemAdapters: [DPCollectionItemAdapterProtocol] = []) {
+    public init(
+        itemAdapters: [DPCollectionItemAdapterType] = [],
+        supplementaryAdapters: [DPCollectionSupplementaryAdapterType] = []
+    ) {
         super.init()
         self.addItemAdapters(itemAdapters)
+        self.addSupplementaryAdapters(supplementaryAdapters)
     }
     
     // MARK: - Types
     public typealias Closure = () -> Void
-    public typealias ItemContext = (cell: DPCollectionItemCellProtocol, model: DPRepresentableModel, indexPath: IndexPath)
+    public typealias ItemContext = (cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath)
     public typealias ItemContextClosure = (ItemContext) -> Void
     public typealias ItemContextToCGSize = ((model: DPRepresentableModel, indexPath: IndexPath)) -> CGSize?
-    public typealias SectionContext = (model: DPCollectionSectionProtocol, index: Int)
+    
+    public typealias SectionContext = (model: DPCollectionSectionType, index: Int)
     public typealias SectionContextToUIEdgeInsets = (SectionContext) -> UIEdgeInsets?
     public typealias SectionContextToCGFloat = (SectionContext) -> CGFloat?
+    
+    public typealias SupplementaryContextToCGSize = ((model: DPRepresentableModel, section: Int)) -> CGSize?
     
     // MARK: - Props
     
@@ -42,50 +49,69 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// An array of sections.
     ///
     /// Used to display `cells` and other `subviews` of a ``collectionView``.
-    open var sections: [DPCollectionSectionProtocol] = []
+    open var sections: [DPCollectionSectionType] = []
     
     /// Cells adapters.
-    open internal(set) var itemAdapters: [String: DPCollectionItemAdapterProtocol] = [:]
+    open internal(set) var itemAdapters: [String: DPCollectionItemAdapterType] = [:]
+    
+    /// Supplementary views adapters.
+    open internal(set) var supplementaryAdapters: [String: DPCollectionSupplementaryAdapterType] = [:]
     
     /// Registered cell IDs.
-    open internal(set) var registeredСellIdentifiers: Set<String> = []
+    open internal(set) var registeredСellReuseIdentifiers: Set<String> = []
     
-    /// Called int the ``collectionView(_:cellForItemAt:))``.
+    /// Registered supplementary views IDs.
+    open internal(set) var registeredSupplementaryViewsReuseIdentifiers: Set<String> = []
+    
+    /// Called in the ``collectionView(_:cellForItemAt:))``.
     open var onCellForItem: ItemContextClosure?
     
-    /// Called int the ``collectionView(_:willDisplay:forItemAt:)``.
+    /// Called in the ``collectionView(_:willDisplay:forItemAt:)``.
     open var willDisplayItem: ItemContextClosure?
     
-    /// Called int the ``collectionView(_:didSelectItemAt:)``.
+    /// Called in the ``collectionView(_:didSelectItemAt:)``.
     open var didSelectItem: ItemContextClosure?
     
-    /// Called int the ``collectionView(_:didSelectItemAt:)``.
+    /// Called in the ``collectionView(_:didSelectItemAt:)``.
     open var didDeselectItem: ItemContextClosure?
     
-    /// Called int the ``collectionView(_:willDisplay:forItemAt:)`` when the first cell is displayed.
+    /// Called in the ``collectionView(_:willDisplay:forItemAt:)`` when the first cell is displayed.
     open var onDisplayFirstItem: Closure?
     
-    /// Called int the ``collectionView(_:willDisplay:forItemAt:)`` when the last cell is displayed.
+    /// Called in the ``collectionView(_:willDisplay:forItemAt:)`` when the last cell is displayed.
     open var onDisplayLastItem: Closure?
     
-    /// Called int the ``collectionView(_:layout:sizeForItemAt:)``.
+    /// Called in ``collectionView(_:layout:sizeForItemAt:)``.
     open var onSizeForItem: ItemContextToCGSize?
     
-    /// Called int the ``collectionView(_:layout:insetForSectionAt:)``.
+    /// Called in ``collectionView(_:layout:insetForSectionAt:)``.
     open var onInsetForSection: SectionContextToUIEdgeInsets?
     
-    /// Called int the ``collectionView(_:layout:minimumLineSpacingForSectionAt:)``.
+    /// Called in ``collectionView(_:layout:minimumLineSpacingForSectionAt:)``.
     open var onMinimumLineSpacingForSection: SectionContextToCGFloat?
     
-    /// Called int the ``collectionView(_:layout:minimumInteritemSpacingForSectionAt:)``.
+    /// Called in ``collectionView(_:layout:minimumInteritemSpacingForSectionAt:)``.
     open var onMinimumInteritemSpacingForSection: SectionContextToCGFloat?
+    
+    /// Called in ``collectionView(_:layout:referenceSizeForHeaderInSection:)``.
+    open var onReferenceSizeForHeaderInSection: SupplementaryContextToCGSize?
+    
+    /// Called in ``collectionView(_:layout:referenceSizeForFooterInSection:)``.
+    open var onReferenceSizeForFooterInSection: SupplementaryContextToCGSize?
     
     // MARK: - Methods
     
     /// Add adapters for cells.
-    open func addItemAdapters(_ itemAdapters: [DPCollectionItemAdapterProtocol]) {
-        for adapter in itemAdapters {
+    open func addItemAdapters(_ adapters: [DPCollectionItemAdapterType]) {
+        for adapter in adapters {
             self.itemAdapters[adapter.modelRepresentableIdentifier] = adapter
+        }
+    }
+    
+    /// Add adapters for supplementary views.
+    open func addSupplementaryAdapters(_ adapters: [DPCollectionSupplementaryAdapterType]) {
+        for adapter in adapters {
+            self.supplementaryAdapters[adapter.modelRepresentableIdentifier] = adapter
         }
     }
     
@@ -94,7 +120,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// Install new sections and call `collectionView.reloadData()`.
     ///
     /// - Parameter sections: new array of sections. Will be installed in ``sections``.
-    open func reloadData(_ sections: [DPCollectionSectionProtocol]) {
+    open func reloadData(_ sections: [DPCollectionSectionType]) {
         self.sections = sections
         self.collectionView?.reloadData()
     }
@@ -133,14 +159,14 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         let cellClass = adapter.cellClass
         let cellIdentifier = String(describing: cellClass)
         
-        if !self.registeredСellIdentifiers.contains(cellIdentifier) {
+        if !self.registeredСellReuseIdentifiers.contains(cellIdentifier) {
             collectionView.register(cellClass, forCellWithReuseIdentifier: cellIdentifier)
-            self.registeredСellIdentifiers.insert(cellIdentifier)
+            self.registeredСellReuseIdentifiers.insert(cellIdentifier)
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
         
-        if let cell = cell as? DPCollectionItemCellProtocol {
+        if let cell = cell as? DPCollectionItemCellType {
             cell._model = model
             
             self.onCellForItem?((cell, model, indexPath))
@@ -150,9 +176,46 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         return cell
     }
     
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        var result: UICollectionReusableView?
+        
+        func view(of model: DPRepresentableModel, kind: String) -> UICollectionReusableView? {
+            guard let adapter = self.supplementaryAdapters[model._representableIdentifier] else { return nil }
+            
+            let viewClass = adapter.viewClass
+            let viewIdentifier = String(describing: viewClass)
+            
+            if !self.registeredSupplementaryViewsReuseIdentifiers.contains(viewIdentifier) {
+                collectionView.register(viewClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: viewIdentifier)
+                self.registeredSupplementaryViewsReuseIdentifiers.insert(viewIdentifier)
+            }
+            
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: viewIdentifier, for: indexPath)
+            
+            if let view = view as? DPCollectionSupplementaryViewType {
+                view._model = model
+            }
+            
+            return view
+        }
+        
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let model = self.sections.header(at: indexPath.section) else { break }
+            result = view(of: model, kind: kind)
+        case UICollectionView.elementKindSectionFooter:
+            guard let model = self.sections.footer(at: indexPath.section) else { break }
+            result = view(of: model, kind: kind)
+        default:
+            break
+        }
+        
+        return result ?? UICollectionReusableView()
+    }
+    
     // MARK: - UICollectionViewDelegate
     open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let cell = cell as? DPCollectionItemCellProtocol, let model = self.sections.item(at: indexPath) {
+        if let cell = cell as? DPCollectionItemCellType, let model = self.sections.item(at: indexPath) {
             self.willDisplayItem?((cell, model, indexPath))
             self.itemAdapters[model._representableIdentifier]?.willDisplay(cell: cell, model: model, indexPath: indexPath)
         }
@@ -168,7 +231,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     
     open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard
-            let cell = collectionView.cellForItem(at: indexPath) as? DPCollectionItemCellProtocol,
+            let cell = collectionView.cellForItem(at: indexPath) as? DPCollectionItemCellType,
             let model = self.sections.item(at: indexPath)
         else { return }
 
@@ -178,7 +241,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
 
     open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard
-            let cell = collectionView.cellForItem(at: indexPath) as? DPCollectionItemCellProtocol,
+            let cell = collectionView.cellForItem(at: indexPath) as? DPCollectionItemCellType,
             let model = self.sections.item(at: indexPath)
         else { return }
 
@@ -217,12 +280,30 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         return self.onMinimumInteritemSpacingForSection?((model, section)) ?? defaultValue
     }
 
-//    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//
-//    }
-//
-//    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-//
-//    }
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        guard
+            let model = self.sections.header(at: section),
+            let adapter = self.supplementaryAdapters[model._representableIdentifier]
+        else { return .zero }
+        
+        return
+            adapter.onViewSize(model: model, section: section) ??
+            self.onReferenceSizeForFooterInSection?((model, section)) ??
+            (collectionViewLayout as? UICollectionViewFlowLayout)?.headerReferenceSize ??
+            .zero
+    }
+
+    open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard
+            let model = self.sections.footer(at: section),
+            let adapter = self.supplementaryAdapters[model._representableIdentifier]
+        else { return .zero }
+        
+        return
+            adapter.onViewSize(model: model, section: section) ??
+            self.onReferenceSizeForFooterInSection?((model, section)) ??
+            (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize ??
+            .zero
+    }
     
 }

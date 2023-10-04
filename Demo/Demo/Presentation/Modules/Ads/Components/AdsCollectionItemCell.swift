@@ -17,8 +17,8 @@ final class AdsCollectionItemCell: DPCollectionItemCell {
         set { self._model = newValue }
     }
     
-    private let titleLabel = UILabel()
-    private let bodyLabel = UILabel()
+    private let titleLabel = UILabel().applyStyles(.numberOfLines(0))
+    private let bodyLabel = UILabel().applyStyles(.numberOfLines(0))
     
     // MARK: - Methods
     override func setupComponents() {
@@ -36,7 +36,7 @@ final class AdsCollectionItemCell: DPCollectionItemCell {
             .bottom(),
             .leading(),
             .trailing(),
-            .top(16, to: .anchor(self.titleLabel.bottomAnchor))
+            .top(8, to: .anchor(self.titleLabel.bottomAnchor))
         ])
     }
     
@@ -54,8 +54,10 @@ extension AdsCollectionItemCell {
     
     typealias Adapter = DPCollectionItemAdapter<AdsCollectionItemCell, Model>
     
-    struct Model: DPRepresentableModel {
+    struct Model: DPRepresentableModel, Identifiable {
         let ads: Ads
+        
+        var id: UUID { self.ads.id }
     }
     
 }

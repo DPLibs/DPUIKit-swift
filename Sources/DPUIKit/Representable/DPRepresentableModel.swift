@@ -8,8 +8,8 @@
 import Foundation
 
 /// A protocol for creating a reusable model
-public protocol DPRepresentableModel {
-    
+public protocol DPRepresentableModel: Sendable {
+
     /// This identifier is used to search for a correspondence between the model and the component responsible for reuse (for example,  ``DPTableRowAdapterProtocol``)
     var _representableIdentifier: String { get }
 }

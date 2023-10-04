@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Ads {
+struct Ads: Identifiable {
+    let id = UUID()
     let title: String
     let body: String
 }
@@ -27,7 +28,7 @@ extension Ads {
 extension Array where Element == Ads {
     
     static func moc(count: Int) -> Self {
-        Array(repeating: Ads.moc(), count: count)
+        (0...count).map({ _ in Ads.moc() })
     }
     
 }
