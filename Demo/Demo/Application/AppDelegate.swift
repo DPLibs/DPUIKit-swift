@@ -16,10 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         self.window = .init()
-//        self.appCooridinator.start()
-        self.window?.rootViewController = AdsViewController()
-        self.window?.makeKeyAndVisible()
-        
+        self.appCooridinator.start()
         return true
     }
 

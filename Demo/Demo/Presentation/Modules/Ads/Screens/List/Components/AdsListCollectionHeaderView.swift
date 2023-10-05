@@ -1,5 +1,5 @@
 //
-//  AdsCollectionFooterView.swift
+//  AdsListCollectionHeaderView.swift
 //  Demo
 //
 //  Created by Дмитрий Поляков on 04.10.2023.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
-final class AdsCollectionFooterView: DPCollectionSupplementaryView {
+final class AdsListCollectionHeaderView: DPCollectionSupplementaryView {
     
     // MARK: - Props
     var model: Model? {
@@ -17,7 +17,7 @@ final class AdsCollectionFooterView: DPCollectionSupplementaryView {
         set { self._model = newValue }
     }
     
-    private let titleLabel = UILabel().applyStyles(.font(.systemFont(ofSize: 14, weight: .medium)), .textAlignment(.right))
+    private let titleLabel = UILabel().applyStyles(.font(.systemFont(ofSize: 20, weight: .medium)))
     
     // MARK: - Methods
     override func setupComponents() {
@@ -29,17 +29,17 @@ final class AdsCollectionFooterView: DPCollectionSupplementaryView {
     override func updateComponents() {
         super.updateComponents()
         
-        guard let model else { return }
-        self.titleLabel.text = "Total \(model.total)"
+        self.titleLabel.text = self.model?.title
     }
 }
 
-extension AdsCollectionFooterView {
+// MARK: - Types
+extension AdsListCollectionHeaderView {
     
-    typealias Adapter = DPCollectionSupplementaryAdapter<AdsCollectionFooterView, Model>
+    typealias Adapter = DPCollectionSupplementaryAdapter<AdsListCollectionHeaderView, Model>
     
     struct Model: DPRepresentableModel {
-        let total: Int
+        let title: String
     }
     
 }

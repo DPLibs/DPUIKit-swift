@@ -1,5 +1,5 @@
 //
-//  AdsViewController.swift
+//  AdsListViewController.swift
 //  Demo
 //
 //  Created by Дмитрий Поляков on 20.09.2023.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
-final class AdsViewController: DPViewController {
+final class AdsListViewController: DPViewController {
     
     // MARK: - Init
     override init() {
@@ -24,8 +24,8 @@ final class AdsViewController: DPViewController {
     }
     
     // MARK: - Props
-    private var model: AdsViewModel? {
-        get { self._model as? AdsViewModel }
+    private var model: AdsListViewModel? {
+        get { self._model as? AdsListViewModel }
         set { self._model = newValue }
     }
     
@@ -40,7 +40,7 @@ final class AdsViewController: DPViewController {
         
         result.adapter = DPCollectionAdapter(
             itemAdapters: [
-                AdsCollectionItemCell.Adapter(
+                AdsListCollectionItemCell.Adapter(
                     didSelect: { [weak self] ctx in
                         self?.showAds(ctx.model)
                     },
@@ -52,10 +52,10 @@ final class AdsViewController: DPViewController {
                 )
             ],
             supplementaryAdapters: [
-                AdsCollectionHeaderView.Adapter(
+                AdsListCollectionHeaderView.Adapter(
                     viewSize: .init(width: 200, height: 40)
                 ),
-                AdsCollectionFooterView.Adapter(
+                AdsListCollectionFooterView.Adapter(
                     viewSize: .init(width: 200, height: 40)
                 )
             ]
@@ -85,9 +85,9 @@ final class AdsViewController: DPViewController {
         
         let sections = (self.model?.sections ?? []).map { section in
             DPCollectionSection(
-                items: section.ads.map({ AdsCollectionItemCell.Model(ads: $0) }),
-                header: AdsCollectionHeaderView.Model(title: section.name),
-                footer: AdsCollectionFooterView.Model(total: section.total)
+                items: section.ads.map({ AdsListCollectionItemCell.Model(ads: $0) }),
+                header: AdsListCollectionHeaderView.Model(title: section.name),
+                footer: AdsListCollectionFooterView.Model(total: section.total)
             )
         }
         
@@ -101,9 +101,9 @@ final class AdsViewController: DPViewController {
 }
 
 // MARK: - Private
-private extension AdsViewController {
+private extension AdsListViewController {
     
-    func showAds(_ model: AdsCollectionItemCell.Model) {
+    func showAds(_ model: AdsListCollectionItemCell.Model) {
         let vc = UIAlertController(title: model.ads.title, message: model.ads.body, preferredStyle: .alert)
         vc.addAction(.init(title: "OK", style: .cancel))
         self.present(vc, animated: true)

@@ -1,5 +1,5 @@
 //
-//  AdsCollectionItemCell.swift
+//  AdsListCollectionItemCell.swift
 //  Demo
 //
 //  Created by Дмитрий Поляков on 20.09.2023.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
-final class AdsCollectionItemCell: DPCollectionItemCell {
+final class AdsListCollectionItemCell: DPCollectionItemCell {
     
     // MARK: - Props
     var model: Model? {
@@ -49,10 +49,10 @@ final class AdsCollectionItemCell: DPCollectionItemCell {
     
 }
 
-// MARK: - Model
-extension AdsCollectionItemCell {
+// MARK: - Types
+extension AdsListCollectionItemCell {
     
-    typealias Adapter = DPCollectionItemAdapter<AdsCollectionItemCell, Model>
+    typealias Adapter = DPCollectionItemAdapter<AdsListCollectionItemCell, Model>
     
     struct Model: DPRepresentableModel, Identifiable {
         let ads: Ads

@@ -1,5 +1,5 @@
 //
-//  AdsViewModel.swift
+//  AdsListViewModel.swift
 //  Demo
 //
 //  Created by Дмитрий Поляков on 20.09.2023.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
-final class AdsViewModel: DPViewModel {
+final class AdsListViewModel: DPViewModel {
     
     // MARK: - Props
     private(set) var sections: [Section] = []
@@ -44,7 +44,8 @@ final class AdsViewModel: DPViewModel {
     
 }
 
-extension AdsViewModel {
+// MARK: - Section
+extension AdsListViewModel {
     
     struct Section {
         let name: String
