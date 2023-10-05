@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import DPUIKit
 
 /// Protocol for defining a `section` in an ``DPCollectionAdapter/sections``.
 public protocol DPCollectionSectionType {

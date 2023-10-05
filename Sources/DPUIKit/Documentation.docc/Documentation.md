@@ -15,6 +15,7 @@ Facilitates and speeds up development on UIKit. The library contains extensions 
 - <doc:MVVM>
 - <doc:Coordinators>
 - <doc:Table>
+- <doc:Collection>
 - <doc:AutoLayout>
 - <doc:StyleWrapper>
 - <doc:Xcode_templates>

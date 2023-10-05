@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import DPUIKit
 
 /// Component for updating ``DPCollectionView`` data and ``DPCollectionAdapter/sections``.
 public struct DPCollectionUpdate {

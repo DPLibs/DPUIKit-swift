@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 /// Protocol for defining a custom [UITableViewCell](https://developer.apple.com/documentation/uikit/uitableviewcell).
-public protocol DPTableRowCellProtocol: UITableViewCell {
+public protocol DPTableRowCellType: UITableViewCell {
     
     /// Cell model.
     /// Set to the cell in the ``DPTableAdapter/tableView(_:cellForRowAt:)``.
@@ -17,8 +17,8 @@ public protocol DPTableRowCellProtocol: UITableViewCell {
     var _model: DPRepresentableModel? { get set }
 }
 
-/// Basic implementation of the ``DPTableRowCellProtocol``.
-open class DPTableRowCell: UITableViewCell, DPTableRowCellProtocol, DPViewProtocol {
+/// Basic implementation of the ``DPTableRowCellType``.
+open class DPTableRowCell: UITableViewCell, DPTableRowCellType, DPViewProtocol {
     
     // MARK: - Init
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

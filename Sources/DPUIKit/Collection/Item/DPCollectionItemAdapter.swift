@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import DPUIKit
 
 /// Component for managing a [UITableViewCell](https://developer.apple.com/documentation/uikit/uitableviewcell).
 public protocol DPCollectionItemAdapterType {

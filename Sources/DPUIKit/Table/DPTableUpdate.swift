@@ -23,7 +23,7 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of sections for installation.
     /// - Parameter indexSet: numbers in the ``DPTableAdapter/sections`` for installation.
     /// - Parameter rowAnimation: animation type.
-    static func insertSections(_ sections: [DPTableSectionProtocol], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func insertSections(_ sections: [DPTableSectionType], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for (offset, index) in indexSet.enumerated() {
                 adapter.sections.insert(sections[offset], at: index)
@@ -38,7 +38,7 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of sections for installation.
     /// - Parameter indexSet: numbers in the ``DPTableAdapter/sections`` for installation.
     /// - Parameter rowAnimation: animation type.
-    static func setSections(_ sections: [DPTableSectionProtocol], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func setSections(_ sections: [DPTableSectionType], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for (offset, index) in indexSet.enumerated() {
                 adapter.sections[index] = sections[offset]
@@ -53,7 +53,7 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of sections for installation.
     /// - Parameter rowAnimation: animation type.
     @available(iOS 13.0, *)
-    static func setSections<S: DPTableSectionProtocol & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func setSections<S: DPTableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indicies: [Int] = []
             
@@ -96,7 +96,7 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of sections for delete.
     /// - Parameter rowAnimation: animation type.
     @available(iOS 13.0, *)
-    static func deleteSections<S: DPTableSectionProtocol & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func deleteSections<S: DPTableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indicies: [Int] = []
             

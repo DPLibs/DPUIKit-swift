@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import DPUIKit
 
 /// Protocol for defining a custom [UICollectionReusableView](https://developer.apple.com/documentation/uikit/uicollectionreusableview).
 public protocol DPCollectionSupplementaryViewType: UICollectionReusableView {

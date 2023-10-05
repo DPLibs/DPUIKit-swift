@@ -10,9 +10,6 @@
 		E204C068284B8EC30097611F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204C067284B8EC30097611F /* MainCoordinator.swift */; };
 		E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204C069284C1D160097611F /* UserCoordinator.swift */; };
 		E204C072284D33520097611F /* UserEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E204C071284D33520097611F /* UserEditable.swift */; };
-		E21601A32ACC55500075321B /* DPCollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601A22ACC55500075321B /* DPCollectionUpdate.swift */; };
-		E21601A62ACD862A0075321B /* DPCollectionSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601A52ACD862A0075321B /* DPCollectionSupplementaryView.swift */; };
-		E21601A82ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601A72ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift */; };
 		E21601AA2ACD8ECC0075321B /* AdsCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601A92ACD8ECC0075321B /* AdsCollectionHeaderView.swift */; };
 		E21601AC2ACD93900075321B /* AdsCollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601AB2ACD93900075321B /* AdsCollectionFooterView.swift */; };
 		E2369045284A6368007EED26 /* UserEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2369044284A6368007EED26 /* UserEditCoordinator.swift */; };
@@ -29,18 +26,13 @@
 		E252FBEF27C77D7300F6F0F5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */; };
 		E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */; };
 		E2563D712947C4C200391C7F /* DPUIKit in Frameworks */ = {isa = PBXBuildFile; productRef = E2563D702947C4C200391C7F /* DPUIKit */; };
-		E258BFF92ABAD41E00161C0C /* DPCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258BFF82ABAD41E00161C0C /* DPCollectionView.swift */; };
-		E258BFFC2ABAD49000161C0C /* DPCollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258BFFB2ABAD49000161C0C /* DPCollectionItemCell.swift */; };
-		E258C0042ABAD5F400161C0C /* DPCollectionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C0032ABAD5F400161C0C /* DPCollectionAdapter.swift */; };
 		E258C00D2ABAE20200161C0C /* AdsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C00B2ABAE20200161C0C /* AdsViewModel.swift */; };
 		E258C00E2ABAE20200161C0C /* AdsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C00C2ABAE20200161C0C /* AdsViewController.swift */; };
 		E258C0112ABAE22A00161C0C /* AdsCollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C0102ABAE22A00161C0C /* AdsCollectionItemCell.swift */; };
 		E258C0132ABAE2AC00161C0C /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C0122ABAE2AC00161C0C /* Ads.swift */; };
-		E258C0152ABAE44C00161C0C /* DPCollectionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C0142ABAE44C00161C0C /* DPCollectionSection.swift */; };
 		E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735D42759547600DCEEFB /* AppDelegate.swift */; };
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
-		E2C376182ACB0CC7002EB93E /* DPCollectionItemAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C376172ACB0CC7002EB93E /* DPCollectionItemAdapter.swift */; };
 		E2C376252ACB0ECB002EB93E /* RecentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3761A2ACB0ECB002EB93E /* RecentsCoordinator.swift */; };
 		E2C376262ACB0ECB002EB93E /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3761D2ACB0ECB002EB93E /* RecentsViewController.swift */; };
 		E2C376272ACB0ECB002EB93E /* RecentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3761E2ACB0ECB002EB93E /* RecentsViewModel.swift */; };
@@ -58,9 +50,6 @@
 		E204C069284C1D160097611F /* UserCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoordinator.swift; sourceTree = "<group>"; };
 		E204C071284D33520097611F /* UserEditable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditable.swift; sourceTree = "<group>"; };
 		E2096D4528FF487C0029F41B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E21601A22ACC55500075321B /* DPCollectionUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionUpdate.swift; sourceTree = "<group>"; };
-		E21601A52ACD862A0075321B /* DPCollectionSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionSupplementaryView.swift; sourceTree = "<group>"; };
-		E21601A72ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionSupplementaryAdapter.swift; sourceTree = "<group>"; };
 		E21601A92ACD8ECC0075321B /* AdsCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionHeaderView.swift; sourceTree = "<group>"; };
 		E21601AB2ACD93900075321B /* AdsCollectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionFooterView.swift; sourceTree = "<group>"; };
 		E2369044284A6368007EED26 /* UserEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditCoordinator.swift; sourceTree = "<group>"; };
@@ -77,19 +66,14 @@
 		E252FBEE27C77D7300F6F0F5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E252FBF027C77D8F00F6F0F5 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		E2563D6F2947C4B400391C7F /* DPUIKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = DPUIKit; path = ..; sourceTree = "<group>"; };
-		E258BFF82ABAD41E00161C0C /* DPCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionView.swift; sourceTree = "<group>"; };
-		E258BFFB2ABAD49000161C0C /* DPCollectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionItemCell.swift; sourceTree = "<group>"; };
-		E258C0032ABAD5F400161C0C /* DPCollectionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionAdapter.swift; sourceTree = "<group>"; };
 		E258C00B2ABAE20200161C0C /* AdsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsViewModel.swift; sourceTree = "<group>"; };
 		E258C00C2ABAE20200161C0C /* AdsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsViewController.swift; sourceTree = "<group>"; };
 		E258C0102ABAE22A00161C0C /* AdsCollectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionItemCell.swift; sourceTree = "<group>"; };
 		E258C0122ABAE2AC00161C0C /* Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
-		E258C0142ABAE44C00161C0C /* DPCollectionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionSection.swift; sourceTree = "<group>"; };
 		E26735D12759547600DCEEFB /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E26735E02759547900DCEEFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E2C376172ACB0CC7002EB93E /* DPCollectionItemAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPCollectionItemAdapter.swift; sourceTree = "<group>"; };
 		E2C3761A2ACB0ECB002EB93E /* RecentsCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsCoordinator.swift; sourceTree = "<group>"; };
 		E2C3761D2ACB0ECB002EB93E /* RecentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
 		E2C3761E2ACB0ECB002EB93E /* RecentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsViewModel.swift; sourceTree = "<group>"; };
@@ -120,15 +104,6 @@
 				E2096D4528FF487C0029F41B /* Info.plist */,
 			);
 			name = Support;
-			sourceTree = "<group>";
-		};
-		E21601A42ACD86200075321B /* Supplementary */ = {
-			isa = PBXGroup;
-			children = (
-				E21601A52ACD862A0075321B /* DPCollectionSupplementaryView.swift */,
-				E21601A72ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift */,
-			);
-			path = Supplementary;
 			sourceTree = "<group>";
 		};
 		E2322B8328FF2DD10046912A /* Modules */ = {
@@ -264,28 +239,6 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		E258BFF62ABAD3B200161C0C /* Collection */ = {
-			isa = PBXGroup;
-			children = (
-				E258C0032ABAD5F400161C0C /* DPCollectionAdapter.swift */,
-				E258C0142ABAE44C00161C0C /* DPCollectionSection.swift */,
-				E21601A22ACC55500075321B /* DPCollectionUpdate.swift */,
-				E258BFF82ABAD41E00161C0C /* DPCollectionView.swift */,
-				E258BFFA2ABAD47B00161C0C /* Item */,
-				E21601A42ACD86200075321B /* Supplementary */,
-			);
-			path = Collection;
-			sourceTree = "<group>";
-		};
-		E258BFFA2ABAD47B00161C0C /* Item */ = {
-			isa = PBXGroup;
-			children = (
-				E2C376172ACB0CC7002EB93E /* DPCollectionItemAdapter.swift */,
-				E258BFFB2ABAD49000161C0C /* DPCollectionItemCell.swift */,
-			);
-			path = Item;
-			sourceTree = "<group>";
-		};
 		E258C00A2ABAE1F700161C0C /* Ads */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,7 +280,6 @@
 		E26735D32759547600DCEEFB /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				E258BFF62ABAD3B200161C0C /* Collection */,
 				E23A5EA627C27D64004EE94F /* Application */,
 				E23A5EC827C2AF11004EE94F /* Domain */,
 				E23A5EA727C27D91004EE94F /* Presentation */,
@@ -493,27 +445,19 @@
 				E21601AC2ACD93900075321B /* AdsCollectionFooterView.swift in Sources */,
 				E23D135927C4FE0A001AB75D /* UserEditViewModel.swift in Sources */,
 				E258C0132ABAE2AC00161C0C /* Ads.swift in Sources */,
-				E258BFFC2ABAD49000161C0C /* DPCollectionItemCell.swift in Sources */,
 				E2C376272ACB0ECB002EB93E /* RecentsViewModel.swift in Sources */,
-				E21601A32ACC55500075321B /* DPCollectionUpdate.swift in Sources */,
 				E2C376252ACB0ECB002EB93E /* RecentsCoordinator.swift in Sources */,
 				E2C376262ACB0ECB002EB93E /* RecentsViewController.swift in Sources */,
 				E258C00E2ABAE20200161C0C /* AdsViewController.swift in Sources */,
-				E258C0152ABAE44C00161C0C /* DPCollectionSection.swift in Sources */,
 				E2C376292ACB0ECB002EB93E /* RecentViewModel.swift in Sources */,
 				E2C3762B2ACB0ECB002EB93E /* RecentView.swift in Sources */,
-				E2C376182ACB0CC7002EB93E /* DPCollectionItemAdapter.swift in Sources */,
-				E21601A62ACD862A0075321B /* DPCollectionSupplementaryView.swift in Sources */,
 				E252FBF127C77D8F00F6F0F5 /* AuthCoordinator.swift in Sources */,
 				E204C072284D33520097611F /* UserEditable.swift in Sources */,
 				E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */,
 				E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */,
-				E21601A82ACD86B60075321B /* DPCollectionSupplementaryAdapter.swift in Sources */,
 				E2FC50D827C38C1500F320C5 /* UserProfileViewController.swift in Sources */,
 				E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */,
 				E258C00D2ABAE20200161C0C /* AdsViewModel.swift in Sources */,
-				E258C0042ABAD5F400161C0C /* DPCollectionAdapter.swift in Sources */,
-				E258BFF92ABAD41E00161C0C /* DPCollectionView.swift in Sources */,
 				E23D134A27C4F583001AB75D /* AuthPhoneViewController.swift in Sources */,
 				E252FBEF27C77D7300F6F0F5 /* AppCoordinator.swift in Sources */,
 				E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */,

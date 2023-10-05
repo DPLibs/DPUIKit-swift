@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import DPUIKit
 
 /// Component for managing a [UICollectionView](https://developer.apple.com/documentation/uikit/uicollectionview).
 open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

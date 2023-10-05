@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 /// Component for managing a [UITableViewHeaderFooterView](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterview).
-public protocol DPTableTitleAdapterProtocol {
+public protocol DPTableTitleAdapterType {
     
     /// Model reuse identifier.
     /// This property is used to search for a match between the adapter and the model.
@@ -17,7 +17,7 @@ public protocol DPTableTitleAdapterProtocol {
     
     /// View type.
     /// Using this property, the view is registered in the table, and the view is returned in the ``DPTableAdapter/tableView(_:viewForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:viewForFooterInSection:)``.
-    var viewClass: DPTableTitleViewProtocol.Type { get }
+    var viewClass: DPTableTitleViewType.Type { get }
     
     /// Called in the ``DPTableAdapter/tableView(_:heightForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:heightForFooterInSection:)``.
     func onViewHeight(model: DPRepresentableModel, section: Int) -> CGFloat?
@@ -26,8 +26,8 @@ public protocol DPTableTitleAdapterProtocol {
     func onViewEstimatedHeight(model: DPRepresentableModel, section: Int) -> CGFloat?
 }
 
-/// Basic implementation of the ``DPTableTitleAdapterProtocol``.
-open class DPTableTitleAdapter<View: DPTableTitleViewProtocol, Model: DPRepresentableModel>: DPTableTitleAdapterProtocol {
+/// Basic implementation of the ``DPTableTitleAdapterType``.
+open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: DPRepresentableModel>: DPTableTitleAdapterType {
     
     // MARK: - Init
     public init(
@@ -47,7 +47,7 @@ open class DPTableTitleAdapter<View: DPTableTitleViewProtocol, Model: DPRepresen
     
     // MARK: - Props
     public let modelRepresentableIdentifier: String = DPRepresentableIdentifier.produce(Model.self)
-    public let viewClass: DPTableTitleViewProtocol.Type = View.self
+    public let viewClass: DPTableTitleViewType.Type = View.self
     
     /// The value of this property will be returned ``onViewHeight(model:section:)`` if ``onViewHeight`` is not defined.
     open var viewHeight: CGFloat?

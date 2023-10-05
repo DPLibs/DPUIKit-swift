@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import DPUIKit
 
 /// Custom component [UICollectionView](https://developer.apple.com/documentation/uikit/uicollectionview).
 open class DPCollectionView: UICollectionView, DPViewProtocol {

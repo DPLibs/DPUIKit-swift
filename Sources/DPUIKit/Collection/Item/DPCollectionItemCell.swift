@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import DPUIKit
 
 /// Protocol for defining a custom [UICollectionViewCell](https://developer.apple.com/documentation/uikit/uicollectionviewcell).
 public protocol DPCollectionItemCellType: UICollectionViewCell {

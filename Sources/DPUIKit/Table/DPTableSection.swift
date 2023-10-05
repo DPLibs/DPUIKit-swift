@@ -8,7 +8,7 @@
 import Foundation
 
 /// Protocol for defining a `section` in an ``DPTableAdapter/sections``.
-public protocol DPTableSectionProtocol {
+public protocol DPTableSectionType {
     
     /// An array of table cell models.
     var rows: [DPRepresentableModel] { get set }
@@ -20,8 +20,8 @@ public protocol DPTableSectionProtocol {
     var footer: DPRepresentableModel? { get set }
 }
 
-/// Basic implementation of the ``DPTableSectionProtocol``.
-public struct DPTableSection: DPTableSectionProtocol {
+/// Basic implementation of the ``DPTableSectionType``.
+public struct DPTableSection: DPTableSectionType {
     
     // MARK: - Init
     public init(
@@ -41,7 +41,7 @@ public struct DPTableSection: DPTableSectionProtocol {
 }
 
 // MARK: - DPTableSection + Methods
-public extension DPTableSectionProtocol {
+public extension DPTableSectionType {
     
     /// Returns the cell model or `nil`.
     ///
@@ -54,7 +54,7 @@ public extension DPTableSectionProtocol {
 }
 
 // MARK: - DPTableSection + Array
-public extension Array where Element == DPTableSectionProtocol {
+public extension Array where Element == DPTableSectionType {
     
     /// Returns the cell model or `nil`.
     ///

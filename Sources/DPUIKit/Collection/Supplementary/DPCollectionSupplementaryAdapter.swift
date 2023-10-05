@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import DPUIKit
 
 /// Component for managing a [UICollectionReusableView](https://developer.apple.com/documentation/uikit/uicollectionreusableview).
 public protocol DPCollectionSupplementaryAdapterType {

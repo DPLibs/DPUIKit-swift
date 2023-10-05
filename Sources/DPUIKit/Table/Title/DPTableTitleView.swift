@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 /// Protocol for defining a custom [UITableViewHeaderFooterView](https://developer.apple.com/documentation/uikit/uitableviewheaderfooterview).
-public protocol DPTableTitleViewProtocol: UITableViewHeaderFooterView {
+public protocol DPTableTitleViewType: UITableViewHeaderFooterView {
     
     /// View model.
     /// Set to view in the ``DPTableAdapter/tableView(_:viewForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:viewForFooterInSection:)``.
@@ -17,8 +17,8 @@ public protocol DPTableTitleViewProtocol: UITableViewHeaderFooterView {
     var _model: DPRepresentableModel? { get set }
 }
 
-/// Basic implementation of the ``DPTableTitleViewProtocol``.
-open class DPTableTitleView: UITableViewHeaderFooterView, DPTableTitleViewProtocol, DPViewProtocol {
+/// Basic implementation of the ``DPTableTitleViewType``.
+open class DPTableTitleView: UITableViewHeaderFooterView, DPTableTitleViewType, DPViewProtocol {
     
     // MARK: - Init
     override public init(reuseIdentifier: String?) {
