@@ -104,16 +104,8 @@ final class AdsViewController: DPViewController {
 private extension AdsViewController {
     
     func showAds(_ model: AdsCollectionItemCell.Model) {
-        let ads = model.ads
-        let vc = UIAlertController(title: ads.title, message: ads.body, preferredStyle: .alert)
+        let vc = UIAlertController(title: model.ads.title, message: model.ads.body, preferredStyle: .alert)
         vc.addAction(.init(title: "OK", style: .cancel))
-        vc.addAction(.init(title: "Delete", style: .destructive, handler: { [weak self] _ in
-            self?.model?.deleteAds(ads, comletion: { [weak self] indexPath in
-                self?.collectionView.adapter?.performBatchUpdates([
-                    .deleteItems(at: [indexPath])
-                ])
-            })
-        }))
         self.present(vc, animated: true)
     }
     

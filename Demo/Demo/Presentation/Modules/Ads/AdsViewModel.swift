@@ -42,16 +42,6 @@ final class AdsViewModel: DPViewModel {
         }
     }
     
-    func deleteAds(_ ads: Ads, comletion: @escaping (IndexPath) -> Void) {
-        for (sectionIndex, section) in self.sections.enumerated() {
-            for (itemIndex, item) in section.ads.enumerated() where item.id == ads.id  {
-                self.sections[sectionIndex].ads.remove(at: itemIndex)
-                comletion(IndexPath(item: itemIndex, section: sectionIndex))
-                break
-            }
-        }
-    }
-    
 }
 
 extension AdsViewModel {

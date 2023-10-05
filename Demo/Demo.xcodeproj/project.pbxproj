@@ -264,7 +264,7 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		E258BFF62ABAD3B200161C0C /* _Collection */ = {
+		E258BFF62ABAD3B200161C0C /* Collection */ = {
 			isa = PBXGroup;
 			children = (
 				E258C0032ABAD5F400161C0C /* DPCollectionAdapter.swift */,
@@ -274,7 +274,7 @@
 				E258BFFA2ABAD47B00161C0C /* Item */,
 				E21601A42ACD86200075321B /* Supplementary */,
 			);
-			path = _Collection;
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		E258BFFA2ABAD47B00161C0C /* Item */ = {
@@ -327,7 +327,7 @@
 		E26735D32759547600DCEEFB /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				E258BFF62ABAD3B200161C0C /* _Collection */,
+				E258BFF62ABAD3B200161C0C /* Collection */,
 				E23A5EA627C27D64004EE94F /* Application */,
 				E23A5EC827C2AF11004EE94F /* Domain */,
 				E23A5EA727C27D91004EE94F /* Presentation */,
