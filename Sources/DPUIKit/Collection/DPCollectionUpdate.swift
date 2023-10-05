@@ -22,7 +22,7 @@ public extension DPCollectionUpdate {
     ///
     /// - Parameter sections: array of sections for installation.
     /// - Parameter indexSet: numbers in the ``DPCollectionAdapter/sections`` for installation.
-    static func insertSections(_ sections: [DPCollectionSectionType], at indexSet: IndexSet) -> DPCollectionUpdate {
+    static func insertSections(_ sections: [DPRepresentableSectionType], at indexSet: IndexSet) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             for (offset, index) in indexSet.enumerated() {
                 adapter.sections.insert(sections[offset], at: index)
@@ -36,7 +36,7 @@ public extension DPCollectionUpdate {
     ///
     /// - Parameter sections: array of sections for installation.
     /// - Parameter indexSet: numbers in the ``DPCollectionAdapter/sections`` for installation.
-    static func setSections(_ sections: [DPCollectionSectionType], at indexSet: IndexSet) -> DPCollectionUpdate {
+    static func setSections(_ sections: [DPRepresentableSectionType], at indexSet: IndexSet) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             for (offset, index) in indexSet.enumerated() {
                 adapter.sections[index] = sections[offset]
@@ -50,7 +50,7 @@ public extension DPCollectionUpdate {
     ///
     /// - Parameter sections: array of sections for installation.
     @available(iOS 13.0, *)
-    static func setSections<S: DPCollectionSectionType & Identifiable>(_ sections: [S]) -> DPCollectionUpdate {
+    static func setSections<S: DPRepresentableSectionType & Identifiable>(_ sections: [S]) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             var indicies: [Int] = []
 
@@ -90,7 +90,7 @@ public extension DPCollectionUpdate {
     ///
     /// - Parameter sections: array of sections for delete.
     @available(iOS 13.0, *)
-    static func deleteSections<S: DPCollectionSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPCollectionUpdate {
+    static func deleteSections<S: DPRepresentableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             var indicies: [Int] = []
 

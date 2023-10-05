@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
-final class ___VARIABLE_productName___TableRowCell: ___VARIABLE_prefixSuperclass___TableRowCell {
+final class ___VARIABLE_productName___CollectionItemCell: ___VARIABLE_prefixSuperclass___CollectionItemCell {
     
     // MARK: - Props
     var model: Model? {
@@ -23,9 +23,9 @@ final class ___VARIABLE_productName___TableRowCell: ___VARIABLE_prefixSuperclass
 }
 
 // MARK: - Types
-extension ___VARIABLE_productName___TableRowCell {
+extension ___VARIABLE_productName___CollectionItemCell {
     
-    typealias Adapter = DPTableRowAdapter<___VARIABLE_productName___TableRowCell, Model>
+    typealias Adapter = DPCollectionItemAdapter<___VARIABLE_productName___CollectionItemCell, Model>
     
     struct Model: DPRepresentableModel {}
     

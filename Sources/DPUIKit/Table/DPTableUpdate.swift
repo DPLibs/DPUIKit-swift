@@ -23,7 +23,7 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of sections for installation.
     /// - Parameter indexSet: numbers in the ``DPTableAdapter/sections`` for installation.
     /// - Parameter rowAnimation: animation type.
-    static func insertSections(_ sections: [DPTableSectionType], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func insertSections(_ sections: [DPRepresentableSectionType], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for (offset, index) in indexSet.enumerated() {
                 adapter.sections.insert(sections[offset], at: index)
@@ -38,7 +38,7 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of sections for installation.
     /// - Parameter indexSet: numbers in the ``DPTableAdapter/sections`` for installation.
     /// - Parameter rowAnimation: animation type.
-    static func setSections(_ sections: [DPTableSectionType], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func setSections(_ sections: [DPRepresentableSectionType], at indexSet: IndexSet, with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for (offset, index) in indexSet.enumerated() {
                 adapter.sections[index] = sections[offset]
@@ -53,7 +53,7 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of sections for installation.
     /// - Parameter rowAnimation: animation type.
     @available(iOS 13.0, *)
-    static func setSections<S: DPTableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func setSections<S: DPRepresentableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indicies: [Int] = []
             
@@ -96,7 +96,7 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of sections for delete.
     /// - Parameter rowAnimation: animation type.
     @available(iOS 13.0, *)
-    static func deleteSections<S: DPTableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func deleteSections<S: DPRepresentableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indicies: [Int] = []
             
@@ -124,7 +124,7 @@ public extension DPTableUpdate {
     static func insertRows(_ rows: [DPRepresentableModel], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for (offset, indexPath) in indexPaths.enumerated() {
-                adapter.sections[indexPath.section].rows.insert(rows[offset], at: indexPath.row)
+                adapter.sections[indexPath.section].items.insert(rows[offset], at: indexPath.row)
             }
             
             adapter.tableView?.insertRows(at: indexPaths, with: rowAnimation)
@@ -139,7 +139,7 @@ public extension DPTableUpdate {
     static func setRows(_ rows: [DPRepresentableModel], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for (offset, indexPath) in indexPaths.enumerated() {
-                adapter.sections[indexPath.section].rows[indexPath.row] = rows[offset]
+                adapter.sections[indexPath.section].items[indexPath.row] = rows[offset]
             }
             
             adapter.tableView?.reloadRows(at: indexPaths, with: rowAnimation)
@@ -156,10 +156,10 @@ public extension DPTableUpdate {
             var indexPaths: [IndexPath] = []
             
             for (sectionOffset, section) in adapter.sections.enumerated() {
-                for (rowOffset, row) in section.rows.enumerated() {
+                for (rowOffset, row) in section.items.enumerated() {
                     guard let row = row as? R, rows.contains(where: { $0.id == row.id }) else { continue }
                     indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
-                    adapter.sections[sectionOffset].rows[rowOffset] = row
+                    adapter.sections[sectionOffset].items[rowOffset] = row
                 }
             }
             
@@ -184,7 +184,7 @@ public extension DPTableUpdate {
     static func deleteRows(at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for indexPath in indexPaths {
-                adapter.sections[indexPath.section].rows.remove(at: indexPath.row)
+                adapter.sections[indexPath.section].items.remove(at: indexPath.row)
             }
             
             adapter.tableView?.deleteRows(at: indexPaths, with: rowAnimation)
@@ -201,7 +201,7 @@ public extension DPTableUpdate {
             var indexPaths: [IndexPath] = []
             
             for (sectionOffset, section) in adapter.sections.enumerated() {
-                for (rowOffset, row) in section.rows.enumerated() {
+                for (rowOffset, row) in section.items.enumerated() {
                     guard let row = row as? R, rows.contains(where: { $0.id == row.id }) else { continue }
                     indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
                 }
@@ -210,7 +210,7 @@ public extension DPTableUpdate {
             guard !indexPaths.isEmpty else { return }
             
             for indexPath in indexPaths {
-                adapter.sections[indexPath.section].rows.remove(at: indexPath.row)
+                adapter.sections[indexPath.section].items.remove(at: indexPath.row)
             }
             
             adapter.tableView?.deleteRows(at: indexPaths, with: rowAnimation)

@@ -12,7 +12,7 @@ import UIKit
 public protocol DPCollectionItemAdapterType {
     
     /// Model reuse identifier.
-    /// This property is used to search for a match between ``DPCollectionItemAdapterProtocol`` and ``DPRepresentableModel``.
+    /// This property is used to search for a match between ``DPCollectionItemAdapterType`` and ``DPRepresentableModel``.
     var modelRepresentableIdentifier: String { get }
     
     /// Cell type.
@@ -79,7 +79,7 @@ open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: DPRepr
     /// Called in the ``willDisplay(cell:model:indexPath:)``.
     open var willDisplay: ItemContextClosure?
 
-    /// Called int the ``collectionView(_:layout:sizeForItemAt:)``.
+    /// Called int the ``onSizeForItem(model:indexPath:)``.
     open var onSizeForItem: ItemContextToCGSize?
 
     // MARK: - Methods

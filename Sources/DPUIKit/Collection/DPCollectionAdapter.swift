@@ -27,7 +27,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     public typealias ItemContextClosure = (ItemContext) -> Void
     public typealias ItemContextToCGSize = ((model: DPRepresentableModel, indexPath: IndexPath)) -> CGSize?
     
-    public typealias SectionContext = (model: DPCollectionSectionType, index: Int)
+    public typealias SectionContext = (model: DPRepresentableSectionType, index: Int)
     public typealias SectionContextToUIEdgeInsets = (SectionContext) -> UIEdgeInsets?
     public typealias SectionContextToCGFloat = (SectionContext) -> CGFloat?
     
@@ -48,7 +48,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// An array of sections.
     ///
     /// Used to display `cells` and other `subviews` of a ``collectionView``.
-    open var sections: [DPCollectionSectionType] = []
+    open var sections: [DPRepresentableSectionType] = []
     
     /// Cells adapters.
     open internal(set) var itemAdapters: [String: DPCollectionItemAdapterType] = [:]
@@ -62,7 +62,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// Registered supplementary views IDs.
     open internal(set) var registeredSupplementaryViewsReuseIdentifiers: Set<String> = []
     
-    /// Called in the ``collectionView(_:cellForItemAt:))``.
+    /// Called in the ``collectionView(_:cellForItemAt:)``.
     open var onCellForItem: ItemContextClosure?
     
     /// Called in the ``collectionView(_:willDisplay:forItemAt:)``.
@@ -119,7 +119,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// Install new sections and call `collectionView.reloadData()`.
     ///
     /// - Parameter sections: new array of sections. Will be installed in ``sections``.
-    open func reloadData(_ sections: [DPCollectionSectionType]) {
+    open func reloadData(_ sections: [DPRepresentableSectionType]) {
         self.sections = sections
         self.collectionView?.reloadData()
     }

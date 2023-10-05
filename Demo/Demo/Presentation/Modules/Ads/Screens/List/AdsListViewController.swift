@@ -84,7 +84,7 @@ final class AdsListViewController: DPViewController {
         super.updateComponents()
         
         let sections = (self.model?.sections ?? []).map { section in
-            DPCollectionSection(
+            DPRepresentableSection(
                 items: section.ads.map({ AdsListCollectionItemCell.Model(ads: $0) }),
                 header: AdsListCollectionHeaderView.Model(title: section.name),
                 footer: AdsListCollectionFooterView.Model(total: section.total)
@@ -110,3 +110,88 @@ private extension AdsListViewController {
     }
     
 }
+
+protocol Representable: Hashable, Sendable {
+    var _representID: ObjectIdentifier { get }
+}
+
+extension Representable {
+    
+    var _representID: ObjectIdentifier {
+        ObjectIdentifier(Self.self)
+    }
+    
+}
+
+struct Test: Representable, Identifiable {
+    var id: UUID = .init()
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+    
+}
+
+struct TestParent {
+    struct Test1: Representable, Identifiable {
+        var id: UUID = .init()
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(self.id)
+        }
+        
+    }
+}
+
+//class Adapter {
+//    typealias Row = Hashable & Sendable
+//
+//    var rows: [any Row] = []
+//
+//    var onModel: ((any Row) -> Void)?
+//
+//    func test() {
+//        let adapter = Adapter()
+//        adapter.rows = [Test(), TestParent.Test1()]
+//        let id1 = ObjectIdentifier(Test.self)
+//        let id2 = ObjectIdentifier(Test.self)
+//        let id3 = ObjectIdentifier(String.self)
+//        let id4 = ObjectIdentifier(String.self)
+//        print("!!!", id1)
+//        print("!!!", id2)
+//        print("!!!", id3)
+//        print("!!!", id4)
+//        print("!!!", ObjectIdentifier(TestParent.Test1.self))
+//        print("!!!", ObjectIdentifier(TestParent.Test1.self))
+//        print("!!!", id4.hashValue, id4.debugDescription)
+//    }
+//
+//    func remove<T: Hashable>(_ row: T) {
+//        self.rows.removeAll(where: {
+//            guard let r = $0 as? T else { return false }
+//            return r == row
+//        })
+//    }
+//
+//    func method(row: any Row) {
+//        rows += [row]
+//    }
+//}
+
+protocol SectionType {
+    var items: [any Hashable & Sendable] { get set }
+    var header: (any Hashable & Sendable)? { get set }
+    var footer: (any Hashable & Sendable)? { get set }
+}
+
+struct Section: SectionType {
+    var items: [any Hashable & Sendable]
+    var header: (any Hashable & Sendable)?
+    var footer: (any Hashable & Sendable)?
+}
+
+class Adapter<Model: Hashable & Sendable> {
+    let representID = ObjectIdentifier(Model.self)
+}
+
+

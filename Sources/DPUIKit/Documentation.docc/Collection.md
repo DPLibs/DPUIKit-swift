@@ -13,10 +13,10 @@ Components for working with a [UICollectionView](https://developer.apple.com/doc
 ### Representable
 - ``DPRepresentableModel``
 - ``DPRepresentableIdentifier``
+- ``DPRepresentableSection``
 
 ### Common
 - ``DPCollectionAdapter``
-- ``DPCollectionSection``
 - ``DPCollectionUpdate``
 - ``DPCollectionView``
 

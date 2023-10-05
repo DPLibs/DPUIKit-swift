@@ -95,7 +95,7 @@ class RecentsViewController: DPViewController {
         })
         
         self.tableView.adapter?.reloadData([
-            DPTableSection(rows: rows)
+            DPRepresentableSection(items: rows)
         ])
     }
     
