@@ -12,31 +12,31 @@ import UIKit
 public protocol DPRepresentableSectionType {
     
     /// An array of table cell models.
-    var items: [DPRepresentableModel] { get set }
+    var items: [DPAnyRepresentable] { get set }
     
     /// Header model.
-    var header: DPRepresentableModel? { get set }
+    var header: DPAnyRepresentable? { get set }
     
     /// Footer model.
-    var footer: DPRepresentableModel? { get set }
+    var footer: DPAnyRepresentable? { get set }
 }
 
 /// Basic implementation of the ``DPRepresentableSectionType``.
 public struct DPRepresentableSection: DPRepresentableSectionType {
     
     public init(
-        items: [DPRepresentableModel] = [],
-        header: DPRepresentableModel? = nil,
-        footer: DPRepresentableModel? = nil
+        items: [DPAnyRepresentable] = [],
+        header: DPAnyRepresentable? = nil,
+        footer: DPAnyRepresentable? = nil
     ) {
         self.items = items
         self.header = header
         self.footer = footer
     }
     
-    public var items: [DPRepresentableModel]
-    public var header: DPRepresentableModel?
-    public var footer: DPRepresentableModel?
+    public var items: [DPAnyRepresentable]
+    public var header: DPAnyRepresentable?
+    public var footer: DPAnyRepresentable?
 }
 
 // MARK: - DPRepresentableSectionType + Methods
@@ -45,7 +45,7 @@ public extension DPRepresentableSectionType {
     /// Returns the cell model or `nil`.
     ///
     /// - Parameter index: cell number in the section.
-    func item(at index: Int) -> DPRepresentableModel? {
+    func item(at index: Int) -> DPAnyRepresentable? {
         guard self.items.indices.contains(index) else { return nil }
         return self.items[index]
     }
@@ -66,7 +66,7 @@ public extension Array where Element == DPRepresentableSectionType {
     /// Returns the cell model or `nil`.
     ///
     /// - Parameter indexPath: cell [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPCollectionView``.
-    func item(at indexPath: IndexPath) -> DPRepresentableModel? {
+    func item(at indexPath: IndexPath) -> DPAnyRepresentable? {
         guard self.indices.contains(indexPath.section) else { return nil }
         return self[indexPath.section].item(at: indexPath.item)
     }
@@ -74,7 +74,7 @@ public extension Array where Element == DPRepresentableSectionType {
     /// Returns the header model or `nil`.
     ///
     /// - Parameter index: section number.
-    func header(at index: Int) -> DPRepresentableModel? {
+    func header(at index: Int) -> DPAnyRepresentable? {
         guard self.indices.contains(index) else { return nil }
         return self[index].header
     }
@@ -82,7 +82,7 @@ public extension Array where Element == DPRepresentableSectionType {
     /// Returns the footer model or `nil`.
     ///
     /// - Parameter index: section number.
-    func footer(at index: Int) -> DPRepresentableModel? {
+    func footer(at index: Int) -> DPAnyRepresentable? {
         guard self.indices.contains(index) else { return nil }
         return self[index].footer
     }

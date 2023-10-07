@@ -23,15 +23,15 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     
     // MARK: - Types
     public typealias Closure = () -> Void
-    public typealias ItemContext = (cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    public typealias ItemContext = (cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
     public typealias ItemContextClosure = (ItemContext) -> Void
-    public typealias ItemContextToCGSize = ((model: DPRepresentableModel, indexPath: IndexPath)) -> CGSize?
+    public typealias ItemContextToCGSize = ((model: DPAnyRepresentable, indexPath: IndexPath)) -> CGSize?
     
     public typealias SectionContext = (model: DPRepresentableSectionType, index: Int)
     public typealias SectionContextToUIEdgeInsets = (SectionContext) -> UIEdgeInsets?
     public typealias SectionContextToCGFloat = (SectionContext) -> CGFloat?
     
-    public typealias SupplementaryContextToCGSize = ((model: DPRepresentableModel, section: Int)) -> CGSize?
+    public typealias SupplementaryContextToCGSize = ((model: DPAnyRepresentable, section: Int)) -> CGSize?
     
     // MARK: - Props
     
@@ -51,10 +51,10 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     open var sections: [DPRepresentableSectionType] = []
     
     /// Cells adapters.
-    open internal(set) var itemAdapters: [String: DPCollectionItemAdapterType] = [:]
+    open internal(set) var itemAdapters: [ObjectIdentifier: DPCollectionItemAdapterType] = [:]
     
     /// Supplementary views adapters.
-    open internal(set) var supplementaryAdapters: [String: DPCollectionSupplementaryAdapterType] = [:]
+    open internal(set) var supplementaryAdapters: [ObjectIdentifier: DPCollectionSupplementaryAdapterType] = [:]
     
     /// Registered cell IDs.
     open internal(set) var registeredСellReuseIdentifiers: Set<String> = []
@@ -103,14 +103,14 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// Add adapters for cells.
     open func addItemAdapters(_ adapters: [DPCollectionItemAdapterType]) {
         for adapter in adapters {
-            self.itemAdapters[adapter.modelRepresentableIdentifier] = adapter
+            self.itemAdapters[adapter.modelReuseID] = adapter
         }
     }
     
     /// Add adapters for supplementary views.
     open func addSupplementaryAdapters(_ adapters: [DPCollectionSupplementaryAdapterType]) {
         for adapter in adapters {
-            self.supplementaryAdapters[adapter.modelRepresentableIdentifier] = adapter
+            self.supplementaryAdapters[adapter.modelRepresentID] = adapter
         }
     }
     
@@ -139,6 +139,10 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         )
     }
     
+    open func modelRepresentID<T: DPRepresentable>(_ model: T) -> ObjectIdentifier {
+        ObjectIdentifier(T.self)
+    }
+    
     // MARK: - UICollectionViewDataSource
     open func numberOfSections(in collectionView: UICollectionView) -> Int {
         self.sections.count
@@ -152,7 +156,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
             let model = self.sections.item(at: indexPath),
-            let adapter = self.itemAdapters[model._representableIdentifier]
+            let adapter = self.itemAdapters[self.modelRepresentID(model)]
         else { return UICollectionViewCell() }
         
         let cellClass = adapter.cellClass
@@ -178,8 +182,8 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var result: UICollectionReusableView?
         
-        func view(of model: DPRepresentableModel, kind: String) -> UICollectionReusableView? {
-            guard let adapter = self.supplementaryAdapters[model._representableIdentifier] else { return nil }
+        func view(of model: DPAnyRepresentable, kind: String) -> UICollectionReusableView? {
+            guard let adapter = self.supplementaryAdapters[self.modelRepresentID(model)] else { return nil }
             
             let viewClass = adapter.viewClass
             let viewIdentifier = String(describing: viewClass)
@@ -216,7 +220,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     open func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = cell as? DPCollectionItemCellType, let model = self.sections.item(at: indexPath) {
             self.willDisplayItem?((cell, model, indexPath))
-            self.itemAdapters[model._representableIdentifier]?.willDisplay(cell: cell, model: model, indexPath: indexPath)
+            self.itemAdapters[self.modelRepresentID(model)]?.willDisplay(cell: cell, model: model, indexPath: indexPath)
         }
 
         if indexPath == IndexPath(row: 0, section: 0) {
@@ -235,7 +239,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         else { return }
 
         self.didSelectItem?((cell, model, indexPath))
-        self.itemAdapters[model._representableIdentifier]?.didSelect(cell: cell, model: model, indexPath: indexPath)
+        self.itemAdapters[self.modelRepresentID(model)]?.didSelect(cell: cell, model: model, indexPath: indexPath)
     }
 
     open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -245,7 +249,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         else { return }
 
         self.didDeselectItem?((cell, model, indexPath))
-        self.itemAdapters[model._representableIdentifier]?.didDeselect(cell: cell, model: model, indexPath: indexPath)
+        self.itemAdapters[self.modelRepresentID(model)]?.didDeselect(cell: cell, model: model, indexPath: indexPath)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -253,7 +257,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         let defaultValue: CGSize = (collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize ?? .zero
         
         guard let model = self.sections.item(at: indexPath) else { return defaultValue }
-        let adapter = self.itemAdapters[model._representableIdentifier]
+        let adapter = self.itemAdapters[self.modelRepresentID(model)]
         
         return adapter?.onSizeForItem(model: model, indexPath: indexPath) ?? self.onSizeForItem?((model, indexPath)) ?? defaultValue
     }
@@ -282,7 +286,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         guard
             let model = self.sections.header(at: section),
-            let adapter = self.supplementaryAdapters[model._representableIdentifier]
+            let adapter = self.supplementaryAdapters[self.modelRepresentID(model)]
         else { return .zero }
         
         return
@@ -295,7 +299,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     open func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         guard
             let model = self.sections.footer(at: section),
-            let adapter = self.supplementaryAdapters[model._representableIdentifier]
+            let adapter = self.supplementaryAdapters[self.modelRepresentID(model)]
         else { return .zero }
         
         return

@@ -114,7 +114,7 @@ public extension DPCollectionUpdate {
     ///
     /// - Parameter items: array of items for installation.
     /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPCollectionAdapter/sections`` for installation.
-    static func insertItems(_ items: [DPRepresentableModel], at indexPaths: [IndexPath]) -> DPCollectionUpdate {
+    static func insertItems(_ items: [DPAnyRepresentable], at indexPaths: [IndexPath]) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             for (offset, indexPath) in indexPaths.enumerated() {
                 adapter.sections[indexPath.section].items.insert(items[offset], at: indexPath.item)
@@ -129,7 +129,7 @@ public extension DPCollectionUpdate {
     /// - Parameter rows: array of items for installation.
     /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPCollectionAdapter/sections`` for installation.
     /// - Parameter rowAnimation: animation type.
-    static func setItems(_ items: [DPRepresentableModel], at indexPaths: [IndexPath]) -> DPCollectionUpdate {
+    static func setItems(_ items: [DPAnyRepresentable], at indexPaths: [IndexPath]) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             for (offset, indexPath) in indexPaths.enumerated() {
                 adapter.sections[indexPath.section].items[indexPath.item] = items[offset]
@@ -143,7 +143,7 @@ public extension DPCollectionUpdate {
     ///
     /// - Parameter items: array of items for installation.
     @available(iOS 13.0, *)
-    static func setItems<I: DPRepresentableModel & Identifiable>(_ items: [I]) -> DPCollectionUpdate {
+    static func setItems<I: DPRepresentable & Identifiable>(_ items: [I]) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             var indexPaths: [IndexPath] = []
 
@@ -185,7 +185,7 @@ public extension DPCollectionUpdate {
     ///
     /// - Parameter sections: array of items for delete.
     @available(iOS 13.0, *)
-    static func deleteItems<I: DPRepresentableModel & Identifiable>(_ items: [I]) -> DPCollectionUpdate {
+    static func deleteItems<I: DPRepresentable & Identifiable>(_ items: [I]) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             var indexPaths: [IndexPath] = []
 

@@ -13,30 +13,30 @@ public protocol DPCollectionItemAdapterType {
     
     /// Model reuse identifier.
     /// This property is used to search for a match between ``DPCollectionItemAdapterType`` and ``DPRepresentableModel``.
-    var modelRepresentableIdentifier: String { get }
+    var modelReuseID: ObjectIdentifier { get }
     
     /// Cell type.
     /// Using this property, the cell is registered in the table, and the cell is returned in the ``DPCollectionAdapter/collectionView(_:cellForItemAt:)``.
     var cellClass: DPCollectionItemCellType.Type { get }
     
     /// Called in the ``DPCollectionAdapter/collectionView(_:didSelectItemAt:)``.
-    func didSelect(cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func didSelect(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:didSelectItemAt:)``.
-    func didDeselect(cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func didDeselect(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:cellForItemAt:)``.
-    func onCell(cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func onCell(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:willDisplay:forItemAt:)``.
-    func willDisplay(cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func willDisplay(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:layout:sizeForItemAt:)``.
-    func onSizeForItem(model: DPRepresentableModel, indexPath: IndexPath) -> CGSize?
+    func onSizeForItem(model: DPAnyRepresentable, indexPath: IndexPath) -> CGSize?
 }
 
 /// Basic implementation of the ``DPCollectionItemAdapterType``.
-open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: DPRepresentableModel>: DPCollectionItemAdapterType {
+open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: DPRepresentable>: DPCollectionItemAdapterType {
     
     // MARK: - Init
     public init(
@@ -61,7 +61,7 @@ open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: DPRepr
     public typealias ItemContextToCGSize = ((model: Model, indexPath: IndexPath)) -> CGSize?
     
     // MARK: - Props
-    public let modelRepresentableIdentifier: String = DPRepresentableIdentifier.produce(Model.self)
+    public let modelReuseID: ObjectIdentifier = ObjectIdentifier(Model.self)
     public let cellClass: DPCollectionItemCellType.Type = Cell.self
     
     /// The value of this property will be returned ``onSizeForItem(model:indexPath:)`` if ``onSizeForItem`` is not defined.
@@ -83,27 +83,27 @@ open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: DPRepr
     open var onSizeForItem: ItemContextToCGSize?
 
     // MARK: - Methods
-    open func didSelect(cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func didSelect(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.didSelect?((cell, model, indexPath))
     }
 
-    open func didDeselect(cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func didDeselect(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.didDeselect?((cell, model, indexPath))
     }
 
-    open func onCell(cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func onCell(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.onCell?((cell, model, indexPath))
     }
 
-    open func willDisplay(cell: DPCollectionItemCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func willDisplay(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.willDisplay?((cell, model, indexPath))
     }
 
-    open func onSizeForItem(model: DPRepresentableModel, indexPath: IndexPath) -> CGSize? {
+    open func onSizeForItem(model: DPAnyRepresentable, indexPath: IndexPath) -> CGSize? {
         guard let model = model as? Model else { return nil }
         return self.onSizeForItem?((model, indexPath)) ?? self.cellSize
     }

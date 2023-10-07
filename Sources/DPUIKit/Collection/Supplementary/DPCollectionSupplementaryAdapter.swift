@@ -12,18 +12,18 @@ public protocol DPCollectionSupplementaryAdapterType {
     
     /// Model reuse identifier.
     /// This property is used to search for a match between the adapter and the model.
-    var modelRepresentableIdentifier: String { get }
+    var modelRepresentID: ObjectIdentifier { get }
     
     /// View type.
     /// Using this property, the view is registered in the table, and the view is returned in ``DPCollectionAdapter/collectionView(_:viewForSupplementaryElementOfKind:at:)``.
     var viewClass: DPCollectionSupplementaryViewType.Type { get }
     
     /// Called in the ``DPCollectionAdapter/collectionView(_:layout:referenceSizeForHeaderInSection:)`` or ``DPCollectionAdapter/collectionView(_:layout:referenceSizeForFooterInSection:)``.
-    func onViewSize(model: DPRepresentableModel, section: Int) -> CGSize?
+    func onViewSize(model: DPAnyRepresentable, section: Int) -> CGSize?
 }
 
 /// Basic implementation of the ``DPCollectionSupplementaryAdapterType``.
-open class DPCollectionSupplementaryAdapter<View: DPCollectionSupplementaryViewType, Model: DPRepresentableModel>: DPCollectionSupplementaryAdapterType {
+open class DPCollectionSupplementaryAdapter<View: DPCollectionSupplementaryViewType, Model: DPRepresentable>: DPCollectionSupplementaryAdapterType {
     
     // MARK: - Init
     public init(
@@ -38,7 +38,7 @@ open class DPCollectionSupplementaryAdapter<View: DPCollectionSupplementaryViewT
     public typealias SupplementaryContextToCGSize = ((model: Model, section: Int)) -> CGSize?
     
     // MARK: - Props
-    public let modelRepresentableIdentifier: String = DPRepresentableIdentifier.produce(Model.self)
+    public let modelRepresentID: ObjectIdentifier = ObjectIdentifier(Model.self)
     public let viewClass: DPCollectionSupplementaryViewType.Type = View.self
     
     /// The value of this property will be returned ``onViewSize(model:section:)`` if ``onViewSize`` is not defined.
@@ -48,7 +48,7 @@ open class DPCollectionSupplementaryAdapter<View: DPCollectionSupplementaryViewT
     open var onViewSize: SupplementaryContextToCGSize?
     
     // MARK: - Methods
-    open func onViewSize(model: DPRepresentableModel, section: Int) -> CGSize? {
+    open func onViewSize(model: DPAnyRepresentable, section: Int) -> CGSize? {
         guard let model = model as? Model else { return nil }
         return self.onViewSize?((model, section)) ?? self.viewSize
     }

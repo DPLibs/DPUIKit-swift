@@ -43,21 +43,14 @@ final class AdsListCollectionItemCell: DPCollectionItemCell {
     override func updateComponents() {
         super.updateComponents()
         
-        self.titleLabel.text = self.model?.ads.title
-        self.bodyLabel.text = self.model?.ads.body
+        self.titleLabel.text = self.model?.title
+        self.bodyLabel.text = self.model?.body
     }
     
 }
 
 // MARK: - Types
 extension AdsListCollectionItemCell {
-    
+    typealias Model = Ads
     typealias Adapter = DPCollectionItemAdapter<AdsListCollectionItemCell, Model>
-    
-    struct Model: DPRepresentableModel, Identifiable {
-        let ads: Ads
-        
-        var id: UUID { self.ads.id }
-    }
-    
 }

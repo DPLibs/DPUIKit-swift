@@ -13,21 +13,21 @@ public protocol DPTableTitleAdapterType {
     
     /// Model reuse identifier.
     /// This property is used to search for a match between the adapter and the model.
-    var modelRepresentableIdentifier: String { get }
+    var modelRepresentID: ObjectIdentifier { get }
     
     /// View type.
     /// Using this property, the view is registered in the table, and the view is returned in the ``DPTableAdapter/tableView(_:viewForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:viewForFooterInSection:)``.
     var viewClass: DPTableTitleViewType.Type { get }
     
     /// Called in the ``DPTableAdapter/tableView(_:heightForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:heightForFooterInSection:)``.
-    func onViewHeight(model: DPRepresentableModel, section: Int) -> CGFloat?
+    func onViewHeight(model: DPAnyRepresentable, section: Int) -> CGFloat?
     
     /// Called in the ``DPTableAdapter/tableView(_:estimatedHeightForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:estimatedHeightForFooterInSection:)``.
-    func onViewEstimatedHeight(model: DPRepresentableModel, section: Int) -> CGFloat?
+    func onViewEstimatedHeight(model: DPAnyRepresentable, section: Int) -> CGFloat?
 }
 
 /// Basic implementation of the ``DPTableTitleAdapterType``.
-open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: DPRepresentableModel>: DPTableTitleAdapterType {
+open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: DPRepresentable>: DPTableTitleAdapterType {
     
     // MARK: - Init
     public init(
@@ -46,7 +46,7 @@ open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: DPRepresentabl
     public typealias TitleContextToCGFloat = ((model: Model, section: Int)) -> CGFloat?
     
     // MARK: - Props
-    public let modelRepresentableIdentifier: String = DPRepresentableIdentifier.produce(Model.self)
+    public let modelRepresentID: ObjectIdentifier = ObjectIdentifier(Model.self)
     public let viewClass: DPTableTitleViewType.Type = View.self
     
     /// The value of this property will be returned ``onViewHeight(model:section:)`` if ``onViewHeight`` is not defined.
@@ -62,12 +62,12 @@ open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: DPRepresentabl
     open var onViewEstimatedHeight: TitleContextToCGFloat?
     
     // MARK: - Methods
-    open func onViewHeight(model: DPRepresentableModel, section: Int) -> CGFloat? {
+    open func onViewHeight(model: DPAnyRepresentable, section: Int) -> CGFloat? {
         guard let model = model as? Model else { return nil }
         return self.onViewHeight?((model, section)) ?? self.viewHeight
     }
     
-    open func onViewEstimatedHeight(model: DPRepresentableModel, section: Int) -> CGFloat? {
+    open func onViewEstimatedHeight(model: DPAnyRepresentable, section: Int) -> CGFloat? {
         guard let model = model as? Model else { return nil }
         return self.onViewEstimatedHeight?((model, section)) ?? self.viewEstimatedHeight
     }

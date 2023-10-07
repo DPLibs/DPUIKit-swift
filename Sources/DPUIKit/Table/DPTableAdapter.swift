@@ -23,11 +23,11 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     // MARK: - Types
     public typealias Closure = () -> Void
-    public typealias RowContext = (cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    public typealias RowContext = (cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath)
     public typealias RowContextClosure = (RowContext) -> Void
     public typealias RowContextToSwipeActionsConfiguration = (RowContext) -> UISwipeActionsConfiguration?
-    public typealias RowContextToCGFloat = ((model: DPRepresentableModel, indexPath: IndexPath)) -> CGFloat?
-    public typealias TitleContextToCGFloat = ((model: DPRepresentableModel, section: Int)) -> CGFloat?
+    public typealias RowContextToCGFloat = ((model: DPAnyRepresentable, indexPath: IndexPath)) -> CGFloat?
+    public typealias TitleContextToCGFloat = ((model: DPAnyRepresentable, section: Int)) -> CGFloat?
     
     // MARK: - Props
     
@@ -49,10 +49,10 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open internal(set) var lastContentOffset: CGPoint?
     
     /// Cells adapters.
-    open internal(set) var rowAdapters: [String: DPTableRowAdapterType] = [:]
+    open internal(set) var rowAdapters: [ObjectIdentifier: DPTableRowAdapterType] = [:]
     
     /// Titles views adapters.
-    open internal(set) var titleAdapters: [String: DPTableTitleAdapterType] = [:]
+    open internal(set) var titleAdapters: [ObjectIdentifier: DPTableTitleAdapterType] = [:]
     
     /// Registered cell IDs.
     open internal(set) var registeredСellIdentifiers: Set<String> = []
@@ -116,14 +116,14 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     /// Add adapters for cells.
     open func addRowAdapters(_ rowAdapters: [DPTableRowAdapterType]) {
         for adapter in rowAdapters {
-            self.rowAdapters[adapter.modelRepresentableIdentifier] = adapter
+            self.rowAdapters[adapter.modelReprentID] = adapter
         }
     }
     
     /// Add adapters for titles views.
     open func addTitleAdapters(_ titleAdapters: [DPTableTitleAdapterType]) {
         for adapter in titleAdapters {
-            self.titleAdapters[adapter.modelRepresentableIdentifier] = adapter
+            self.titleAdapters[adapter.modelRepresentID] = adapter
         }
     }
     
@@ -152,6 +152,10 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         )
     }
     
+    open func modelRepresentID<T: DPRepresentable>(_ model: T) -> ObjectIdentifier {
+        ObjectIdentifier(T.self)
+    }
+    
     // MARK: - UITableViewDataSource
     open func numberOfSections(in tableView: UITableView) -> Int {
         self.sections.count
@@ -165,7 +169,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let model = self.sections.item(at: indexPath),
-            let adapter = self.rowAdapters[model._representableIdentifier]
+            let adapter = self.rowAdapters[self.modelRepresentID(model)]
         else { return UITableViewCell() }
         
         let cellClass = adapter.cellClass
@@ -192,7 +196,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? DPTableRowCellType, let model = self.sections.item(at: indexPath) {
             self.willDisplayRow?((cell, model, indexPath))
-            self.rowAdapters[model._representableIdentifier]?.willDisplay(cell: cell, model: model, indexPath: indexPath)
+            self.rowAdapters[self.modelRepresentID(model)]?.willDisplay(cell: cell, model: model, indexPath: indexPath)
         }
 
         if indexPath == IndexPath(row: 0, section: 0) {
@@ -206,7 +210,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
 
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = self.sections.item(at: indexPath) else { return tableView.rowHeight }
-        let adapter = self.rowAdapters[model._representableIdentifier]
+        let adapter = self.rowAdapters[self.modelRepresentID(model)]
         
         return
             adapter?.onCellHeight(model: model, indexPath: indexPath) ??
@@ -216,7 +220,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
 
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let model = self.sections.item(at: indexPath) else { return tableView.estimatedRowHeight }
-        let adapter = self.rowAdapters[model._representableIdentifier]
+        let adapter = self.rowAdapters[self.modelRepresentID(model)]
         
         return
             adapter?.onCellEstimatedHeight(model: model, indexPath: indexPath) ??
@@ -227,8 +231,8 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     // MARK: - UITableViewDelegate + Header In Section
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard
-            let header = self.sections.header(at: section),
-            let adapter = self.titleAdapters[header._representableIdentifier]
+            let model = self.sections.header(at: section),
+            let adapter = self.titleAdapters[self.modelRepresentID(model)]
         else { return nil }
 
         let viewClass = adapter.viewClass
@@ -242,7 +246,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier)
 
         if let view = view as? DPTableTitleViewType {
-            view._model = header
+            view._model = model
         }
 
         return view
@@ -251,7 +255,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard
             let model = self.sections.header(at: section),
-            let adapter = self.titleAdapters[model._representableIdentifier]
+            let adapter = self.titleAdapters[self.modelRepresentID(model)]
         else { return 0 }
         
         return
@@ -263,7 +267,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         guard
             let model = self.sections.header(at: section),
-            let adapter = self.titleAdapters[model._representableIdentifier]
+            let adapter = self.titleAdapters[self.modelRepresentID(model)]
         else { return 0 }
         
         return
@@ -275,8 +279,8 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     // MARK: - UITableViewDelegate + Footer In Section
     open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard
-            let footer = self.sections.footer(at: section),
-            let adapter = self.titleAdapters[footer._representableIdentifier]
+            let model = self.sections.footer(at: section),
+            let adapter = self.titleAdapters[self.modelRepresentID(model)]
         else { return nil }
         
         let viewClass = adapter.viewClass
@@ -290,7 +294,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: viewIdentifier)
         
         if let view = view as? DPTableTitleViewType {
-            view._model = footer
+            view._model = model
         }
         
         return view
@@ -299,7 +303,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         guard
             let model = self.sections.footer(at: section),
-            let adapter = self.titleAdapters[model._representableIdentifier]
+            let adapter = self.titleAdapters[self.modelRepresentID(model)]
         else { return 0 }
         
         return
@@ -311,7 +315,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         guard
             let model = self.sections.footer(at: section),
-            let adapter = self.titleAdapters[model._representableIdentifier]
+            let adapter = self.titleAdapters[self.modelRepresentID(model)]
         else { return 0 }
         
         return
@@ -325,7 +329,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellType,
             let model = self.sections.item(at: indexPath),
-            let adapter = self.rowAdapters[model._representableIdentifier]
+            let adapter = self.rowAdapters[self.modelRepresentID(model)]
         else { return nil }
 
         return adapter.onCellLeading(cell: cell, model: model, indexPath: indexPath) ?? self.onCellLeading?((cell, model, indexPath)) ?? nil
@@ -335,7 +339,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellType,
             let model = self.sections.item(at: indexPath),
-            let adapter = self.rowAdapters[model._representableIdentifier]
+            let adapter = self.rowAdapters[self.modelRepresentID(model)]
         else { return nil }
 
         return adapter.onCellTrailing(cell: cell, model: model, indexPath: indexPath) ?? self.onCellTrailing?((cell, model, indexPath)) ?? nil
@@ -349,7 +353,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         else { return }
 
         self.didSelectRow?((cell, model, indexPath))
-        self.rowAdapters[model._representableIdentifier]?.didSelect(cell: cell, model: model, indexPath: indexPath)
+        self.rowAdapters[self.modelRepresentID(model)]?.didSelect(cell: cell, model: model, indexPath: indexPath)
     }
 
     open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -359,7 +363,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         else { return }
 
         self.didDeselectRow?((cell, model, indexPath))
-        self.rowAdapters[model._representableIdentifier]?.didDeselect(cell: cell, model: model, indexPath: indexPath)
+        self.rowAdapters[self.modelRepresentID(model)]?.didDeselect(cell: cell, model: model, indexPath: indexPath)
     }
 
     // MARK: - UITableViewDelegate + Edit
@@ -370,7 +374,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         else { return }
 
         self.willBeginEditingRow?((cell, model, indexPath))
-        self.rowAdapters[model._representableIdentifier]?.willBeginEditing(cell: cell, model: model, indexPath: indexPath)
+        self.rowAdapters[self.modelRepresentID(model)]?.willBeginEditing(cell: cell, model: model, indexPath: indexPath)
     }
 
     open func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
@@ -381,7 +385,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         else { return }
         
         self.didEndEditingRow?((cell, model, indexPath))
-        self.rowAdapters[model._representableIdentifier]?.didEndEditing(cell: cell, model: model, indexPath: indexPath)
+        self.rowAdapters[self.modelRepresentID(model)]?.didEndEditing(cell: cell, model: model, indexPath: indexPath)
     }
     
     // MARK: - UITableViewDelegate + Scroll

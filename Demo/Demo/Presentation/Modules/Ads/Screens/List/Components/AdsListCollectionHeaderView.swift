@@ -38,7 +38,7 @@ extension AdsListCollectionHeaderView {
     
     typealias Adapter = DPCollectionSupplementaryAdapter<AdsListCollectionHeaderView, Model>
     
-    struct Model: DPRepresentableModel {
+    struct Model: Hashable {
         let title: String
     }
     

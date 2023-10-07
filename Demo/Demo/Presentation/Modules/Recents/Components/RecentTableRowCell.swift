@@ -40,18 +40,13 @@ final class RecentTableRowCell: DPTableRowCell {
     override func updateComponents() {
         super.updateComponents()
         
-        self.recentView.recent = self.model?.recent
+        self.recentView.recent = self.model
     }
     
 }
 
 // MARK: - Model
 extension RecentTableRowCell {
-    
+    typealias Model = Recent
     typealias Adapter = DPTableRowAdapter<RecentTableRowCell, Model>
-    
-    struct Model: DPRepresentableModel {
-        let recent: Recent
-    }
-    
 }

@@ -85,7 +85,7 @@ final class AdsListViewController: DPViewController {
         
         let sections = (self.model?.sections ?? []).map { section in
             DPRepresentableSection(
-                items: section.ads.map({ AdsListCollectionItemCell.Model(ads: $0) }),
+                items: section.ads,
                 header: AdsListCollectionHeaderView.Model(title: section.name),
                 footer: AdsListCollectionFooterView.Model(total: section.total)
             )
@@ -103,27 +103,17 @@ final class AdsListViewController: DPViewController {
 // MARK: - Private
 private extension AdsListViewController {
     
-    func showAds(_ model: AdsListCollectionItemCell.Model) {
-        let vc = UIAlertController(title: model.ads.title, message: model.ads.body, preferredStyle: .alert)
+    func showAds(_ ads: Ads) {
+        let vc = UIAlertController(title: ads.title, message: ads.body, preferredStyle: .alert)
         vc.addAction(.init(title: "OK", style: .cancel))
         self.present(vc, animated: true)
     }
     
 }
 
-protocol Representable: Hashable, Sendable {
-    var _representID: ObjectIdentifier { get }
-}
+typealias Representable = Hashable & Sendable
 
-extension Representable {
-    
-    var _representID: ObjectIdentifier {
-        ObjectIdentifier(Self.self)
-    }
-    
-}
-
-struct Test: Representable, Identifiable {
+struct Test: Hashable, Identifiable {
     var id: UUID = .init()
     
     func hash(into hasher: inout Hasher) {
@@ -133,7 +123,8 @@ struct Test: Representable, Identifiable {
 }
 
 struct TestParent {
-    struct Test1: Representable, Identifiable {
+    
+    struct Test: Hashable, Identifiable {
         var id: UUID = .init()
         
         func hash(into hasher: inout Hasher) {
@@ -141,57 +132,29 @@ struct TestParent {
         }
         
     }
+    
 }
 
-//class Adapter {
-//    typealias Row = Hashable & Sendable
-//
-//    var rows: [any Row] = []
-//
-//    var onModel: ((any Row) -> Void)?
-//
-//    func test() {
-//        let adapter = Adapter()
-//        adapter.rows = [Test(), TestParent.Test1()]
-//        let id1 = ObjectIdentifier(Test.self)
-//        let id2 = ObjectIdentifier(Test.self)
-//        let id3 = ObjectIdentifier(String.self)
-//        let id4 = ObjectIdentifier(String.self)
-//        print("!!!", id1)
-//        print("!!!", id2)
-//        print("!!!", id3)
-//        print("!!!", id4)
-//        print("!!!", ObjectIdentifier(TestParent.Test1.self))
-//        print("!!!", ObjectIdentifier(TestParent.Test1.self))
-//        print("!!!", id4.hashValue, id4.debugDescription)
-//    }
-//
-//    func remove<T: Hashable>(_ row: T) {
-//        self.rows.removeAll(where: {
-//            guard let r = $0 as? T else { return false }
-//            return r == row
-//        })
-//    }
-//
-//    func method(row: any Row) {
-//        rows += [row]
-//    }
-//}
-
 protocol SectionType {
-    var items: [any Hashable & Sendable] { get set }
-    var header: (any Hashable & Sendable)? { get set }
-    var footer: (any Hashable & Sendable)? { get set }
+    var items: [any Representable] { get set }
+    var header: (any Representable)? { get set }
+    var footer: (any Representable)? { get set }
 }
 
 struct Section: SectionType {
-    var items: [any Hashable & Sendable]
-    var header: (any Hashable & Sendable)?
-    var footer: (any Hashable & Sendable)?
+    var items: [any Representable]
+    var header: (any Representable)?
+    var footer: (any Representable)?
+    
+    func ttt() {
+        guard let test = self.items.first else { return }
+        let type = type(of: test)
+        print("!!!", type)
+    }
 }
 
-class Adapter<Model: Hashable & Sendable> {
+class Adapter<Model: Representable> {
     let representID = ObjectIdentifier(Model.self)
+    
+    
 }
-
-

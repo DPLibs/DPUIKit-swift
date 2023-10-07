@@ -7,10 +7,14 @@
 
 import Foundation
 
-struct Ads: Identifiable {
+struct Ads: Hashable, Identifiable {
     let id = UUID()
     let title: String
     let body: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
 }
 
 // MARK: - Moc

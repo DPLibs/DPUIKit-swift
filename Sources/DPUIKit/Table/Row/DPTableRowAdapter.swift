@@ -13,45 +13,45 @@ public protocol DPTableRowAdapterType {
     
     /// Model reuse identifier.
     /// This property is used to search for a match between ``DPTableRowAdapterProtocol`` and ``DPRepresentableModel``.
-    var modelRepresentableIdentifier: String { get }
+    var modelReprentID: ObjectIdentifier { get }
     
     /// Cell type.
     /// Using this property, the cell is registered in the table, and the cell is returned in the ``DPTableAdapter/tableView(_:cellForRowAt:)``.
     var cellClass: DPTableRowCellType.Type { get }
     
     /// Called in the ``DPTableAdapter/tableView(_:didSelectRowAt:)``.
-    func didSelect(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func didSelect(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath)
     
     /// Called in the ``DPTableAdapter/tableView(_:didDeselectRowAt:)``.
-    func didDeselect(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func didDeselect(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath)
     
     /// Called in the ``DPTableAdapter/tableView(_:cellForRowAt:)``.
-    func onCell(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func onCell(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath)
     
     /// Called in the ``DPTableAdapter/tableView(_:willDisplay:forRowAt:)``.
-    func willDisplay(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func willDisplay(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath)
     
     /// Called in the ``DPTableAdapter/tableView(_:heightForRowAt:)``.
-    func onCellHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat?
+    func onCellHeight(model: DPAnyRepresentable, indexPath: IndexPath) -> CGFloat?
     
     /// Called in the ``DPTableAdapter/tableView(_:estimatedHeightForRowAt:)``.
-    func onCellEstimatedHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat?
+    func onCellEstimatedHeight(model: DPAnyRepresentable, indexPath: IndexPath) -> CGFloat?
     
     /// Called in the ``DPTableAdapter/tableView(_:willBeginEditingRowAt:)``.
-    func willBeginEditing(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func willBeginEditing(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath)
     
     /// Called in the ``DPTableAdapter/tableView(_:didEndEditingRowAt:)``.
-    func didEndEditing(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath)
+    func didEndEditing(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath)
     
     /// Called in the ``DPTableAdapter/tableView(_:leadingSwipeActionsConfigurationForRowAt:)``.
-    func onCellLeading(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    func onCellLeading(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) -> UISwipeActionsConfiguration?
     
     /// Called in the ``DPTableAdapter/tableView(_:trailingSwipeActionsConfigurationForRowAt:)``.
-    func onCellTrailing(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    func onCellTrailing(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) -> UISwipeActionsConfiguration?
 }
 
 /// Basic implementation of the ``DPTableRowAdapterType``.
-open class DPTableRowAdapter<Cell: DPTableRowCellType, Model: DPRepresentableModel>: DPTableRowAdapterType {
+open class DPTableRowAdapter<Cell: DPTableRowCellType, Model: DPRepresentable>: DPTableRowAdapterType {
     
     // MARK: - Init
     public init(
@@ -89,7 +89,7 @@ open class DPTableRowAdapter<Cell: DPTableRowCellType, Model: DPRepresentableMod
     public typealias RowContextToCGFloat = ((model: Model, indexPath: IndexPath)) -> CGFloat?
     
     // MARK: - Props
-    public let modelRepresentableIdentifier: String = DPRepresentableIdentifier.produce(Model.self)
+    public let modelReprentID: ObjectIdentifier = ObjectIdentifier(Model.self)
     public let cellClass: DPTableRowCellType.Type = Cell.self
     
     /// The value of this property will be returned ``onCellHeight(model:indexPath:)`` if ``onCellHeight`` is not defined.
@@ -129,52 +129,52 @@ open class DPTableRowAdapter<Cell: DPTableRowCellType, Model: DPRepresentableMod
     open var onCellTrailing: RowContextToSwipeActionsConfiguration?
     
     // MARK: - Methods
-    open func didSelect(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func didSelect(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.didSelect?((cell, model, indexPath))
     }
     
-    open func didDeselect(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func didDeselect(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.didDeselect?((cell, model, indexPath))
     }
     
-    open func onCell(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func onCell(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.onCell?((cell, model, indexPath))
     }
     
-    open func willDisplay(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func willDisplay(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.willDisplay?((cell, model, indexPath))
     }
     
-    open func onCellHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat? {
+    open func onCellHeight(model: DPAnyRepresentable, indexPath: IndexPath) -> CGFloat? {
         guard let model = model as? Model else { return nil }
         return self.onCellHeight?((model, indexPath)) ?? self.cellHeight
     }
     
-    open func onCellEstimatedHeight(model: DPRepresentableModel, indexPath: IndexPath) -> CGFloat? {
+    open func onCellEstimatedHeight(model: DPAnyRepresentable, indexPath: IndexPath) -> CGFloat? {
         guard let model = model as? Model else { return nil }
         return self.onCellEstimatedHeight?((model, indexPath)) ?? self.cellEstimatedHeight
     }
     
-    open func willBeginEditing(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func willBeginEditing(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.willBeginEditing?((cell, model, indexPath))
     }
     
-    open func didEndEditing(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) {
+    open func didEndEditing(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.didEndEditing?((cell, model, indexPath))
     }
     
-    open func onCellLeading(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    open func onCellLeading(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let cell = cell as? Cell, let model = model as? Model else { return nil }
         return self.onCellLeading?((cell, model, indexPath))
     }
     
-    open func onCellTrailing(cell: DPTableRowCellType, model: DPRepresentableModel, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    open func onCellTrailing(cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let cell = cell as? Cell, let model = model as? Model else { return nil }
         return self.onCellTrailing?((cell, model, indexPath))
     }

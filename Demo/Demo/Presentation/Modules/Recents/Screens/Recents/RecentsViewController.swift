@@ -33,7 +33,7 @@ class RecentsViewController: DPViewController {
     private lazy var tableView: DPTableView = {
         let recentAdapter = RecentTableRowCell.Adapter(
             didSelect: { [weak self] ctx in
-                self?.didSelect?(ctx.model.recent)
+                self?.didSelect?(ctx.model)
             },
             onCellLeading: { [weak self] _ in
                 return .init(actions: [
@@ -78,9 +78,8 @@ class RecentsViewController: DPViewController {
         self.tableView.addToSuperview(self.view, withConstraints: [ .edges(to: .safeArea) ])
         
         self.model?.didAdd = { [weak self] recent, index in
-            let model = RecentTableRowCell.Model(recent: recent)
             self?.tableView.adapter?.performBatchUpdates([
-                .insertRows([model], at: [.init(row: 0, section: 0)], with: .fade)
+                .insertRows([recent], at: [.init(row: 0, section: 0)], with: .fade)
             ])
         }
         
@@ -90,9 +89,7 @@ class RecentsViewController: DPViewController {
     override func updateComponents() {
         super.updateComponents()
         
-        let rows: [DPRepresentableModel] = (self.model?.recents ?? []).map({
-            RecentTableRowCell.Model(recent: $0)
-        })
+        let rows = self.model?.recents ?? []
         
         self.tableView.adapter?.reloadData([
             DPRepresentableSection(items: rows)

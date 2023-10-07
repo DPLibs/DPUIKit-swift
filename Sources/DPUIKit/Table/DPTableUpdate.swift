@@ -121,7 +121,7 @@ public extension DPTableUpdate {
     /// - Parameter rows: array of rows for installation.
     /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPTableAdapter/sections`` for installation.
     /// - Parameter rowAnimation: animation type.
-    static func insertRows(_ rows: [DPRepresentableModel], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func insertRows(_ rows: [DPAnyRepresentable], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for (offset, indexPath) in indexPaths.enumerated() {
                 adapter.sections[indexPath.section].items.insert(rows[offset], at: indexPath.row)
@@ -136,7 +136,7 @@ public extension DPTableUpdate {
     /// - Parameter rows: array of rows for installation.
     /// - Parameter indexPaths: array of [IndexPath](https://developer.apple.com/documentation/foundation/indexpath) in the ``DPTableAdapter/sections`` for installation.
     /// - Parameter rowAnimation: animation type.
-    static func setRows(_ rows: [DPRepresentableModel], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func setRows(_ rows: [DPAnyRepresentable], at indexPaths: [IndexPath], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             for (offset, indexPath) in indexPaths.enumerated() {
                 adapter.sections[indexPath.section].items[indexPath.row] = rows[offset]
@@ -151,7 +151,7 @@ public extension DPTableUpdate {
     /// - Parameter rows: array of rows for installation.
     /// - Parameter rowAnimation: animation type.
     @available(iOS 13.0, *)
-    static func setRows<R: DPRepresentableModel & Identifiable>(_ rows: [R],with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func setRows<R: DPRepresentable & Identifiable>(_ rows: [R],with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indexPaths: [IndexPath] = []
             
@@ -196,13 +196,39 @@ public extension DPTableUpdate {
     /// - Parameter sections: array of rows for delete.
     /// - Parameter rowAnimation: animation type.
     @available(iOS 13.0, *)
-    static func deleteRows<R: DPRepresentableModel & Identifiable>(_ rows: [R], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func deleteRows<R: DPRepresentable & Identifiable>(_ rows: [R], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indexPaths: [IndexPath] = []
             
             for (sectionOffset, section) in adapter.sections.enumerated() {
                 for (rowOffset, row) in section.items.enumerated() {
                     guard let row = row as? R, rows.contains(where: { $0.id == row.id }) else { continue }
+                    indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
+                }
+            }
+            
+            guard !indexPaths.isEmpty else { return }
+            
+            for indexPath in indexPaths {
+                adapter.sections[indexPath.section].items.remove(at: indexPath.row)
+            }
+            
+            adapter.tableView?.deleteRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+    
+    /// Delete rows by `ID`.
+    ///
+    /// - Parameter ids: array of models ids for delete.
+    /// - Parameter rowAnimation: animation type.
+    @available(iOS 13.0, *)
+    static func deleteRows<ID: Equatable>(_ ids: [ID], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+        DPTableUpdate { adapter in
+            var indexPaths: [IndexPath] = []
+            
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                for (rowOffset, row) in section.items.enumerated() {
+                    guard let row = row as? (any Identifiable), let id = row.id as? ID, ids.contains(id) else { continue }
                     indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
                 }
             }

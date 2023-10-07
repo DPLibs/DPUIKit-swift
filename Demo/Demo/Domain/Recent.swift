@@ -7,9 +7,14 @@
 
 import Foundation
 
-struct Recent {
+struct Recent: Hashable, Identifiable {
+    let id = UUID()
     let title: String
     let body: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
 }
 
 // MARK: - Moc

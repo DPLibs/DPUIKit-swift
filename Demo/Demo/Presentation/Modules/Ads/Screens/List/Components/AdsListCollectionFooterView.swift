@@ -39,7 +39,7 @@ extension AdsListCollectionFooterView {
     
     typealias Adapter = DPCollectionSupplementaryAdapter<AdsListCollectionFooterView, Model>
     
-    struct Model: DPRepresentableModel {
+    struct Model: Hashable {
         let total: Int
     }
     

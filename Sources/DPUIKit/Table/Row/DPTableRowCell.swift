@@ -14,7 +14,7 @@ public protocol DPTableRowCellType: UITableViewCell {
     /// Cell model.
     /// Set to the cell in the ``DPTableAdapter/tableView(_:cellForRowAt:)``.
     /// Can also be set by using certain ``DPTableUpdate`` in the ``DPTableAdapter/performBatchUpdates(_:completion:)``.
-    var _model: DPRepresentableModel? { get set }
+    var _model: DPAnyRepresentable? { get set }
 }
 
 /// Basic implementation of the ``DPTableRowCellType``.
@@ -32,7 +32,7 @@ open class DPTableRowCell: UITableViewCell, DPTableRowCellType, DPViewProtocol {
     }
     
     // MARK: - Props
-    open var _model: DPRepresentableModel? {
+    open var _model: DPAnyRepresentable? {
         didSet { self.updateComponents() }
     }
 
