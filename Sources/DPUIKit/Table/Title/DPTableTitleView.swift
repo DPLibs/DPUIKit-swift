@@ -14,7 +14,7 @@ public protocol DPTableTitleViewType: UITableViewHeaderFooterView {
     /// View model.
     /// Set to view in the ``DPTableAdapter/tableView(_:viewForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:viewForFooterInSection:)``.
     /// Can also be set by using certain ``DPTableUpdate`` in the ``DPTableAdapter/performBatchUpdates(_:completion:)``.
-    var _model: DPAnyRepresentable? { get set }
+    var _model: Sendable? { get set }
 }
 
 /// Basic implementation of the ``DPTableTitleViewType``.
@@ -32,7 +32,7 @@ open class DPTableTitleView: UITableViewHeaderFooterView, DPTableTitleViewType, 
     }
     
     // MARK: - Props
-    open var _model: DPAnyRepresentable? {
+    open var _model: Sendable? {
         didSet { self.updateComponents() }
     }
 

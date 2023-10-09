@@ -20,23 +20,23 @@ public protocol DPCollectionItemAdapterType {
     var cellClass: DPCollectionItemCellType.Type { get }
     
     /// Called in the ``DPCollectionAdapter/collectionView(_:didSelectItemAt:)``.
-    func didSelect(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
+    func didSelect(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:didSelectItemAt:)``.
-    func didDeselect(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
+    func didDeselect(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:cellForItemAt:)``.
-    func onCell(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
+    func onCell(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:willDisplay:forItemAt:)``.
-    func willDisplay(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
+    func willDisplay(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:layout:sizeForItemAt:)``.
-    func onSizeForItem(model: DPAnyRepresentable, indexPath: IndexPath) -> CGSize?
+    func onSizeForItem(model: Sendable, indexPath: IndexPath) -> CGSize?
 }
 
 /// Basic implementation of the ``DPCollectionItemAdapterType``.
-open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: DPRepresentable>: DPCollectionItemAdapterType {
+open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: Sendable>: DPCollectionItemAdapterType {
     
     // MARK: - Init
     public init(
@@ -83,27 +83,27 @@ open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: DPRepr
     open var onSizeForItem: ItemContextToCGSize?
 
     // MARK: - Methods
-    open func didSelect(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
+    open func didSelect(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.didSelect?((cell, model, indexPath))
     }
 
-    open func didDeselect(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
+    open func didDeselect(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.didDeselect?((cell, model, indexPath))
     }
 
-    open func onCell(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
+    open func onCell(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.onCell?((cell, model, indexPath))
     }
 
-    open func willDisplay(cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath) {
+    open func willDisplay(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.willDisplay?((cell, model, indexPath))
     }
 
-    open func onSizeForItem(model: DPAnyRepresentable, indexPath: IndexPath) -> CGSize? {
+    open func onSizeForItem(model: Sendable, indexPath: IndexPath) -> CGSize? {
         guard let model = model as? Model else { return nil }
         return self.onSizeForItem?((model, indexPath)) ?? self.cellSize
     }

@@ -23,15 +23,15 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     
     // MARK: - Types
     public typealias Closure = () -> Void
-    public typealias ItemContext = (cell: DPCollectionItemCellType, model: DPAnyRepresentable, indexPath: IndexPath)
+    public typealias ItemContext = (cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath)
     public typealias ItemContextClosure = (ItemContext) -> Void
-    public typealias ItemContextToCGSize = ((model: DPAnyRepresentable, indexPath: IndexPath)) -> CGSize?
+    public typealias ItemContextToCGSize = ((model: Sendable, indexPath: IndexPath)) -> CGSize?
     
-    public typealias SectionContext = (model: DPRepresentableSectionType, index: Int)
+    public typealias SectionContext = (model: Sendable, index: Int)
     public typealias SectionContextToUIEdgeInsets = (SectionContext) -> UIEdgeInsets?
     public typealias SectionContextToCGFloat = (SectionContext) -> CGFloat?
     
-    public typealias SupplementaryContextToCGSize = ((model: DPAnyRepresentable, section: Int)) -> CGSize?
+    public typealias SupplementaryContextToCGSize = ((model: Sendable, section: Int)) -> CGSize?
     
     // MARK: - Props
     
@@ -48,7 +48,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// An array of sections.
     ///
     /// Used to display `cells` and other `subviews` of a ``collectionView``.
-    open var sections: [DPRepresentableSectionType] = []
+    open var sections: [DPCollectionSectionType] = []
     
     /// Cells adapters.
     open internal(set) var itemAdapters: [ObjectIdentifier: DPCollectionItemAdapterType] = [:]
@@ -119,7 +119,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// Install new sections and call `collectionView.reloadData()`.
     ///
     /// - Parameter sections: new array of sections. Will be installed in ``sections``.
-    open func reloadData(_ sections: [DPRepresentableSectionType]) {
+    open func reloadData(_ sections: [DPCollectionSectionType]) {
         self.sections = sections
         self.collectionView?.reloadData()
     }
@@ -139,7 +139,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
         )
     }
     
-    open func modelRepresentID<T: DPRepresentable>(_ model: T) -> ObjectIdentifier {
+    open func modelRepresentID<T: Sendable>(_ model: T) -> ObjectIdentifier {
         ObjectIdentifier(T.self)
     }
     
@@ -182,7 +182,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var result: UICollectionReusableView?
         
-        func view(of model: DPAnyRepresentable, kind: String) -> UICollectionReusableView? {
+        func view(of model: Sendable, kind: String) -> UICollectionReusableView? {
             guard let adapter = self.supplementaryAdapters[self.modelRepresentID(model)] else { return nil }
             
             let viewClass = adapter.viewClass

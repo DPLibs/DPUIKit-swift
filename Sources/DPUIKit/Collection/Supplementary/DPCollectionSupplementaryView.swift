@@ -14,7 +14,7 @@ public protocol DPCollectionSupplementaryViewType: UICollectionReusableView {
     /// View model.
     /// Set to view in the ``DPCollectionAdapter/collectionView(_:viewForSupplementaryElementOfKind:at:)``.
     /// Can also be set by using certain ``DPCollectionAdapter`` in the ``DPCollectionAdapter/performBatchUpdates(_:completion:)``.
-    var _model: DPAnyRepresentable? { get set }
+    var _model: Sendable? { get set }
 }
 
 /// Basic implementation of the ``DPCollectionSupplementaryViewType``.
@@ -32,7 +32,7 @@ open class DPCollectionSupplementaryView: UICollectionReusableView, DPViewProtoc
     }
     
     // MARK: - Props
-    public var _model: DPAnyRepresentable? {
+    public var _model: Sendable? {
         didSet { self.updateComponents() }
     }
     

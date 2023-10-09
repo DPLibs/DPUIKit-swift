@@ -20,14 +20,14 @@ public protocol DPTableTitleAdapterType {
     var viewClass: DPTableTitleViewType.Type { get }
     
     /// Called in the ``DPTableAdapter/tableView(_:heightForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:heightForFooterInSection:)``.
-    func onViewHeight(model: DPAnyRepresentable, section: Int) -> CGFloat?
+    func onViewHeight(model: Sendable, section: Int) -> CGFloat?
     
     /// Called in the ``DPTableAdapter/tableView(_:estimatedHeightForHeaderInSection:)`` or ``DPTableAdapter/tableView(_:estimatedHeightForFooterInSection:)``.
-    func onViewEstimatedHeight(model: DPAnyRepresentable, section: Int) -> CGFloat?
+    func onViewEstimatedHeight(model: Sendable, section: Int) -> CGFloat?
 }
 
 /// Basic implementation of the ``DPTableTitleAdapterType``.
-open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: DPRepresentable>: DPTableTitleAdapterType {
+open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: Sendable>: DPTableTitleAdapterType {
     
     // MARK: - Init
     public init(
@@ -62,12 +62,12 @@ open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: DPRepresentabl
     open var onViewEstimatedHeight: TitleContextToCGFloat?
     
     // MARK: - Methods
-    open func onViewHeight(model: DPAnyRepresentable, section: Int) -> CGFloat? {
+    open func onViewHeight(model: Sendable, section: Int) -> CGFloat? {
         guard let model = model as? Model else { return nil }
         return self.onViewHeight?((model, section)) ?? self.viewHeight
     }
     
-    open func onViewEstimatedHeight(model: DPAnyRepresentable, section: Int) -> CGFloat? {
+    open func onViewEstimatedHeight(model: Sendable, section: Int) -> CGFloat? {
         guard let model = model as? Model else { return nil }
         return self.onViewEstimatedHeight?((model, section)) ?? self.viewEstimatedHeight
     }

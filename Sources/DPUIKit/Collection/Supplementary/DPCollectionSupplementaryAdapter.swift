@@ -19,11 +19,11 @@ public protocol DPCollectionSupplementaryAdapterType {
     var viewClass: DPCollectionSupplementaryViewType.Type { get }
     
     /// Called in the ``DPCollectionAdapter/collectionView(_:layout:referenceSizeForHeaderInSection:)`` or ``DPCollectionAdapter/collectionView(_:layout:referenceSizeForFooterInSection:)``.
-    func onViewSize(model: DPAnyRepresentable, section: Int) -> CGSize?
+    func onViewSize(model: Sendable, section: Int) -> CGSize?
 }
 
 /// Basic implementation of the ``DPCollectionSupplementaryAdapterType``.
-open class DPCollectionSupplementaryAdapter<View: DPCollectionSupplementaryViewType, Model: DPRepresentable>: DPCollectionSupplementaryAdapterType {
+open class DPCollectionSupplementaryAdapter<View: DPCollectionSupplementaryViewType, Model: Sendable>: DPCollectionSupplementaryAdapterType {
     
     // MARK: - Init
     public init(
@@ -48,7 +48,7 @@ open class DPCollectionSupplementaryAdapter<View: DPCollectionSupplementaryViewT
     open var onViewSize: SupplementaryContextToCGSize?
     
     // MARK: - Methods
-    open func onViewSize(model: DPAnyRepresentable, section: Int) -> CGSize? {
+    open func onViewSize(model: Sendable, section: Int) -> CGSize? {
         guard let model = model as? Model else { return nil }
         return self.onViewSize?((model, section)) ?? self.viewSize
     }

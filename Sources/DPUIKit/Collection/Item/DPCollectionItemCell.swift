@@ -14,7 +14,7 @@ public protocol DPCollectionItemCellType: UICollectionViewCell {
     /// Cell model.
     /// Set to the cell in the ``DPCollectionAdapter/collectionView(_:cellForItemAt:)``.
     /// Can also be set by using certain ``DPCollectionUpdate`` in the ``DPCollectionAdapter/performBatchUpdates(_:completion:)``.
-    var _model: DPAnyRepresentable? { get set }
+    var _model: Sendable? { get set }
 }
 
 /// Basic implementation of the ``DPCollectionItemCellType``.
@@ -32,7 +32,7 @@ open class DPCollectionItemCell: UICollectionViewCell, DPCollectionItemCellType,
     }
     
     // MARK: - Props
-    open var _model: DPAnyRepresentable? {
+    open var _model: Sendable? {
         didSet { self.updateComponents() }
     }
     

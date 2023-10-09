@@ -10,15 +10,11 @@ Components for working with a [UITableView](https://developer.apple.com/document
 
 ## Topics
 
-### Representable
-- ``DPRepresentableModel``
-- ``DPRepresentableIdentifier``
-- ``DPRepresentableSection``
-
 ### Common
 - ``DPTableAdapter``
 - ``DPTableUpdate``
 - ``DPTableView``
+- ``DPTableSection``
 
 ### Row
 - ``DPTableRowCell``

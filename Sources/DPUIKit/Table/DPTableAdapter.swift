@@ -23,11 +23,11 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     // MARK: - Types
     public typealias Closure = () -> Void
-    public typealias RowContext = (cell: DPTableRowCellType, model: DPAnyRepresentable, indexPath: IndexPath)
+    public typealias RowContext = (cell: DPTableRowCellType, model: Sendable, indexPath: IndexPath)
     public typealias RowContextClosure = (RowContext) -> Void
     public typealias RowContextToSwipeActionsConfiguration = (RowContext) -> UISwipeActionsConfiguration?
-    public typealias RowContextToCGFloat = ((model: DPAnyRepresentable, indexPath: IndexPath)) -> CGFloat?
-    public typealias TitleContextToCGFloat = ((model: DPAnyRepresentable, section: Int)) -> CGFloat?
+    public typealias RowContextToCGFloat = ((model: Sendable, indexPath: IndexPath)) -> CGFloat?
+    public typealias TitleContextToCGFloat = ((model: Sendable, section: Int)) -> CGFloat?
     
     // MARK: - Props
     
@@ -44,7 +44,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     /// An array of sections.
     ///
     /// Used to display `cells` and other `subviews` of a ``tableView``.
-    open var sections: [DPRepresentableSectionType] = []
+    open var sections: [DPTableSectionType] = []
     
     open internal(set) var lastContentOffset: CGPoint?
     
@@ -132,7 +132,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     /// Install new sections and call `tableView.reloadData()`.
     ///
     /// - Parameter sections: new array of sections. Will be installed in ``sections``.
-    open func reloadData(_ sections: [DPRepresentableSectionType]) {
+    open func reloadData(_ sections: [DPTableSectionType]) {
         self.sections = sections
         self.tableView?.reloadData()
     }
@@ -152,7 +152,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         )
     }
     
-    open func modelRepresentID<T: DPRepresentable>(_ model: T) -> ObjectIdentifier {
+    open func modelRepresentID<T: Sendable>(_ model: T) -> ObjectIdentifier {
         ObjectIdentifier(T.self)
     }
     
@@ -163,12 +163,12 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
 
     open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard self.sections.indices.contains(section) else { return .zero }
-        return self.sections[section].items.count
+        return self.sections[section].rows.count
     }
 
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
-            let model = self.sections.item(at: indexPath),
+            let model = self.sections.row(at: indexPath),
             let adapter = self.rowAdapters[self.modelRepresentID(model)]
         else { return UITableViewCell() }
         
@@ -194,7 +194,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     // MARK: - UITableViewDelegate
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let cell = cell as? DPTableRowCellType, let model = self.sections.item(at: indexPath) {
+        if let cell = cell as? DPTableRowCellType, let model = self.sections.row(at: indexPath) {
             self.willDisplayRow?((cell, model, indexPath))
             self.rowAdapters[self.modelRepresentID(model)]?.willDisplay(cell: cell, model: model, indexPath: indexPath)
         }
@@ -203,13 +203,13 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
             self.onDisplayFirstRow?()
         }
 
-        if !self.sections.isEmpty, indexPath == IndexPath(row: (self.sections.last?.items.count ?? 0) - 1, section: self.sections.count - 1) {
+        if !self.sections.isEmpty, indexPath == IndexPath(row: (self.sections.last?.rows.count ?? 0) - 1, section: self.sections.count - 1) {
             self.onDisplayLastRow?()
         }
     }
 
     open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let model = self.sections.item(at: indexPath) else { return tableView.rowHeight }
+        guard let model = self.sections.row(at: indexPath) else { return tableView.rowHeight }
         let adapter = self.rowAdapters[self.modelRepresentID(model)]
         
         return
@@ -219,7 +219,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
 
     open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let model = self.sections.item(at: indexPath) else { return tableView.estimatedRowHeight }
+        guard let model = self.sections.row(at: indexPath) else { return tableView.estimatedRowHeight }
         let adapter = self.rowAdapters[self.modelRepresentID(model)]
         
         return
@@ -328,7 +328,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellType,
-            let model = self.sections.item(at: indexPath),
+            let model = self.sections.row(at: indexPath),
             let adapter = self.rowAdapters[self.modelRepresentID(model)]
         else { return nil }
 
@@ -338,7 +338,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellType,
-            let model = self.sections.item(at: indexPath),
+            let model = self.sections.row(at: indexPath),
             let adapter = self.rowAdapters[self.modelRepresentID(model)]
         else { return nil }
 
@@ -349,7 +349,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellType,
-            let model = self.sections.item(at: indexPath)
+            let model = self.sections.row(at: indexPath)
         else { return }
 
         self.didSelectRow?((cell, model, indexPath))
@@ -359,7 +359,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellType,
-            let model = self.sections.item(at: indexPath)
+            let model = self.sections.row(at: indexPath)
         else { return }
 
         self.didDeselectRow?((cell, model, indexPath))
@@ -370,7 +370,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
     open func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellType,
-            let model = self.sections.item(at: indexPath)
+            let model = self.sections.row(at: indexPath)
         else { return }
 
         self.willBeginEditingRow?((cell, model, indexPath))
@@ -381,7 +381,7 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         guard
             let indexPath = indexPath,
             let cell = tableView.cellForRow(at: indexPath) as? DPTableRowCellType,
-            let model = self.sections.item(at: indexPath)
+            let model = self.sections.row(at: indexPath)
         else { return }
         
         self.didEndEditingRow?((cell, model, indexPath))
