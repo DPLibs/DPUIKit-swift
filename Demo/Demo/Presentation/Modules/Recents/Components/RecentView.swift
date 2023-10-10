@@ -35,7 +35,7 @@ final class RecentView: DPView {
         super.setupComponents()
         
         UIStackView(arrangedSubviews: [self.titleLabel, self.bodyLabel])
-            .applyStyles(.axis(.vertical), .spacing(8), .directionalLayoutMargins(.init(top: 8, leading: 8, bottom: 8, trailing: 8)))
+            .applyStyles(.axis(.vertical), .spacing(8))
             .addToSuperview(self, withConstraints: [ .edges() ])
     }
     

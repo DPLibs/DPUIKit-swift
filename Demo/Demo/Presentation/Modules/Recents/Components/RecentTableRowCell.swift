@@ -33,7 +33,7 @@ final class RecentTableRowCell: DPTableRowCell {
         super.setupComponents()
         
         self.recentView.addToSuperview(self.contentView, withConstraints: [
-            .edges(.init(top: 0, leading: 8, bottom: -8, trailing: -8))
+            .edges(.init(top: 16, leading: 16, bottom: -16, trailing: -16))
         ])
     }
     

@@ -31,26 +31,35 @@ final class RecentViewController: DPViewController {
     
     private lazy var recentView: RecentView = {
         let result = RecentView()
-        result.titleLabel.font = .systemFont(ofSize: 24, weight: .medium)
-        return result
-    }()
-    
-    private lazy var stackScrollView: DPStackScrollView = {
-        let result = DPStackScrollView(arrangedSubviews: [self.recentView])
-        result.axis = .vertical
+        result.titleLabel.isHidden = true
         return result
     }()
     
     // MARK: - Methods
-    override func loadView() {
-        self.view = self.stackScrollView
-    }
-    
     override func setupComponents() {
         super.setupComponents()
         
         self.view.backgroundColor = AppTheme.background
         self.navigationItem.title = self.model?.recent.title
+        
+        let recentContainerView: UIView = {
+            let result = UIView()
+            
+            self.recentView.addToSuperview(result, withConstraints: [
+                .edges(.init(top: 16, leading: 16, bottom: -16, trailing: -16))
+            ])
+            
+            return result
+        }()
+        
+        let stackScrollView: DPStackScrollView = {
+            let result = DPStackScrollView(arrangedSubviews: [recentContainerView])
+            result.axis = .vertical
+            return result
+        }()
+        
+        stackScrollView.addToSuperview(self.view, withConstraints: [ .edges(to: .safeArea) ])
+        
         self.recentView.recent = self.model?.recent
     }
     
