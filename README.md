@@ -25,12 +25,11 @@ An unobtrusive set of extensions and classes for UIKit.
 - [ ] Coordinators Docc tutorial 👨‍💻
 - [ ] UICollectionView adapter Docc tutorial 👨‍💻
 
-## Documentaion
+## Overview
 
-[See documentaion](https://dplibs.github.io/DPUIKit-swift/documentation/dpuikit/)
-
-## Demo
-A [small project](/Demo) demonstrating the interaction of MVVM modules in an application.
+#### [Documentaion](https://dplibs.github.io/DPUIKit-swift/documentation/dpuikit)
+#### [Tutorials](https://dplibs.github.io/DPUIKit-swift/tutorials/dpuikit-tutorial)
+#### [Demo](/Demo)
 
 ## Install
 Swift Package Manager(SPM) is Apple's dependency manager tool. It is now supported in Xcode 11. So it can be used in all appleOS types of projects. It can be used alongside other tools like CocoaPods and Carthage as well.
