@@ -1,13 +1,11 @@
 @Tutorials(name: "DPUIKit") {
     @Intro(title: "Tutorials DPUIKit") {
         Let's look at working with the main components of the library
-        
-        @Image(source: dpuikit_tutorail_logo.png, alt: "")
     }
     
     @Chapter(name: "DPTableAdapter") {
         Working with DPTableAdapter.
-        @Image(source: dptableadapter_tutorial_logo, alt: "")
+        @Image(source: "dptableadapter_tutorial-result.png")
         @TutorialReference(tutorial: "doc:DPTableAdapter-Tutorial")
     }
 }

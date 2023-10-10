@@ -19,4 +19,5 @@ Facilitates and speeds up development on UIKit. The library contains extensions 
 - <doc:AutoLayout>
 - <doc:StyleWrapper>
 - <doc:Xcode_templates>
+- <doc:DPUIKit-Tutorial>
 

@@ -10,6 +10,8 @@ Components for working with a [UITableView](https://developer.apple.com/document
 
 ## Topics
 
+- <doc:DPTableAdapter-Tutorial>
+
 ### Common
 - ``DPTableAdapter``
 - ``DPTableUpdate``

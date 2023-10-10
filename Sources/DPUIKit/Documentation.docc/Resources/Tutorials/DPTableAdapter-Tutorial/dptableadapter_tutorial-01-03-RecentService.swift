@@ -1,7 +1,7 @@
 import Foundation
 
 protocol RecentService {
-    func getRecents() async -> [Recent]
-    func createRecent() async Recent
-    func removeRecent(_ recent: Recent) async
+    func getRecents(completion: @escaping ([Recent]) -> Void)
+    func createRecent(completion: @escaping (Recent) -> Void)
+    func deleteRecent(_ recent: Recent, completion: @escaping () -> Void)
 }

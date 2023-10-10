@@ -9,7 +9,7 @@
 import Foundation
 import DPUIKit
 
-class RecentsViewModel: DPViewModel {
+final class RecentsViewModel: DPViewModel {
     
     // MARK: - Init
     override init() {

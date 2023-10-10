@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import DPUIKit
 
-class RecentsViewController: DPViewController {
+final class RecentsViewController: DPViewController {
     
     // MARK: - Init
     override init() {

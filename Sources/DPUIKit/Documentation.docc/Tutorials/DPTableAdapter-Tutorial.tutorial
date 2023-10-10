@@ -2,56 +2,159 @@
     @Intro(title: "Working with DPTableAdapter") {
         Let's create a screen with content in a table.
         
-        @Image(source: "dptableadapter_tutorial_logo.png", alt: "")
+        @Video(source: "dptableadapter_tutorial-result.mp4", poster: "dptableadapter_tutorial-result.png")
     }
     
     @Section(title: "Domain layer") {
         @ContentAndMedia {
-            Let's set up the domain layer.
+            Set up the domain layer.
         }
         
         @Steps {
             @Step {
-                Let's create an `Recent.swift` file.
-                @Code(name: "Recent.swift", file: "dptableadapter_tutorial-01-01-Recent.swift") {}
+                Create an `Recent.swift` file.
+                @Code(name: "Recent.swift", file: "dptableadapter_tutorial-01-01-Recent.swift")
             }
             @Step {
                 To simplify the work, we implement the `Identifiable` and `Equatable` protocols.
-                @Code(name: "Recent.swift", file: "dptableadapter_tutorial-01-02-Recent.swift") {}
+                @Code(name: "Recent.swift", file: "dptableadapter_tutorial-01-02-Recent.swift")
             }
             @Step {
-                Let's create a file `RecentService.swift`. And we will create a protocol for the service for receiving `recents` models.
-                @Code(name: "RecentService.swift", file: "dptableadapter_tutorial-01-03-RecentService.swift") {}
+                Create a file `RecentService.swift`. And we will create a protocol for the service for receiving `recents` models.
+                @Code(name: "RecentService.swift", file: "dptableadapter_tutorial-01-03-RecentService.swift")
             }
             @Step {
-                Let's add a mock class `RecentMockService` inheriting from `RecentService`.
-                @Code(name: "RecentService.swift", file: "dptableadapter_tutorial-01-04-RecentService.swift") {}
+                Add a mock class `RecentMockService` inheriting from `RecentService`.
+                @Code(name: "RecentService.swift", file: "dptableadapter_tutorial-01-04-RecentService.swift")
             }
         }
     }
         
-    @Section(title: "Presentation layer") {
+    @Section(title: "ViewModel") {
         @ContentAndMedia {
-            Let's set up the presentation layer.
+            Set up the `viewModel`.
         }
         
         @Steps {
             @Step {
-                Let's create an `RecentsViewController.swift` and `RecentsViewModel.swift` files.
-                @Image(source: "dptableadapter_tutorial_logo.png", alt: "")
+                Сreate an `RecentsViewModel.swift` file.
+                @Code(name: "RecentsViewModel.swift", file: "dptableadapter_tutorial-02-01-RecentsViewModel.swift")
             }
             @Step {
-                To simplify the work, we implement the `Identifiable` and `Equatable` protocols.
-                @Code(name: "Recent.swift", file: "dptableadapter_tutorial-01-02-Recent.swift") {}
+                Add `RecentService`, as well as an array of `recents` and callbacks for the `viewController`.
+                @Code(name: "RecentsViewModel.swift", file: "dptableadapter_tutorial-02-02-RecentsViewModel.swift")
             }
             @Step {
-                Let's create a file `RecentService.swift`. And we will create a protocol for the service for receiving `recents` models.
-                @Code(name: "RecentService.swift", file: "dptableadapter_tutorial-01-03-RecentService.swift") {}
-            }
-            @Step {
-                Let's add a mock class `RecentMockService` inheriting from `RecentService`.
-                @Code(name: "RecentService.swift", file: "dptableadapter_tutorial-01-04-RecentService.swift") {}
+                Add methods for changing the data model.
+                @Code(name: "RecentsViewModel.swift", file: "dptableadapter_tutorial-02-03-RecentsViewModel.swift")
             }
         }
-    }   
+    }
+        
+    @Section(title: "Views") {
+        @ContentAndMedia {
+            Set up views.
+        }
+        
+        @Steps {
+            @Step {
+                Сreate an `RecentsViewController.swift` file.
+                @Code(name: "RecentsViewController.swift", file: "dptableadapter_tutorial-03-01-RecentsViewController.swift")
+            }
+            @Step {
+                Add a table.
+                @Code(name: "RecentsViewController.swift", file: "dptableadapter_tutorial-03-02-RecentsViewController.swift")
+            }
+            @Step {
+                Сreate an `RecentView.swift` file.
+                @Code(name: "RecentView.swift", file: "dptableadapter_tutorial-03-03-RecentView.swift") {
+                    @Image(source: "dptableadapter_tutorial-03-03-RecentView.png")
+                }
+            }
+            @Step {
+                Сreate an `RecentTableRowCell.swift` file and add `RecentView` there.
+                @Code(name: "RecentTableRowCell.swift", file: "dptableadapter_tutorial-03-04-RecentTableRowCell.swift")
+            }
+        }
+    }
+        
+    @Section(title: "Table adapter") {
+        @ContentAndMedia {
+            Configure the `DPTableAdapter`.
+        }
+        
+        @Steps {
+            @Step {
+                Add `RecentTableRowCell.Adapter` to `RecentsViewController`.
+                @Code(
+                      name: "RecentsViewController.swift",
+                      file: "dptableadapter_tutorial-04-01-RecentsViewController.swift",
+                      previousFile: "dptableadapter_tutorial-03-02-RecentsViewController.swift"
+                )
+            }
+            @Step {
+                Add `didSelect` to `RecentTableRowCell.Adapter'.
+                @Code(
+                      name: "RecentsViewController.swift",
+                      file: "dptableadapter_tutorial-04-02-RecentsViewController.swift"
+                )
+            }
+            @Step {
+                Add `onCellLeading` to `RecentTableRowCell.Adapter'.
+                @Code(
+                      name: "RecentsViewController.swift",
+                      file: "dptableadapter_tutorial-04-03-RecentsViewController.swift"
+                ) {
+                      @Image(source: "dptableadapter_tutorial-04-03-RecentsViewController.png")
+                }
+            }
+            @Step {
+                Add `onCellTrailing` to `RecentTableRowCell.Adapter'.
+                @Code(
+                      name: "RecentsViewController.swift",
+                      file: "dptableadapter_tutorial-04-04-RecentsViewController.swift"
+                ) {
+                      @Image(source: "dptableadapter_tutorial-04-04-RecentsViewController.png")
+                }
+            }
+            @Step {
+                Create `DPTableAdapter` along with `onDisplayLastRow` and add it to the table.
+                @Code(
+                      name: "RecentsViewController.swift",
+                      file: "dptableadapter_tutorial-04-05-RecentsViewController.swift"
+                )
+            }
+        }
+    }
+        
+    @Section(title: "Final setup") {
+        @ContentAndMedia {
+            Make the final settings to complete our module.
+        }
+        
+        @Steps {
+            @Step {
+                Add `refreshControl` to `table`.
+                @Code(
+                      name: "RecentsViewController.swift",
+                      file: "dptableadapter_tutorial-05-01-RecentsViewController.swift"
+                )
+            }
+            @Step {
+                Add `rightBarButtonItem` to `navigationItem`.
+                @Code(
+                      name: "RecentsViewController.swift",
+                      file: "dptableadapter_tutorial-05-02-RecentsViewController.swift"
+                )
+            }
+            @Step {
+                Add events processing from `model` and call `model.reload()` at the start of `viewController`.
+                @Code(
+                      name: "RecentsViewController.swift",
+                      file: "dptableadapter_tutorial-05-03-RecentsViewController.swift"
+                )
+            }
+        }
+    }
+            
 }
