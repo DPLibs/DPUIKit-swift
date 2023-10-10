@@ -27,8 +27,8 @@ An unobtrusive set of extensions and classes for UIKit.
 
 ## Overview
 
-[Documentaion](https://dplibs.github.io/DPUIKit-swift/documentation/dpuikit/)
-[Tutorials](https://dplibs.github.io/DPUIKit-swift/tutorials/dpuikit-tutorial)
+[Documentaion](https://dplibs.github.io/DPUIKit-swift/documentation/dpuikit)/
+[Tutorials](https://dplibs.github.io/DPUIKit-swift/tutorials/dpuikit-tutorial)/
 [Demo](/Demo)
 
 ## Install
