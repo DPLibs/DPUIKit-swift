@@ -46,7 +46,7 @@ open class DPTableTitleAdapter<View: DPTableTitleViewType, Model: Sendable>: DPT
     public typealias TitleContextToCGFloat = ((model: Model, section: Int)) -> CGFloat?
     
     // MARK: - Props
-    public let modelRepresentID: ObjectIdentifier = ObjectIdentifier(Model.self)
+    public let modelRepresentID = ObjectIdentifier(Model.self)
     public let viewClass: DPTableTitleViewType.Type = View.self
     
     /// The value of this property will be returned ``onViewHeight(model:section:)`` if ``onViewHeight`` is not defined.

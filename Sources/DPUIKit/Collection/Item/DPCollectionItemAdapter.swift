@@ -12,7 +12,7 @@ import UIKit
 public protocol DPCollectionItemAdapterType {
     
     /// Model reuse identifier.
-    /// This property is used to search for a match between ``DPCollectionItemAdapterType`` and ``DPRepresentableModel``.
+    /// This property is used to search for a match between adapter and model.
     var modelReuseID: ObjectIdentifier { get }
     
     /// Cell type.

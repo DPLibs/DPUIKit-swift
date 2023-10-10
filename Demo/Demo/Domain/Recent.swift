@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Recent: Hashable, Identifiable {
+struct Recent: Identifiable, Equatable {
     let id = UUID()
     let title: String
     let body: String
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.id == rhs.id
     }
 }
 

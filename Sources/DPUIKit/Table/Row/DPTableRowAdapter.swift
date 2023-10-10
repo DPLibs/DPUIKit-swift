@@ -12,7 +12,7 @@ import UIKit
 public protocol DPTableRowAdapterType {
     
     /// Model reuse identifier.
-    /// This property is used to search for a match between ``DPTableRowAdapterProtocol`` and ``DPRepresentableModel``.
+    /// This property is used to search for a match between adapter and model.
     var modelReprentID: ObjectIdentifier { get }
     
     /// Cell type.
@@ -89,7 +89,7 @@ open class DPTableRowAdapter<Cell: DPTableRowCellType, Model: Sendable>: DPTable
     public typealias RowContextToCGFloat = ((model: Model, indexPath: IndexPath)) -> CGFloat?
     
     // MARK: - Props
-    public let modelReprentID: ObjectIdentifier = ObjectIdentifier(Model.self)
+    public let modelReprentID = ObjectIdentifier(Model.self)
     public let cellClass: DPTableRowCellType.Type = Cell.self
     
     /// The value of this property will be returned ``onCellHeight(model:indexPath:)`` if ``onCellHeight`` is not defined.

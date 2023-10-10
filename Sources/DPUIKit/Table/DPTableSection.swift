@@ -8,7 +8,7 @@
 import Foundation
 
 /// Protocol for defining a `section` in an ``DPTableAdapter/sections``.
-public protocol DPTableSectionType {
+public protocol DPTableSectionType: Sendable {
     
     /// An array of table cell models.
     var rows: [Sendable] { get set }

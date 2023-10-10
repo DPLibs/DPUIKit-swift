@@ -191,18 +191,17 @@ public extension DPTableUpdate {
         }
     }
     
-    /// Delete rows by `ID`.
+    /// Delete rows by `Equatable`.
     ///
     /// - Parameter sections: array of rows for delete.
     /// - Parameter rowAnimation: animation type.
-    @available(iOS 13.0, *)
-    static func deleteRows<R: Sendable & Identifiable>(_ rows: [R], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func deleteRows<R: Sendable & Equatable>(_ rows: [R], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indexPaths: [IndexPath] = []
             
             for (sectionOffset, section) in adapter.sections.enumerated() {
                 for (rowOffset, row) in section.rows.enumerated() {
-                    guard let row = row as? R, rows.contains(where: { $0.id == row.id }) else { continue }
+                    guard let row = row as? R, rows.contains(where: { $0 == row }) else { continue }
                     indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
                 }
             }
@@ -222,7 +221,7 @@ public extension DPTableUpdate {
     /// - Parameter ids: array of models ids for delete.
     /// - Parameter rowAnimation: animation type.
     @available(iOS 13.0, *)
-    static func deleteRows<ID: Equatable>(_ ids: [ID], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func deleteRows<ID: Equatable>(ids: [ID], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indexPaths: [IndexPath] = []
             

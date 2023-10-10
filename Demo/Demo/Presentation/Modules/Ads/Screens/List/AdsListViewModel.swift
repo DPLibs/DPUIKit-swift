@@ -47,10 +47,19 @@ final class AdsListViewModel: DPViewModel {
 // MARK: - Section
 extension AdsListViewModel {
     
-    struct Section {
-        let name: String
-        var ads: [Ads]
-        let total: Int
+    struct Section: DPCollectionSectionType {
+        
+        // MARK: - Init
+        init(name: String, ads: [Ads], total: Int) {
+            self.items = ads
+            self.header = AdsListCollectionHeaderView.Model(title: name)
+            self.footer = AdsListCollectionFooterView.Model(total: total)
+        }
+        
+        // MARK: - Props
+        var items: [Sendable]
+        var header: Sendable?
+        var footer: Sendable?
     }
     
 }

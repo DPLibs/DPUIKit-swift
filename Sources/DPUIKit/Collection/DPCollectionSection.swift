@@ -8,7 +8,7 @@
 import Foundation
 
 /// Protocol for defining a `section` in an ``DPCollectionAdapter/sections``.
-public protocol DPCollectionSectionType {
+public protocol DPCollectionSectionType: Sendable {
     
     /// An array of collection cell models.
     var items: [Sendable] { get set }

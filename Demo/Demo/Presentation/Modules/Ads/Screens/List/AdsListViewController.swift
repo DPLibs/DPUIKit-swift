@@ -83,14 +83,7 @@ final class AdsListViewController: DPViewController {
     override func updateComponents() {
         super.updateComponents()
         
-        let sections = (self.model?.sections ?? []).map { section in
-            DPRepresentableSection(
-                items: section.ads,
-                header: AdsListCollectionHeaderView.Model(title: section.name),
-                footer: AdsListCollectionFooterView.Model(total: section.total)
-            )
-        }
-        
+        let sections = self.model?.sections ?? []
         self.collectionView.adapter?.reloadData(sections)
     }
     

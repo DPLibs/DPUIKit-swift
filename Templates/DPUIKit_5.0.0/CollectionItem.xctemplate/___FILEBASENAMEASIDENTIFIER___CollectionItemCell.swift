@@ -27,6 +27,6 @@ extension ___VARIABLE_productName___CollectionItemCell {
     
     typealias Adapter = DPCollectionItemAdapter<___VARIABLE_productName___CollectionItemCell, Model>
     
-    struct Model: DPRepresentableModel {}
+    struct Model {}
     
 }

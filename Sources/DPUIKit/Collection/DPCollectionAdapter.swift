@@ -140,7 +140,7 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     }
     
     open func modelRepresentID<T: Sendable>(_ model: T) -> ObjectIdentifier {
-        ObjectIdentifier(T.self)
+        ObjectIdentifier(Mirror(reflecting: model).subjectType)
     }
     
     // MARK: - UICollectionViewDataSource

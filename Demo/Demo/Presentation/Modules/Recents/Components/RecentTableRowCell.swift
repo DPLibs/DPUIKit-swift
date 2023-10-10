@@ -12,8 +12,8 @@ import UIKit
 final class RecentTableRowCell: DPTableRowCell {
     
     // MARK: - Props
-    var model: Model? {
-        get { self._model as? Model }
+    var model: Recent? {
+        get { self._model as? Recent }
         set { self._model = newValue }
     }
     
@@ -47,6 +47,5 @@ final class RecentTableRowCell: DPTableRowCell {
 
 // MARK: - Model
 extension RecentTableRowCell {
-    typealias Model = Recent
-    typealias Adapter = DPTableRowAdapter<RecentTableRowCell, Model>
+    typealias Adapter = DPTableRowAdapter<RecentTableRowCell, Recent>
 }

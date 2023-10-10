@@ -27,6 +27,6 @@ extension ___VARIABLE_productName___TableRowCell {
     
     typealias Adapter = DPTableRowAdapter<___VARIABLE_productName___TableRowCell, Model>
     
-    struct Model: DPRepresentableModel {}
+    struct Model {}
     
 }

@@ -14,6 +14,7 @@ class RecentsViewModel: DPViewModel {
     // MARK: - Props
     private(set) var recents: [Recent] = []
     var didAdd: ((_ recent: Recent, _ index: Int) -> Void)?
+    var didDelete: ((Recent) -> Void)?
     
     // MARK: - Methods
     override func reload() {
@@ -28,6 +29,11 @@ class RecentsViewModel: DPViewModel {
         let recent = Recent.moc()
         self.recents.insert(recent, at: 0)
         self.didAdd?(recent, 0)
+    }
+    
+    func deleteRecent(_ recent: Recent) {
+        self.recents.removeAll(where: { recent.id == $0.id })
+        self.didDelete?(recent)
     }
     
 }

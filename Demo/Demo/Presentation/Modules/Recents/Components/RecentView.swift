@@ -23,8 +23,6 @@ final class RecentView: DPView {
     override func setupComponents() {
         super.setupComponents()
         
-        self.applyStyles(.backgroundColor(AppTheme.cardColor))
-        
         UIStackView(arrangedSubviews: [self.titleLabel, self.bodyLabel])
             .applyStyles(.axis(.vertical), .spacing(8), .directionalLayoutMargins(.init(top: 8, leading: 8, bottom: 8, trailing: 8)))
             .addToSuperview(self, withConstraints: [ .edges() ])

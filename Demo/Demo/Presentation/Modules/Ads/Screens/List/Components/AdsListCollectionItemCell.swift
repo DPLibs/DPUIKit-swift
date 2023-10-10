@@ -12,8 +12,8 @@ import DPUIKit
 final class AdsListCollectionItemCell: DPCollectionItemCell {
     
     // MARK: - Props
-    var model: Model? {
-        get { self._model as? Model }
+    var model: Ads? {
+        get { self._model as? Ads }
         set { self._model = newValue }
     }
     
@@ -51,6 +51,5 @@ final class AdsListCollectionItemCell: DPCollectionItemCell {
 
 // MARK: - Types
 extension AdsListCollectionItemCell {
-    typealias Model = Ads
-    typealias Adapter = DPCollectionItemAdapter<AdsListCollectionItemCell, Model>
+    typealias Adapter = DPCollectionItemAdapter<AdsListCollectionItemCell, Ads>
 }

@@ -47,7 +47,7 @@ class RecentsViewController: DPViewController {
                 return .init(actions: [
                     .init(style: .destructive, title: "Delete", handler: { [weak self] _, _, handler in
                         handler(true)
-                        self?.tableView.adapter?.performBatchUpdates([ .deleteRows(at: [ctx.indexPath], with: .automatic) ])
+                        self?.model?.deleteRecent(ctx.model)
                     })
                 ])
             }
@@ -59,6 +59,7 @@ class RecentsViewController: DPViewController {
         }
         
         let result = DPTableView()
+        result.separatorStyle = .singleLine
         result.adapter = adapter
         result.refreshControl = DPRefreshControl(didBeginRefreshing: { [weak self] in
             self?.model?.reload()
@@ -83,6 +84,12 @@ class RecentsViewController: DPViewController {
             ])
         }
         
+        self.model?.didDelete = { [weak self] recent in
+            self?.tableView.adapter?.performBatchUpdates([
+                .deleteRows([recent])
+            ])
+        }
+        
         self.model?.reload()
     }
     
@@ -92,7 +99,7 @@ class RecentsViewController: DPViewController {
         let rows = self.model?.recents ?? []
         
         self.tableView.adapter?.reloadData([
-            DPRepresentableSection(items: rows)
+            DPTableSection(rows: rows)
         ])
     }
     

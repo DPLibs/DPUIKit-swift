@@ -152,8 +152,8 @@ open class DPTableAdapter: NSObject, UITableViewDataSource, UITableViewDelegate 
         )
     }
     
-    open func modelRepresentID<T: Sendable>(_ model: T) -> ObjectIdentifier {
-        ObjectIdentifier(T.self)
+    open func modelRepresentID(_ model: Any) -> ObjectIdentifier {
+        ObjectIdentifier(Mirror(reflecting: model).subjectType)
     }
     
     // MARK: - UITableViewDataSource
