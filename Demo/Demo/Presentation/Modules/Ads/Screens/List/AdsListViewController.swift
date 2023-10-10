@@ -37,6 +37,9 @@ final class AdsListViewController: DPViewController {
         layout.minimumLineSpacing = 16
         
         let result = DPCollectionView(frame: .zero, collectionViewLayout: layout)
+        result.refreshControl = DPRefreshControl(didBeginRefreshing: { [weak self] in
+            self?.model?.reload()
+        })
         
         result.adapter = DPCollectionAdapter(
             itemAdapters: [
@@ -77,6 +80,21 @@ final class AdsListViewController: DPViewController {
         super.setupComponents()
         
         self.navigationItem.title = "Ads"
+        
+        self.model?.onDeleteAds = { [weak self] ads, section in
+            self?.collectionView.adapter?.performBatchUpdates([ .deleteItems(identified: [ads]) ], completion: { [weak self] _ in
+                UIView.performWithoutAnimation { [weak self] in
+                    self?.collectionView.adapter?.performBatchUpdates([ .setSections(identified: [section]) ])
+                }
+            })
+        }
+        
+        self.model?.onDeleteSection = { [weak self] section in
+            self?.collectionView.adapter?.performBatchUpdates([
+                .deleteSections(identified: [section])
+            ])
+        }
+        
         self.model?.reload()
     }
     
@@ -88,6 +106,7 @@ final class AdsListViewController: DPViewController {
     }
     
     override func modelReloaded(_ model: DPViewModel?) {
+        self.collectionView.refreshControl?.endRefreshing()
         self.updateComponents()
     }
     
@@ -99,55 +118,10 @@ private extension AdsListViewController {
     func showAds(_ ads: Ads) {
         let vc = UIAlertController(title: ads.title, message: ads.body, preferredStyle: .alert)
         vc.addAction(.init(title: "OK", style: .cancel))
+        vc.addAction(.init(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            self?.model?.deleteAds(ads)
+        }))
         self.present(vc, animated: true)
     }
-    
-}
-
-typealias Representable = Hashable & Sendable
-
-struct Test: Hashable, Identifiable {
-    var id: UUID = .init()
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.id)
-    }
-    
-}
-
-struct TestParent {
-    
-    struct Test: Hashable, Identifiable {
-        var id: UUID = .init()
-        
-        func hash(into hasher: inout Hasher) {
-            hasher.combine(self.id)
-        }
-        
-    }
-    
-}
-
-protocol SectionType {
-    var items: [any Representable] { get set }
-    var header: (any Representable)? { get set }
-    var footer: (any Representable)? { get set }
-}
-
-struct Section: SectionType {
-    var items: [any Representable]
-    var header: (any Representable)?
-    var footer: (any Representable)?
-    
-    func ttt() {
-        guard let test = self.items.first else { return }
-        let type = type(of: test)
-        print("!!!", type)
-    }
-}
-
-class Adapter<Model: Representable> {
-    let representID = ObjectIdentifier(Model.self)
-    
     
 }

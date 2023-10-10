@@ -2,7 +2,7 @@
 
 An unobtrusive set of extensions and classes for UIKit.
 
-[![version](https://img.shields.io/badge/version-4.0.0-white.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-5.0.0-white.svg)](https://semver.org)
 
 ## Requirements
 
@@ -13,15 +13,16 @@ An unobtrusive set of extensions and classes for UIKit.
 
 - [x] MVVM
 - [x] Coordinators
-- [x] UITableView adapter 👨‍💻
-- [ ] UICollectionView adapter 👨‍💻
+- [x] UITableView adapter
+- [x] UICollectionView adapter
+- [x] Docc
+- [x] UITableView adapter Docc tutorial
 - [ ] DPLabel 👨‍💻
 - [ ] DPTextField 👨‍💻
 - [ ] SelfSizing views 👨‍💻
 - [ ] Static layout 👨‍💻
 - [ ] MVVM Docc tutorial 👨‍💻
 - [ ] Coordinators Docc tutorial 👨‍💻
-- [ ] UITableView adapter Docc tutorial 👨‍💻
 - [ ] UICollectionView adapter Docc tutorial 👨‍💻
 
 ## Documentaion

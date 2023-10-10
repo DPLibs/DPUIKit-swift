@@ -1,12 +1,14 @@
 # Table
 
+Components for working with a `UITableView`.
+
 @Metadata {
     @Available(iOS, introduced: "11.0")
 }
 
 ## Overview
 
-Components for working with a [UITableView](https://developer.apple.com/documentation/uikit/uitableview). Example - [Recents](https://github.com/DPLibs/DPUIKit-swift/tree/master/Demo/Demo/Presentation/Modules/Recents/Screens/Recents/RecentsViewController.swift).
+[Example](https://github.com/DPLibs/DPUIKit-swift/tree/master/Demo/Demo/Presentation/Modules/Recents/Screens/Recents)
 
 ## Topics
 

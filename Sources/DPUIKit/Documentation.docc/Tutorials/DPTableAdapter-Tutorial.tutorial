@@ -2,7 +2,7 @@
     @Intro(title: "Working with DPTableAdapter") {
         Let's create a screen with content in a table.
         
-        @Video(source: "dptableadapter_tutorial-result.mp4", poster: "test.png")
+        @Video(source: "dptableadapter_tutorial-result.mp4", poster: "dptableadapter_tutorial-result.png")
     }
     
     @Section(title: "Domain layer") {

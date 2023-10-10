@@ -4,6 +4,7 @@ An unobtrusive set of extensions and classes for UIKit
 
 @Metadata {
     @Available(iOS, introduced: "11.0")
+    @SupportedLanguage(swift)
 }
 
 ## Overview

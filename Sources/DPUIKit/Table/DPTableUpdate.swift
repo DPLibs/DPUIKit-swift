@@ -48,19 +48,37 @@ public extension DPTableUpdate {
         }
     }
     
-    /// Set new sections by `ID`.
+    /// Set new sections by `Equatable`.
     ///
     /// - Parameter sections: array of sections for installation.
     /// - Parameter rowAnimation: animation type.
-    @available(iOS 13.0, *)
-    static func setSections<S: DPTableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func setSections<S: DPTableSectionType & Equatable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indicies: [Int] = []
             
             for (sectionOffset, section) in adapter.sections.enumerated() {
-                guard let section = section as? S, sections.contains(where: { $0.id == section.id }) else { continue }
+                guard let section = section as? S, let newSection = sections.first(where: { $0 == section }) else { continue }
                 indicies += [sectionOffset]
-                adapter.sections[sectionOffset] = section
+                adapter.sections[sectionOffset] = newSection
+            }
+            
+            adapter.tableView?.reloadSections(IndexSet(indicies), with: rowAnimation)
+        }
+    }
+    
+    /// Set new sections by `Identifiable`.
+    ///
+    /// - Parameter sections: array of sections for installation.
+    /// - Parameter rowAnimation: animation type.
+    @available(iOS 13.0, *)
+    static func setSections<S: DPTableSectionType & Identifiable>(identified sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+        DPTableUpdate { adapter in
+            var indicies: [Int] = []
+            
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                guard let section = section as? S, let newSection = sections.first(where: { $0.id == section.id }) else { continue }
+                indicies += [sectionOffset]
+                adapter.sections[sectionOffset] = newSection
             }
             
             adapter.tableView?.reloadSections(IndexSet(indicies), with: rowAnimation)
@@ -91,17 +109,66 @@ public extension DPTableUpdate {
         }
     }
     
-    /// Delete sections by `ID`.
+    /// Delete sections by `Equatable`.
+    ///
+    /// - Parameter sections: array of sections for delete.
+    /// - Parameter rowAnimation: animation type.
+    static func deleteSections<S: DPTableSectionType & Equatable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+        DPTableUpdate { adapter in
+            var indicies: [Int] = []
+            
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                guard let section = section as? S, sections.contains(where: { $0 == section }) else { continue }
+                indicies += [sectionOffset]
+            }
+            
+            guard !indicies.isEmpty else { return }
+            let indexSet = IndexSet(indicies)
+            
+            for index in indexSet {
+                adapter.sections.remove(at: index)
+            }
+            
+            adapter.tableView?.deleteSections(indexSet, with: rowAnimation)
+        }
+    }
+    
+    /// Delete sections by `Identifiable`.
     ///
     /// - Parameter sections: array of sections for delete.
     /// - Parameter rowAnimation: animation type.
     @available(iOS 13.0, *)
-    static func deleteSections<S: DPTableSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func deleteSections<S: DPTableSectionType & Identifiable>(identified sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indicies: [Int] = []
             
             for (sectionOffset, section) in adapter.sections.enumerated() {
                 guard let section = section as? S, sections.contains(where: { $0.id == section.id }) else { continue }
+                indicies += [sectionOffset]
+            }
+            
+            guard !indicies.isEmpty else { return }
+            let indexSet = IndexSet(indicies)
+            
+            for index in indexSet {
+                adapter.sections.remove(at: index)
+            }
+            
+            adapter.tableView?.deleteSections(indexSet, with: rowAnimation)
+        }
+    }
+    
+    /// Delete sections by `ID`.
+    ///
+    /// - Parameter sections: array of sections for delete.
+    /// - Parameter rowAnimation: animation type.
+    @available(iOS 13.0, *)
+    static func deleteSections<ID: Equatable>(ids: [ID], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+        DPTableUpdate { adapter in
+            var indicies: [Int] = []
+            
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                guard let section = section as? (any Identifiable), let id = section.id as? ID, ids.contains(id) else { continue }
                 indicies += [sectionOffset]
             }
             
@@ -146,20 +213,40 @@ public extension DPTableUpdate {
         }
     }
     
-    /// Set new rows by `ID`.
+    /// Set new rows by `Equatable`.
     ///
     /// - Parameter rows: array of rows for installation.
     /// - Parameter rowAnimation: animation type.
-    @available(iOS 13.0, *)
-    static func setRows<R: Sendable & Identifiable>(_ rows: [R],with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+    static func setRows<R: Sendable & Equatable>(_ rows: [R], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
         DPTableUpdate { adapter in
             var indexPaths: [IndexPath] = []
             
             for (sectionOffset, section) in adapter.sections.enumerated() {
                 for (rowOffset, row) in section.rows.enumerated() {
-                    guard let row = row as? R, rows.contains(where: { $0.id == row.id }) else { continue }
+                    guard let row = row as? R, let newRow = rows.first(where: { $0 == row }) else { continue }
                     indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
-                    adapter.sections[sectionOffset].rows[rowOffset] = row
+                    adapter.sections[sectionOffset].rows[rowOffset] = newRow
+                }
+            }
+            
+            adapter.tableView?.reloadRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+    
+    /// Set new rows by `Identifiable`.
+    ///
+    /// - Parameter rows: array of rows for installation.
+    /// - Parameter rowAnimation: animation type.
+    @available(iOS 13.0, *)
+    static func setRows<R: Sendable & Identifiable>(identified rows: [R],with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+        DPTableUpdate { adapter in
+            var indexPaths: [IndexPath] = []
+            
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                for (rowOffset, row) in section.rows.enumerated() {
+                    guard let row = row as? R, let newRow = rows.first(where: { $0.id == row.id }) else { continue }
+                    indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
+                    adapter.sections[sectionOffset].rows[rowOffset] = newRow
                 }
             }
             
@@ -202,6 +289,32 @@ public extension DPTableUpdate {
             for (sectionOffset, section) in adapter.sections.enumerated() {
                 for (rowOffset, row) in section.rows.enumerated() {
                     guard let row = row as? R, rows.contains(where: { $0 == row }) else { continue }
+                    indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
+                }
+            }
+            
+            guard !indexPaths.isEmpty else { return }
+            
+            for indexPath in indexPaths {
+                adapter.sections[indexPath.section].rows.remove(at: indexPath.row)
+            }
+            
+            adapter.tableView?.deleteRows(at: indexPaths, with: rowAnimation)
+        }
+    }
+    
+    /// Delete rows by `Identifiable`.
+    ///
+    /// - Parameter sections: array of rows for delete.
+    /// - Parameter rowAnimation: animation type.
+    @available(iOS 13.0, *)
+    static func deleteRows<R: Sendable & Identifiable>(identified rows: [R], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPTableUpdate {
+        DPTableUpdate { adapter in
+            var indexPaths: [IndexPath] = []
+            
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                for (rowOffset, row) in section.rows.enumerated() {
+                    guard let row = row as? R, rows.contains(where: { $0.id == row.id }) else { continue }
                     indexPaths += [ IndexPath(row: rowOffset, section: sectionOffset) ]
                 }
             }

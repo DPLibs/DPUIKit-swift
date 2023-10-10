@@ -45,19 +45,36 @@ public extension DPCollectionUpdate {
             adapter.collectionView?.reloadSections(indexSet)
         }
     }
-
-    /// Set new sections by `ID`.
+    
+    /// Set new sections by `Equatable`.
     ///
     /// - Parameter sections: array of sections for installation.
-    @available(iOS 13.0, *)
-    static func setSections<S: DPCollectionSectionType & Identifiable>(_ sections: [S]) -> DPCollectionUpdate {
+    static func setSections<S: DPCollectionSectionType & Equatable>(_ sections: [S]) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             var indicies: [Int] = []
 
             for (sectionOffset, section) in adapter.sections.enumerated() {
-                guard let section = section as? S, sections.contains(where: { $0.id == section.id }) else { continue }
+                guard let section = section as? S, let newSection = sections.first(where: { $0 == section }) else { continue }
                 indicies += [sectionOffset]
-                adapter.sections[sectionOffset] = section
+                adapter.sections[sectionOffset] = newSection
+            }
+
+            adapter.collectionView?.reloadSections(IndexSet(indicies))
+        }
+    }
+
+    /// Set new sections by `Identifiable`.
+    ///
+    /// - Parameter sections: array of sections for installation.
+    @available(iOS 13.0, *)
+    static func setSections<S: DPCollectionSectionType & Identifiable>(identified sections: [S]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indicies: [Int] = []
+
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                guard let section = section as? S, let newSection = sections.first(where: { $0.id == section.id }) else { continue }
+                indicies += [sectionOffset]
+                adapter.sections[sectionOffset] = newSection
             }
 
             adapter.collectionView?.reloadSections(IndexSet(indicies))
@@ -85,17 +102,64 @@ public extension DPCollectionUpdate {
             adapter.collectionView?.deleteSections(indexSet)
         }
     }
+    
+    /// Delete sections by `Equatable`.
+    ///
+    /// - Parameter sections: array of sections for delete.
+    static func deleteSections<S: DPCollectionSectionType & Equatable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indicies: [Int] = []
 
-    /// Delete sections by `ID`.
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                guard let section = section as? S, sections.contains(where: { $0 == section }) else { continue }
+                indicies += [sectionOffset]
+            }
+
+            guard !indicies.isEmpty else { return }
+            let indexSet = IndexSet(indicies)
+
+            for index in indexSet {
+                adapter.sections.remove(at: index)
+            }
+
+            adapter.collectionView?.deleteSections(indexSet)
+        }
+    }
+
+    /// Delete sections by `Identifiable`.
     ///
     /// - Parameter sections: array of sections for delete.
     @available(iOS 13.0, *)
-    static func deleteSections<S: DPCollectionSectionType & Identifiable>(_ sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPCollectionUpdate {
+    static func deleteSections<S: DPCollectionSectionType & Identifiable>(identified sections: [S], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             var indicies: [Int] = []
 
             for (sectionOffset, section) in adapter.sections.enumerated() {
                 guard let section = section as? S, sections.contains(where: { $0.id == section.id }) else { continue }
+                indicies += [sectionOffset]
+            }
+
+            guard !indicies.isEmpty else { return }
+            let indexSet = IndexSet(indicies)
+
+            for index in indexSet {
+                adapter.sections.remove(at: index)
+            }
+
+            adapter.collectionView?.deleteSections(indexSet)
+        }
+    }
+    
+    /// Delete sections by `ID`.
+    ///
+    /// - Parameter sections: array of sections for delete.
+    @available(iOS 13.0, *)
+    static func deleteSections<ID: Equatable>(ids: [ID], with rowAnimation: UITableView.RowAnimation = .automatic) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indicies: [Int] = []
+
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                guard let section = section as? (any Identifiable), let id = section.id as? ID, ids.contains(id) else { continue }
                 indicies += [sectionOffset]
             }
 
@@ -138,20 +202,39 @@ public extension DPCollectionUpdate {
             adapter.collectionView?.reloadItems(at: indexPaths)
         }
     }
-
-    /// Set new items by `ID`.
+    
+    /// Set new items by `Equatable`.
     ///
     /// - Parameter items: array of items for installation.
-    @available(iOS 13.0, *)
-    static func setItems<I: Sendable & Identifiable>(_ items: [I]) -> DPCollectionUpdate {
+    static func setItems<I: Sendable & Equatable>(_ items: [I]) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             var indexPaths: [IndexPath] = []
 
             for (sectionOffset, section) in adapter.sections.enumerated() {
                 for (itemOffset, item) in section.items.enumerated() {
-                    guard let item = item as? I, items.contains(where: { $0.id == item.id }) else { continue }
+                    guard let item = item as? I, let newItem = items.first(where: { $0 == item }) else { continue }
                     indexPaths += [ IndexPath(item: itemOffset, section: sectionOffset) ]
-                    adapter.sections[sectionOffset].items[itemOffset] = item
+                    adapter.sections[sectionOffset].items[itemOffset] = newItem
+                }
+            }
+
+            adapter.collectionView?.reloadItems(at: indexPaths)
+        }
+    }
+
+    /// Set new items by `Identifiable`.
+    ///
+    /// - Parameter items: array of items for installation.
+    @available(iOS 13.0, *)
+    static func setItems<I: Sendable & Identifiable>(identified items: [I]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indexPaths: [IndexPath] = []
+
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                for (itemOffset, item) in section.items.enumerated() {
+                    guard let item = item as? I, let newItem = items.first(where: { $0.id == item.id }) else { continue }
+                    indexPaths += [ IndexPath(item: itemOffset, section: sectionOffset) ]
+                    adapter.sections[sectionOffset].items[itemOffset] = newItem
                 }
             }
 
@@ -180,18 +263,67 @@ public extension DPCollectionUpdate {
             adapter.collectionView?.deleteItems(at: indexPaths)
         }
     }
+    
+    /// Delete items by `Equatable`.
+    ///
+    /// - Parameter sections: array of items for delete.
+    static func deleteItems<I: Sendable & Equatable>(_ items: [I]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indexPaths: [IndexPath] = []
 
-    /// Delete items by `ID`.
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                for (itemOffset, item) in section.items.enumerated() {
+                    guard let item = item as? I, items.contains(where: { $0 == item }) else { continue }
+                    indexPaths += [ IndexPath(row: itemOffset, section: sectionOffset) ]
+                }
+            }
+
+            guard !indexPaths.isEmpty else { return }
+
+            for indexPath in indexPaths {
+                adapter.sections[indexPath.section].items.remove(at: indexPath.row)
+            }
+
+            adapter.collectionView?.deleteItems(at: indexPaths)
+        }
+    }
+
+    /// Delete items by `Identifiable`.
     ///
     /// - Parameter sections: array of items for delete.
     @available(iOS 13.0, *)
-    static func deleteItems<I: Sendable & Identifiable>(_ items: [I]) -> DPCollectionUpdate {
+    static func deleteItems<I: Sendable & Identifiable>(identified items: [I]) -> DPCollectionUpdate {
         DPCollectionUpdate { adapter in
             var indexPaths: [IndexPath] = []
 
             for (sectionOffset, section) in adapter.sections.enumerated() {
                 for (itemOffset, item) in section.items.enumerated() {
                     guard let item = item as? I, items.contains(where: { $0.id == item.id }) else { continue }
+                    indexPaths += [ IndexPath(row: itemOffset, section: sectionOffset) ]
+                }
+            }
+
+            guard !indexPaths.isEmpty else { return }
+
+            for indexPath in indexPaths {
+                adapter.sections[indexPath.section].items.remove(at: indexPath.row)
+            }
+
+            adapter.collectionView?.deleteItems(at: indexPaths)
+        }
+    }
+    
+    /// Delete items by `ID`.
+    ///
+    /// - Parameter sections: array of items for delete.
+    @available(iOS 13.0, *)
+    static func deleteItems<ID: Equatable>(ids: [ID]) -> DPCollectionUpdate {
+        DPCollectionUpdate { adapter in
+            var indexPaths: [IndexPath] = []
+
+            for (sectionOffset, section) in adapter.sections.enumerated() {
+                for (itemOffset, item) in section.items.enumerated() {
+                    guard let item = item as? (any Identifiable), let id = item.id as? ID, ids.contains(id) else { continue }
                     indexPaths += [ IndexPath(row: itemOffset, section: sectionOffset) ]
                 }
             }
