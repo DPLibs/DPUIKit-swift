@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Common coordinator protocol
 public protocol DPCoordinatorProtocol: AnyObject {
     
     /// Called at `start`

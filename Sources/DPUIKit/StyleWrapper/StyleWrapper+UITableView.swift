@@ -4,38 +4,34 @@ import UIKit
 public extension StyleWrapper where Element: UITableView {
     
     static var tableDefault: StyleWrapper {
-        return .wrap { table in
-            table.rowHeight = UITableView.automaticDimension
-            table.backgroundColor = .clear
-            table.separatorStyle = .none
-            table.delaysContentTouches = false
-            table.allowsSelectionDuringEditing = false
-            table.keyboardDismissMode = .onDrag
-            table.sectionHeaderHeight = UITableView.automaticDimension
+        return .wrap { view in
+            view.backgroundColor = .clear
+            view.separatorStyle = .none
+            view.keyboardDismissMode = .onDrag
         }
     }
     
     static func contentInset(_ value: UIEdgeInsets) -> StyleWrapper {
-        return .wrap { table in
-            table.contentInset = value
+        return .wrap { view in
+            view.contentInset = value
         }
     }
     
     static func keyboardDismissMode(_ value: UIScrollView.KeyboardDismissMode) -> StyleWrapper {
-        return .wrap { table in
-            table.keyboardDismissMode = value
+        return .wrap { view in
+            view.keyboardDismissMode = value
         }
     }
     
     static func estimatedRowHeight(_ value: CGFloat) -> StyleWrapper {
-        return .wrap { table in
-            table.estimatedRowHeight = value
+        return .wrap { view in
+            view.estimatedRowHeight = value
         }
     }
     
     static func isScrollEnabled(_ value: Bool) -> StyleWrapper {
-        return .wrap { table in
-            table.isScrollEnabled = value
+        return .wrap { view in
+            view.isScrollEnabled = value
         }
     }
     

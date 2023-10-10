@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Is a container inside which are arranged `UIScrollView` and `UIStackView`. And also some methods for managing the view.
 open class DPStackScrollView: DPView {
     
     // MARK: - Init
@@ -21,17 +22,8 @@ open class DPStackScrollView: DPView {
     }
     
     // MARK: - Props
-    open lazy var scrollView: UIScrollView = {
-        let result = UIScrollView()
-        
-        return result
-    }()
-    
-    open lazy var stackView: UIStackView = {
-        let result = UIStackView()
-        
-        return result
-    }()
+    open var scrollView = UIScrollView()
+    open var stackView = UIStackView()
     
     open var axis: NSLayoutConstraint.Axis {
         get { self.stackView.axis }
@@ -41,19 +33,8 @@ open class DPStackScrollView: DPView {
         }
     }
     
-    open lazy var stackWidthConstraint: NSLayoutConstraint = {
-        let result = self.stackView.widthAnchor.constraint(equalTo: self.widthAnchor)
-        result.isActive = true
-        
-        return result
-    }()
-    
-    open lazy var stackHeightConstraint: NSLayoutConstraint = {
-        let result = self.stackView.heightAnchor.constraint(equalTo: self.heightAnchor)
-        result.isActive = true
-        
-        return result
-    }()
+    open lazy var stackWidthConstraint: NSLayoutConstraint = self.stackView.widthAnchor.constraint(equalTo: self.widthAnchor)
+    open lazy var stackHeightConstraint: NSLayoutConstraint = self.stackView.heightAnchor.constraint(equalTo: self.heightAnchor)
     
     // MARK: - Methods
     open override func setupComponents() {
@@ -61,6 +42,8 @@ open class DPStackScrollView: DPView {
         
         self.scrollView.addToSuperview(self, withConstraints: [ .edges() ])
         self.stackView.addToSuperview(self.scrollView, withConstraints: [ .edges() ])
+        
+        self.updateComponents()
     }
     
     open override func updateComponents() {
@@ -81,14 +64,18 @@ open class DPStackScrollView: DPView {
     @discardableResult
     open func addArrangedSubviews(_ views: [UIView]) -> DPStackScrollView {
         self.stackView.addArrangedSubviews(views)
-        
         return self
     }
     
     @discardableResult
     open func removeAllArrangedSubviews() -> DPStackScrollView  {
         self.stackView.removeAllArrangedSubviews()
-        
+        return self
+    }
+    
+    @discardableResult
+    open func setArrangedSubviews(_ views: [UIView]) -> DPStackScrollView  {
+        self.stackView.setArrangedSubviews(views)
         return self
     }
 }

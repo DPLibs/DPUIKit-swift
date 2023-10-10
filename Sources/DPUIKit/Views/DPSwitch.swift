@@ -13,19 +13,16 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     // MARK: - Init
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.setupComponents()
     }
     
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         self.setupComponents()
     }
     
     public init(didTouchUpInside: (() -> Void)? = nil) {
         super.init(frame: .zero)
-        
         self.didTouchUpInside = didTouchUpInside
         self.didTouchUpInsideDidSet()
     }
@@ -38,9 +35,7 @@ open class DPSwitch: UISwitch, DPViewProtocol {
     // MARK: - Methods
     open func setupComponents() {}
     
-    open func updateComponents() { }
-    
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
+    open func updateComponents() {}
     
     open func didTouchUpInsideDidSet() {
         if self.didTouchUpInside == nil {

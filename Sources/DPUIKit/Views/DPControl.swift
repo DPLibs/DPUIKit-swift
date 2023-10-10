@@ -13,13 +13,11 @@ open class DPControl: UIControl, DPViewProtocol {
     // MARK: - Init
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
         self.setupComponents()
     }
     
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
         self.setupComponents()
     }
     
@@ -27,8 +25,5 @@ open class DPControl: UIControl, DPViewProtocol {
     open func setupComponents() {}
     
     open func updateComponents() {}
-    
-    open func setHidden(_ hidden: Bool, animated: Bool) {}
-    
 }
  

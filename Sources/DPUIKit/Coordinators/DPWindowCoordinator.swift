@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+/// Manages flow inside `UIWindow`.
 open class DPWindowCoordinator: DPCoordinatorProtocol {
     
     // MARK: - Init
