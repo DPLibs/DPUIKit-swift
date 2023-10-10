@@ -12,8 +12,19 @@ import UIKit
 final class RecentView: DPView {
     
     // MARK: - Props
-    let titleLabel = UILabel().applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
-    let bodyLabel = UILabel().applyStyles(.textColor(AppTheme.mainColor), .textAlignment(.left), .numberOfLines(0))
+    let titleLabel = UILabel().applyStyles(
+        .textColor(AppTheme.mainColor),
+        .textAlignment(.left),
+        .numberOfLines(0),
+        .font(.systemFont(ofSize: 16, weight: .medium))
+    )
+    
+    let bodyLabel = UILabel().applyStyles(
+        .textColor(AppTheme.mainColor),
+        .textAlignment(.left),
+        .numberOfLines(0),
+        .font(.systemFont(ofSize: 14, weight: .regular))
+    )
     
     var recent: Recent? {
         didSet { self.updateComponents() }

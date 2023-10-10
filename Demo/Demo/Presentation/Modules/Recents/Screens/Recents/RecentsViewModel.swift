@@ -11,44 +11,49 @@ import DPUIKit
 
 class RecentsViewModel: DPViewModel {
     
+    // MARK: - Init
+    override init() {
+        self.recentService = RecentMockService()
+    }
+    
     // MARK: - Props
+    private let recentService: RecentService
     private(set) var recents: [Recent] = []
-    var didAdd: ((_ recent: Recent, _ index: Int) -> Void)?
-    var didDelete: ((Recent) -> Void)?
+    
+    var onRecents: (([Recent]) -> Void)?
+    var onCreateRecent: ((Recent) -> Void)?
+    var onDeleteRecent: ((Recent) -> Void)?
     
     // MARK: - Methods
     override func reload() {
-        self.reload(isReload: true)
+        super.reload()
+        
+        self.recentService.getRecents { [weak self] recents in
+            self?.recents  = recents
+            self?.onRecents?(self?.recents ?? [])
+        }
     }
     
     override func loadMore() {
-        self.reload(isReload: false)
+        super.loadMore()
+        
+        self.recentService.getRecents { [weak self] recents in
+            self?.recents += recents
+            self?.onRecents?(self?.recents ?? [])
+        }
     }
     
-    func add() {
-        let recent = Recent.moc()
-        self.recents.insert(recent, at: 0)
-        self.didAdd?(recent, 0)
+    func createRecent() {
+        self.recentService.createRecent { [weak self] recent in
+            self?.recents.insert(recent, at: 0)
+            self?.onCreateRecent?(recent)
+        }
     }
     
     func deleteRecent(_ recent: Recent) {
-        self.recents.removeAll(where: { recent.id == $0.id })
-        self.didDelete?(recent)
-    }
-    
-}
-
-// MARK: - Private
-private extension RecentsViewModel {
-    
-    func reload(isReload: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .microseconds(500)) { [weak self] in
-            if isReload {
-                self?.recents.removeAll()
-            }
-            self?.recents += .moc(count: 10)
-            self?._output?.modelReloaded(self)
-            self?._output?.modelFinishLoading(self, withError: nil)
+        self.recentService.deleteRecent(recent) { [weak self] in
+            self?.recents.removeAll(where: { $0 == recent })
+            self?.onDeleteRecent?(recent)
         }
     }
     

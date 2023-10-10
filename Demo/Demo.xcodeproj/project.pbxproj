@@ -15,7 +15,6 @@
 		E21601B32ACEBEE70075321B /* AdsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21601B22ACEBEE70075321B /* AdsCoordinator.swift */; };
 		E2369045284A6368007EED26 /* UserEditCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2369044284A6368007EED26 /* UserEditCoordinator.swift */; };
 		E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EB027C287B9004EE94F /* AppTheme.swift */; };
-		E23A5ECA27C2AF21004EE94F /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23A5EC927C2AF21004EE94F /* Recent.swift */; };
 		E23D134A27C4F583001AB75D /* AuthPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D134727C4F583001AB75D /* AuthPhoneViewController.swift */; };
 		E23D135027C4F5E2001AB75D /* AuthPhoneCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D134D27C4F5E2001AB75D /* AuthPhoneCodeViewController.swift */; };
 		E23D135627C4FDD8001AB75D /* UserEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23D135527C4FDD8001AB75D /* UserEditViewController.swift */; };
@@ -31,6 +30,8 @@
 		E258C00E2ABAE20200161C0C /* AdsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C00C2ABAE20200161C0C /* AdsListViewController.swift */; };
 		E258C0112ABAE22A00161C0C /* AdsListCollectionItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C0102ABAE22A00161C0C /* AdsListCollectionItemCell.swift */; };
 		E258C0132ABAE2AC00161C0C /* Ads.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258C0122ABAE2AC00161C0C /* Ads.swift */; };
+		E26415C32AD5797D00394641 /* RecentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26415C12AD5797D00394641 /* RecentService.swift */; };
+		E26415C42AD5797D00394641 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26415C22AD5797D00394641 /* Recent.swift */; };
 		E26735D52759547600DCEEFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26735D42759547600DCEEFB /* AppDelegate.swift */; };
 		E26735DE2759547900DCEEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E26735DD2759547900DCEEFB /* Assets.xcassets */; };
 		E26735E12759547900DCEEFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E26735DF2759547900DCEEFB /* LaunchScreen.storyboard */; };
@@ -56,7 +57,6 @@
 		E21601B22ACEBEE70075321B /* AdsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCoordinator.swift; sourceTree = "<group>"; };
 		E2369044284A6368007EED26 /* UserEditCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditCoordinator.swift; sourceTree = "<group>"; };
 		E23A5EB027C287B9004EE94F /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
-		E23A5EC927C2AF21004EE94F /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		E23D134727C4F583001AB75D /* AuthPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPhoneViewController.swift; sourceTree = "<group>"; };
 		E23D134D27C4F5E2001AB75D /* AuthPhoneCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPhoneCodeViewController.swift; sourceTree = "<group>"; };
 		E23D135527C4FDD8001AB75D /* UserEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +72,8 @@
 		E258C00C2ABAE20200161C0C /* AdsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListViewController.swift; sourceTree = "<group>"; };
 		E258C0102ABAE22A00161C0C /* AdsListCollectionItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListCollectionItemCell.swift; sourceTree = "<group>"; };
 		E258C0122ABAE2AC00161C0C /* Ads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ads.swift; sourceTree = "<group>"; };
+		E26415C12AD5797D00394641 /* RecentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentService.swift; sourceTree = "<group>"; };
+		E26415C22AD5797D00394641 /* Recent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		E26735D12759547600DCEEFB /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E26735D42759547600DCEEFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E26735DD2759547900DCEEFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -234,8 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				E258C0122ABAE2AC00161C0C /* Ads.swift */,
-				E23A5EC927C2AF21004EE94F /* Recent.swift */,
 				E2FC50B827C385CD00F320C5 /* User.swift */,
+				E26415C02AD5797D00394641 /* Recent */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -276,6 +278,15 @@
 				E258C0102ABAE22A00161C0C /* AdsListCollectionItemCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E26415C02AD5797D00394641 /* Recent */ = {
+			isa = PBXGroup;
+			children = (
+				E26415C12AD5797D00394641 /* RecentService.swift */,
+				E26415C22AD5797D00394641 /* Recent.swift */,
+			);
+			path = Recent;
 			sourceTree = "<group>";
 		};
 		E26735C82759547500DCEEFB = {
@@ -457,7 +468,6 @@
 				E204C068284B8EC30097611F /* MainCoordinator.swift in Sources */,
 				E2C3762A2ACB0ECB002EB93E /* RecentTableRowCell.swift in Sources */,
 				E23D135027C4F5E2001AB75D /* AuthPhoneCodeViewController.swift in Sources */,
-				E23A5ECA27C2AF21004EE94F /* Recent.swift in Sources */,
 				E23A5EB127C287B9004EE94F /* AppTheme.swift in Sources */,
 				E21601B32ACEBEE70075321B /* AdsCoordinator.swift in Sources */,
 				E252FBDC27C7659100F6F0F5 /* MainTabBarController.swift in Sources */,
@@ -468,6 +478,7 @@
 				E2C376272ACB0ECB002EB93E /* RecentsViewModel.swift in Sources */,
 				E2C376252ACB0ECB002EB93E /* RecentsCoordinator.swift in Sources */,
 				E2C376262ACB0ECB002EB93E /* RecentsViewController.swift in Sources */,
+				E26415C42AD5797D00394641 /* Recent.swift in Sources */,
 				E258C00E2ABAE20200161C0C /* AdsListViewController.swift in Sources */,
 				E2C376292ACB0ECB002EB93E /* RecentViewModel.swift in Sources */,
 				E2C3762B2ACB0ECB002EB93E /* RecentView.swift in Sources */,
@@ -475,6 +486,7 @@
 				E204C072284D33520097611F /* UserEditable.swift in Sources */,
 				E252FBE427C7665900F6F0F5 /* UserManager.swift in Sources */,
 				E204C06A284C1D160097611F /* UserCoordinator.swift in Sources */,
+				E26415C32AD5797D00394641 /* RecentService.swift in Sources */,
 				E2FC50D827C38C1500F320C5 /* UserProfileViewController.swift in Sources */,
 				E245788D27C68D7900917D31 /* InitialViewController.swift in Sources */,
 				E258C00D2ABAE20200161C0C /* AdsListViewModel.swift in Sources */,
@@ -555,7 +567,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -611,7 +623,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -635,7 +647,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -663,7 +675,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

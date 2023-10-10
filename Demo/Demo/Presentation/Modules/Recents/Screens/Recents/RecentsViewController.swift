@@ -35,16 +35,16 @@ class RecentsViewController: DPViewController {
             didSelect: { [weak self] ctx in
                 self?.didSelect?(ctx.model)
             },
-            onCellLeading: { [weak self] _ in
-                return .init(actions: [
+            onCellLeading: { [weak self] ctx in
+                .init(actions: [
                     .init(style: .normal, title: "Info", handler: { [weak self] _, _, handler in
                         handler(true)
-                        self?.showInfo()
+                        self?.showInfo(ctx.model)
                     })
                 ])
             },
             onCellTrailing: { [weak self] ctx in
-                return .init(actions: [
+                .init(actions: [
                     .init(style: .destructive, title: "Delete", handler: { [weak self] _, _, handler in
                         handler(true)
                         self?.model?.deleteRecent(ctx.model)
@@ -74,45 +74,33 @@ class RecentsViewController: DPViewController {
         
         self.view.backgroundColor = .white
         self.navigationItem.title = "Recents"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.add))
+        
+        self.navigationItem.rightBarButtonItem = DPBarButtonItem(title: "Add", style: .plain, onAction: { [weak self] in
+            self?.model?.createRecent()
+        })
         
         self.tableView.addToSuperview(self.view, withConstraints: [ .edges(to: .safeArea) ])
         
-        self.model?.didAdd = { [weak self] recent, index in
+        self.model?.onRecents = { [weak self] recents in
+            self?.tableView.refreshControl?.endRefreshing()
+            self?.tableView.adapter?.reloadData([
+                DPTableSection(rows: recents)
+            ])
+        }
+        
+        self.model?.onCreateRecent = { [weak self] recent in
             self?.tableView.adapter?.performBatchUpdates([
                 .insertRows([recent], at: [.init(row: 0, section: 0)], with: .fade)
             ])
         }
         
-        self.model?.didDelete = { [weak self] recent in
+        self.model?.onDeleteRecent = { [weak self] recent in
             self?.tableView.adapter?.performBatchUpdates([
-                .deleteRows([recent])
+                .deleteRows([recent], with: .top)
             ])
         }
         
         self.model?.reload()
-    }
-    
-    override func updateComponents() {
-        super.updateComponents()
-        
-        let rows = self.model?.recents ?? []
-        
-        self.tableView.adapter?.reloadData([
-            DPTableSection(rows: rows)
-        ])
-    }
-    
-    override func modelReloaded(_ model: DPViewModel?) {
-        super.modelReloaded(model)
-        
-        self.updateComponents()
-    }
-    
-    override func modelFinishLoading(_ model: DPViewModel?, withError error: Error?) {
-        super.modelFinishLoading(model, withError: error)
-        
-        self.tableView.refreshControl?.endRefreshing()
     }
     
 }
@@ -120,13 +108,8 @@ class RecentsViewController: DPViewController {
 // MARK: - Private
 private extension RecentsViewController {
     
-    @objc
-    func add() {
-        self.model?.add()
-    }
-    
-    func showInfo() {
-        let alert = UIAlertController(title: "Info alert", message: nil, preferredStyle: .alert)
+    func showInfo(_ recent: Recent) {
+        let alert = UIAlertController(title: "Info", message: "This is info of Recent", preferredStyle: .alert)
         alert.addAction(.init(title: "OK", style: .cancel))
         self.present(alert, animated: true)
     }
