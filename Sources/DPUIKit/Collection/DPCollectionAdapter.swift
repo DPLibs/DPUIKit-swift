@@ -68,6 +68,9 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
     /// Called in the ``collectionView(_:willDisplay:forItemAt:)``.
     open var willDisplayItem: ItemContextClosure?
     
+    /// Called in the ``collectionView(_:didEndDisplaying:forItemAt:)``.
+    open var didEndDisplayingItem: ItemContextClosure?
+    
     /// Called in the ``collectionView(_:didSelectItemAt:)``.
     open var didSelectItem: ItemContextClosure?
     
@@ -229,6 +232,13 @@ open class DPCollectionAdapter: NSObject, UICollectionViewDataSource, UICollecti
 
         if !self.sections.isEmpty, indexPath == IndexPath(row: (self.sections.last?.items.count ?? 0) - 1, section: self.sections.count - 1) {
             self.onDisplayLastItem?()
+        }
+    }
+    
+    open func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = cell as? DPCollectionItemCellType, let model = self.sections.item(at: indexPath) {
+            self.didEndDisplayingItem?((cell, model, indexPath))
+            self.itemAdapters[self.modelRepresentID(model)]?.didEndDisplaying(cell: cell, model: model, indexPath: indexPath)
         }
     }
     

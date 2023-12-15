@@ -30,6 +30,9 @@ public protocol DPCollectionItemAdapterType {
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:willDisplay:forItemAt:)``.
     func willDisplay(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath)
+    
+    /// Called in the ``DPCollectionAdapter/collectionView(_:didEndDisplaying:forItemAt:)``.
+    func didEndDisplaying(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath)
 
     /// Called in the ``DPCollectionAdapter/collectionView(_:layout:sizeForItemAt:)``.
     func onSizeForItem(model: Sendable, indexPath: IndexPath) -> CGSize?
@@ -45,6 +48,7 @@ open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: Sendab
         didDeselect: ItemContextClosure? = nil,
         onCell: ItemContextClosure? = nil,
         willDisplay: ItemContextClosure? = nil,
+        didEndDisplaying: ItemContextClosure? = nil,
         onSizeForItem: ItemContextToCGSize? = nil
     ) {
         self.cellSize = cellSize
@@ -52,6 +56,7 @@ open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: Sendab
         self.didDeselect = didDeselect
         self.onCell = onCell
         self.willDisplay = willDisplay
+        self.didEndDisplaying = didEndDisplaying
         self.onSizeForItem = onSizeForItem
     }
     
@@ -78,6 +83,9 @@ open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: Sendab
 
     /// Called in the ``willDisplay(cell:model:indexPath:)``.
     open var willDisplay: ItemContextClosure?
+    
+    /// Called in the ``didEndDisplaying(cell:model:indexPath:)``.
+    open var didEndDisplaying: ItemContextClosure?
 
     /// Called int the ``onSizeForItem(model:indexPath:)``.
     open var onSizeForItem: ItemContextToCGSize?
@@ -101,6 +109,11 @@ open class DPCollectionItemAdapter<Cell: DPCollectionItemCellType, Model: Sendab
     open func willDisplay(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath) {
         guard let cell = cell as? Cell, let model = model as? Model else { return }
         self.willDisplay?((cell, model, indexPath))
+    }
+    
+    open func didEndDisplaying(cell: DPCollectionItemCellType, model: Sendable, indexPath: IndexPath) {
+        guard let cell = cell as? Cell, let model = model as? Model else { return }
+        self.didEndDisplaying?((cell, model, indexPath))
     }
 
     open func onSizeForItem(model: Sendable, indexPath: IndexPath) -> CGSize? {

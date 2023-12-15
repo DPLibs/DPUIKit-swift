@@ -47,6 +47,9 @@ final class AdsListViewController: DPViewController {
                     didSelect: { [weak self] ctx in
                         self?.showAds(ctx.model)
                     },
+                    didEndDisplaying : {[weak self] ctx in
+                        print("didEndDisplaying: \(ctx.indexPath)")
+                    },
                     onSizeForItem: { [weak self] ctx in
                         guard let self else { return nil }
                         let side = (self.view.frame.width - 48) / 2
